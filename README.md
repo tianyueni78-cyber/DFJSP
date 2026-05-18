@@ -5,6 +5,7 @@
 ## Knowledge Base
 
 - [数据层认知地图](docs/02_data_flow/data_layer_map.md)
+- [调度解码层：sorting.m 的系统作用](docs/04_decoding/decoding_layer_overview.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
 
 ## Current Principle
