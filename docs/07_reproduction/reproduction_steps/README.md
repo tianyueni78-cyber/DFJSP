@@ -14,8 +14,15 @@
 
 ## 当前步骤
 
+如果你只是想知道“现在在 MATLAB 里怎么跑”，先看：
+
+```text
+00_how_to_run_current_stage.md
+```
+
 | 步骤 | 说明文档 | 当前状态 |
 |---|---|---|
+| 当前运行入口 | [现在这套封装怎么跑](00_how_to_run_current_stage.md) | 面向初学者的操作入口 |
 | 第 1 步 | [数据读取封装](01_data_reading.md) | 已完成第一版 |
 | 第 2 步 | [fitness/sorting 最小调用链](02_fitness_sorting_call_chain.md) | 已完成拆解，用作评价接口核对表，尚未封装 |
 | 第 3 步 | [单条染色体评价入口](03_single_chromosome_evaluation.md) | 已完成封装，尚未测试 |

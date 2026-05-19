@@ -14,6 +14,7 @@
 - [评价层：调度方案如何被评价](docs/05_evaluation/evaluation_layer_overview.md)
 - [实验流程：dif_main.m 和 same_main.m 在跑什么](docs/06_experiments/experiment_flow.md)
 - [复现步骤说明](docs/07_reproduction/reproduction_steps/README.md)
+  - [现在这套封装怎么跑](docs/07_reproduction/reproduction_steps/00_how_to_run_current_stage.md)
   - [第 1 步：数据读取封装](docs/07_reproduction/reproduction_steps/01_data_reading.md)
   - [第 2 步：fitness/sorting 最小调用链](docs/07_reproduction/reproduction_steps/02_fitness_sorting_call_chain.md)
   - [第 3 步：单条染色体评价入口](docs/07_reproduction/reproduction_steps/03_single_chromosome_evaluation.md)
