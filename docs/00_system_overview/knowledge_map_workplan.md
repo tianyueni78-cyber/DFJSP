@@ -79,25 +79,33 @@
 | 数据读取 | 文件能稳定读进 MATLAB | 已拆解、已封装、已有测试 | `src/data/read_fjsp.m`、`src/data/read_machine_data.m`、`src/data/read_agv_data.m`、`tests/test_read_*.m` |
 | 单条染色体评价 | 1 条 `chrom` 能被 `fitness/sorting` 评价 | 已拆解、已封装、已补正式测试 | `src/evaluation/evaluate_chromosome.m`、`tests/test_evaluate_chromosome.m` |
 | 当前串联入口 | 把数据读取、生成 chrom、评价、输出串起来 | 已有脚本，已由你手动跑通 | `scripts/run_single_evaluation.m` |
-| 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已新增运行脚本，等待你本地运行 | `scripts/run_small_nsga2.m` |
+| 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通 | `scripts/run_small_nsga2.m` |
 | 完整实验复现 | 对比/消融/指标/图表 | 未开始 | 后续再整理 |
 
 当前已经跑通的最远位置是：
 
 ```text
-数据 -> 1 条随机染色体 -> fitness/sorting -> makespan + totalEnergy -> outputs
+数据 -> 小种群 NSGA-II 2 代短迭代 -> Pareto 解集摘要 -> outputs
 ```
 
-当前正在进入：
+第 5 步本地跑通记录：
 
 ```text
-第 5 步：小种群短迭代。
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 155.9  MIN Energy:1890.05
+GEN: 2  MIN Cmax: 155.9  MIN Energy:1890.05
+运行时间：0.36357
+small NSGA-II finished.
+pop: 10, max_gen: 2
+paretoSolutionCount: 3
+bestMakespan: 155.886667
+bestTotalEnergy: 1890.048000
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 ```
 
-你下一步要在 MATLAB 里运行：
+下一步不要直接扩到完整论文实验，建议先把“小种群短迭代”固化成正式测试：
 
-```matlab
-run('scripts/run_small_nsga2.m')
+```text
+tests/test_small_nsga2.m
 ```
-
-跑通后，再把工作表更新为“小种群短迭代已本地跑通”。

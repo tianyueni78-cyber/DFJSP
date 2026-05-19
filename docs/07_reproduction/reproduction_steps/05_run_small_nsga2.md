@@ -181,3 +181,61 @@ run('scripts/run_small_nsga2.m')
 
 如果跑通，把命令行输出贴回来，我再更新工作表。
 
+## 7. 本次你已经跑通的结果
+
+你这次在 MATLAB 命令行看到：
+
+```text
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 155.9  MIN Energy:1890.05
+GEN: 2  MIN Cmax: 155.9  MIN Energy:1890.05
+运行时间：0.36357
+small NSGA-II finished.
+pop: 10, max_gen: 2
+paretoSolutionCount: 3
+bestMakespan: 155.886667
+bestTotalEnergy: 1890.048000
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
+```
+
+这说明：
+
+```text
+基础 NSGA-II 已经能在小样本上完成 2 代短迭代。
+```
+
+这一步比单条染色体评价更进一步，因为它已经跑到了：
+
+```text
+种群初始化
+-> 批量评价
+-> 非支配排序
+-> 选择
+-> 交叉变异
+-> 种群更新
+-> Pareto 解集摘要
+```
+
+本次结果可以这样理解：
+
+| 指标 | 数值 | 含义 |
+|---|---:|---|
+| `paretoSolutionCount` | `3` | 最后得到 3 个非支配解 |
+| `bestMakespan` | `155.886667` | 当前小实验中最短总完工时间 |
+| `bestTotalEnergy` | `1890.048000` | 当前小实验中最低总能耗 |
+
+注意：
+
+```text
+这仍然不是论文最终实验结果。
+它是小种群、短迭代、单算法的跑通证明。
+```
+
+下一步建议：
+
+```text
+新增 tests/test_small_nsga2.m
+```
+
+把这条小种群短迭代链路固定成正式测试。

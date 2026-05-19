@@ -319,3 +319,18 @@ raw_code/NSGA-II
 ```
 
 跑通后，说明基础 NSGA-II 的小型搜索闭环能工作。
+
+你已经本地跑通一次，摘要是：
+
+```text
+paretoSolutionCount: 3
+bestMakespan: 155.886667
+bestTotalEnergy: 1890.048000
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
+```
+
+当前最远进度已经从“单条染色体评价”推进到：
+
+```text
+小种群 NSGA-II 2 代短迭代。
+```
