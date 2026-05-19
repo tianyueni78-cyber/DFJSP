@@ -27,6 +27,7 @@
 | 第 2 步 | [fitness/sorting 最小调用链](02_fitness_sorting_call_chain.md) | 已完成拆解，封装任务已转入第 3 步 |
 | 第 3 步 | [单条染色体评价入口](03_single_chromosome_evaluation.md) | 已完成封装，已补正式测试 |
 | 第 4 步 | [单条评价运行脚本](04_run_single_evaluation_script.md) | 已完成串联脚本，已由你手动跑通 |
+| 第 5 步 | [小种群短迭代](05_run_small_nsga2.md) | 已新增运行脚本，等待本地运行 |
 
 ## 后续会怎么加
 
@@ -52,8 +53,14 @@
 第 4 步：run_single_evaluation 串联脚本，并已由你手动跑通。
 ```
 
-下一步不应跳完整实验，而是进入：
+当前正在进入：
 
 ```text
 第 5 步：小种群短迭代。
+```
+
+你下一步要运行：
+
+```matlab
+run('scripts/run_small_nsga2.m')
 ```

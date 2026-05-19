@@ -22,7 +22,6 @@
 ```text
 自动生成 chrom 的小测试
 单条评价链路的正式测试
-小种群短迭代
 完整 dif_main / same_main 复现
 ```
 
@@ -300,7 +299,23 @@ run('scripts/run_single_evaluation.m')
 下一步才适合写：
 
 ```text
-tests/test_evaluate_chromosome.m
+scripts/run_small_nsga2.m
 ```
 
-也就是把这条串联链路变成正式检查作业。
+现在这个脚本已经新增。
+
+第三步，跑小种群短迭代：
+
+```matlab
+run('scripts/run_small_nsga2.m')
+```
+
+这个脚本会用：
+
+```text
+pop = 10
+max_gen = 2
+raw_code/NSGA-II
+```
+
+跑通后，说明基础 NSGA-II 的小型搜索闭环能工作。
