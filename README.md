@@ -13,6 +13,7 @@
 - [调度解码层：sorting.m 的系统作用](docs/04_decoding/decoding_layer_overview.md)
 - [评价层：调度方案如何被评价](docs/05_evaluation/evaluation_layer_overview.md)
 - [实验流程：dif_main.m 和 same_main.m 在跑什么](docs/06_experiments/experiment_flow.md)
+- [复现步骤说明](docs/07_reproduction/reproduction_steps/README.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
 - [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
 
