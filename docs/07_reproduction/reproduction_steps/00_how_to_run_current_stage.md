@@ -85,6 +85,16 @@ run('scripts/run_single_evaluation.m')
 保存结果到 outputs/
 ```
 
+更具体地说，它的输入和输出是：
+
+| 类型 | 内容 |
+|---|---|
+| 输入数据 | `data_sample/Mk01.fjs`、`data_sample/机器数据.xlsx`、`data_sample/AGV数据.xlsx` |
+| 中间方案 | 原始 `init.m` 随机生成 1 条 `chrom` |
+| 评价入口 | `evaluate_chromosome.m` |
+| 原始核心 | `raw_code/NSGA-II/fitness.m` 和 `sorting.m` |
+| 输出结果 | `makespan`、`totalEnergy`、`summary.txt`、`single_evaluation_result.mat` |
+
 正常情况下，你会看到：
 
 ```text
@@ -99,6 +109,23 @@ outputDir: ...
 ```text
 outputs/single_evaluation/时间戳/
 ```
+
+你这次已经跑通了一次，命令行结果是：
+
+```text
+single evaluation finished.
+makespan: 175.016667
+totalEnergy: 2147.655667
+outputDir: D:\CODEX\code_refactor_project\outputs\single_evaluation\20260519_205602
+```
+
+这个结果表示：
+
+```text
+1 条随机染色体已经成功被解码和评价。
+```
+
+它不是完整论文实验结果，只是当前最小链路的跑通证明。
 
 这个脚本不是完整论文实验。
 

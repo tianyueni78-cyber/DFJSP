@@ -59,7 +59,120 @@ scripts/run_single_evaluation.m
 这条最短链路能不能串起来。
 ```
 
-## 3. 你在 MATLAB 里怎么跑
+## 3. 输入、过程、输出分别是什么
+
+这一步可以按三个部分理解。
+
+### 输入：脚本吃什么
+
+`scripts/run_single_evaluation.m` 当前使用的是 `data_sample/` 里的小样本：
+
+| 输入 | 文件或来源 | 读入后变成什么 |
+|---|---|---|
+| `.fjs` 标准算例 | `data_sample/Mk01.fjs` | `problem` |
+| 机器数据 | `data_sample/机器数据.xlsx` | `machineData` |
+| AGV 数据 | `data_sample/AGV数据.xlsx` | `agvData` |
+| AGV 电量参数 | 脚本里临时设置 | `config` |
+| 随机种子 | `rng(42)` | 保证这次随机生成的 `chrom` 可重复 |
+
+其中：
+
+```text
+problem     说明工件、工序、候选机器、加工时间
+machineData 说明机器距离和机器能耗
+agvData     说明 AGV 数量、速度、空载/负载能耗
+config      说明电量上限、充电阈值、充电速度
+```
+
+### 过程：脚本中间做什么
+
+脚本内部把这些步骤串起来：
+
+```text
+read_fjsp
+-> read_machine_data
+-> read_agv_data
+-> init 生成 1 条 chrom
+-> evaluate_chromosome
+-> 原始 fitness.m
+-> 原始 sorting.m
+```
+
+你可以把 `chrom` 理解成：
+
+```text
+一条随机生成的调度方案。
+```
+
+`evaluate_chromosome` 会把这条方案交给原始 `fitness/sorting` 去排程和评价。
+
+### 输出：脚本吐出什么
+
+命令行会显示：
+
+```text
+single evaluation finished.
+makespan: ...
+totalEnergy: ...
+outputDir: ...
+```
+
+输出目录里会保存两个文件：
+
+| 输出文件 | 里面有什么 |
+|---|---|
+| `summary.txt` | 方便人看的摘要：`makespan`、机器能耗、AGV 能耗、总能耗 |
+| `single_evaluation_result.mat` | MATLAB 数据：`result`、`chrom`、`problem`、`machineData`、`agvData`、`config` |
+
+`result` 里最重要的是：
+
+| 字段 | 含义 |
+|---|---|
+| `result.makespan` | 这条调度方案的总完工时间 |
+| `result.machineEnergy` | 机器能耗 |
+| `result.agvEnergy` | AGV 能耗 |
+| `result.totalEnergy` | 机器能耗 + AGV 能耗 |
+| `result.machineTable` | 机器加工时间表 |
+| `result.AGVTable` | AGV 运输/充电时间表 |
+
+## 4. 本次你已经跑通的结果
+
+你这次在 MATLAB 命令行看到：
+
+```text
+single evaluation finished.
+makespan: 175.016667
+totalEnergy: 2147.655667
+outputDir: D:\CODEX\code_refactor_project\outputs\single_evaluation\20260519_205602
+```
+
+这说明当前最小链路已经跑通：
+
+```text
+数据 -> 染色体 -> 解码 -> 评价 -> 输出
+```
+
+这两个数字的意思是：
+
+| 指标 | 数值 | 含义 |
+|---|---:|---|
+| `makespan` | `175.016667` | 这条随机调度方案的总完工时间 |
+| `totalEnergy` | `2147.655667` | 这条方案的机器能耗 + AGV 能耗 |
+
+注意：
+
+```text
+这不是论文最终结果。
+这是 1 条随机染色体的评价结果。
+```
+
+它证明的是：
+
+```text
+当前串联入口能跑通，不代表算法已经完成完整优化实验。
+```
+
+## 5. 你在 MATLAB 里怎么跑
 
 打开 MATLAB，输入：
 
@@ -90,7 +203,7 @@ outputs/single_evaluation/某个时间戳/
 | `summary.txt` | 简单结果摘要 |
 | `single_evaluation_result.mat` | MATLAB 结果数据 |
 
-## 4. 为什么输出要进 outputs
+## 6. 为什么输出要进 outputs
 
 因为复现时最怕结果到处散。
 
@@ -104,7 +217,7 @@ outputs/single_evaluation/20260519_153000/
 
 这样不会覆盖上一次运行结果。
 
-## 5. 这个接口以后会怎么变
+## 7. 这个接口以后会怎么变
 
 会变，而且应该变。
 
@@ -128,7 +241,7 @@ outputs/single_evaluation/20260519_153000/
 
 不是最终主程序。
 
-## 6. 如果以后换新数据怎么办
+## 8. 如果以后换新数据怎么办
 
 现在最简单的方式是：
 
@@ -163,7 +276,7 @@ agvExcelPath = ...
 尽量少改 scripts
 ```
 
-## 7. 现在项目里代码怎么不那么碎
+## 9. 现在项目里代码怎么不那么碎
 
 现在可以这样理解：
 
@@ -190,7 +303,7 @@ scripts/run_single_evaluation.m
     -> outputs
 ```
 
-## 8. 这一步的当前状态
+## 10. 这一步的当前状态
 
 当前状态：
 
