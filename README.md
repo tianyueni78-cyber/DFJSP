@@ -5,6 +5,7 @@
 ## Knowledge Base
 
 - [知识地图工作表](docs/00_system_overview/knowledge_map_workplan.md)
+- [项目文件导览：每个板块是干什么的](docs/00_system_overview/repository_file_guide.md)
 - [项目易读版：这套代码到底在做什么](docs/00_system_overview/beginner_reading_guide.md)
 - [系统五层认知结构](docs/00_system_overview/system_layer_architecture.md)
 - [数据层认知地图](docs/02_data_flow/data_layer_map.md)
