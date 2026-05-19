@@ -13,6 +13,7 @@
 - [评价层：调度方案如何被评价](docs/05_evaluation/evaluation_layer_overview.md)
 - [实验流程：dif_main.m 和 same_main.m 在跑什么](docs/06_experiments/experiment_flow.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
+- [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
 
 ## Current Principle
 
