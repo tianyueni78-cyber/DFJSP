@@ -69,3 +69,23 @@
 2. 某个模块从“第一版”变成“已经可用于复现/封装”。
 
 这样它保持为长期工作台账，而不是临时流水账。
+
+## 当前工程进度台账
+
+这个表记录“能跑到哪一步”，不是知识文档数量。
+
+| 阶段 | 目标 | 当前状态 | 对应文件 |
+|---|---|---|---|
+| 数据读取 | 文件能稳定读进 MATLAB | 已拆解、已封装、已有测试 | `src/data/read_fjsp.m`、`src/data/read_machine_data.m`、`src/data/read_agv_data.m`、`tests/test_read_*.m` |
+| 单条染色体评价 | 1 条 `chrom` 能被 `fitness/sorting` 评价 | 已拆解、已封装、已补正式测试 | `src/evaluation/evaluate_chromosome.m`、`tests/test_evaluate_chromosome.m` |
+| 当前串联入口 | 把数据读取、生成 chrom、评价、输出串起来 | 已有脚本，已由你手动跑通 | `scripts/run_single_evaluation.m` |
+| 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 未开始 | 后续 `scripts/run_small_nsga2.m` |
+| 完整实验复现 | 对比/消融/指标/图表 | 未开始 | 后续再整理 |
+
+当前已经跑通的最远位置是：
+
+```text
+数据 -> 1 条随机染色体 -> fitness/sorting -> makespan + totalEnergy -> outputs
+```
+
+下一步应先进入“小种群短迭代”，不要直接跳完整论文实验。

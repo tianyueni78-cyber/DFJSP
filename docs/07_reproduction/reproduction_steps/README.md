@@ -24,9 +24,9 @@
 |---|---|---|
 | 当前运行入口 | [现在这套封装怎么跑](00_how_to_run_current_stage.md) | 面向初学者的操作入口 |
 | 第 1 步 | [数据读取封装](01_data_reading.md) | 已完成第一版 |
-| 第 2 步 | [fitness/sorting 最小调用链](02_fitness_sorting_call_chain.md) | 已完成拆解，用作评价接口核对表，尚未封装 |
-| 第 3 步 | [单条染色体评价入口](03_single_chromosome_evaluation.md) | 已完成封装，尚未测试 |
-| 第 4 步 | [单条评价运行脚本](04_run_single_evaluation_script.md) | 已完成串联脚本，等待本地运行 |
+| 第 2 步 | [fitness/sorting 最小调用链](02_fitness_sorting_call_chain.md) | 已完成拆解，封装任务已转入第 3 步 |
+| 第 3 步 | [单条染色体评价入口](03_single_chromosome_evaluation.md) | 已完成封装，已补正式测试 |
+| 第 4 步 | [单条评价运行脚本](04_run_single_evaluation_script.md) | 已完成串联脚本，已由你手动跑通 |
 
 ## 后续会怎么加
 
@@ -43,7 +43,17 @@
 6. 指标与图表复现
 ```
 
-现在只记录已经完成的第 1 步。
-第 2 步目前只完成“拆解说明”：它解释复现时如何把已读数据接到 `fitness/sorting`。
-第 3 步已经新增旁路封装 `evaluate_chromosome.m`，但还没有写测试，也没有运行验证。
-第 4 步新增 `scripts/run_single_evaluation.m`，把现有零件串成一个当前阶段可运行入口。
+当前已经完成：
+
+```text
+第 1 步：数据读取拆解、封装、测试。
+第 2 步：fitness/sorting 调用链拆解。
+第 3 步：evaluate_chromosome 封装，并新增正式测试 test_evaluate_chromosome.m。
+第 4 步：run_single_evaluation 串联脚本，并已由你手动跑通。
+```
+
+下一步不应跳完整实验，而是进入：
+
+```text
+第 5 步：小种群短迭代。
+```

@@ -311,7 +311,8 @@ scripts/run_single_evaluation.m
 拆解：已完成
 封装：已完成第一版
 串联脚本：已完成第一版
-测试：还没有单独写
+正式测试：由 tests/test_evaluate_chromosome.m 覆盖核心评价链路
+手动运行：你已经跑通 scripts/run_single_evaluation.m
 ```
 
 你可以先自己在 MATLAB 里跑这个脚本。

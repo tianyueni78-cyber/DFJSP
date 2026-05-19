@@ -154,19 +154,21 @@ raw_code/NSGA-II
 ```text
 拆解：已完成
 封装：已完成第一版
-测试：未开始
+测试：已新增 tests/test_evaluate_chromosome.m
 ```
 
-下一步才适合写：
+正式测试会检查：
 
 ```text
-tests/test_evaluate_chromosome.m
+读取小样本
+生成 1 条 chrom
+调用 evaluate_chromosome
+确认 result.makespan 和 result.totalEnergy 非空
+确认项目根目录没有被乱写文件
 ```
 
-这个测试以后应该检查：
+所以单条染色体评价这条线已经形成：
 
-- 能否读入小样本数据。
-- 能否准备一条合法 `chrom`。
-- 能否调用 `evaluate_chromosome`。
-- `result.makespan` 和 `result.totalEnergy` 是否非空。
-
+```text
+拆解 -> 封装 -> 测试
+```
