@@ -4,6 +4,7 @@
 
 ## Knowledge Base
 
+- [项目易读版：这套代码到底在做什么](docs/00_system_overview/beginner_reading_guide.md)
 - [系统五层认知结构](docs/00_system_overview/system_layer_architecture.md)
 - [数据层认知地图](docs/02_data_flow/data_layer_map.md)
 - [搜索层：基础搜索机制](docs/03_algorithm/search_layer_overview.md)
