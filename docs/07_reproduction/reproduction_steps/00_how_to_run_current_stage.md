@@ -14,13 +14,14 @@
 第 1 段：能单独读取数据
 第 2 段：已经知道 fitness/sorting 需要什么输入
 第 3 段：已经封装了 evaluate_chromosome 评价入口
+第 4 段：已经有 run_single_evaluation.m 串联脚本
 ```
 
 还没有做到：
 
 ```text
 自动生成 chrom 的小测试
-一键评价一条 chrom 的测试
+单条评价链路的正式测试
 小种群短迭代
 完整 dif_main / same_main 复现
 ```
@@ -63,7 +64,47 @@ AGV Excel 能不能读
 - Excel 文件名或 sheet 名有没有被改
 - MATLAB 能不能正常读 Excel
 
-## 2. evaluate_chromosome 现在怎么理解
+## 2. 跑当前串联脚本
+
+如果你想看“这些小块怎么串起来”，跑：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('scripts/run_single_evaluation.m')
+```
+
+这个脚本会做：
+
+```text
+读 .fjs
+读机器 Excel
+读 AGV Excel
+生成 1 条 chrom
+调用 evaluate_chromosome
+输出 makespan 和 totalEnergy
+保存结果到 outputs/
+```
+
+正常情况下，你会看到：
+
+```text
+single evaluation finished.
+makespan: ...
+totalEnergy: ...
+outputDir: ...
+```
+
+输出会放到：
+
+```text
+outputs/single_evaluation/时间戳/
+```
+
+这个脚本不是完整论文实验。
+
+它只是当前阶段的“最小串联入口”。
+
+## 3. evaluate_chromosome 现在怎么理解
 
 `evaluate_chromosome.m` 现在已经有了，但它还不是一个可以直接“按一下就跑”的完整实验脚本。
 
@@ -99,7 +140,15 @@ AGV Excel 能不能读
 它是后面 test_evaluate_chromosome.m 要调用的核心函数。
 ```
 
-## 3. 如果你想手动试 evaluate_chromosome，需要准备什么
+现在如果你不想手动准备这些变量，就直接跑：
+
+```matlab
+run('scripts/run_single_evaluation.m')
+```
+
+因为这个脚本已经帮你把这些步骤串起来了。
+
+## 4. 如果你想手动试 evaluate_chromosome，需要准备什么
 
 这一段是“手动试跑思路”，不是当前最推荐的入口。
 
@@ -158,7 +207,7 @@ raw_code/NSGA-II
 
 因为它是基础链路，比改进算法更适合做最小试跑。
 
-## 4. 为什么你现在会觉得“拆太碎”
+## 5. 为什么你现在会觉得“拆太碎”
 
 你这个感觉是对的。
 
@@ -193,9 +242,11 @@ docs/07_reproduction/reproduction_steps/00_how_to_run_current_stage.md
 
 不要先看第 2 步、第 3 步那些拆解文。
 
-## 5. 当前最推荐你跑什么
+## 6. 当前最推荐你跑什么
 
-现在最推荐你只跑这三条：
+现在建议你按这个顺序跑。
+
+第一步，先跑三个读取测试：
 
 ```matlab
 cd D:\CODEX\code_refactor_project
@@ -207,22 +258,22 @@ run('tests/test_read_agv_data.m')
 
 如果这三条正常，当前阶段就算你本地验证通过。
 
-下一步我应该做的是：
+第二步，再跑串联脚本：
 
-```text
-写 test_evaluate_chromosome.m
+```matlab
+run('scripts/run_single_evaluation.m')
 ```
 
-它会把：
+如果这个也正常，说明：
 
 ```text
-读数据
-生成一条 chrom
-调用 evaluate_chromosome
-检查 makespan / totalEnergy
+当前最小链路已经能从数据走到单条方案评价。
 ```
 
-串成一条你可以直接 `run(...)` 的小测试。
+下一步才适合写：
 
-也就是说，下一步完成后，你才会有一个更接近“直接跑评价链路”的入口。
+```text
+tests/test_evaluate_chromosome.m
+```
 
+也就是把这条串联链路变成正式检查作业。
