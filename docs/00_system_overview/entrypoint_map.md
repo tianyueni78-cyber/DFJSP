@@ -22,6 +22,7 @@
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
 | 看输出结果放哪里 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` | outputs 输出规则 |
+| 看每次运行要记录什么 | `docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md` | 运行日志和参数记录规则 |
 | 看每个文件夹是干什么的 | `docs/00_system_overview/repository_file_guide.md` | 文件导览 |
 
 ## 2. 配置入口在哪里
@@ -231,6 +232,12 @@ outputs/medium_nsga2/时间戳/
 
 ```text
 docs/07_reproduction/reproduction_steps/12_outputs_structure.md
+```
+
+每次运行应该记录哪些参数、日志和结果摘要，看：
+
+```text
+docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
 ```
 
 ## 8. 一句话记忆

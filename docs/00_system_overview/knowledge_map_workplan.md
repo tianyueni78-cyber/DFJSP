@@ -310,3 +310,23 @@ small  -> outputs/small_nsga2/时间戳/
 medium -> outputs/medium_nsga2/时间戳/
 outputs/ 不提交 GitHub
 ```
+
+第 13 步已经建立运行日志与参数记录规则：
+
+```text
+每次运行要能追溯：
+用的哪个脚本
+用的哪个 config
+用的哪组数据
+seed 和算法参数是多少
+结果保存到哪个 outputDir
+bestMakespan / bestTotalEnergy / paretoSolutionCount 是多少
+```
+
+对应文档：
+
+```text
+docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
+```
+
+这一步仍然属于路线 A：继续工程化。它不是跑更大的实验，而是让已经跑通的 small / medium 骨架更适合以后复现和回看。

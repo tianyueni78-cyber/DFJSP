@@ -187,3 +187,26 @@ small  -> outputs/small_nsga2/时间戳/
 medium -> outputs/medium_nsga2/时间戳/
 outputs/ 不提交 GitHub
 ```
+
+第 13 步已经建立运行日志与参数记录规则：
+
+```text
+说明文档：13_run_log_and_parameter_record.md
+
+summary.txt 看结果摘要
+result.mat 给 MATLAB 后续分析
+run_info.txt 记录这次怎么跑出来
+log.txt 后续用于排查运行过程
+outputDir 是回看一次运行的关键线索
+```
+
+当前工程进度更新为：
+
+```text
+数据读取
+-> 单条染色体评价
+-> small/medium NSGA-II
+-> 配置化入口
+-> outputs 输出结构
+-> 运行日志与参数记录规则
+```

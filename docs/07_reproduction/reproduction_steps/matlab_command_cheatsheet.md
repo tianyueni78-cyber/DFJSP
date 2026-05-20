@@ -230,3 +230,49 @@ outputs/medium_nsga2/时间戳/
 ```
 
 `outputs/` 是本地运行结果，不提交 GitHub。
+
+## 11. 跑完以后要记录什么
+
+每次跑完，先看 MATLAB 命令行最后打印的：
+
+```text
+outputDir: ...
+```
+
+这个目录就是本次运行结果的位置。
+
+现在你至少要看两个文件：
+
+```text
+summary.txt
+*_result.mat
+```
+
+它们的作用是：
+
+| 文件 | 怎么理解 |
+|---|---|
+| `summary.txt` | 人能直接看懂的结果摘要，例如 bestMakespan、bestTotalEnergy |
+| `*_result.mat` | MATLAB 保存的结果变量，以后要画图或继续分析时用 |
+
+以后会逐步补充：
+
+```text
+run_info.txt
+log.txt
+```
+
+简单记：
+
+```text
+summary 看结果。
+run_info 看这次怎么跑出来。
+result.mat 给 MATLAB 继续分析。
+log 用来排查问题。
+```
+
+运行记录的详细规则看：
+
+```text
+docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
+```
