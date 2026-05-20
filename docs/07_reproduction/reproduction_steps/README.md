@@ -33,6 +33,7 @@
 | 第 8 步 | [配置入口测试](08_config_entry_test.md) | 已由你本地跑通 |
 | 第 9 步 | [小幅放大参数运行](09_medium_nsga2_run.md) | 已由你本地跑通 |
 | 第 10 步 | [运行入口分层整理](10_reproduction_entry_layers.md) | 已建立复现总入口说明 |
+| 第 11 步 | [阶段总结与下一阶段路线](11_stage_summary_next_routes.md) | 已总结当前阶段，后续选择路线 A |
 
 ## 后续会怎么加
 
@@ -51,7 +52,8 @@
 8. 配置入口测试
 9. 小幅放大参数运行
 10. 运行入口分层整理
-11. 按需要扩展到完整实验
+11. 阶段总结与下一阶段路线
+12. 路线 A：继续工程化
 ```
 
 当前已经完成：
@@ -157,4 +159,12 @@ outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 检查入口：tests/
 运行入口：scripts/run_single_evaluation.m、run_small_nsga2.m、run_medium_nsga2.m
 未来正式实验入口：后续再整理
+```
+
+第 11 步总结当前阶段：
+
+```text
+当前已完成“可复用小规模运行骨架”。
+后续路线选择 A：继续工程化。
+下一步建议：整理 outputs 输出结构。
 ```
