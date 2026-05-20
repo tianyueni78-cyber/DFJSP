@@ -1,0 +1,180 @@
+# MATLAB 复现命令清单
+
+这个文档只回答一个问题：
+
+```text
+我打开 MATLAB 以后，命令行里到底输入什么？
+```
+
+先进入项目目录：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+```
+
+## 1. 最常用：确认项目还能跑
+
+隔了一段时间回来，先跑这两条：
+
+```matlab
+run('tests/test_small_nsga2_config.m')
+run('scripts/run_small_nsga2.m')
+```
+
+这两条的意思是：
+
+```text
+先检查配置有没有坏
+再跑 small 档位
+```
+
+如果这两条正常，说明当前项目基本还活着。
+
+## 2. 我只是想检查数据
+
+```matlab
+run('tests/test_read_fjsp.m')
+run('tests/test_read_machine_data.m')
+run('tests/test_read_agv_data.m')
+```
+
+这三条检查：
+
+```text
+.fjs 能不能读
+机器 Excel 能不能读
+AGV Excel 能不能读
+```
+
+## 3. 我想检查配置
+
+```matlab
+run('tests/test_small_nsga2_config.m')
+```
+
+正常输出：
+
+```text
+test_small_nsga2_config passed: pop=10, max_gen=2, seed=42
+```
+
+## 4. 我想跑单条染色体评价
+
+```matlab
+run('scripts/run_single_evaluation.m')
+```
+
+这条会做：
+
+```text
+读数据
+生成 1 条 chrom
+调用 fitness/sorting
+输出 makespan 和 totalEnergy
+```
+
+结果放在：
+
+```text
+outputs/single_evaluation/时间戳/
+```
+
+## 5. 我想跑 small 档位
+
+```matlab
+run('scripts/run_small_nsga2.m')
+```
+
+当前参数：
+
+```text
+pop = 10
+max_gen = 2
+```
+
+结果放在：
+
+```text
+outputs/small_nsga2/时间戳/
+```
+
+用途：
+
+```text
+快速确认搜索流程没有坏。
+```
+
+## 6. 我想跑 medium 档位
+
+```matlab
+run('scripts/run_medium_nsga2.m')
+```
+
+当前参数：
+
+```text
+pop = 20
+max_gen = 5
+```
+
+结果放在：
+
+```text
+outputs/medium_nsga2/时间戳/
+```
+
+用途：
+
+```text
+确认参数轻微放大以后还能跑。
+```
+
+## 7. 我换数据以后先跑什么
+
+换 `.fjs`、机器 Excel 或 AGV Excel 后，建议顺序是：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+
+run('tests/test_read_fjsp.m')
+run('tests/test_read_machine_data.m')
+run('tests/test_read_agv_data.m')
+run('tests/test_small_nsga2_config.m')
+run('scripts/run_small_nsga2.m')
+```
+
+## 8. 我不用每次都跑什么
+
+不用每次都跑全部测试。
+
+可以这样理解：
+
+| 场景 | 跑什么 |
+|---|---|
+| 平时快速确认 | 配置测试 + small |
+| 换数据 | 数据测试 + 配置测试 + small |
+| 想轻微放大 | medium |
+| 想排查单条评价 | single evaluation |
+| 想完整论文实验 | 以后等正式实验入口整理好 |
+
+## 9. 当前还没有哪个命令
+
+当前还没有整理好的命令是：
+
+```matlab
+run('scripts/run_full_experiment.m')
+```
+
+也就是说：
+
+```text
+完整论文实验入口还没有做。
+```
+
+现在已经有的是：
+
+```text
+single
+small
+medium
+```

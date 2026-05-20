@@ -13,6 +13,7 @@
 | 我想做什么 | 打开哪里 | 这是干什么的 |
 |---|---|---|
 | 看当前做到哪一步 | `docs/00_system_overview/knowledge_map_workplan.md` | 总进度台账 |
+| 直接复制 MATLAB 命令 | `docs/07_reproduction/reproduction_steps/matlab_command_cheatsheet.md` | 命令清单 |
 | 看 MATLAB 现在怎么跑 | `docs/07_reproduction/reproduction_steps/00_how_to_run_current_stage.md` | 当前运行说明 |
 | 改快速检查运行的数据和参数 | `configs/small_nsga2_config.m` | small 配置入口 |
 | 改轻微放大运行的数据和参数 | `configs/medium_nsga2_config.m` | medium 配置入口 |

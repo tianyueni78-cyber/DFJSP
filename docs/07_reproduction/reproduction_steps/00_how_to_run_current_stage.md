@@ -6,6 +6,12 @@
 我现在打开 MATLAB，应该怎么一步步跑已经封装好的东西？
 ```
 
+如果你只想复制命令，不想看解释，先看：
+
+```text
+docs/07_reproduction/reproduction_steps/matlab_command_cheatsheet.md
+```
+
 先说清楚：现在还没有完整跑论文实验。
 
 当前已经做到的是：

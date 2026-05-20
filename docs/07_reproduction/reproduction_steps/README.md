@@ -17,7 +17,15 @@
 如果你只是想知道“现在在 MATLAB 里怎么跑”，先看：
 
 ```text
+matlab_command_cheatsheet.md
 00_how_to_run_current_stage.md
+```
+
+其中：
+
+```text
+matlab_command_cheatsheet.md 只放命令，方便复制到 MATLAB
+00_how_to_run_current_stage.md 解释这些命令为什么这么跑
 ```
 
 | 步骤 | 说明文档 | 当前状态 |

@@ -178,6 +178,20 @@ outputs 应该怎么分层
 指标计算入口后续怎么接进来
 ```
 
+你已提出一个关键使用问题：
+
+```text
+我在 MATLAB 命令行到底输入什么？
+```
+
+因此路线 A 先补了一个命令清单：
+
+```text
+docs/07_reproduction/reproduction_steps/matlab_command_cheatsheet.md
+```
+
+它是后续复现时最直接的操作入口。
+
 ## 7. 路线 A 的建议下一步
 
 下一步建议是：
