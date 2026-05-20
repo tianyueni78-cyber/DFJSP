@@ -79,7 +79,7 @@
 | 数据读取 | 文件能稳定读进 MATLAB | 已拆解、已封装、已有测试 | `src/data/read_fjsp.m`、`src/data/read_machine_data.m`、`src/data/read_agv_data.m`、`tests/test_read_*.m` |
 | 单条染色体评价 | 1 条 `chrom` 能被 `fitness/sorting` 评价 | 已拆解、已封装、已补正式测试 | `src/evaluation/evaluate_chromosome.m`、`tests/test_evaluate_chromosome.m` |
 | 当前串联入口 | 把数据读取、生成 chrom、评价、输出串起来 | 已有脚本，已由你手动跑通 | `scripts/run_single_evaluation.m` |
-| 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通，已补正式测试，等待你运行测试 | `scripts/run_small_nsga2.m`、`tests/test_small_nsga2.m` |
+| 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通，正式测试也已跑通 | `scripts/run_small_nsga2.m`、`tests/test_small_nsga2.m` |
 | 完整实验复现 | 对比/消融/指标/图表 | 未开始 | 后续再整理 |
 
 当前已经跑通的最远位置是：
@@ -104,14 +104,19 @@ bestTotalEnergy: 1890.048000
 outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 ```
 
-已新增正式测试：
+正式测试已由你本地跑通：
 
 ```text
-tests/test_small_nsga2.m
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 155.9  MIN Energy:1890.05
+GEN: 2  MIN Cmax: 155.9  MIN Energy:1890.05
+运行时间：0.55764
+test_small_nsga2 passed: paretoSolutionCount=3, bestMakespan=155.886667, bestTotalEnergy=1890.048000
 ```
 
-你下一步要在 MATLAB 里运行：
+第 5 步已经形成：
 
-```matlab
-run('tests/test_small_nsga2.m')
+```text
+拆解 -> 串联脚本 -> 手动运行 -> 正式测试
 ```

@@ -28,7 +28,7 @@ scripts/run_small_nsga2.m
 拆解：已经知道小种群短迭代要经过哪些算法环节
 串联：已经新增 scripts/run_small_nsga2.m 把这些环节串起来
 手动运行：你已经在 MATLAB 里跑通
-正式测试：已新增 tests/test_small_nsga2.m，等待你本地运行
+正式测试：tests/test_small_nsga2.m 已由你本地跑通
 ```
 
 所以它不是“新封装了 NSGA2 算法函数”。
@@ -324,6 +324,17 @@ run('tests/test_small_nsga2.m')
 
 ```text
 test_small_nsga2 passed: paretoSolutionCount=..., bestMakespan=..., bestTotalEnergy=...
+```
+
+你已经本地跑通一次：
+
+```text
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 155.9  MIN Energy:1890.05
+GEN: 2  MIN Cmax: 155.9  MIN Energy:1890.05
+运行时间：0.55764
+test_small_nsga2 passed: paretoSolutionCount=3, bestMakespan=155.886667, bestTotalEnergy=1890.048000
 ```
 
 这个测试和 `scripts/run_small_nsga2.m` 的区别是：

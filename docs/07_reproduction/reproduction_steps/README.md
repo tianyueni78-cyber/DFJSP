@@ -27,7 +27,7 @@
 | 第 2 步 | [fitness/sorting 最小调用链](02_fitness_sorting_call_chain.md) | 已完成拆解，封装任务已转入第 3 步 |
 | 第 3 步 | [单条染色体评价入口](03_single_chromosome_evaluation.md) | 已完成封装，已补正式测试 |
 | 第 4 步 | [单条评价运行脚本](04_run_single_evaluation_script.md) | 已完成串联脚本，已由你手动跑通 |
-| 第 5 步 | [小种群短迭代](05_run_small_nsga2.md) | 已由你本地跑通，已补正式测试，等待你运行测试 |
+| 第 5 步 | [小种群短迭代](05_run_small_nsga2.md) | 已由你本地跑通，正式测试也已跑通 |
 
 ## 后续会怎么加
 
@@ -70,4 +70,10 @@ bestTotalEnergy = 1890.048000
 outputDir = D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 ```
 
-已新增 `tests/test_small_nsga2.m`，把这条短迭代链路变成正式检查作业。第 5 步目前不是重写或封装 `NSGA2.m`，而是用 `scripts/run_small_nsga2.m` 把原始基础 NSGA-II 串起来跑小规模闭环。
+`tests/test_small_nsga2.m` 已由你本地跑通：
+
+```text
+test_small_nsga2 passed: paretoSolutionCount=3, bestMakespan=155.886667, bestTotalEnergy=1890.048000
+```
+
+第 5 步目前不是重写或封装 `NSGA2.m`，而是用 `scripts/run_small_nsga2.m` 把原始基础 NSGA-II 串起来跑小规模闭环。
