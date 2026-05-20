@@ -350,6 +350,22 @@ bestTotalEnergy: 1890.048000
 outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260520_112624
 ```
 
+你又重复运行了一次配置化小种群脚本，结果仍然稳定：
+
+```text
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 155.9  MIN Energy:1890.05
+GEN: 2  MIN Cmax: 155.9  MIN Energy:1890.05
+运行时间：0.21005
+small NSGA-II finished.
+pop: 10, max_gen: 2
+paretoSolutionCount: 3
+bestMakespan: 155.886667
+bestTotalEnergy: 1890.048000
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260520_115204
+```
+
 当前最远进度已经从“单条染色体评价”推进到：
 
 ```text

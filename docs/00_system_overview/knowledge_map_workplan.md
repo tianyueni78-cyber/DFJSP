@@ -238,3 +238,9 @@ docs/07_reproduction/reproduction_steps/07_data_config_extension.md
 ```text
 读取检查 -> 单条评价检查 -> 小种群检查 -> 配置化运行
 ```
+
+配置化小种群脚本也已经重复运行通过，最近一次输出目录为：
+
+```text
+outputs/small_nsga2/20260520_115204
+```
