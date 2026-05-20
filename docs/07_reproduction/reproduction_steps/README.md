@@ -210,3 +210,19 @@ outputDir 是回看一次运行的关键线索
 -> outputs 输出结构
 -> 运行日志与参数记录规则
 ```
+
+第 14 步已经整理正式实验入口设计：
+
+```text
+说明文档：14_formal_experiment_entry_design.md
+
+tests 是检查
+single 是单条评价
+small 是快速体检
+medium 是轻微放大
+formal 是未来正式复现
+metrics 是未来结果分析
+```
+
+当前还没有实现 `run_formal_nsga2.m` 和 `run_metrics.m`。  
+这一步只是先把入口关系分清，避免后面把搜索、指标、画图和日志都塞进一个脚本里。

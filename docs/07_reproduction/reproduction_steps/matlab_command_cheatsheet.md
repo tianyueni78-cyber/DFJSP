@@ -183,16 +183,22 @@ run('scripts/run_small_nsga2.m')
 
 ## 9. 当前还没有哪个命令
 
-当前还没有整理好的命令是：
+当前还没有实现的正式复现命令是：
 
 ```matlab
-run('scripts/run_full_experiment.m')
+run('scripts/run_formal_nsga2.m')
+```
+
+当前还没有实现的指标计算命令是：
+
+```matlab
+run('scripts/run_metrics.m')
 ```
 
 也就是说：
 
 ```text
-完整论文实验入口还没有做。
+正式实验入口和指标入口还没有做。
 ```
 
 现在已经有的是：
@@ -201,6 +207,12 @@ run('scripts/run_full_experiment.m')
 single
 small
 medium
+```
+
+入口关系看：
+
+```text
+docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md
 ```
 
 ## 10. 跑完以后去哪找结果

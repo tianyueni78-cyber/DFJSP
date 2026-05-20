@@ -330,3 +330,22 @@ docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
 ```
 
 这一步仍然属于路线 A：继续工程化。它不是跑更大的实验，而是让已经跑通的 small / medium 骨架更适合以后复现和回看。
+
+第 14 步已经整理正式实验入口设计：
+
+```text
+当前已实现：
+single / small / medium
+
+未来待实现：
+formal 搜索入口
+metrics 指标入口
+```
+
+对应文档：
+
+```text
+docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md
+```
+
+这一步的核心作用是把“检查、运行、正式复现、指标计算”分开，后面实现代码时不要把所有事情重新塞进一个大脚本。
