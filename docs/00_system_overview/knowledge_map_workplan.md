@@ -81,6 +81,7 @@
 | 当前串联入口 | 把数据读取、生成 chrom、评价、输出串起来 | 已有脚本，已由你手动跑通 | `scripts/run_single_evaluation.m` |
 | 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通，正式测试也已跑通 | `scripts/run_small_nsga2.m`、`tests/test_small_nsga2.m` |
 | 配置化运行入口 | 换数据/改参数时优先改配置而不是改脚本 | 已新增配置入口，已由你本地跑通 | `configs/small_nsga2_config.m`、`scripts/run_small_nsga2.m` |
+| 数据与配置扩展准备 | 扩大规模前先明确换数据、改参数、检查输出的流程 | 已建立说明，不改代码 | `docs/07_reproduction/reproduction_steps/07_data_config_extension.md` |
 | 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 第一轮最小复现链路已经跑通。
@@ -223,3 +224,11 @@ outputs 里每次结果怎么区分？
 能把结果放进 outputs
 能通过配置复用
 ```
+
+第 7 步已经建立为复现说明页：
+
+```text
+docs/07_reproduction/reproduction_steps/07_data_config_extension.md
+```
+
+它目前不新增代码，先把以后扩大规模前的检查顺序固定下来。

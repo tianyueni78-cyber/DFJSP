@@ -29,6 +29,7 @@
 | 第 4 步 | [单条评价运行脚本](04_run_single_evaluation_script.md) | 已完成串联脚本，已由你手动跑通 |
 | 第 5 步 | [小种群短迭代](05_run_small_nsga2.md) | 已由你本地跑通，正式测试也已跑通 |
 | 第 6 步 | [配置化 small_nsga2](06_config_small_nsga2.md) | 已新增配置入口，已由你本地跑通 |
+| 第 7 步 | [数据与配置扩展准备](07_data_config_extension.md) | 已建立扩展前检查说明 |
 
 ## 后续会怎么加
 
@@ -43,7 +44,8 @@
 4. 小种群短迭代
 5. 配置化运行入口
 6. 换数据/改参数运行
-7. 按需要扩展到完整实验
+7. 数据与配置扩展准备
+8. 按需要扩展到完整实验
 ```
 
 当前已经完成：
@@ -91,4 +93,14 @@ paretoSolutionCount = 3
 bestMakespan = 155.886667
 bestTotalEnergy = 1890.048000
 outputDir = D:\CODEX\code_refactor_project\outputs\small_nsga2\20260520_112624
+```
+
+第 7 步开始整理扩大规模前的操作逻辑：
+
+```text
+新数据放哪里
+配置改哪里
+参数怎么逐步放大
+每一步怎么检查
+结果去 outputs 哪里找
 ```
