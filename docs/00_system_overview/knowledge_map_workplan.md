@@ -278,6 +278,12 @@ bestTotalEnergy = 1824.221333
 outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 ```
 
+medium 档位之后又重复运行通过，最近一次输出目录为：
+
+```text
+outputs/medium_nsga2/20260520_132626
+```
+
 第 10 步已经把入口分成三层：
 
 ```text

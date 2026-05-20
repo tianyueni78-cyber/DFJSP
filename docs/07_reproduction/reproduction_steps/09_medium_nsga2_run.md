@@ -167,3 +167,15 @@ pop=20
 max_gen=5
 结果写入 outputs/medium_nsga2/
 ```
+
+之后你又重复运行了一次 medium 档位，结果仍然一致：
+
+```text
+pop: 20, max_gen: 5
+paretoSolutionCount: 4
+bestMakespan: 135.743333
+bestTotalEnergy: 1824.221333
+outputDir: D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_132626
+```
+
+这说明当前 `medium_nsga2` 运行不是偶然通过，而是可以重复跑通。

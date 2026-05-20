@@ -157,6 +157,12 @@ small NSGA-II:  pop=10, max_gen=2
 medium NSGA-II: pop=20, max_gen=5
 ```
 
+其中 medium 档位已经重复跑通，最近一次输出目录为：
+
+```text
+outputs/medium_nsga2/20260520_132626
+```
+
 当前还没有整理：
 
 ```text
