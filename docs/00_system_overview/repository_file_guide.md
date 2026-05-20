@@ -184,6 +184,7 @@ run('tests/test_read_agv_data.m')
 
 ```text
 README.md
+-> docs/00_system_overview/entrypoint_map.md
 -> docs/00_system_overview/repository_file_guide.md
 -> docs/00_system_overview/beginner_reading_guide.md
 -> docs/00_system_overview/system_layer_architecture.md
@@ -227,4 +228,3 @@ src 负责“以后可复用”
 tests 负责“拆出来之后能不能独立跑”
 docs 负责“我到底理解到哪了”
 ```
-
