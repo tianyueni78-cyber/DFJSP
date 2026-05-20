@@ -82,6 +82,7 @@
 | 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通，正式测试也已跑通 | `scripts/run_small_nsga2.m`、`tests/test_small_nsga2.m` |
 | 配置化运行入口 | 换数据/改参数时优先改配置而不是改脚本 | 已新增配置入口，已由你本地跑通 | `configs/small_nsga2_config.m`、`scripts/run_small_nsga2.m` |
 | 数据与配置扩展准备 | 扩大规模前先明确换数据、改参数、检查输出的流程 | 已建立说明，步骤检查已由你本地跑通 | `docs/07_reproduction/reproduction_steps/07_data_config_extension.md` |
+| 配置入口测试 | 在运行算法前检查配置文件、路径和参数是否合理 | 已新增测试，等待你本地运行 | `tests/test_small_nsga2_config.m`、`docs/07_reproduction/reproduction_steps/08_config_entry_test.md` |
 | 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 第一轮最小复现链路已经跑通。

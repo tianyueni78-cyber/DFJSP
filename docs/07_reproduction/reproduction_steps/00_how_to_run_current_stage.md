@@ -17,6 +17,8 @@
 第 4 段：已经有 run_single_evaluation.m 串联脚本
 第 5 段：小种群 NSGA-II 短迭代已跑通并测试
 第 6 段：small_nsga2 已有配置入口
+第 7 段：数据与配置扩展检查已跑通
+第 8 段：配置入口测试已新增，等待你本地运行
 ```
 
 还没有做到：
@@ -42,9 +44,10 @@ cd D:\CODEX\code_refactor_project
 run('tests/test_read_fjsp.m')
 run('tests/test_read_machine_data.m')
 run('tests/test_read_agv_data.m')
+run('tests/test_small_nsga2_config.m')
 ```
 
-这三条是在检查：
+前面三条是在检查：
 
 ```text
 .fjs 能不能读
@@ -53,10 +56,18 @@ AGV Excel 能不能读
 读取时有没有乱生成文件
 ```
 
-如果这三条过了，说明：
+`test_small_nsga2_config.m` 是第 8 步新增的配置入口测试，用来检查：
 
 ```text
-数据入口基本没问题。
+配置文件能不能读
+配置里的数据路径是否存在
+pop / max_gen / seed 等参数是否合理
+```
+
+如果这些测试过了，说明：
+
+```text
+数据入口和配置入口基本没问题。
 ```
 
 如果这里就报错，先不要看算法，先查：
@@ -283,9 +294,10 @@ cd D:\CODEX\code_refactor_project
 run('tests/test_read_fjsp.m')
 run('tests/test_read_machine_data.m')
 run('tests/test_read_agv_data.m')
+run('tests/test_small_nsga2_config.m')
 ```
 
-如果这三条正常，当前阶段就算你本地验证通过。
+如果这几条正常，说明数据入口和配置入口都能打开。
 
 第二步，再跑串联脚本：
 

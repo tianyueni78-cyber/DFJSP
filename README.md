@@ -23,6 +23,7 @@
   - [第 5 步：小种群短迭代](docs/07_reproduction/reproduction_steps/05_run_small_nsga2.md)
   - [第 6 步：配置化 small_nsga2](docs/07_reproduction/reproduction_steps/06_config_small_nsga2.md)
   - [第 7 步：数据与配置扩展准备](docs/07_reproduction/reproduction_steps/07_data_config_extension.md)
+  - [第 8 步：配置入口测试](docs/07_reproduction/reproduction_steps/08_config_entry_test.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
 - [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
 

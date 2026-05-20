@@ -89,6 +89,7 @@ run('scripts/run_small_nsga2.m')
 | AGV Excel 能不能读 | `run('tests/test_read_agv_data.m')` |
 | 1 条染色体能不能评价 | `run('tests/test_evaluate_chromosome.m')` |
 | 小种群 NSGA-II 能不能跑 2 代 | `run('tests/test_small_nsga2.m')` |
+| 配置入口是否完整有效 | `run('tests/test_small_nsga2_config.m')` |
 
 推荐顺序：
 
@@ -99,6 +100,7 @@ run('tests/test_read_fjsp.m')
 run('tests/test_read_machine_data.m')
 run('tests/test_read_agv_data.m')
 run('tests/test_evaluate_chromosome.m')
+run('tests/test_small_nsga2_config.m')
 run('tests/test_small_nsga2.m')
 ```
 

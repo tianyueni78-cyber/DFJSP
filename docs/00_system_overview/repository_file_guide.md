@@ -103,6 +103,9 @@ outputs 以后保存运行结果
 | `test_read_fjsp.m` | 读取 `data_sample/Mk01.fjs` | `.fjs` 数据能变成 `problem` 结构，并且不生成 `data.mat` |
 | `test_read_machine_data.m` | 读取 `data_sample/机器数据.xlsx` | 机器距离、机器能耗能读出来，并且不改项目根目录 |
 | `test_read_agv_data.m` | 读取 `data_sample/AGV数据.xlsx` | AGV 数量、速度、能耗能读出来，并且不改项目根目录 |
+| `test_small_nsga2_config.m` | 检查 `configs/small_nsga2_config.m` | 配置文件能读，路径存在，关键参数合理 |
+| `test_evaluate_chromosome.m` | 评价 1 条染色体 | `fitness/sorting` 最小评价链路能跑通 |
+| `test_small_nsga2.m` | 跑小种群 NSGA-II 2 代 | 基础搜索闭环能跑通 |
 
 你在 MATLAB 里可以这样跑：
 
@@ -111,14 +114,16 @@ cd D:\CODEX\code_refactor_project
 run('tests/test_read_fjsp.m')
 run('tests/test_read_machine_data.m')
 run('tests/test_read_agv_data.m')
+run('tests/test_small_nsga2_config.m')
 ```
 
-这三个测试不是为了证明算法效果好，而是证明：
+这些测试不是为了证明算法效果好，而是证明：
 
 ```text
 数据读取这一步没有崩
 读取函数没有乱生成文件
-以后主程序可以逐步改成调用这些读取函数
+配置入口能打开
+以后主程序可以逐步改成调用这些读取函数和配置入口
 ```
 
 ## 5. `data_sample/`：小样本数据区
@@ -196,6 +201,7 @@ README.md
 tests/test_read_fjsp.m
 tests/test_read_machine_data.m
 tests/test_read_agv_data.m
+tests/test_small_nsga2_config.m
 ```
 
 如果你想看原始论文实验：
