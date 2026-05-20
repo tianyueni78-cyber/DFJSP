@@ -221,3 +221,9 @@ result.mat 应该包含哪些变量？
 ```
 
 这会为后面的正式实验入口打基础。
+
+当前第 12 步已经建立输出规则文档：
+
+```text
+docs/07_reproduction/reproduction_steps/12_outputs_structure.md
+```

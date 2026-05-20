@@ -86,6 +86,7 @@
 | 小幅放大参数运行 | 用 medium 档位检查配置化骨架能否轻微放大 | 已由你本地跑通 | `configs/medium_nsga2_config.m`、`scripts/run_medium_nsga2.m`、`docs/07_reproduction/reproduction_steps/09_medium_nsga2_run.md` |
 | 运行入口分层整理 | 把 test / small / medium / 未来正式实验入口分清楚 | 已建立复现总入口说明 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` |
 | 阶段总结与下一阶段路线 | 总结 small/medium 骨架完成度，并选择后续主线 | 已完成，后续选择路线 A | `docs/07_reproduction/reproduction_steps/11_stage_summary_next_routes.md` |
+| outputs 输出结构整理 | 明确 single / small / medium 输出目录和保存内容 | 已建立输出规则 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` |
 | 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 第一轮最小复现链路已经跑通。
@@ -299,4 +300,13 @@ outputs/medium_nsga2/20260520_132626
 当前阶段：可复用小规模运行骨架已完成
 后续选择：路线 A，继续工程化
 下一步建议：整理 outputs 输出结构
+```
+
+第 12 步已经建立输出规则：
+
+```text
+single -> outputs/single_evaluation/时间戳/
+small  -> outputs/small_nsga2/时间戳/
+medium -> outputs/medium_nsga2/时间戳/
+outputs/ 不提交 GitHub
 ```

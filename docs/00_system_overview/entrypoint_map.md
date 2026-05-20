@@ -21,6 +21,7 @@
 | 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
+| 看输出结果放哪里 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` | outputs 输出规则 |
 | 看每个文件夹是干什么的 | `docs/00_system_overview/repository_file_guide.md` | 文件导览 |
 
 ## 2. 配置入口在哪里
@@ -225,6 +226,12 @@ outputs/medium_nsga2/时间戳/
 ```
 
 `outputs/` 是运行产物，不提交到 GitHub。
+
+更完整的输出规则看：
+
+```text
+docs/07_reproduction/reproduction_steps/12_outputs_structure.md
+```
 
 ## 8. 一句话记忆
 

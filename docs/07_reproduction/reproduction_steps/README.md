@@ -42,6 +42,7 @@ matlab_command_cheatsheet.md 只放命令，方便复制到 MATLAB
 | 第 9 步 | [小幅放大参数运行](09_medium_nsga2_run.md) | 已由你本地跑通 |
 | 第 10 步 | [运行入口分层整理](10_reproduction_entry_layers.md) | 已建立复现总入口说明 |
 | 第 11 步 | [阶段总结与下一阶段路线](11_stage_summary_next_routes.md) | 已总结当前阶段，后续选择路线 A |
+| 第 12 步 | [outputs 输出结构整理](12_outputs_structure.md) | 已建立输出目录规则 |
 
 ## 后续会怎么加
 
@@ -61,7 +62,8 @@ matlab_command_cheatsheet.md 只放命令，方便复制到 MATLAB
 9. 小幅放大参数运行
 10. 运行入口分层整理
 11. 阶段总结与下一阶段路线
-12. 路线 A：继续工程化
+12. outputs 输出结构整理
+13. 路线 A：继续工程化
 ```
 
 当前已经完成：
@@ -175,4 +177,13 @@ outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 当前已完成“可复用小规模运行骨架”。
 后续路线选择 A：继续工程化。
 下一步建议：整理 outputs 输出结构。
+```
+
+第 12 步已经整理输出规则：
+
+```text
+single -> outputs/single_evaluation/时间戳/
+small  -> outputs/small_nsga2/时间戳/
+medium -> outputs/medium_nsga2/时间戳/
+outputs/ 不提交 GitHub
 ```

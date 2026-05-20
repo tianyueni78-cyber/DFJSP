@@ -79,6 +79,14 @@ run('scripts/run_single_evaluation.m')
 outputs/single_evaluation/时间戳/
 ```
 
+MATLAB 命令行会打印：
+
+```text
+outputDir: ...
+```
+
+这个就是本次结果目录。
+
 ## 5. 我想跑 small 档位
 
 ```matlab
@@ -97,6 +105,14 @@ max_gen = 2
 ```text
 outputs/small_nsga2/时间戳/
 ```
+
+MATLAB 命令行会打印：
+
+```text
+outputDir: ...
+```
+
+这个就是本次结果目录。
 
 用途：
 
@@ -122,6 +138,14 @@ max_gen = 5
 ```text
 outputs/medium_nsga2/时间戳/
 ```
+
+MATLAB 命令行会打印：
+
+```text
+outputDir: ...
+```
+
+这个就是本次结果目录。
 
 用途：
 
@@ -178,3 +202,31 @@ single
 small
 medium
 ```
+
+## 10. 跑完以后去哪找结果
+
+看 MATLAB 命令行最后一行：
+
+```text
+outputDir: ...
+```
+
+如果跑的是 single：
+
+```text
+outputs/single_evaluation/时间戳/
+```
+
+如果跑的是 small：
+
+```text
+outputs/small_nsga2/时间戳/
+```
+
+如果跑的是 medium：
+
+```text
+outputs/medium_nsga2/时间戳/
+```
+
+`outputs/` 是本地运行结果，不提交 GitHub。

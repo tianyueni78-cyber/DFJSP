@@ -28,6 +28,7 @@
   - [第 9 步：小幅放大参数运行](docs/07_reproduction/reproduction_steps/09_medium_nsga2_run.md)
   - [第 10 步：运行入口分层整理](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md)
   - [第 11 步：阶段总结与下一阶段路线](docs/07_reproduction/reproduction_steps/11_stage_summary_next_routes.md)
+  - [第 12 步：outputs 输出结构整理](docs/07_reproduction/reproduction_steps/12_outputs_structure.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
 - [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
 
