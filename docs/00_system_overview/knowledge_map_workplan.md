@@ -370,3 +370,11 @@ configs/formal_nsga2_config.m
 ```
 
 它目前只是 formal 配置入口，还没有对应的 `scripts/run_formal_nsga2.m`。
+
+formal 配置读取测试也已新增：
+
+```text
+tests/test_formal_nsga2_config.m
+```
+
+它只检查字段完整性，不运行 NSGA-II。

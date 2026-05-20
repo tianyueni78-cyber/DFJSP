@@ -254,3 +254,11 @@ configs/formal_nsga2_config.m
 ```
 
 它只负责保存 formal 配置。下一步更稳的是先补配置读取测试，再考虑正式运行脚本。
+
+当前已经新增 formal 配置读取测试：
+
+```text
+tests/test_formal_nsga2_config.m
+```
+
+它只检查配置字段，不运行正式算法。下一步再考虑 `scripts/run_formal_nsga2.m` 的最小版本。

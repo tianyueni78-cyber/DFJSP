@@ -146,6 +146,7 @@ outputs/medium_nsga2/时间戳
 | 1 条染色体能不能评价 | `run('tests/test_evaluate_chromosome.m')` |
 | 小种群 NSGA-II 能不能跑 2 代 | `run('tests/test_small_nsga2.m')` |
 | 配置入口是否完整有效 | `run('tests/test_small_nsga2_config.m')` |
+| formal 配置是否完整有效 | `run('tests/test_formal_nsga2_config.m')` |
 
 推荐顺序：
 

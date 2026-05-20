@@ -50,12 +50,14 @@ AGV Excel 能不能读
 
 ```matlab
 run('tests/test_small_nsga2_config.m')
+run('tests/test_formal_nsga2_config.m')
 ```
 
 正常输出：
 
 ```text
 test_small_nsga2_config passed: pop=10, max_gen=2, seed=42
+test_formal_nsga2_config passed: runType=formal, pop=30, max_gen=10, currentSeed=42
 ```
 
 ## 4. 我想跑单条染色体评价
@@ -164,6 +166,7 @@ run('tests/test_read_fjsp.m')
 run('tests/test_read_machine_data.m')
 run('tests/test_read_agv_data.m')
 run('tests/test_small_nsga2_config.m')
+run('tests/test_formal_nsga2_config.m')
 run('scripts/run_small_nsga2.m')
 ```
 

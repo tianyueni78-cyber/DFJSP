@@ -250,3 +250,11 @@ configs/formal_nsga2_config.m
 
 它只是 formal 配置入口，还不是正式运行脚本。  
 当前仍然没有实现 `scripts/run_formal_nsga2.m`。
+
+随后新增 formal 配置测试：
+
+```text
+tests/test_formal_nsga2_config.m
+```
+
+这个测试只检查 formal 配置能不能读取、字段是否完整，不运行 NSGA-II。
