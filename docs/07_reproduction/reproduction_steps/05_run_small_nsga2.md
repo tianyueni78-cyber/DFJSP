@@ -28,7 +28,7 @@ scripts/run_small_nsga2.m
 拆解：已经知道小种群短迭代要经过哪些算法环节
 串联：已经新增 scripts/run_small_nsga2.m 把这些环节串起来
 手动运行：你已经在 MATLAB 里跑通
-正式测试：还没补 tests/test_small_nsga2.m
+正式测试：已新增 tests/test_small_nsga2.m，等待你本地运行
 ```
 
 所以它不是“新封装了 NSGA2 算法函数”。
@@ -257,13 +257,13 @@ outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 它是小种群、短迭代、单算法的跑通证明。
 ```
 
-下一步建议：
+正式测试文件：
 
 ```text
-新增 tests/test_small_nsga2.m
+tests/test_small_nsga2.m
 ```
 
-把这条小种群短迭代链路固定成正式测试。
+它把这条小种群短迭代链路固定成正式检查。
 
 ## 8. 下一步测试到底要检查什么
 
@@ -310,3 +310,25 @@ outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 ```text
 结果是不是论文最优。
 ```
+
+## 9. 你现在怎么跑正式测试
+
+在 MATLAB 里输入：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('tests/test_small_nsga2.m')
+```
+
+如果正常，会看到类似：
+
+```text
+test_small_nsga2 passed: paretoSolutionCount=..., bestMakespan=..., bestTotalEnergy=...
+```
+
+这个测试和 `scripts/run_small_nsga2.m` 的区别是：
+
+| 文件 | 用途 | 是否写 outputs |
+|---|---|---|
+| `scripts/run_small_nsga2.m` | 给你手动运行、查看结果 | 会写入 `outputs/small_nsga2/` |
+| `tests/test_small_nsga2.m` | 做固定检查作业 | 不写 `outputs/` |

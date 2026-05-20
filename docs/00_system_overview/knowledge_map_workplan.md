@@ -79,7 +79,7 @@
 | 数据读取 | 文件能稳定读进 MATLAB | 已拆解、已封装、已有测试 | `src/data/read_fjsp.m`、`src/data/read_machine_data.m`、`src/data/read_agv_data.m`、`tests/test_read_*.m` |
 | 单条染色体评价 | 1 条 `chrom` 能被 `fitness/sorting` 评价 | 已拆解、已封装、已补正式测试 | `src/evaluation/evaluate_chromosome.m`、`tests/test_evaluate_chromosome.m` |
 | 当前串联入口 | 把数据读取、生成 chrom、评价、输出串起来 | 已有脚本，已由你手动跑通 | `scripts/run_single_evaluation.m` |
-| 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通 | `scripts/run_small_nsga2.m` |
+| 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通，已补正式测试，等待你运行测试 | `scripts/run_small_nsga2.m`、`tests/test_small_nsga2.m` |
 | 完整实验复现 | 对比/消融/指标/图表 | 未开始 | 后续再整理 |
 
 当前已经跑通的最远位置是：
@@ -104,8 +104,14 @@ bestTotalEnergy: 1890.048000
 outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 ```
 
-下一步不要直接扩到完整论文实验，建议先把“小种群短迭代”固化成正式测试：
+已新增正式测试：
 
 ```text
 tests/test_small_nsga2.m
+```
+
+你下一步要在 MATLAB 里运行：
+
+```matlab
+run('tests/test_small_nsga2.m')
 ```
