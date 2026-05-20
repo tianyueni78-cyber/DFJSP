@@ -363,4 +363,10 @@ experiment / paths / dataset / random / algorithm / energy / output
 docs/07_reproduction/reproduction_steps/15_formal_config_design.md
 ```
 
-当前还没有新增 `configs/formal_nsga2_config.m`。这一步只是设计字段，下一步再决定是否创建最小配置文件。
+当前已经选择 B，并新增：
+
+```text
+configs/formal_nsga2_config.m
+```
+
+它目前只是 formal 配置入口，还没有对应的 `scripts/run_formal_nsga2.m`。

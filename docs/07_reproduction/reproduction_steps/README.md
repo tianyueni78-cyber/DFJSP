@@ -242,5 +242,11 @@ energy
 output
 ```
 
-当前还没有新增 `configs/formal_nsga2_config.m`。  
-这一步只是先确定字段，下一步再决定是否真正创建配置文件。
+当前已经选择 B，并新增：
+
+```text
+configs/formal_nsga2_config.m
+```
+
+它只是 formal 配置入口，还不是正式运行脚本。  
+当前仍然没有实现 `scripts/run_formal_nsga2.m`。

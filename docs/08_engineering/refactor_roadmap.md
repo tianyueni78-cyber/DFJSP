@@ -246,3 +246,11 @@ formal 配置里应该有哪些字段？
 ```
 
 这一步会为后面的 `configs/formal_nsga2_config.m`、`run_formal_nsga2.m` 和正式输出目录打基础。
+
+当前已经新增：
+
+```text
+configs/formal_nsga2_config.m
+```
+
+它只负责保存 formal 配置。下一步更稳的是先补配置读取测试，再考虑正式运行脚本。

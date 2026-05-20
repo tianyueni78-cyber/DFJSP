@@ -239,18 +239,31 @@ flowchart TD
 | A | 先不新增代码，只保留设计 | 你还想继续确认字段是否合理 |
 | B | 新增 `configs/formal_nsga2_config.m` 的最小版本 | 你准备开始实现正式入口骨架 |
 
-如果选择 B，建议只新增配置文件，不立刻写完整正式实验脚本。
-
-也就是下一步只做：
+当前已经选择 B，并已新增：
 
 ```text
 configs/formal_nsga2_config.m
 ```
 
-先让配置能被测试读取，再考虑：
+它只定义配置，不运行算法。
+
+当前仍然没有新增：
 
 ```text
 scripts/run_formal_nsga2.m
+```
+
+也就是说，现在完成的是：
+
+```text
+formal 配置文件最小实现
+```
+
+下一步才考虑：
+
+```text
+formal 配置读取测试
+或 scripts/run_formal_nsga2.m 的最小运行入口
 ```
 
 ## 8. 本步完成标准

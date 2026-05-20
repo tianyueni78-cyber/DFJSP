@@ -221,11 +221,19 @@ formal 配置字段设计看：
 docs/07_reproduction/reproduction_steps/15_formal_config_design.md
 ```
 
-当前还没有这个配置文件：
+当前已经有 formal 配置文件：
 
 ```text
 configs/formal_nsga2_config.m
 ```
+
+但它不能直接当运行命令用。现在还不能跑：
+
+```matlab
+run('scripts/run_formal_nsga2.m')
+```
+
+因为正式运行脚本还没有实现。
 
 ## 10. 跑完以后去哪找结果
 

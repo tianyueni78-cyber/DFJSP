@@ -17,6 +17,7 @@
 | 看 MATLAB 现在怎么跑 | `docs/07_reproduction/reproduction_steps/00_how_to_run_current_stage.md` | 当前运行说明 |
 | 改快速检查运行的数据和参数 | `configs/small_nsga2_config.m` | small 配置入口 |
 | 改轻微放大运行的数据和参数 | `configs/medium_nsga2_config.m` | medium 配置入口 |
+| 看未来正式运行配置 | `configs/formal_nsga2_config.m` | formal 配置入口，当前还没有正式运行脚本 |
 | 跑一次小种群 NSGA-II | `scripts/run_small_nsga2.m` | 配置化运行脚本 |
 | 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
@@ -34,6 +35,7 @@
 ```text
 configs/small_nsga2_config.m
 configs/medium_nsga2_config.m
+configs/formal_nsga2_config.m
 ```
 
 `small_nsga2_config.m` 是快速检查档：
@@ -47,6 +49,14 @@ pop=10, max_gen=2
 ```text
 pop=20, max_gen=5
 ```
+
+`formal_nsga2_config.m` 是未来正式运行配置：
+
+```text
+pop=30, max_gen=10
+```
+
+它现在只是配置入口，还没有对应的正式运行脚本。
 
 你在 MATLAB 或编辑器里打开配置文件，就能看到当前运行用的：
 
