@@ -14,20 +14,35 @@
 |---|---|---|
 | 看当前做到哪一步 | `docs/00_system_overview/knowledge_map_workplan.md` | 总进度台账 |
 | 看 MATLAB 现在怎么跑 | `docs/07_reproduction/reproduction_steps/00_how_to_run_current_stage.md` | 当前运行说明 |
-| 改小种群运行的数据和参数 | `configs/small_nsga2_config.m` | 配置入口 |
+| 改快速检查运行的数据和参数 | `configs/small_nsga2_config.m` | small 配置入口 |
+| 改轻微放大运行的数据和参数 | `configs/medium_nsga2_config.m` | medium 配置入口 |
 | 跑一次小种群 NSGA-II | `scripts/run_small_nsga2.m` | 配置化运行脚本 |
+| 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看每个文件夹是干什么的 | `docs/00_system_overview/repository_file_guide.md` | 文件导览 |
 
 ## 2. 配置入口在哪里
 
-当前配置入口是：
+当前有两个配置入口：
 
 ```text
 configs/small_nsga2_config.m
+configs/medium_nsga2_config.m
 ```
 
-你在 MATLAB 或编辑器里打开这个文件，就能看到当前小种群运行用的：
+`small_nsga2_config.m` 是快速检查档：
+
+```text
+pop=10, max_gen=2
+```
+
+`medium_nsga2_config.m` 是轻微放大档：
+
+```text
+pop=20, max_gen=5
+```
+
+你在 MATLAB 或编辑器里打开配置文件，就能看到当前运行用的：
 
 ```text
 .fjs 路径
@@ -76,6 +91,31 @@ run('scripts/run_small_nsga2.m')
 -> 调用原始 NSGA-II
 -> 输出 makespan、totalEnergy、Pareto 摘要
 -> 保存到 outputs/small_nsga2/时间戳
+```
+
+轻微放大运行入口是：
+
+```text
+scripts/run_medium_nsga2.m
+```
+
+在 MATLAB 里运行：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('scripts/run_medium_nsga2.m')
+```
+
+它会读取：
+
+```text
+configs/medium_nsga2_config.m
+```
+
+并保存到：
+
+```text
+outputs/medium_nsga2/时间戳
 ```
 
 ## 4. 测试入口在哪里
@@ -176,6 +216,12 @@ outputs/small_nsga2/时间戳/
 outputs/single_evaluation/时间戳/
 ```
 
+medium 小幅放大输出在：
+
+```text
+outputs/medium_nsga2/时间戳/
+```
+
 `outputs/` 是运行产物，不提交到 GitHub。
 
 ## 8. 一句话记忆
@@ -188,3 +234,5 @@ outputs/single_evaluation/时间戳/
 想看解释和路线 -> 打开 docs/
 想找结果 -> 打开 outputs/
 ```
+
+最后复现时不用每次跑所有小配置。小配置是体检工具；真正要跑哪个入口，取决于你这次是快速检查、轻微放大，还是未来的正式实验。

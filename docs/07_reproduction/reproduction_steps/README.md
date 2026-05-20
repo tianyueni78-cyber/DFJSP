@@ -31,6 +31,7 @@
 | 第 6 步 | [配置化 small_nsga2](06_config_small_nsga2.md) | 已新增配置入口，已由你本地跑通 |
 | 第 7 步 | [数据与配置扩展准备](07_data_config_extension.md) | 已建立扩展前检查说明，步骤检查已由你本地跑通 |
 | 第 8 步 | [配置入口测试](08_config_entry_test.md) | 已由你本地跑通 |
+| 第 9 步 | [小幅放大参数运行](09_medium_nsga2_run.md) | 已新增 medium 配置和运行脚本，等待你本地运行 |
 
 ## 后续会怎么加
 
@@ -47,7 +48,8 @@
 6. 换数据/改参数运行
 7. 数据与配置扩展准备
 8. 配置入口测试
-9. 按需要扩展到完整实验
+9. 小幅放大参数运行
+10. 按需要扩展到完整实验
 ```
 
 当前已经完成：
@@ -126,3 +128,12 @@ tests/test_small_nsga2_config.m
 ```text
 test_small_nsga2_config passed: pop=10, max_gen=2, seed=42
 ```
+
+第 9 步新增 medium 档位：
+
+```text
+configs/medium_nsga2_config.m
+scripts/run_medium_nsga2.m
+```
+
+它用于检查 `pop=20, max_gen=5` 的轻微放大运行，不是完整论文实验。
