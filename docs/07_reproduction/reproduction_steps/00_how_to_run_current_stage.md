@@ -339,10 +339,20 @@ bestTotalEnergy: 1890.048000
 outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 ```
 
+配置化以后，你又跑通了一次，摘要是：
+
+```text
+pop: 10, max_gen: 2
+paretoSolutionCount: 3
+bestMakespan: 155.886667
+bestTotalEnergy: 1890.048000
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260520_112624
+```
+
 当前最远进度已经从“单条染色体评价”推进到：
 
 ```text
-小种群 NSGA-II 2 代短迭代。
+配置化小种群 NSGA-II 2 代短迭代。
 ```
 
 ## 7. 以后换数据或改参数看哪里

@@ -165,3 +165,40 @@ run('scripts/run_small_nsga2.m')
 
 如果要改数据或参数，先改配置文件。
 
+## 8. 这一步已经跑通了吗
+
+已经由你在 MATLAB 本地跑通。
+
+运行命令：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('scripts/run_small_nsga2.m')
+```
+
+本次输出摘要：
+
+```text
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 155.9  MIN Energy:1890.05
+GEN: 2  MIN Cmax: 155.9  MIN Energy:1890.05
+运行时间：0.27769
+small NSGA-II finished.
+pop: 10, max_gen: 2
+paretoSolutionCount: 3
+bestMakespan: 155.886667
+bestTotalEnergy: 1890.048000
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260520_112624
+```
+
+这说明配置文件已经真正参与运行：
+
+```text
+configs/small_nsga2_config.m
+-> scripts/run_small_nsga2.m
+-> 原始 NSGA-II
+-> outputs/small_nsga2/时间戳
+```
+
+所以以后换数据、改 `pop`、改 `max_gen`、固定随机种子，都应该先看配置文件。

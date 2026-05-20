@@ -80,7 +80,7 @@
 | 单条染色体评价 | 1 条 `chrom` 能被 `fitness/sorting` 评价 | 已拆解、已封装、已补正式测试 | `src/evaluation/evaluate_chromosome.m`、`tests/test_evaluate_chromosome.m` |
 | 当前串联入口 | 把数据读取、生成 chrom、评价、输出串起来 | 已有脚本，已由你手动跑通 | `scripts/run_single_evaluation.m` |
 | 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通，正式测试也已跑通 | `scripts/run_small_nsga2.m`、`tests/test_small_nsga2.m` |
-| 配置化运行入口 | 换数据/改参数时优先改配置而不是改脚本 | 已新增配置入口，等待你本地运行验证 | `configs/small_nsga2_config.m`、`scripts/run_small_nsga2.m` |
+| 配置化运行入口 | 换数据/改参数时优先改配置而不是改脚本 | 已新增配置入口，已由你本地跑通 | `configs/small_nsga2_config.m`、`scripts/run_small_nsga2.m` |
 | 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 当前已经跑通的最远位置是：
@@ -134,4 +134,26 @@ test_small_nsga2 passed: paretoSolutionCount=3, bestMakespan=155.886667, bestTot
 configs 决定数据和参数
 scripts 按配置运行
 outputs 保存结果
+```
+
+第 6 步本地跑通记录：
+
+```text
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 155.9  MIN Energy:1890.05
+GEN: 2  MIN Cmax: 155.9  MIN Energy:1890.05
+运行时间：0.27769
+small NSGA-II finished.
+pop: 10, max_gen: 2
+paretoSolutionCount: 3
+bestMakespan: 155.886667
+bestTotalEnergy: 1890.048000
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260520_112624
+```
+
+这说明当前最远进度已经变成：
+
+```text
+数据 -> 配置入口 -> 小种群 NSGA-II 2 代短迭代 -> Pareto 解集摘要 -> outputs
 ```
