@@ -271,3 +271,24 @@ outputs/formal_nsga2/时间戳/
 ```
 
 当前 formal 仍然是第一版骨架，不包含多算法对比和指标计算。
+
+formal 第一版已由你在 MATLAB 中跑通：
+
+```text
+RUNNING --------> NSGA-II <-------- RUNNING
+pop = 30
+max_gen = 10
+paretoSolutionCount = 2
+bestMakespan = 134.446667
+bestTotalEnergy = 1770.988667
+outputDir = D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558
+```
+
+这次运行说明：
+
+```text
+formal 配置能读取
+formal 脚本能调用原始 NSGA-II
+结果能写入 outputs/formal_nsga2/
+summary.txt / run_info.txt / formal_nsga2_result.mat 会进入本次时间戳目录
+```

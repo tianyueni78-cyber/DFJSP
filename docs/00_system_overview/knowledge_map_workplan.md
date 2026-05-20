@@ -392,3 +392,21 @@ outputs/formal_nsga2/时间戳/
 ```
 
 多算法对比、指标入口和图表生成仍未进入。
+
+formal 第一版已经由你在 MATLAB 中手动跑通：
+
+```text
+script: scripts/run_formal_nsga2.m
+config: configs/formal_nsga2_config.m
+dataset: Mk01
+seed: 42
+pop: 30
+max_gen: 10
+paretoSolutionCount: 2
+bestMakespan: 134.446667
+bestTotalEnergy: 1770.988667
+outputDir: outputs/formal_nsga2/20260520_224558
+```
+
+这说明当前工程已经从 small / medium 骨架推进到 formal NSGA-II 单算法入口。  
+下一步不建议立刻堆更多大实验，而是先补 formal smoke test，确认 formal 入口可以被稳定检查。

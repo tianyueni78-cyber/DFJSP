@@ -270,3 +270,23 @@ scripts/run_formal_nsga2.m
 ```
 
 它是 formal NSGA-II 的第一版运行骨架。下一步更稳的是先由你在 MATLAB 中手动运行，再根据输出决定是否补 formal smoke test。
+
+formal 第一版已经手动跑通：
+
+```text
+run('scripts/run_formal_nsga2.m')
+pop = 30
+max_gen = 10
+paretoSolutionCount = 2
+bestMakespan = 134.446667
+bestTotalEnergy = 1770.988667
+outputDir = outputs/formal_nsga2/20260520_224558
+```
+
+下一步建议：
+
+```text
+新增 tests/test_formal_nsga2.m
+```
+
+这个测试不需要追求论文结果，只检查 formal 脚本能跑完、`NSGA2_Result.obj_matrix` 非空、输出目录里有 `summary.txt` 和 `run_info.txt`。

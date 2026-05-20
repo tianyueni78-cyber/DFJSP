@@ -186,6 +186,17 @@ outputDir: ...
 正式复现入口的第一版骨架。
 ```
 
+已跑通记录：
+
+```text
+pop = 30
+max_gen = 10
+paretoSolutionCount = 2
+bestMakespan = 134.446667
+bestTotalEnergy = 1770.988667
+outputDir = D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558
+```
+
 ## 8. 我换数据以后先跑什么
 
 换 `.fjs`、机器 Excel 或 AGV Excel 后，建议顺序是：
