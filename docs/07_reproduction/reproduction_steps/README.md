@@ -32,6 +32,7 @@
 | 第 7 步 | [数据与配置扩展准备](07_data_config_extension.md) | 已建立扩展前检查说明，步骤检查已由你本地跑通 |
 | 第 8 步 | [配置入口测试](08_config_entry_test.md) | 已由你本地跑通 |
 | 第 9 步 | [小幅放大参数运行](09_medium_nsga2_run.md) | 已由你本地跑通 |
+| 第 10 步 | [运行入口分层整理](10_reproduction_entry_layers.md) | 已建立复现总入口说明 |
 
 ## 后续会怎么加
 
@@ -49,7 +50,8 @@
 7. 数据与配置扩展准备
 8. 配置入口测试
 9. 小幅放大参数运行
-10. 按需要扩展到完整实验
+10. 运行入口分层整理
+11. 按需要扩展到完整实验
 ```
 
 当前已经完成：
@@ -147,4 +149,12 @@ paretoSolutionCount = 4
 bestMakespan = 135.743333
 bestTotalEnergy = 1824.221333
 outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
+```
+
+第 10 步把当前入口整理成三层：
+
+```text
+检查入口：tests/
+运行入口：scripts/run_single_evaluation.m、run_small_nsga2.m、run_medium_nsga2.m
+未来正式实验入口：后续再整理
 ```

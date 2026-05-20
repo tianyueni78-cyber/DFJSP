@@ -19,6 +19,7 @@
 | 跑一次小种群 NSGA-II | `scripts/run_small_nsga2.m` | 配置化运行脚本 |
 | 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
+| 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
 | 看每个文件夹是干什么的 | `docs/00_system_overview/repository_file_guide.md` | 文件导览 |
 
 ## 2. 配置入口在哪里
@@ -236,3 +237,9 @@ outputs/medium_nsga2/时间戳/
 ```
 
 最后复现时不用每次跑所有小配置。小配置是体检工具；真正要跑哪个入口，取决于你这次是快速检查、轻微放大，还是未来的正式实验。
+
+更完整的复现入口分层看：
+
+```text
+docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md
+```

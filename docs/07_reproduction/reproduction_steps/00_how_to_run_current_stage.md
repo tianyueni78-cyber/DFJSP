@@ -20,6 +20,7 @@
 第 7 段：数据与配置扩展检查已跑通
 第 8 段：配置入口测试已由你本地跑通
 第 9 段：medium_nsga2 已由你本地跑通
+第 10 段：运行入口已经整理成检查/运行/未来正式实验三层
 ```
 
 还没有做到：
@@ -503,4 +504,29 @@ pop / max_gen / p_cross / p_mutation
 README.md
 -> 项目入口地图
 -> 现在这套封装怎么跑
+```
+
+## 10. 当前入口分层
+
+以后复现先按三层理解：
+
+| 层级 | 作用 | 入口 |
+|---|---|---|
+| 检查入口 | 判断环境、数据、配置有没有坏 | `tests/` |
+| 运行入口 | 跑当前已封装的 single / small / medium | `scripts/` |
+| 未来正式实验入口 | 对比实验、指标、图表 | 后续再整理 |
+
+最常用的默认顺序是：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+
+run('tests/test_small_nsga2_config.m')
+run('scripts/run_small_nsga2.m')
+```
+
+如果你想轻微放大，再跑：
+
+```matlab
+run('scripts/run_medium_nsga2.m')
 ```
