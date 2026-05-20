@@ -33,7 +33,7 @@ small / medium / formal 到底分别干什么？
 | 单条评价 | `scripts/run_single_evaluation.m` | 检查 1 条染色体能否被 `fitness/sorting` 评价 | 已实现 |
 | 快速搜索 | `scripts/run_small_nsga2.m` | 用小参数确认 NSGA-II 搜索闭环能跑 | 已实现 |
 | 轻微放大 | `scripts/run_medium_nsga2.m` | 用稍大参数确认运行骨架能放大一点 | 已实现 |
-| 正式实验 | `scripts/run_formal_nsga2.m` 或 `scripts/run_experiment.m` | 面向正式复现的主入口 | 未实现 |
+| 正式实验 | `scripts/run_formal_nsga2.m` | 面向正式复现的 NSGA-II 主入口 | 已实现第一版 |
 | 指标计算 | `scripts/run_metrics.m` | 读取正式实验结果，计算 HV、IGD、Spacing、C-metric 等 | 未实现 |
 
 ## 3. 不同入口分别什么时候用
@@ -45,7 +45,7 @@ small / medium / formal 到底分别干什么？
 | 怀疑 `fitness/sorting` 调用有问题 | `run_single_evaluation` |
 | 想快速检查搜索流程 | `run_small_nsga2` |
 | 想轻微放大一点看看稳不稳 | `run_medium_nsga2` |
-| 想做未来正式复现 | 等正式入口实现后跑 `run_formal_nsga2` 或 `run_experiment` |
+| 想跑 formal 第一版 | `run_formal_nsga2` |
 | 想算论文指标 | 等指标入口实现后跑 `run_metrics` |
 
 简单记：
@@ -99,13 +99,13 @@ pop / max_gen 等参数是多少
 configs/
 ├── small_nsga2_config.m      # 快速检查
 ├── medium_nsga2_config.m     # 轻微放大
-└── formal_nsga2_config.m     # 未来正式复现配置
+└── formal_nsga2_config.m     # formal 复现配置
 
 scripts/
 ├── run_single_evaluation.m   # 单条评价
 ├── run_small_nsga2.m         # small
 ├── run_medium_nsga2.m        # medium
-├── run_formal_nsga2.m        # 未来正式搜索入口
+├── run_formal_nsga2.m        # formal 搜索入口
 └── run_metrics.m             # 未来指标计算入口
 ```
 
@@ -162,10 +162,9 @@ outputs/medium_nsga2/时间戳/
 
 ## 8. 当前阶段不要做什么
 
-第 14 步只是入口设计，所以暂时不要：
+第 14 步当时只是入口设计；现在 formal 第一版入口已经落地。后续仍然不要：
 
 ```text
-不要新增 run_formal_nsga2.m
 不要新增 run_metrics.m
 不要直接跑大参数
 不要把指标计算塞进 small / medium 脚本

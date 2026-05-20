@@ -155,7 +155,38 @@ outputDir: ...
 确认参数轻微放大以后还能跑。
 ```
 
-## 7. 我换数据以后先跑什么
+## 7. 我想跑 formal 档位
+
+```matlab
+run('scripts/run_formal_nsga2.m')
+```
+
+当前参数：
+
+```text
+pop = 30
+max_gen = 10
+```
+
+结果放在：
+
+```text
+outputs/formal_nsga2/时间戳/
+```
+
+MATLAB 命令行会打印：
+
+```text
+outputDir: ...
+```
+
+用途：
+
+```text
+正式复现入口的第一版骨架。
+```
+
+## 8. 我换数据以后先跑什么
 
 换 `.fjs`、机器 Excel 或 AGV Excel 后，建议顺序是：
 
@@ -170,7 +201,7 @@ run('tests/test_formal_nsga2_config.m')
 run('scripts/run_small_nsga2.m')
 ```
 
-## 8. 我不用每次都跑什么
+## 9. 我不用每次都跑什么
 
 不用每次都跑全部测试。
 
@@ -181,16 +212,11 @@ run('scripts/run_small_nsga2.m')
 | 平时快速确认 | 配置测试 + small |
 | 换数据 | 数据测试 + 配置测试 + small |
 | 想轻微放大 | medium |
+| 想跑 formal 第一版 | formal |
 | 想排查单条评价 | single evaluation |
-| 想完整论文实验 | 以后等正式实验入口整理好 |
+| 想完整论文对比实验 | 后续再整理多算法和指标入口 |
 
-## 9. 当前还没有哪个命令
-
-当前还没有实现的正式复现命令是：
-
-```matlab
-run('scripts/run_formal_nsga2.m')
-```
+## 10. 当前还没有哪个命令
 
 当前还没有实现的指标计算命令是：
 
@@ -201,7 +227,8 @@ run('scripts/run_metrics.m')
 也就是说：
 
 ```text
-正式实验入口和指标入口还没有做。
+formal NSGA-II 运行入口已经有了。
+指标入口还没有做。
 ```
 
 现在已经有的是：
@@ -210,6 +237,7 @@ run('scripts/run_metrics.m')
 single
 small
 medium
+formal
 ```
 
 入口关系看：
@@ -230,15 +258,9 @@ docs/07_reproduction/reproduction_steps/15_formal_config_design.md
 configs/formal_nsga2_config.m
 ```
 
-但它不能直接当运行命令用。现在还不能跑：
+它现在由 `scripts/run_formal_nsga2.m` 读取。
 
-```matlab
-run('scripts/run_formal_nsga2.m')
-```
-
-因为正式运行脚本还没有实现。
-
-## 10. 跑完以后去哪找结果
+## 11. 跑完以后去哪找结果
 
 看 MATLAB 命令行最后一行：
 
@@ -264,9 +286,15 @@ outputs/small_nsga2/时间戳/
 outputs/medium_nsga2/时间戳/
 ```
 
+如果跑的是 formal：
+
+```text
+outputs/formal_nsga2/时间戳/
+```
+
 `outputs/` 是本地运行结果，不提交 GitHub。
 
-## 11. 跑完以后要记录什么
+## 12. 跑完以后要记录什么
 
 每次跑完，先看 MATLAB 命令行最后打印的：
 

@@ -20,6 +20,7 @@
 | 看未来正式运行配置 | `configs/formal_nsga2_config.m` | formal 配置入口，当前还没有正式运行脚本 |
 | 跑一次小种群 NSGA-II | `scripts/run_small_nsga2.m` | 配置化运行脚本 |
 | 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
+| 跑一次 formal NSGA-II | `scripts/run_formal_nsga2.m` | formal 运行脚本，当前不含指标计算 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
 | 看输出结果放哪里 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` | outputs 输出规则 |
@@ -57,6 +58,12 @@ pop=30, max_gen=10
 ```
 
 它现在只是配置入口，还没有对应的正式运行脚本。
+
+当前 formal 运行入口是：
+
+```text
+scripts/run_formal_nsga2.m
+```
 
 你在 MATLAB 或编辑器里打开配置文件，就能看到当前运行用的：
 
@@ -237,6 +244,12 @@ medium 小幅放大输出在：
 
 ```text
 outputs/medium_nsga2/时间戳/
+```
+
+formal 运行输出在：
+
+```text
+outputs/formal_nsga2/时间戳/
 ```
 
 `outputs/` 是运行产物，不提交到 GitHub。

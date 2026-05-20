@@ -224,8 +224,8 @@ formal 是未来正式复现
 metrics 是未来结果分析
 ```
 
-当前还没有实现 `run_formal_nsga2.m` 和 `run_metrics.m`。  
-这一步只是先把入口关系分清，避免后面把搜索、指标、画图和日志都塞进一个脚本里。
+当前 `run_formal_nsga2.m` 已经有了第一版。  
+`run_metrics.m` 还没有实现。后面仍然要避免把搜索、指标、画图和日志都塞进一个脚本里。
 
 第 15 步已经整理正式实验配置设计：
 
@@ -248,8 +248,7 @@ output
 configs/formal_nsga2_config.m
 ```
 
-它只是 formal 配置入口，还不是正式运行脚本。  
-当前仍然没有实现 `scripts/run_formal_nsga2.m`。
+它是 formal 配置入口，由 `scripts/run_formal_nsga2.m` 读取。
 
 随后新增 formal 配置测试：
 
@@ -258,3 +257,17 @@ tests/test_formal_nsga2_config.m
 ```
 
 这个测试只检查 formal 配置能不能读取、字段是否完整，不运行 NSGA-II。
+
+现在已经新增 formal 运行脚本：
+
+```text
+scripts/run_formal_nsga2.m
+```
+
+它读取 `configs/formal_nsga2_config.m`，运行 NSGA-II，并把结果保存到：
+
+```text
+outputs/formal_nsga2/时间戳/
+```
+
+当前 formal 仍然是第一版骨架，不包含多算法对比和指标计算。

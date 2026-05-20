@@ -369,7 +369,7 @@ docs/07_reproduction/reproduction_steps/15_formal_config_design.md
 configs/formal_nsga2_config.m
 ```
 
-它目前只是 formal 配置入口，还没有对应的 `scripts/run_formal_nsga2.m`。
+它目前是 formal 配置入口，已经由 `scripts/run_formal_nsga2.m` 读取。
 
 formal 配置读取测试也已新增：
 
@@ -378,3 +378,17 @@ tests/test_formal_nsga2_config.m
 ```
 
 它只检查字段完整性，不运行 NSGA-II。
+
+formal 运行脚本已新增：
+
+```text
+scripts/run_formal_nsga2.m
+```
+
+当前它只实现单算法 NSGA-II 的 formal 骨架，输出到：
+
+```text
+outputs/formal_nsga2/时间戳/
+```
+
+多算法对比、指标入口和图表生成仍未进入。

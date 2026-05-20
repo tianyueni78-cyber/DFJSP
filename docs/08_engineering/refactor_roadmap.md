@@ -261,4 +261,12 @@ configs/formal_nsga2_config.m
 tests/test_formal_nsga2_config.m
 ```
 
-它只检查配置字段，不运行正式算法。下一步再考虑 `scripts/run_formal_nsga2.m` 的最小版本。
+它只检查配置字段，不运行正式算法。
+
+当前已经新增：
+
+```text
+scripts/run_formal_nsga2.m
+```
+
+它是 formal NSGA-II 的第一版运行骨架。下一步更稳的是先由你在 MATLAB 中手动运行，再根据输出决定是否补 formal smoke test。
