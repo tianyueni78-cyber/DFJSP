@@ -127,3 +127,11 @@ test_small_nsga2_config passed: pop=10, max_gen=2, seed=42
 测试不生成 outputs
 测试能提前发现路径和参数问题
 ```
+
+当前第 8 步已经由你在 MATLAB 本地跑通。
+
+本次输出：
+
+```text
+test_small_nsga2_config passed: pop=10, max_gen=2, seed=42
+```

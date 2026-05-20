@@ -30,7 +30,7 @@
 | 第 5 步 | [小种群短迭代](05_run_small_nsga2.md) | 已由你本地跑通，正式测试也已跑通 |
 | 第 6 步 | [配置化 small_nsga2](06_config_small_nsga2.md) | 已新增配置入口，已由你本地跑通 |
 | 第 7 步 | [数据与配置扩展准备](07_data_config_extension.md) | 已建立扩展前检查说明，步骤检查已由你本地跑通 |
-| 第 8 步 | [配置入口测试](08_config_entry_test.md) | 已新增配置检查脚本，等待你本地运行 |
+| 第 8 步 | [配置入口测试](08_config_entry_test.md) | 已由你本地跑通 |
 
 ## 后续会怎么加
 
@@ -120,3 +120,9 @@ tests/test_small_nsga2_config.m
 ```
 
 它只检查配置文件、路径和参数，不运行完整 NSGA-II。
+
+第 8 步已由你在 MATLAB 中跑通：
+
+```text
+test_small_nsga2_config passed: pop=10, max_gen=2, seed=42
+```
