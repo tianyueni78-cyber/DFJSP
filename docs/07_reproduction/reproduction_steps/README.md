@@ -28,6 +28,7 @@
 | 第 3 步 | [单条染色体评价入口](03_single_chromosome_evaluation.md) | 已完成封装，已补正式测试 |
 | 第 4 步 | [单条评价运行脚本](04_run_single_evaluation_script.md) | 已完成串联脚本，已由你手动跑通 |
 | 第 5 步 | [小种群短迭代](05_run_small_nsga2.md) | 已由你本地跑通，正式测试也已跑通 |
+| 第 6 步 | [配置化 small_nsga2](06_config_small_nsga2.md) | 已新增配置入口，等待本地运行验证 |
 
 ## 后续会怎么加
 
@@ -40,8 +41,9 @@
 2. 参数整理
 3. 单个染色体评价
 4. 小种群短迭代
-5. 完整实验复现
-6. 指标与图表复现
+5. 配置化运行入口
+6. 换数据/改参数运行
+7. 按需要扩展到完整实验
 ```
 
 当前已经完成：
@@ -77,3 +79,5 @@ test_small_nsga2 passed: paretoSolutionCount=3, bestMakespan=155.886667, bestTot
 ```
 
 第 5 步目前不是重写或封装 `NSGA2.m`，而是用 `scripts/run_small_nsga2.m` 把原始基础 NSGA-II 串起来跑小规模闭环。
+
+第 6 步开始把目标从“完整论文实验”校准为“可复用运行骨架”：以后优先通过 `configs/small_nsga2_config.m` 换数据和改参数。

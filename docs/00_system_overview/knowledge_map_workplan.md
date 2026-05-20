@@ -2,12 +2,12 @@
 
 ## 当前总目标
 
-用这篇 FJSP-AGV 论文代码作为样本，建立一套自己能看懂、后期能复现、以后能迁移到相近智能调度论文的知识地图。
+用这篇 FJSP-AGV 论文代码作为样本，建立一套自己能看懂、后期能复用、以后能迁移到相近智能调度项目的运行骨架和知识地图。
 
 这不是为了展示，也不是为了堆文档。每个模块都要服务三个问题：
 
 1. 我能不能看懂这套代码在干什么？
-2. 我以后能不能复现或排查问题？
+2. 我以后能不能复用这套结构来放数据、改参数、跑小实验和排查问题？
 3. 我换一篇智能调度论文时，能不能复用这套理解方法？
 
 ## 使用方式
@@ -80,7 +80,8 @@
 | 单条染色体评价 | 1 条 `chrom` 能被 `fitness/sorting` 评价 | 已拆解、已封装、已补正式测试 | `src/evaluation/evaluate_chromosome.m`、`tests/test_evaluate_chromosome.m` |
 | 当前串联入口 | 把数据读取、生成 chrom、评价、输出串起来 | 已有脚本，已由你手动跑通 | `scripts/run_single_evaluation.m` |
 | 小种群短迭代 | 小规模 NSGA-II 闭环运行 | 已由你本地跑通，正式测试也已跑通 | `scripts/run_small_nsga2.m`、`tests/test_small_nsga2.m` |
-| 完整实验复现 | 对比/消融/指标/图表 | 未开始 | 后续再整理 |
+| 配置化运行入口 | 换数据/改参数时优先改配置而不是改脚本 | 已新增配置入口，等待你本地运行验证 | `configs/small_nsga2_config.m`、`scripts/run_small_nsga2.m` |
+| 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 当前已经跑通的最远位置是：
 
@@ -119,4 +120,18 @@ test_small_nsga2 passed: paretoSolutionCount=3, bestMakespan=155.886667, bestTot
 
 ```text
 拆解 -> 串联脚本 -> 手动运行 -> 正式测试
+```
+
+当前正在进入：
+
+```text
+第 6 步：配置化 small_nsga2。
+```
+
+这一步的目标不是完整论文实验，而是形成可复用运行骨架：
+
+```text
+configs 决定数据和参数
+scripts 按配置运行
+outputs 保存结果
 ```

@@ -15,6 +15,8 @@
 第 2 段：已经知道 fitness/sorting 需要什么输入
 第 3 段：已经封装了 evaluate_chromosome 评价入口
 第 4 段：已经有 run_single_evaluation.m 串联脚本
+第 5 段：小种群 NSGA-II 短迭代已跑通并测试
+第 6 段：small_nsga2 已有配置入口
 ```
 
 还没有做到：
@@ -318,6 +320,14 @@ max_gen = 2
 raw_code/NSGA-II
 ```
 
+这些参数现在来自：
+
+```text
+configs/small_nsga2_config.m
+```
+
+以后换数据或改参数，优先改这个配置文件，而不是改运行脚本。
+
 跑通后，说明基础 NSGA-II 的小型搜索闭环能工作。
 
 你已经本地跑通一次，摘要是：
@@ -333,4 +343,35 @@ outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2\20260519_222017
 
 ```text
 小种群 NSGA-II 2 代短迭代。
+```
+
+## 7. 以后换数据或改参数看哪里
+
+当前入口是：
+
+```text
+configs/small_nsga2_config.m
+```
+
+它控制：
+
+```text
+使用哪个 .fjs
+使用哪个机器 Excel
+使用哪个 AGV Excel
+使用哪个算法目录
+pop / max_gen / p_cross / p_mutation
+随机种子
+输出目录
+```
+
+所以以后你想再跑，不要先改 `src/`，也不要先改 `raw_code/`。
+
+优先顺序是：
+
+```text
+1. 把新数据放到 data_sample/ 或后续 data_raw/
+2. 改 configs/small_nsga2_config.m
+3. 运行 scripts/run_small_nsga2.m
+4. 看 outputs/
 ```

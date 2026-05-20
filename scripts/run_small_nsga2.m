@@ -3,25 +3,23 @@ clc
 
 projectRoot = fileparts(fileparts(mfilename('fullpath')));
 
+addpath(fullfile(projectRoot, 'configs'));
 addpath(fullfile(projectRoot, 'src', 'data'));
-addpath(fullfile(projectRoot, 'raw_code', 'NSGA-II'));
+config = small_nsga2_config(projectRoot);
+addpath(config.paths.algorithmDir);
 
-rng(42);
+rng(config.random.seed);
 
-fjspPath = fullfile(projectRoot, 'data_sample', 'Mk01.fjs');
-machineExcelPath = fullfile(projectRoot, 'data_sample', '机器数据.xlsx');
-agvExcelPath = fullfile(projectRoot, 'data_sample', 'AGV数据.xlsx');
-
-problem = read_fjsp(fjspPath);
-machineData = read_machine_data(machineExcelPath, problem.machineNum);
-agvData = read_agv_data(agvExcelPath);
+problem = read_fjsp(config.paths.fjsp);
+machineData = read_machine_data(config.paths.machineExcel, problem.machineNum);
+agvData = read_agv_data(config.paths.agvExcel);
 
 distance_matrix = machineData.distance_matrix;
 machineEnergy = machineData.machineEnergy;
 AGVEnergy = agvData.AGVEnergy;
 
-AGVEG_MAX = 100;
-eChargeSpeed = 20;
+AGVEG_MAX = config.energy.AGVEG_MAX;
+eChargeSpeed = config.energy.eChargeSpeed;
 distance_MAX = max([max(distance_matrix.machine_to_machine(:)), ...
     max(distance_matrix.load_to_machine), ...
     max(distance_matrix.machine_to_unload), ...
@@ -29,10 +27,10 @@ distance_MAX = max([max(distance_matrix.machine_to_machine(:)), ...
 AGVEG_MIN = distance_MAX / agvData.AGVSpeed(end) * ...
     (AGVEnergy.free(end) + AGVEnergy.load(end)) + 1e-6;
 
-p_cross = 0.8;
-p_mutation = 0.2;
-pop = 10;
-max_gen = 2;
+p_cross = config.algorithm.p_cross;
+p_mutation = config.algorithm.p_mutation;
+pop = config.algorithm.pop;
+max_gen = config.algorithm.max_gen;
 speedNum = length(agvData.AGVSpeed);
 
 chrom = init(pop, problem.jobNum, problem.operaNumVec, ...
@@ -53,11 +51,11 @@ NSGA2_Result = NSGA2(p_cross, p_mutation, pop, chrom, max_gen, ...
     AGVEG_MIN, ...
     eChargeSpeed);
 
-runDir = create_run_dir(fullfile(projectRoot, 'outputs', 'small_nsga2'));
+runDir = create_run_dir(config.paths.outputBaseDir);
 save(fullfile(runDir, 'small_nsga2_result.mat'), ...
     'NSGA2_Result', 'chrom', 'problem', 'machineData', 'agvData', ...
     'AGVEG_MAX', 'AGVEG_MIN', 'eChargeSpeed', ...
-    'p_cross', 'p_mutation', 'pop', 'max_gen');
+    'p_cross', 'p_mutation', 'pop', 'max_gen', 'config');
 
 obj_matrix = NSGA2_Result.obj_matrix;
 summaryPath = fullfile(runDir, 'summary.txt');

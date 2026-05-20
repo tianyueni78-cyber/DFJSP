@@ -20,6 +20,7 @@
   - [第 3 步：单条染色体评价入口](docs/07_reproduction/reproduction_steps/03_single_chromosome_evaluation.md)
   - [第 4 步：单条评价运行脚本](docs/07_reproduction/reproduction_steps/04_run_single_evaluation_script.md)
   - [第 5 步：小种群短迭代](docs/07_reproduction/reproduction_steps/05_run_small_nsga2.md)
+  - [第 6 步：配置化 small_nsga2](docs/07_reproduction/reproduction_steps/06_config_small_nsga2.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
 - [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
 
