@@ -83,7 +83,7 @@
 | 配置化运行入口 | 换数据/改参数时优先改配置而不是改脚本 | 已新增配置入口，已由你本地跑通 | `configs/small_nsga2_config.m`、`scripts/run_small_nsga2.m` |
 | 数据与配置扩展准备 | 扩大规模前先明确换数据、改参数、检查输出的流程 | 已建立说明，步骤检查已由你本地跑通 | `docs/07_reproduction/reproduction_steps/07_data_config_extension.md` |
 | 配置入口测试 | 在运行算法前检查配置文件、路径和参数是否合理 | 已由你本地跑通 | `tests/test_small_nsga2_config.m`、`docs/07_reproduction/reproduction_steps/08_config_entry_test.md` |
-| 小幅放大参数运行 | 用 medium 档位检查配置化骨架能否轻微放大 | 已新增配置和脚本，等待你本地运行 | `configs/medium_nsga2_config.m`、`scripts/run_medium_nsga2.m`、`docs/07_reproduction/reproduction_steps/09_medium_nsga2_run.md` |
+| 小幅放大参数运行 | 用 medium 档位检查配置化骨架能否轻微放大 | 已由你本地跑通 | `configs/medium_nsga2_config.m`、`scripts/run_medium_nsga2.m`、`docs/07_reproduction/reproduction_steps/09_medium_nsga2_run.md` |
 | 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 第一轮最小复现链路已经跑通。
@@ -264,4 +264,15 @@ medium: pop=20, max_gen=5
 
 ```text
 配置改大一点以后，算法是否还能跑完并输出到 outputs/medium_nsga2/
+```
+
+第 9 步已经由你在 MATLAB 中跑通：
+
+```text
+pop = 20
+max_gen = 5
+paretoSolutionCount = 4
+bestMakespan = 135.743333
+bestTotalEnergy = 1824.221333
+outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 ```

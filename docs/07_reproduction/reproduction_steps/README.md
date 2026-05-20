@@ -31,7 +31,7 @@
 | 第 6 步 | [配置化 small_nsga2](06_config_small_nsga2.md) | 已新增配置入口，已由你本地跑通 |
 | 第 7 步 | [数据与配置扩展准备](07_data_config_extension.md) | 已建立扩展前检查说明，步骤检查已由你本地跑通 |
 | 第 8 步 | [配置入口测试](08_config_entry_test.md) | 已由你本地跑通 |
-| 第 9 步 | [小幅放大参数运行](09_medium_nsga2_run.md) | 已新增 medium 配置和运行脚本，等待你本地运行 |
+| 第 9 步 | [小幅放大参数运行](09_medium_nsga2_run.md) | 已由你本地跑通 |
 
 ## 后续会怎么加
 
@@ -137,3 +137,14 @@ scripts/run_medium_nsga2.m
 ```
 
 它用于检查 `pop=20, max_gen=5` 的轻微放大运行，不是完整论文实验。
+
+第 9 步已由你在 MATLAB 中跑通：
+
+```text
+pop = 20
+max_gen = 5
+paretoSolutionCount = 4
+bestMakespan = 135.743333
+bestTotalEnergy = 1824.221333
+outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
+```

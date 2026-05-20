@@ -138,3 +138,32 @@ pop=20 和 max_gen=5 生效
 ```
 
 如果它跑通，说明当前骨架已经从“最小检查”推进到“轻微放大检查”。
+
+当前第 9 步已经由你在 MATLAB 本地跑通。
+
+本次输出摘要：
+
+```text
+RUNNING --------> NSGA-II <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 138.0  MIN Energy:1967.11
+GEN: 2  MIN Cmax: 138.0  MIN Energy:1967.11
+GEN: 3  MIN Cmax: 138.0  MIN Energy:1923.10
+GEN: 4  MIN Cmax: 135.7  MIN Energy:1863.80
+GEN: 5  MIN Cmax: 135.7  MIN Energy:1824.22
+运行时间：0.95065
+medium NSGA-II finished.
+pop: 20, max_gen: 5
+paretoSolutionCount: 4
+bestMakespan: 135.743333
+bestTotalEnergy: 1824.221333
+outputDir: D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
+```
+
+这说明 medium 档位已经通过：
+
+```text
+pop=20
+max_gen=5
+结果写入 outputs/medium_nsga2/
+```

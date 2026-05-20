@@ -19,7 +19,7 @@
 第 6 段：small_nsga2 已有配置入口
 第 7 段：数据与配置扩展检查已跑通
 第 8 段：配置入口测试已由你本地跑通
-第 9 段：medium_nsga2 已有配置和运行脚本，等待你本地运行
+第 9 段：medium_nsga2 已由你本地跑通
 ```
 
 还没有做到：
@@ -422,6 +422,16 @@ configs/medium_nsga2_config.m
 
 ```text
 outputs/medium_nsga2/时间戳/
+```
+
+你已经跑通一次，摘要是：
+
+```text
+pop: 20, max_gen: 5
+paretoSolutionCount: 4
+bestMakespan: 135.743333
+bestTotalEnergy: 1824.221333
+outputDir: D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 ```
 
 ## 7. 以后换数据或改参数看哪里
