@@ -29,7 +29,7 @@
 | 第 4 步 | [单条评价运行脚本](04_run_single_evaluation_script.md) | 已完成串联脚本，已由你手动跑通 |
 | 第 5 步 | [小种群短迭代](05_run_small_nsga2.md) | 已由你本地跑通，正式测试也已跑通 |
 | 第 6 步 | [配置化 small_nsga2](06_config_small_nsga2.md) | 已新增配置入口，已由你本地跑通 |
-| 第 7 步 | [数据与配置扩展准备](07_data_config_extension.md) | 已建立扩展前检查说明 |
+| 第 7 步 | [数据与配置扩展准备](07_data_config_extension.md) | 已建立扩展前检查说明，步骤检查已由你本地跑通 |
 
 ## 后续会怎么加
 
@@ -103,4 +103,10 @@ outputDir = D:\CODEX\code_refactor_project\outputs\small_nsga2\20260520_112624
 参数怎么逐步放大
 每一步怎么检查
 结果去 outputs 哪里找
+```
+
+第 7 步建议的检查流程也已由你在 MATLAB 中跑通：
+
+```text
+读取检查 -> 单条评价检查 -> 小种群检查 -> 配置化运行
 ```
