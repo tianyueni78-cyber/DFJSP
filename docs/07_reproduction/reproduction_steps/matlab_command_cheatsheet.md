@@ -215,6 +215,18 @@ medium
 docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md
 ```
 
+formal 配置字段设计看：
+
+```text
+docs/07_reproduction/reproduction_steps/15_formal_config_design.md
+```
+
+当前还没有这个配置文件：
+
+```text
+configs/formal_nsga2_config.m
+```
+
 ## 10. 跑完以后去哪找结果
 
 看 MATLAB 命令行最后一行：

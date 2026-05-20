@@ -24,6 +24,7 @@
 | 看输出结果放哪里 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` | outputs 输出规则 |
 | 看每次运行要记录什么 | `docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md` | 运行日志和参数记录规则 |
 | 看未来正式实验入口怎么设计 | `docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md` | small / medium / formal / metrics 的入口关系 |
+| 看 formal 配置应该有哪些字段 | `docs/07_reproduction/reproduction_steps/15_formal_config_design.md` | 正式实验配置字段设计 |
 | 看每个文件夹是干什么的 | `docs/00_system_overview/repository_file_guide.md` | 文件导览 |
 
 ## 2. 配置入口在哪里
@@ -264,4 +265,10 @@ docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md
 
 ```text
 docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md
+```
+
+未来 formal 配置字段设计看：
+
+```text
+docs/07_reproduction/reproduction_steps/15_formal_config_design.md
 ```

@@ -31,6 +31,7 @@
   - [第 12 步：outputs 输出结构整理](docs/07_reproduction/reproduction_steps/12_outputs_structure.md)
   - [第 13 步：运行日志与参数记录设计](docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md)
   - [第 14 步：正式实验入口设计](docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md)
+  - [第 15 步：正式实验配置设计](docs/07_reproduction/reproduction_steps/15_formal_config_design.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
 - [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
 

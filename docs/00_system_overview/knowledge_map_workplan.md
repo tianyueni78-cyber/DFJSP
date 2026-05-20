@@ -349,3 +349,18 @@ docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md
 ```
 
 这一步的核心作用是把“检查、运行、正式复现、指标计算”分开，后面实现代码时不要把所有事情重新塞进一个大脚本。
+
+第 15 步已经整理正式实验配置设计：
+
+```text
+formal 配置建议包含：
+experiment / paths / dataset / random / algorithm / energy / output
+```
+
+对应文档：
+
+```text
+docs/07_reproduction/reproduction_steps/15_formal_config_design.md
+```
+
+当前还没有新增 `configs/formal_nsga2_config.m`。这一步只是设计字段，下一步再决定是否创建最小配置文件。

@@ -226,3 +226,21 @@ metrics 是未来结果分析
 
 当前还没有实现 `run_formal_nsga2.m` 和 `run_metrics.m`。  
 这一步只是先把入口关系分清，避免后面把搜索、指标、画图和日志都塞进一个脚本里。
+
+第 15 步已经整理正式实验配置设计：
+
+```text
+说明文档：15_formal_config_design.md
+
+formal 配置应该包含：
+experiment
+paths
+dataset
+random
+algorithm
+energy
+output
+```
+
+当前还没有新增 `configs/formal_nsga2_config.m`。  
+这一步只是先确定字段，下一步再决定是否真正创建配置文件。

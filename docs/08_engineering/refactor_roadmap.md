@@ -230,19 +230,19 @@ flowchart TD
 
 因此下一步不建议继续盲目放大参数，也不建议马上进入完整论文实验。
 
-第 12 步和第 13 步已经完成，当前进入第 14 步：
+第 12、13、14 步已经完成，当前进入第 15 步：
 
 ```text
-第 14 步：正式实验入口设计
+第 15 步：正式实验配置设计
 ```
 
 重点先回答：
 
 ```text
-以后真正复现时在 MATLAB 里输入什么？
-small / medium / formal 分别是什么用途？
-正式搜索入口和指标入口要不要分开？
-未来结果应该保存到 outputs/ 哪个目录？
+formal 配置里应该有哪些字段？
+哪些字段来自 small / medium？
+哪些字段是正式复现必须额外补充的？
+是否现在就应该新增 configs/formal_nsga2_config.m？
 ```
 
-这一步会为后面的 `run_formal_nsga2.m`、`run_metrics.m` 和正式输出目录打基础。
+这一步会为后面的 `configs/formal_nsga2_config.m`、`run_formal_nsga2.m` 和正式输出目录打基础。
