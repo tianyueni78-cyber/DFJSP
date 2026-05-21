@@ -246,7 +246,7 @@ formal 手动跑通
 docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
 
-当前下一步不是继续放大搜索参数，而是实现指标入口的最小读取版。
+当前指标入口的最小读取版已经实现，下一步是由你在 MATLAB 中手动运行。
 
 当前已经新增：
 
@@ -290,11 +290,11 @@ outputDir = outputs/formal_nsga2/20260520_224558
 scripts/run_metrics.m
 ```
 
-当前只做文档设计，不新增代码。核心关系是：
+当前已经新增 `scripts/run_metrics.m`。核心关系是：
 
 ```text
 run_formal_nsga2.m -> 生成 formal_nsga2_result.mat
-run_metrics.m      -> 读取 formal_nsga2_result.mat 并计算指标
+run_metrics.m      -> 读取 formal_nsga2_result.mat 并生成最小指标摘要
 ```
 
 指标结果未来应保存到：

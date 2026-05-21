@@ -224,22 +224,54 @@ run('scripts/run_small_nsga2.m')
 | 换数据 | 数据测试 + 配置测试 + small |
 | 想轻微放大 | medium |
 | 想跑 formal 第一版 | formal |
+| 想读取 formal 结果 | metrics summary |
 | 想排查单条评价 | single evaluation |
 | 想完整论文对比实验 | 后续再整理多算法和指标入口 |
 
-## 10. 当前还没有哪个命令
-
-当前还没有实现的指标计算命令是：
+## 10. 我想读取 formal 结果并生成最小指标摘要
 
 ```matlab
 run('scripts/run_metrics.m')
+```
+
+这条命令会读取最新的：
+
+```text
+outputs/formal_nsga2/时间戳/formal_nsga2_result.mat
+```
+
+并输出到：
+
+```text
+outputs/formal_nsga2/时间戳/metrics/
+```
+
+当前它只生成最小摘要：
+
+```text
+paretoSolutionCount
+bestMakespan
+worstMakespan
+bestTotalEnergy
+worstTotalEnergy
+meanMakespan
+meanTotalEnergy
+```
+
+## 11. 当前还没有哪个命令
+
+当前还没有实现完整指标计算：
+
+```matlab
+HV / IGD / Spacing / C-metric
 ```
 
 也就是说：
 
 ```text
 formal NSGA-II 运行入口已经有了。
-指标入口还没有做。
+指标入口最小读取版已经有了。
+完整指标还没有做。
 ```
 
 现在已经有的是：
@@ -249,6 +281,7 @@ single
 small
 medium
 formal
+metrics summary
 ```
 
 入口关系看：
@@ -277,7 +310,7 @@ configs/formal_nsga2_config.m
 
 它现在由 `scripts/run_formal_nsga2.m` 读取。
 
-## 11. 跑完以后去哪找结果
+## 12. 跑完以后去哪找结果
 
 看 MATLAB 命令行最后一行：
 
@@ -311,7 +344,7 @@ outputs/formal_nsga2/时间戳/
 
 `outputs/` 是本地运行结果，不提交 GitHub。
 
-## 12. 跑完以后要记录什么
+## 13. 跑完以后要记录什么
 
 每次跑完，先看 MATLAB 命令行最后打印的：
 
@@ -357,7 +390,7 @@ log 用来排查问题。
 docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
 ```
 
-未来指标入口会读取：
+指标入口会读取：
 
 ```text
 outputs/formal_nsga2/时间戳/formal_nsga2_result.mat

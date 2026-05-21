@@ -21,6 +21,7 @@
 | 跑一次小种群 NSGA-II | `scripts/run_small_nsga2.m` | 配置化运行脚本 |
 | 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
 | 跑一次 formal NSGA-II | `scripts/run_formal_nsga2.m` | formal 运行脚本，当前不含指标计算 |
+| 读取 formal 结果并生成最小指标摘要 | `scripts/run_metrics.m` | metrics 最小读取脚本 |
 | 看未来指标入口怎么设计 | `docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` | run_metrics.m 应该读取、计算、输出什么 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
@@ -251,6 +252,12 @@ formal 运行输出在：
 
 ```text
 outputs/formal_nsga2/时间戳/
+```
+
+metrics 最小摘要输出在：
+
+```text
+outputs/formal_nsga2/时间戳/metrics/
 ```
 
 `outputs/` 是运行产物，不提交到 GitHub。

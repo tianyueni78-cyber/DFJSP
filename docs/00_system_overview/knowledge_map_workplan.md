@@ -61,7 +61,7 @@
 | Data Layer 数据层 | 已经比较扎实 | `.fjs`、机器 Excel、AGV Excel 已拆出读取函数；已有轻量测试；small/medium/formal 都通过配置读取数据 | 还没有做字段级数据字典；新数据集批量管理还没做 | 后续换数据时再补字段说明和数据集管理规则 |
 | Encoding Layer 编码层 | 已理解，未单独封装 | `OS / MS / AS / SS` 的含义已在搜索层和解码层文档中说明；当前仍使用原始 `init.m` 生成染色体 | 还没有单独封装染色体生成/合法性检查；还没有染色体小例子 | 后续如果你看不懂编码，再补一个最小染色体例子 |
 | Decoding Layer 解码层 | 已理解，保持原算法 | `sorting.m` 已明确为核心解码器；当前所有运行仍调用原始 `sorting.m` | 没有重构 `sorting.m`；没有拆机器/AGV 时间轴子函数 | 暂时不动算法核心，后续按需要补变量流向图 |
-| Evaluation Layer 评价层 | 基础目标值已跑通，指标入口只完成设计 | `evaluate_chromosome.m` 已封装单条评价；formal 能输出 makespan 和 totalEnergy；第 17 步已设计 `run_metrics.m` | `HV / IGD / Spacing / C-metric` 还没有代码入口 | 下一步可以做 `run_metrics.m` 的最小读取版 |
+| Evaluation Layer 评价层 | 基础目标值已跑通，指标入口最小读取版已实现 | `evaluate_chromosome.m` 已封装单条评价；formal 能输出 makespan 和 totalEnergy；`run_metrics.m` 能读取 formal 结果并生成最小摘要 | `HV / IGD / Spacing / C-metric` 还没有完整实现 | 下一步可由你手动运行 `run_metrics.m` |
 | Search Layer 搜索层 | NSGA-II 单算法骨架已跑通 | small、medium、formal 三个 NSGA-II 档位已跑通；formal 已输出到 `outputs/formal_nsga2/` | 多算法对比、消融实验、高级改进算法还没有进入 | 等指标入口稳定后，再考虑多算法对比 |
 
 当前最关键的结论：
@@ -115,7 +115,7 @@
 | formal 入口设计 | 明确 small / medium / formal / metrics 的入口关系 | 已完成设计，formal 入口已落地 | `docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md` |
 | formal 配置 | 建立正式运行配置字段和配置文件 | 已新增配置，配置测试已跑通 | `configs/formal_nsga2_config.m`、`tests/test_formal_nsga2_config.m` |
 | formal 运行 | 跑通 NSGA-II formal 第一版 | 已由你在 MATLAB 中跑通 | `scripts/run_formal_nsga2.m` |
-| 指标入口设计 | 明确未来 `run_metrics.m` 读取什么、计算什么、输出什么 | 已完成设计，尚未实现代码 | `docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` |
+| 指标入口最小读取版 | 读取 formal 结果，生成最小指标摘要 | 已新增脚本，等待你在 MATLAB 中运行 | `scripts/run_metrics.m`、`docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` |
 | 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 第一轮最小复现链路已经跑通。
@@ -374,8 +374,8 @@ docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
 当前已实现：
 single / small / medium / formal
 
-未来待实现：
-metrics 指标入口
+已实现：
+metrics 最小读取版
 ```
 
 对应文档：
@@ -427,7 +427,7 @@ scripts/run_formal_nsga2.m
 outputs/formal_nsga2/时间戳/
 ```
 
-多算法对比、指标入口和图表生成仍未进入。
+多算法对比、完整指标和图表生成仍未进入。
 
 formal 第一版已经由你在 MATLAB 中手动跑通：
 
@@ -445,12 +445,12 @@ outputDir: outputs/formal_nsga2/20260520_224558
 ```
 
 这说明当前工程已经从 small / medium 骨架推进到 formal NSGA-II 单算法入口。  
-下一步不建议立刻堆更多大实验，而是先把指标入口理顺，确认 formal 输出结果后续能被读取和评价。
+下一步不建议立刻堆更多大实验，而是先由你运行 `run_metrics.m`，确认 formal 输出结果能被读取并生成最小摘要。
 
-第 17 步已经整理指标入口设计：
+第 17 步已经整理指标入口设计，并新增最小读取版：
 
 ```text
-future script: scripts/run_metrics.m
+script: scripts/run_metrics.m
 input: outputs/formal_nsga2/时间戳/formal_nsga2_result.mat
 core data: NSGA2_Result.obj_matrix
 output: outputs/formal_nsga2/时间戳/metrics/
@@ -462,4 +462,4 @@ output: outputs/formal_nsga2/时间戳/metrics/
 docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
 
-这一步把搜索和指标计算分开：`run_formal_nsga2.m` 负责生成结果，未来 `run_metrics.m` 负责读取结果并计算指标。
+这一步把搜索和指标计算分开：`run_formal_nsga2.m` 负责生成结果，`run_metrics.m` 负责读取结果并生成最小指标摘要。

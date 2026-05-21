@@ -8,14 +8,14 @@
 outputs/formal_nsga2/时间戳/
 ```
 
-下一步不是继续把搜索脚本写大，而是先设计未来的指标入口：
+下一步不是继续把搜索脚本写大，而是实现指标入口的最小读取版：
 
 ```text
 scripts/run_metrics.m
 ```
 
-这个入口未来负责读取已经跑完的结果，再计算论文常用指标。  
-本步只更新文档，不新增代码，不运行 MATLAB。
+这个入口负责读取已经跑完的结果，先生成最小指标摘要。  
+当前已经新增 `scripts/run_metrics.m`，但还没有运行 MATLAB。
 
 ## 2. run_formal_nsga2 和 run_metrics 的关系
 
@@ -46,9 +46,9 @@ run_metrics.m 负责“读结果，算指标”。
 
 搜索和指标分开，是为了以后只改指标或重算指标时，不用重新跑算法。
 
-## 3. run_metrics.m 未来应该读取什么
+## 3. run_metrics.m 当前读取什么
 
-未来指标入口至少要读取：
+当前指标入口读取最新的：
 
 ```text
 outputs/formal_nsga2/某个时间戳/formal_nsga2_result.mat
@@ -78,7 +78,7 @@ NSGA2_Result.obj_matrix
 第 2 列：totalEnergy
 ```
 
-## 4. run_metrics.m 未来应该计算什么
+## 4. run_metrics.m 当前计算什么
 
 当前项目后续指标入口建议先面向多目标优化常用指标：
 
@@ -89,31 +89,35 @@ NSGA2_Result.obj_matrix
 | Spacing | 解集分布是否均匀，通常越小越均匀 |
 | C-metric | 两个算法解集之间的支配覆盖关系 |
 
-但第一版 `run_metrics.m` 不一定马上全部实现。  
-更稳的顺序是：
+当前第一版 `run_metrics.m` 不直接实现这些完整指标，而是先做最小摘要：
 
 ```text
-先能读取 formal_nsga2_result.mat
-再能拿到 obj_matrix
-再保存一个 metrics_summary.txt
-最后逐步加入 HV / IGD / Spacing / C-metric
+paretoSolutionCount
+bestMakespan
+worstMakespan
+bestTotalEnergy
+worstTotalEnergy
+meanMakespan
+meanTotalEnergy
 ```
 
-## 5. run_metrics.m 未来应该输出什么
+HV / IGD / Spacing / C-metric 后续再逐步加入。
 
-建议输出到同一次 formal 运行目录下：
+## 5. run_metrics.m 当前输出什么
+
+当前输出到同一次 formal 运行目录下：
 
 ```text
 outputs/formal_nsga2/时间戳/metrics/
 ```
 
-建议文件：
+当前文件：
 
 | 文件 | 作用 |
 |---|---|
-| `metrics_summary.txt` | 人能直接看的指标摘要 |
+| `metrics_summary.txt` | 人能直接看的最小指标摘要 |
 | `metrics_result.mat` | MATLAB 可继续分析的指标变量 |
-| `metrics_table.csv` | 以后方便整理表格 |
+| `metrics_table.csv` | 方便整理表格 |
 
 第一版不必急着画图。  
 先把指标数字保存稳定，再考虑图表。
@@ -129,29 +133,28 @@ run_metrics.m     -> 计算指标
 run_plotting.m    -> 后续画 Pareto 图、收敛图、甘特图
 ```
 
-现在只设计 `run_metrics.m`。  
+现在只实现 `run_metrics.m` 的最小读取版。  
 图表生成后续再单独整理，避免一个脚本越来越大。
 
-## 7. 当前还没有什么
+## 7. 当前已有和还没有什么
 
 当前已经有：
 
 ```text
 configs/formal_nsga2_config.m
 scripts/run_formal_nsga2.m
+scripts/run_metrics.m
 outputs/formal_nsga2/时间戳/
 ```
 
 当前还没有：
 
 ```text
-scripts/run_metrics.m
-metrics_summary.txt
-metrics_result.mat
-metrics_table.csv
+HV / IGD / Spacing / C-metric 完整实现
+run_plotting.m
 ```
 
-所以第 17 步只是把指标入口的输入、计算内容、输出位置设计清楚。
+所以第 17 步已经从设计推进到最小读取版实现。
 
 ## 8. 本步完成标准
 
@@ -162,8 +165,11 @@ run_metrics.m 不负责跑算法
 run_metrics.m 读取 formal 的输出目录
 run_metrics.m 主要读取 NSGA2_Result.obj_matrix
 指标结果应该写回同一个 outputDir 下的 metrics/
-HV / IGD / Spacing / C-metric 是后续逐步实现的指标
+HV / IGD / Spacing / C-metric 是后续逐步实现的完整指标
 ```
 
-下一步如果继续工程化，可以先做 `run_metrics.m` 的最小读取版：  
-只读取 `formal_nsga2_result.mat`，确认 `obj_matrix` 非空，并输出一个最简单的 `metrics_summary.txt`。
+下一步由你在 MATLAB 中运行：
+
+```matlab
+run('scripts/run_metrics.m')
+```

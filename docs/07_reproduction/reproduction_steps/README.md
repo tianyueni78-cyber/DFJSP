@@ -168,7 +168,7 @@ outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 ```text
 检查入口：tests/
 运行入口：scripts/run_single_evaluation.m、run_small_nsga2.m、run_medium_nsga2.m、run_formal_nsga2.m
-指标入口：run_metrics.m 只完成设计，尚未实现
+指标入口：run_metrics.m 已有最小读取版，等待 MATLAB 运行
 ```
 
 第 11 步总结当前阶段：
@@ -225,7 +225,7 @@ metrics 是未来结果分析
 ```
 
 当前 `run_formal_nsga2.m` 已经有了第一版。  
-`run_metrics.m` 还没有实现。后面仍然要避免把搜索、指标、画图和日志都塞进一个脚本里。
+`run_metrics.m` 已有最小读取版。后面仍然要避免把搜索、完整指标、画图和日志都塞进一个脚本里。
 
 第 15 步已经整理正式实验配置设计：
 
@@ -293,16 +293,16 @@ formal 脚本能调用原始 NSGA-II
 summary.txt / run_info.txt / formal_nsga2_result.mat 会进入本次时间戳目录
 ```
 
-第 17 步已经整理指标入口设计：
+第 17 步已经整理指标入口设计，并新增最小读取版：
 
 ```text
 说明文档：17_metrics_entry_design.md
 
 run_formal_nsga2.m 负责跑算法，生成 formal 结果。
-run_metrics.m 未来负责读取 formal 结果，计算 HV / IGD / Spacing / C-metric 等指标。
+run_metrics.m 负责读取 formal 结果，先生成最小指标摘要。
 ```
 
-当前还没有实现：
+当前已经实现：
 
 ```text
 scripts/run_metrics.m
@@ -312,4 +312,12 @@ scripts/run_metrics.m
 
 ```text
 outputs/formal_nsga2/时间戳/metrics/
+```
+
+当前 `run_metrics.m` 会输出：
+
+```text
+metrics_summary.txt
+metrics_result.mat
+metrics_table.csv
 ```
