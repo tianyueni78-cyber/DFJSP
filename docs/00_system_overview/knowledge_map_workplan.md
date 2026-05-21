@@ -26,8 +26,8 @@
 |---|---|---|---|---|---|
 | 1 | 项目总览 | 这套代码整体在干什么？我该怎么读？ | 第一版完成 | `beginner_reading_guide.md`、`system_layer_architecture.md` | 按你的真实困惑改得更顺口 |
 | 2 | 数据来源 | `.fjs`、Excel、距离、能耗参数从哪来？ | 第一版完成 | `data_layer_map.md` | 补字段级说明：变量长什么样 |
-| 3 | 染色体编码 | `OS / MS / AS / SS` 分别表达什么决策？ | 第一版可用，内容分散 | `search_layer_overview.md`、`decoding_layer_overview.md` | 单独补一个小例子会更直观 |
-| 4 | 解码过程 | `sorting.m` 怎么把染色体变成真实调度？ | 第一版完成 | `decoding_layer_overview.md` | 补 `curJob`、`jobOpera`、时间轴变量流向 |
+| 3 | 染色体编码 | `OS / MS / AS / SS` 分别表达什么决策？ | 应用理解总览已补 | `search_layer_overview.md`、`decoding_layer_overview.md`、`encoding_decoding_application_overview.md` | 后续可补一个最小染色体例子 |
+| 4 | 解码过程 | `sorting.m` 怎么把染色体变成真实调度？ | 应用理解总览已补，代码主流程第一版完成 | `decoding_layer_overview.md`、`encoding_decoding_application_overview.md` | 补 `curJob`、`jobOpera`、时间轴变量流向 |
 | 5 | 评价机制 | `fitness.m` 怎么计算完工时间和能耗？ | 第一版完成 | `evaluation_layer_overview.md` | 补机器能耗、AGV 能耗的数字例子 |
 | 6 | 搜索基础 | 算法怎么生成、评价、筛选新方案？ | 第一版完成 | `search_layer_overview.md` | 后续再单独分析 VNS、Q-learning、反向学习 |
 | 7 | 实验流程 | `dif_main.m`、`same_main.m` 到底跑了什么实验？ | 第一版完成 | `experiment_flow.md` | 补 HV、IGD、Spacing、C-metric 的函数细节 |
@@ -59,8 +59,8 @@
 | 五层 | 当前进度 | 已有成果 | 还没有做什么 | 下一步方向 |
 |---|---|---|---|---|
 | Data Layer 数据层 | 已经比较扎实 | `.fjs`、机器 Excel、AGV Excel 已拆出读取函数；已有轻量测试；small/medium/formal 都通过配置读取数据 | 还没有做字段级数据字典；新数据集批量管理还没做 | 后续换数据时再补字段说明和数据集管理规则 |
-| Encoding Layer 编码层 | 已理解，未单独封装 | `OS / MS / AS / SS` 的含义已在搜索层和解码层文档中说明；当前仍使用原始 `init.m` 生成染色体 | 还没有单独封装染色体生成/合法性检查；还没有染色体小例子 | 后续如果你看不懂编码，再补一个最小染色体例子 |
-| Decoding Layer 解码层 | 已理解，保持原算法 | `sorting.m` 已明确为核心解码器；当前所有运行仍调用原始 `sorting.m` | 没有重构 `sorting.m`；没有拆机器/AGV 时间轴子函数 | 暂时不动算法核心，后续按需要补变量流向图 |
+| Encoding Layer 编码层 | 已进入应用理解线 | `OS / MS / AS / SS` 的含义已说明；已新增编码-解码应用总览；当前仍使用原始 `init.m` 生成染色体 | 还没有单独封装染色体生成/合法性检查；还没有染色体小例子 | 后续可补“1 条 chrom 长什么样”的小例子 |
+| Decoding Layer 解码层 | 已进入应用理解线，保持原算法 | `sorting.m` 已明确为核心解码器；已说明它如何处理工序顺序、机器、AGV、速度、电量和插空 | 没有重构 `sorting.m`；没有拆机器/AGV 时间轴子函数 | 后续按需要补变量流向图 |
 | Evaluation Layer 评价层 | 基础目标值已跑通，指标入口最小读取版已跑通 | `evaluate_chromosome.m` 已封装单条评价；formal 能输出 makespan 和 totalEnergy；`run_metrics.m` 已读取 formal 结果并生成最小摘要 | `HV / IGD / Spacing / C-metric` 还没有完整实现 | 后续可按需要扩展完整指标 |
 | Search Layer 搜索层 | NSGA-II 单算法骨架已跑通 | small、medium、formal 三个 NSGA-II 档位已跑通；formal 已输出到 `outputs/formal_nsga2/` | 多算法对比、消融实验、高级改进算法还没有进入 | 等指标入口稳定后，再考虑多算法对比 |
 
@@ -69,8 +69,16 @@
 ```text
 数据层和 NSGA-II 搜索骨架已经能跑。
 解码层和评价层仍依赖原始 sorting/fitness，暂时不重构。
-当前主线已经从“能跑 formal”推进到“设计和实现指标入口”。
+工程化第一阶段已经闭环，当前主线转入“编码-解码应用理解”。
 ```
+
+第 18 步已经新增编码-解码应用理解总览：
+
+```text
+docs/04_decoding/encoding_decoding_application_overview.md
+```
+
+它不讲逐行代码，而是回答：以后看新智能调度课题时，如何从调度对象、决策变量、编码、解码、评价、搜索这条链路理解问题。
 
 ## 第二轮深化池
 

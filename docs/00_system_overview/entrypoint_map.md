@@ -23,6 +23,7 @@
 | 跑一次 formal NSGA-II | `scripts/run_formal_nsga2.m` | formal 运行脚本，当前不含指标计算 |
 | 读取 formal 结果并生成最小指标摘要 | `scripts/run_metrics.m` | metrics 最小读取脚本 |
 | 看未来指标入口怎么设计 | `docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` | run_metrics.m 应该读取、计算、输出什么 |
+| 理解编码-解码怎么迁移到新课题 | `docs/04_decoding/encoding_decoding_application_overview.md` | 从调度对象到编码、解码、评价、搜索的应用框架 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
 | 看输出结果放哪里 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` | outputs 输出规则 |
@@ -309,4 +310,10 @@ docs/07_reproduction/reproduction_steps/15_formal_config_design.md
 
 ```text
 docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
+```
+
+编码-解码应用理解看：
+
+```text
+docs/04_decoding/encoding_decoding_application_overview.md
 ```
