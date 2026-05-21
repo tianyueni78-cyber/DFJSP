@@ -258,6 +258,17 @@ meanMakespan
 meanTotalEnergy
 ```
 
+已跑通记录：
+
+```text
+metrics summary finished.
+sourceRunDir: D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558
+paretoSolutionCount: 2
+bestMakespan: 134.446667
+bestTotalEnergy: 1770.988667
+metricsDir: D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558\metrics
+```
+
 ## 11. 当前还没有哪个命令
 
 当前还没有实现完整指标计算：

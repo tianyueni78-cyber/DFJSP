@@ -321,3 +321,24 @@ metrics_summary.txt
 metrics_result.mat
 metrics_table.csv
 ```
+
+`run_metrics.m` 已由你在 MATLAB 中跑通：
+
+```text
+metrics summary finished.
+sourceRunDir: D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558
+paretoSolutionCount: 2
+bestMakespan: 134.446667
+bestTotalEnergy: 1770.988667
+metricsDir: D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558\metrics
+```
+
+到这里，工程化第一阶段形成闭环：
+
+```text
+formal 配置
+-> formal 运行
+-> formal 输出
+-> metrics 读取
+-> metrics 摘要
+```

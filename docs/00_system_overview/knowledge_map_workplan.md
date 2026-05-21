@@ -61,7 +61,7 @@
 | Data Layer 数据层 | 已经比较扎实 | `.fjs`、机器 Excel、AGV Excel 已拆出读取函数；已有轻量测试；small/medium/formal 都通过配置读取数据 | 还没有做字段级数据字典；新数据集批量管理还没做 | 后续换数据时再补字段说明和数据集管理规则 |
 | Encoding Layer 编码层 | 已理解，未单独封装 | `OS / MS / AS / SS` 的含义已在搜索层和解码层文档中说明；当前仍使用原始 `init.m` 生成染色体 | 还没有单独封装染色体生成/合法性检查；还没有染色体小例子 | 后续如果你看不懂编码，再补一个最小染色体例子 |
 | Decoding Layer 解码层 | 已理解，保持原算法 | `sorting.m` 已明确为核心解码器；当前所有运行仍调用原始 `sorting.m` | 没有重构 `sorting.m`；没有拆机器/AGV 时间轴子函数 | 暂时不动算法核心，后续按需要补变量流向图 |
-| Evaluation Layer 评价层 | 基础目标值已跑通，指标入口最小读取版已实现 | `evaluate_chromosome.m` 已封装单条评价；formal 能输出 makespan 和 totalEnergy；`run_metrics.m` 能读取 formal 结果并生成最小摘要 | `HV / IGD / Spacing / C-metric` 还没有完整实现 | 下一步可由你手动运行 `run_metrics.m` |
+| Evaluation Layer 评价层 | 基础目标值已跑通，指标入口最小读取版已跑通 | `evaluate_chromosome.m` 已封装单条评价；formal 能输出 makespan 和 totalEnergy；`run_metrics.m` 已读取 formal 结果并生成最小摘要 | `HV / IGD / Spacing / C-metric` 还没有完整实现 | 后续可按需要扩展完整指标 |
 | Search Layer 搜索层 | NSGA-II 单算法骨架已跑通 | small、medium、formal 三个 NSGA-II 档位已跑通；formal 已输出到 `outputs/formal_nsga2/` | 多算法对比、消融实验、高级改进算法还没有进入 | 等指标入口稳定后，再考虑多算法对比 |
 
 当前最关键的结论：
@@ -463,3 +463,26 @@ docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
 
 这一步把搜索和指标计算分开：`run_formal_nsga2.m` 负责生成结果，`run_metrics.m` 负责读取结果并生成最小指标摘要。
+
+`run_metrics.m` 已由你在 MATLAB 中手动跑通：
+
+```text
+script: scripts/run_metrics.m
+sourceRunDir: outputs/formal_nsga2/20260520_224558
+paretoSolutionCount: 2
+bestMakespan: 134.446667
+bestTotalEnergy: 1770.988667
+metricsDir: outputs/formal_nsga2/20260520_224558/metrics
+```
+
+这说明第一阶段工程化闭环已经完成：
+
+```text
+配置 formal
+-> 运行 formal NSGA-II
+-> 保存 formal 结果
+-> 读取 formal 结果
+-> 生成最小 metrics 摘要
+```
+
+后续如果继续，不建议马上扩成完整论文实验。更合适的下一条主线是回到编码-解码应用理解：弄清楚一个调度问题如何从“对象和决策”变成“编码、解码、评价和搜索”。

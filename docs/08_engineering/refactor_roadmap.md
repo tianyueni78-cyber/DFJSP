@@ -246,7 +246,7 @@ formal 手动跑通
 docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
 
-当前指标入口的最小读取版已经实现，下一步是由你在 MATLAB 中手动运行。
+当前指标入口的最小读取版已经实现，并已由你在 MATLAB 中手动跑通。
 
 当前已经新增：
 
@@ -302,3 +302,21 @@ run_metrics.m      -> 读取 formal_nsga2_result.mat 并生成最小指标摘要
 ```text
 outputs/formal_nsga2/时间戳/metrics/
 ```
+
+`run_metrics.m` 已经由你在 MATLAB 中跑通：
+
+```text
+sourceRunDir = outputs/formal_nsga2/20260520_224558
+paretoSolutionCount = 2
+bestMakespan = 134.446667
+bestTotalEnergy = 1770.988667
+metricsDir = outputs/formal_nsga2/20260520_224558/metrics
+```
+
+因此第一阶段工程化闭环已经完成。当前不建议继续堆功能，下一条主线建议转向：
+
+```text
+编码-解码应用理解
+```
+
+也就是基于当前 FJSP-AGV 项目，整理“调度对象 -> 决策变量 -> 编码 -> 解码 -> 评价 -> 搜索”的可迁移理解框架。
