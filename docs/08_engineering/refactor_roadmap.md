@@ -218,9 +218,9 @@ flowchart TD
 
 如果这七个问题答不清楚，就先不要继续往下拆。
 
-## 8. 当前建议的下一步
+## 8. 当前进度与下一步
 
-当前 small / medium 可复用运行骨架已经跑通。
+当前 small / medium / formal 可复用运行骨架已经跑通。
 
 后续已选择：
 
@@ -230,22 +230,23 @@ flowchart TD
 
 因此下一步不建议继续盲目放大参数，也不建议马上进入完整论文实验。
 
-第 12、13、14 步已经完成，当前进入第 15 步：
+路线 A 已经推进到第 17 步：
 
 ```text
-第 15 步：正式实验配置设计
+第 17 步：指标入口设计
 ```
 
-重点先回答：
+已经完成：
 
 ```text
-formal 配置里应该有哪些字段？
-哪些字段来自 small / medium？
-哪些字段是正式复现必须额外补充的？
-是否现在就应该新增 configs/formal_nsga2_config.m？
+configs/formal_nsga2_config.m
+tests/test_formal_nsga2_config.m
+scripts/run_formal_nsga2.m
+formal 手动跑通
+docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
 
-这一步会为后面的 `configs/formal_nsga2_config.m`、`run_formal_nsga2.m` 和正式输出目录打基础。
+当前下一步不是继续放大搜索参数，而是实现指标入口的最小读取版。
 
 当前已经新增：
 
@@ -253,7 +254,7 @@ formal 配置里应该有哪些字段？
 configs/formal_nsga2_config.m
 ```
 
-它只负责保存 formal 配置。下一步更稳的是先补配置读取测试，再考虑正式运行脚本。
+它只负责保存 formal 配置，已经被 `scripts/run_formal_nsga2.m` 使用。
 
 当前已经新增 formal 配置读取测试：
 
@@ -269,7 +270,7 @@ tests/test_formal_nsga2_config.m
 scripts/run_formal_nsga2.m
 ```
 
-它是 formal NSGA-II 的第一版运行骨架。下一步更稳的是先由你在 MATLAB 中手动运行，再根据输出决定是否补 formal smoke test。
+它是 formal NSGA-II 的第一版运行骨架，已经由你在 MATLAB 中手动跑通。
 
 formal 第一版已经手动跑通：
 

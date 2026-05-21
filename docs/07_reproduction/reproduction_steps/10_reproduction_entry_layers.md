@@ -9,8 +9,10 @@ tests/
 scripts/run_single_evaluation.m
 scripts/run_small_nsga2.m
 scripts/run_medium_nsga2.m
+scripts/run_formal_nsga2.m
 configs/small_nsga2_config.m
 configs/medium_nsga2_config.m
+configs/formal_nsga2_config.m
 outputs/
 ```
 
@@ -66,6 +68,7 @@ outputs/
 | single | `run('scripts/run_single_evaluation.m')` | 1 条染色体 | 看单条方案能否评价 |
 | small | `run('scripts/run_small_nsga2.m')` | `pop=10, max_gen=2` | 快速确认搜索流程没坏 |
 | medium | `run('scripts/run_medium_nsga2.m')` | `pop=20, max_gen=5` | 轻微放大检查 |
+| formal | `run('scripts/run_formal_nsga2.m')` | `pop=30, max_gen=10` | formal NSGA-II 第一版运行骨架 |
 
 这些输出会进入：
 
@@ -73,21 +76,23 @@ outputs/
 outputs/single_evaluation/时间戳/
 outputs/small_nsga2/时间戳/
 outputs/medium_nsga2/时间戳/
+outputs/formal_nsga2/时间戳/
 ```
 
-### 第三层：未来正式实验入口
+### 第三层：指标和后续正式实验扩展入口
 
 作用：
 
 ```text
-以后真正复现论文对比实验、消融实验、指标和图表。
+以后读取 formal 结果，计算指标，再扩展到对比实验、消融实验和图表。
 ```
 
-当前还没有整理成干净入口。
+当前已经完成指标入口设计，但还没有实现代码。
 
-未来可能对应：
+当前缺口：
 
 ```text
+scripts/run_metrics.m
 完整算法对比
 完整消融实验
 HV / IGD / Spacing / C-metric
@@ -120,7 +125,8 @@ Pareto 图
 | 想确认算法链路没坏 | 跑 `scripts/run_small_nsga2.m` |
 | 想比 small 稍微大一点 | 跑 `scripts/run_medium_nsga2.m` |
 | 想看 1 条方案怎么被评价 | 跑 `scripts/run_single_evaluation.m` |
-| 想正式复现论文实验 | 以后看正式实验入口，现在还没整理 |
+| 想跑 formal 第一版 | 跑 `scripts/run_formal_nsga2.m` |
+| 想计算指标 | 当前只完成设计，后续实现 `scripts/run_metrics.m` |
 
 ## 4. 最推荐的默认顺序
 
@@ -145,6 +151,7 @@ outputs 能写
 
 ```matlab
 run('scripts/run_medium_nsga2.m')
+run('scripts/run_formal_nsga2.m')
 ```
 
 ## 5. 当前已经跑通到哪里
@@ -155,20 +162,20 @@ run('scripts/run_medium_nsga2.m')
 single evaluation
 small NSGA-II:  pop=10, max_gen=2
 medium NSGA-II: pop=20, max_gen=5
+formal NSGA-II: pop=30, max_gen=10
 ```
 
-其中 medium 档位已经重复跑通，最近一次输出目录为：
+其中 formal 档位已经跑通，最近一次记录为：
 
 ```text
-outputs/medium_nsga2/20260520_132626
+outputs/formal_nsga2/20260520_224558
 ```
 
 当前还没有整理：
 
 ```text
-large 参数
-完整论文实验
 完整评价指标
+完整论文对比实验
 完整图表输出
 ```
 

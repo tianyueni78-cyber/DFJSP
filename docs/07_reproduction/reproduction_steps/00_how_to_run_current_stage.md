@@ -12,6 +12,52 @@
 docs/07_reproduction/reproduction_steps/matlab_command_cheatsheet.md
 ```
 
+## 当前最新状态
+
+截至当前进度，已经跑通：
+
+```text
+single evaluation
+small NSGA-II
+medium NSGA-II
+formal NSGA-II
+```
+
+当前还没有实现：
+
+```text
+scripts/run_metrics.m
+完整 HV / IGD / Spacing / C-metric 计算
+多算法对比入口
+图表生成入口
+```
+
+现在最常用的运行命令是：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+
+run('tests/test_formal_nsga2_config.m')
+run('scripts/run_formal_nsga2.m')
+```
+
+formal 已跑通记录：
+
+```text
+pop = 30
+max_gen = 10
+paretoSolutionCount = 2
+bestMakespan = 134.446667
+bestTotalEnergy = 1770.988667
+outputDir = D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558
+```
+
+后续主线已经从“能跑 formal”推进到：
+
+```text
+指标入口：run_metrics.m
+```
+
 先说清楚：现在还没有完整跑论文实验。
 
 当前已经做到的是：
@@ -27,6 +73,8 @@ docs/07_reproduction/reproduction_steps/matlab_command_cheatsheet.md
 第 8 段：配置入口测试已由你本地跑通
 第 9 段：medium_nsga2 已由你本地跑通
 第 10 段：运行入口已经整理成检查/运行/未来正式实验三层
+第 14-15 段：formal 入口和 formal 配置已经整理
+第 17 段：指标入口已经完成设计
 ```
 
 还没有做到：
@@ -441,6 +489,40 @@ bestTotalEnergy: 1824.221333
 outputDir: D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 ```
 
+第五步，如果你想跑 formal 第一版，跑：
+
+```matlab
+run('scripts/run_formal_nsga2.m')
+```
+
+这个脚本会用：
+
+```text
+pop = 30
+max_gen = 10
+```
+
+这些参数来自：
+
+```text
+configs/formal_nsga2_config.m
+```
+
+输出会放到：
+
+```text
+outputs/formal_nsga2/时间戳/
+```
+
+你已经跑通一次，摘要是：
+
+```text
+paretoSolutionCount: 2
+bestMakespan: 134.446667
+bestTotalEnergy: 1770.988667
+outputDir: D:\CODEX\code_refactor_project\outputs\formal_nsga2\20260520_224558
+```
+
 ## 7. 以后换数据或改参数看哪里
 
 当前入口是：
@@ -502,7 +584,8 @@ pop / max_gen / p_cross / p_mutation
 | 刚换数据 | 读取测试 + 配置测试 + 小种群测试 |
 | 快速确认没坏 | `scripts/run_small_nsga2.m` |
 | 想轻微放大看看 | `scripts/run_medium_nsga2.m` |
-| 以后正式复现论文实验 | 跑未来整理出的正式实验入口 |
+| 想跑 formal 第一版 | `scripts/run_formal_nsga2.m` |
+| 想算指标 | 后续实现 `scripts/run_metrics.m` |
 
 你以后找真正要用的入口，先看：
 
@@ -519,8 +602,8 @@ README.md
 | 层级 | 作用 | 入口 |
 |---|---|---|
 | 检查入口 | 判断环境、数据、配置有没有坏 | `tests/` |
-| 运行入口 | 跑当前已封装的 single / small / medium | `scripts/` |
-| 未来正式实验入口 | 对比实验、指标、图表 | 后续再整理 |
+| 运行入口 | 跑当前已封装的 single / small / medium / formal | `scripts/` |
+| 指标入口 | 读取 formal 输出并计算指标 | 后续实现 `scripts/run_metrics.m` |
 
 最常用的默认顺序是：
 
@@ -535,4 +618,10 @@ run('scripts/run_small_nsga2.m')
 
 ```matlab
 run('scripts/run_medium_nsga2.m')
+```
+
+如果你想跑 formal 第一版：
+
+```matlab
+run('scripts/run_formal_nsga2.m')
 ```

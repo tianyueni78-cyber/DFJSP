@@ -167,8 +167,8 @@ outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 
 ```text
 检查入口：tests/
-运行入口：scripts/run_single_evaluation.m、run_small_nsga2.m、run_medium_nsga2.m
-未来正式实验入口：后续再整理
+运行入口：scripts/run_single_evaluation.m、run_small_nsga2.m、run_medium_nsga2.m、run_formal_nsga2.m
+指标入口：run_metrics.m 只完成设计，尚未实现
 ```
 
 第 11 步总结当前阶段：
@@ -176,7 +176,7 @@ outputDir = D:\CODEX\code_refactor_project\outputs\medium_nsga2\20260520_125615
 ```text
 当前已完成“可复用小规模运行骨架”。
 后续路线选择 A：继续工程化。
-下一步建议：整理 outputs 输出结构。
+当时下一步建议：整理 outputs 输出结构。
 ```
 
 第 12 步已经整理输出规则：

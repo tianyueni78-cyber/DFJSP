@@ -29,6 +29,7 @@
 | 单条评价 | `scripts/run_single_evaluation.m` | 已跑通 |
 | small 搜索 | `scripts/run_small_nsga2.m` | 已重复跑通 |
 | medium 搜索 | `scripts/run_medium_nsga2.m` | 已重复跑通 |
+| formal 搜索 | `scripts/run_formal_nsga2.m` | 已跑通 |
 | 入口地图 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 已完成 |
 
 当前稳定档位：
@@ -36,6 +37,7 @@
 ```text
 small:  pop=10, max_gen=2
 medium: pop=20, max_gen=5
+formal: pop=30, max_gen=10
 ```
 
 ## 3. 哪些是体检工具，哪些是运行入口
@@ -61,9 +63,10 @@ tests/test_small_nsga2.m
 scripts/run_single_evaluation.m
 scripts/run_small_nsga2.m
 scripts/run_medium_nsga2.m
+scripts/run_formal_nsga2.m
 ```
 
-### 未来正式实验入口
+### 后续待实现入口
 
 这部分还没有整理：
 
@@ -72,6 +75,12 @@ scripts/run_medium_nsga2.m
 完整消融实验
 完整指标计算
 完整图表输出
+```
+
+其中指标入口已经完成设计文档：
+
+```text
+docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
 
 ## 4. 当前阶段不等于完整论文复现
@@ -192,38 +201,31 @@ docs/07_reproduction/reproduction_steps/matlab_command_cheatsheet.md
 
 它是后续复现时最直接的操作入口。
 
-## 7. 路线 A 的建议下一步
+## 7. 路线 A 当前推进到哪里
 
-下一步建议是：
+路线 A 已经继续推进到：
 
 ```text
-第 12 步：outputs 输出结构整理
+第 17 步：指标入口设计
 ```
 
-先不改算法逻辑，只整理应该如何保存结果：
+已经完成：
 
 ```text
-outputs/
-├── single_evaluation/
-├── small_nsga2/
-├── medium_nsga2/
-└── future_experiments/
+outputs 输出结构
+运行日志与参数记录设计
+formal 配置设计与配置文件
+formal 配置测试
+formal NSGA-II 第一版运行脚本
+formal 手动跑通记录
+指标入口设计
 ```
 
-重点回答：
+当前还没有实现：
 
 ```text
-每次运行应该保存什么？
-summary.txt 应该包含哪些字段？
-result.mat 应该包含哪些变量？
-以后正式实验结果应该放哪里？
-哪些输出不应该提交 GitHub？
-```
-
-这会为后面的正式实验入口打基础。
-
-当前第 12 步已经建立输出规则文档：
-
-```text
-docs/07_reproduction/reproduction_steps/12_outputs_structure.md
+scripts/run_metrics.m
+完整 HV / IGD / Spacing / C-metric 计算
+多算法对比入口
+图表生成入口
 ```

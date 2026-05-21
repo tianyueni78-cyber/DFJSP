@@ -2,7 +2,7 @@
 
 ## 1. 这一步解决什么
 
-现在 single / small / medium 都已经能跑，并且都会写入：
+现在 single / small / medium / formal 都已经能跑，并且都会写入：
 
 ```text
 outputs/
@@ -21,13 +21,14 @@ outputs/
 
 ## 2. 当前已经形成的输出目录
 
-当前已有三个运行输出入口：
+当前已有四个运行输出入口：
 
 | 运行类型 | 输出目录 | 来源脚本 |
 |---|---|---|
 | 单条染色体评价 | `outputs/single_evaluation/时间戳/` | `scripts/run_single_evaluation.m` |
 | small NSGA-II | `outputs/small_nsga2/时间戳/` | `scripts/run_small_nsga2.m` |
 | medium NSGA-II | `outputs/medium_nsga2/时间戳/` | `scripts/run_medium_nsga2.m` |
+| formal NSGA-II | `outputs/formal_nsga2/时间戳/` | `scripts/run_formal_nsga2.m` |
 
 这里的“时间戳”类似：
 
@@ -78,6 +79,7 @@ outputDir
 single_evaluation_result.mat
 small_nsga2_result.mat
 medium_nsga2_result.mat
+formal_nsga2_result.mat
 ```
 
 建议里面至少包含：
@@ -135,17 +137,21 @@ GitHub 上只保存：
 outputs/
 ```
 
-## 5. 以后正式实验结果怎么放
+## 5. formal 和后续指标结果怎么放
 
-当前还没有整理正式实验入口。
-
-以后可以预留：
+当前 formal 第一版入口已经整理并跑通：
 
 ```text
-outputs/future_experiments/
+outputs/formal_nsga2/时间戳/
 ```
 
-更正式时可以再细分：
+未来指标结果建议放在同一次 formal 运行目录下：
+
+```text
+outputs/formal_nsga2/时间戳/metrics/
+```
+
+以后如果进入多算法对比和消融实验，再考虑：
 
 ```text
 outputs/future_experiments/
@@ -166,7 +172,7 @@ outputs/future_experiments/
 | `figures/` | Pareto 图、甘特图、能耗图 |
 | `logs/` | 每次运行日志 |
 
-现在先不创建这些目录，等正式实验入口开始整理时再建。
+现在先不创建这些多算法目录，等对比实验入口开始整理时再建。
 
 ## 6. 复现时怎么找结果
 
@@ -194,6 +200,18 @@ run('scripts/run_medium_nsga2.m')
 outputs/medium_nsga2/最新时间戳/
 ```
 
+如果你刚跑了：
+
+```matlab
+run('scripts/run_formal_nsga2.m')
+```
+
+就去看：
+
+```text
+outputs/formal_nsga2/最新时间戳/
+```
+
 每次 MATLAB 命令行也会打印：
 
 ```text
@@ -207,11 +225,12 @@ outputDir: ...
 第 12 步完成，不是看有没有新实验结果，而是看规则是否清楚：
 
 ```text
-single / small / medium 分别输出到哪里
+single / small / medium / formal 分别输出到哪里
 summary.txt 是给人看的
 result.mat 是给 MATLAB 复查的
 outputs/ 不提交 GitHub
-正式实验以后再单独分 comparison / ablation / metrics / figures / logs
+指标结果以后进入 formal 输出目录下的 metrics/
+多算法对比以后再单独分 comparison / ablation / figures / logs
 ```
 
 这一步为后续正式实验入口打基础。

@@ -111,6 +111,11 @@
 | 运行入口分层整理 | 把 test / small / medium / 未来正式实验入口分清楚 | 已建立复现总入口说明 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` |
 | 阶段总结与下一阶段路线 | 总结 small/medium 骨架完成度，并选择后续主线 | 已完成，后续选择路线 A | `docs/07_reproduction/reproduction_steps/11_stage_summary_next_routes.md` |
 | outputs 输出结构整理 | 明确 single / small / medium 输出目录和保存内容 | 已建立输出规则 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` |
+| 运行日志与参数记录 | 明确每次运行要记录哪些参数、结果和输出目录 | 已建立记录规则 | `docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md` |
+| formal 入口设计 | 明确 small / medium / formal / metrics 的入口关系 | 已完成设计，formal 入口已落地 | `docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md` |
+| formal 配置 | 建立正式运行配置字段和配置文件 | 已新增配置，配置测试已跑通 | `configs/formal_nsga2_config.m`、`tests/test_formal_nsga2_config.m` |
+| formal 运行 | 跑通 NSGA-II formal 第一版 | 已由你在 MATLAB 中跑通 | `scripts/run_formal_nsga2.m` |
+| 指标入口设计 | 明确未来 `run_metrics.m` 读取什么、计算什么、输出什么 | 已完成设计，尚未实现代码 | `docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` |
 | 完整论文实验 | 对比/消融/指标/图表 | 远期可选，不是当前主线 | 后续按需要整理 |
 
 第一轮最小复现链路已经跑通。
@@ -174,7 +179,7 @@ test_small_nsga2 passed: paretoSolutionCount=3, bestMakespan=155.886667, bestTot
 拆解 -> 串联脚本 -> 手动运行 -> 正式测试
 ```
 
-当前正在进入：
+当时进入：
 
 ```text
 第 6 步：配置化 small_nsga2。
@@ -310,12 +315,20 @@ medium 档位之后又重复运行通过，最近一次输出目录为：
 outputs/medium_nsga2/20260520_132626
 ```
 
-第 10 步已经把入口分成三层：
+第 10 步最初把入口分成三层：
 
 ```text
 检查入口：tests/
 运行入口：scripts/
-未来正式实验入口：后续再整理
+未来正式实验入口：当时后续再整理
+```
+
+现在这部分已经继续推进：
+
+```text
+formal 配置：configs/formal_nsga2_config.m
+formal 运行：scripts/run_formal_nsga2.m
+metrics 设计：docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
 
 第 11 步已经完成阶段总结：
@@ -323,7 +336,7 @@ outputs/medium_nsga2/20260520_132626
 ```text
 当前阶段：可复用小规模运行骨架已完成
 后续选择：路线 A，继续工程化
-下一步建议：整理 outputs 输出结构
+当时下一步建议：整理 outputs 输出结构
 ```
 
 第 12 步已经建立输出规则：
@@ -359,10 +372,9 @@ docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
 
 ```text
 当前已实现：
-single / small / medium
+single / small / medium / formal
 
 未来待实现：
-formal 搜索入口
 metrics 指标入口
 ```
 
