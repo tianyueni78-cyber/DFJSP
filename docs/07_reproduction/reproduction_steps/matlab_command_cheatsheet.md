@@ -263,6 +263,12 @@ formal 配置字段设计看：
 docs/07_reproduction/reproduction_steps/15_formal_config_design.md
 ```
 
+指标入口设计看：
+
+```text
+docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
+```
+
 当前已经有 formal 配置文件：
 
 ```text
@@ -349,4 +355,16 @@ log 用来排查问题。
 
 ```text
 docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md
+```
+
+未来指标入口会读取：
+
+```text
+outputs/formal_nsga2/时间戳/formal_nsga2_result.mat
+```
+
+并输出到：
+
+```text
+outputs/formal_nsga2/时间戳/metrics/
 ```

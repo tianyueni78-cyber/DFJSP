@@ -410,3 +410,20 @@ outputDir: outputs/formal_nsga2/20260520_224558
 
 这说明当前工程已经从 small / medium 骨架推进到 formal NSGA-II 单算法入口。  
 下一步不建议立刻堆更多大实验，而是先补 formal smoke test，确认 formal 入口可以被稳定检查。
+
+第 17 步已经整理指标入口设计：
+
+```text
+future script: scripts/run_metrics.m
+input: outputs/formal_nsga2/时间戳/formal_nsga2_result.mat
+core data: NSGA2_Result.obj_matrix
+output: outputs/formal_nsga2/时间戳/metrics/
+```
+
+对应文档：
+
+```text
+docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
+```
+
+这一步把搜索和指标计算分开：`run_formal_nsga2.m` 负责生成结果，未来 `run_metrics.m` 负责读取结果并计算指标。

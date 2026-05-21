@@ -283,10 +283,21 @@ bestTotalEnergy = 1770.988667
 outputDir = outputs/formal_nsga2/20260520_224558
 ```
 
-下一步建议：
+第 17 步已经进入指标入口设计：
 
 ```text
-新增 tests/test_formal_nsga2.m
+scripts/run_metrics.m
 ```
 
-这个测试不需要追求论文结果，只检查 formal 脚本能跑完、`NSGA2_Result.obj_matrix` 非空、输出目录里有 `summary.txt` 和 `run_info.txt`。
+当前只做文档设计，不新增代码。核心关系是：
+
+```text
+run_formal_nsga2.m -> 生成 formal_nsga2_result.mat
+run_metrics.m      -> 读取 formal_nsga2_result.mat 并计算指标
+```
+
+指标结果未来应保存到：
+
+```text
+outputs/formal_nsga2/时间戳/metrics/
+```

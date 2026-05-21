@@ -292,3 +292,24 @@ formal 脚本能调用原始 NSGA-II
 结果能写入 outputs/formal_nsga2/
 summary.txt / run_info.txt / formal_nsga2_result.mat 会进入本次时间戳目录
 ```
+
+第 17 步已经整理指标入口设计：
+
+```text
+说明文档：17_metrics_entry_design.md
+
+run_formal_nsga2.m 负责跑算法，生成 formal 结果。
+run_metrics.m 未来负责读取 formal 结果，计算 HV / IGD / Spacing / C-metric 等指标。
+```
+
+当前还没有实现：
+
+```text
+scripts/run_metrics.m
+```
+
+指标结果未来建议保存到：
+
+```text
+outputs/formal_nsga2/时间戳/metrics/
+```

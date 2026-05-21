@@ -17,10 +17,11 @@
 | 看 MATLAB 现在怎么跑 | `docs/07_reproduction/reproduction_steps/00_how_to_run_current_stage.md` | 当前运行说明 |
 | 改快速检查运行的数据和参数 | `configs/small_nsga2_config.m` | small 配置入口 |
 | 改轻微放大运行的数据和参数 | `configs/medium_nsga2_config.m` | medium 配置入口 |
-| 看未来正式运行配置 | `configs/formal_nsga2_config.m` | formal 配置入口，当前还没有正式运行脚本 |
+| 看未来正式运行配置 | `configs/formal_nsga2_config.m` | formal 配置入口，由 formal 运行脚本读取 |
 | 跑一次小种群 NSGA-II | `scripts/run_small_nsga2.m` | 配置化运行脚本 |
 | 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
 | 跑一次 formal NSGA-II | `scripts/run_formal_nsga2.m` | formal 运行脚本，当前不含指标计算 |
+| 看未来指标入口怎么设计 | `docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` | run_metrics.m 应该读取、计算、输出什么 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
 | 看输出结果放哪里 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` | outputs 输出规则 |
@@ -57,7 +58,7 @@ pop=20, max_gen=5
 pop=30, max_gen=10
 ```
 
-它现在只是配置入口，还没有对应的正式运行脚本。
+它是 formal 配置入口，对应的 formal 运行脚本已经有了。
 
 当前 formal 运行入口是：
 
@@ -295,4 +296,10 @@ docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md
 
 ```text
 docs/07_reproduction/reproduction_steps/15_formal_config_design.md
+```
+
+未来指标入口设计看：
+
+```text
+docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 ```
