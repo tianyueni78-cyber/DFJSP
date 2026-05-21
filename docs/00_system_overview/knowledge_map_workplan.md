@@ -48,6 +48,30 @@
 - 一键运行脚本到底做了哪些实验，输出了哪些图和指标？
 - 以后要封装和复现，最容易出错的点在哪里？
 
+## 五层结构当前进度表
+
+这张表回答一个更直接的问题：
+
+```text
+五层结构现在分别走到哪了？
+```
+
+| 五层 | 当前进度 | 已有成果 | 还没有做什么 | 下一步方向 |
+|---|---|---|---|---|
+| Data Layer 数据层 | 已经比较扎实 | `.fjs`、机器 Excel、AGV Excel 已拆出读取函数；已有轻量测试；small/medium/formal 都通过配置读取数据 | 还没有做字段级数据字典；新数据集批量管理还没做 | 后续换数据时再补字段说明和数据集管理规则 |
+| Encoding Layer 编码层 | 已理解，未单独封装 | `OS / MS / AS / SS` 的含义已在搜索层和解码层文档中说明；当前仍使用原始 `init.m` 生成染色体 | 还没有单独封装染色体生成/合法性检查；还没有染色体小例子 | 后续如果你看不懂编码，再补一个最小染色体例子 |
+| Decoding Layer 解码层 | 已理解，保持原算法 | `sorting.m` 已明确为核心解码器；当前所有运行仍调用原始 `sorting.m` | 没有重构 `sorting.m`；没有拆机器/AGV 时间轴子函数 | 暂时不动算法核心，后续按需要补变量流向图 |
+| Evaluation Layer 评价层 | 基础目标值已跑通，指标入口只完成设计 | `evaluate_chromosome.m` 已封装单条评价；formal 能输出 makespan 和 totalEnergy；第 17 步已设计 `run_metrics.m` | `HV / IGD / Spacing / C-metric` 还没有代码入口 | 下一步可以做 `run_metrics.m` 的最小读取版 |
+| Search Layer 搜索层 | NSGA-II 单算法骨架已跑通 | small、medium、formal 三个 NSGA-II 档位已跑通；formal 已输出到 `outputs/formal_nsga2/` | 多算法对比、消融实验、高级改进算法还没有进入 | 等指标入口稳定后，再考虑多算法对比 |
+
+当前最关键的结论：
+
+```text
+数据层和 NSGA-II 搜索骨架已经能跑。
+解码层和评价层仍依赖原始 sorting/fitness，暂时不重构。
+当前主线已经从“能跑 formal”推进到“设计和实现指标入口”。
+```
+
 ## 第二轮深化池
 
 第二轮不是固定顺序，而是根据你之后真正卡住的地方回头细化。
@@ -409,7 +433,7 @@ outputDir: outputs/formal_nsga2/20260520_224558
 ```
 
 这说明当前工程已经从 small / medium 骨架推进到 formal NSGA-II 单算法入口。  
-下一步不建议立刻堆更多大实验，而是先补 formal smoke test，确认 formal 入口可以被稳定检查。
+下一步不建议立刻堆更多大实验，而是先把指标入口理顺，确认 formal 输出结果后续能被读取和评价。
 
 第 17 步已经整理指标入口设计：
 
