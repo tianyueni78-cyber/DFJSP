@@ -35,13 +35,16 @@
 
 ## 2. 配置入口在哪里
 
-当前有两个配置入口：
+当前配置入口：
 
 ```text
+configs/default.yaml
 configs/small_nsga2_config.m
 configs/medium_nsga2_config.m
 configs/formal_nsga2_config.m
 ```
+
+`default.yaml` 是早期/通用配置占位，当前 MATLAB 主运行入口主要使用 `.m` 配置文件。
 
 `small_nsga2_config.m` 是快速检查档：
 
@@ -97,13 +100,21 @@ src/
 
 ## 3. 运行入口在哪里
 
-当前最推荐的运行入口是：
+当前运行入口都在：
 
 ```text
-scripts/run_small_nsga2.m
+scripts/
 ```
 
-在 MATLAB 里运行：
+| 运行入口 | MATLAB 命令 | 作用 | 输出位置 |
+|---|---|---|---|
+| `scripts/run_single_evaluation.m` | `run('scripts/run_single_evaluation.m')` | 读取 sample 数据，生成 1 条染色体并做单条评价 | `outputs/single_evaluation/时间戳/` |
+| `scripts/run_small_nsga2.m` | `run('scripts/run_small_nsga2.m')` | 快速检查档，跑 small NSGA-II | `outputs/small_nsga2/时间戳/` |
+| `scripts/run_medium_nsga2.m` | `run('scripts/run_medium_nsga2.m')` | 轻微放大档，跑 medium NSGA-II | `outputs/medium_nsga2/时间戳/` |
+| `scripts/run_formal_nsga2.m` | `run('scripts/run_formal_nsga2.m')` | formal NSGA-II 第一版运行入口 | `outputs/formal_nsga2/时间戳/` |
+| `scripts/run_metrics.m` | `run('scripts/run_metrics.m')` | 读取最新 formal 结果并生成最小 metrics 摘要 | `outputs/formal_nsga2/时间戳/metrics/` |
+
+当前最推荐的快速运行入口是：
 
 ```matlab
 cd D:\CODEX\code_refactor_project
@@ -144,6 +155,22 @@ configs/medium_nsga2_config.m
 ```text
 outputs/medium_nsga2/时间戳
 ```
+
+formal 运行入口是：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('scripts/run_formal_nsga2.m')
+```
+
+metrics 最小摘要入口是：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('scripts/run_metrics.m')
+```
+
+注意：`run_metrics.m` 不重新跑算法，只读取已经存在的 formal 输出结果。
 
 ## 4. 测试入口在哪里
 
@@ -213,6 +240,10 @@ raw_code/
 | `raw_code/same_main.m` | 原始消融或同类实验主脚本 |
 | `raw_code/NSGA-II/NSGA2.m` | 基础 NSGA-II 主函数 |
 | `raw_code/NSGA-II/init.m` | 生成初始种群 |
+| `raw_code/NSGA-II/variation.m` | 对染色体进行交叉和变异，属于编码层/搜索层交界 |
+| `raw_code/NSGA-II/non_domination.m` | 非支配排序，属于搜索层 |
+| `raw_code/NSGA-II/replace_chrom.m` | 根据排序结果保留下一代种群，属于搜索层 |
+| `raw_code/NSGA-II/tournament_selection.m` | 锦标赛选择父代，属于搜索层 |
 | `raw_code/NSGA-II/sorting.m` | 把染色体解码成调度过程 |
 | `raw_code/NSGA-II/fitness.m` | 计算目标值 |
 
@@ -323,4 +354,25 @@ docs/04_decoding/encoding_decoding_application_overview.md
 
 ```text
 docs/04_decoding/encoding_layer_structure_note.md
+```
+
+## 9. 当前入口完整性检查
+
+截至当前阶段，入口地图已覆盖：
+
+| 类别 | 当前覆盖 |
+|---|---|
+| 配置入口 | `configs/default.yaml`、`small_nsga2_config.m`、`medium_nsga2_config.m`、`formal_nsga2_config.m` |
+| 运行脚本入口 | `run_single_evaluation.m`、`run_small_nsga2.m`、`run_medium_nsga2.m`、`run_formal_nsga2.m`、`run_metrics.m` |
+| 测试入口 | `test_read_fjsp.m`、`test_read_machine_data.m`、`test_read_agv_data.m`、`test_evaluate_chromosome.m`、`test_small_nsga2.m`、`test_small_nsga2_config.m`、`test_formal_nsga2_config.m` |
+| 新封装函数入口 | `read_fjsp.m`、`read_machine_data.m`、`read_agv_data.m`、`evaluate_chromosome.m` |
+| 原始主代码入口 | `dif_main.m`、`same_main.m`、`NSGA2.m`、`init.m`、`variation.m`、`sorting.m`、`fitness.m` |
+| 搜索辅助入口 | `non_domination.m`、`replace_chrom.m`、`tournament_selection.m` |
+| 关键文档入口 | README、知识地图工作表、入口地图、五层结构、编码层结构笔记、复现步骤、封装路线 |
+
+后续每新增一个脚本、测试、封装函数或关键笔记，都要同步补到：
+
+```text
+README.md
+docs/00_system_overview/entrypoint_map.md
 ```
