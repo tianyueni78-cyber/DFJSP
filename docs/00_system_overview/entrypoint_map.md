@@ -24,6 +24,7 @@
 | 读取 formal 结果并生成最小指标摘要 | `scripts/run_metrics.m` | metrics 最小读取脚本 |
 | 看未来指标入口怎么设计 | `docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` | run_metrics.m 应该读取、计算、输出什么 |
 | 理解编码-解码怎么迁移到新课题 | `docs/04_decoding/encoding_decoding_application_overview.md` | 从调度对象到编码、解码、评价、搜索的应用框架 |
+| 看 `chrom` 真实结构和编码层封装依据 | `docs/04_decoding/encoding_layer_structure_note.md` | 说明 `chrom = [OS, MS, AS, SS]` 怎么生成、交叉、变异 |
 | 跑一次单条染色体评价 | `scripts/run_single_evaluation.m` | 单条方案评价脚本 |
 | 看复现入口怎么分层 | `docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md` | 检查/运行/未来正式实验总入口 |
 | 看输出结果放哪里 | `docs/07_reproduction/reproduction_steps/12_outputs_structure.md` | outputs 输出规则 |
@@ -316,4 +317,10 @@ docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md
 
 ```text
 docs/04_decoding/encoding_decoding_application_overview.md
+```
+
+编码层结构和后续封装依据看：
+
+```text
+docs/04_decoding/encoding_layer_structure_note.md
 ```
