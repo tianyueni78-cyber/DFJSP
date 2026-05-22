@@ -695,3 +695,93 @@ describe_chromosome
 这条染色体为什么能代表一个调度方案？
 它哪些部分由编码保证，哪些部分交给解码保证？
 ```
+
+## 2026-05-22 编码层封装阶段工作计划
+
+本节记录编码层进入“封装阶段”后的拆分计划。目标是把编码层拆成小任务，一次只做一个，避免把结构分析、函数封装、测试和算法运行混在一起。
+
+### 总原则
+
+编码层封装阶段只处理：
+
+```text
+chrom 结构
+chrom 拆分
+chrom 合法性检查
+初始种群生成入口
+编码层轻量测试
+```
+
+编码层封装阶段暂时不处理：
+
+```text
+sorting.m 解码
+fitness.m 评价
+NSGA-II 主循环
+formal 实验
+outputs 生成
+raw_code 修改
+```
+
+### 编码层封装阶段任务表
+
+| 编号 | 任务 | 任务目标 | 允许范围 | 禁止内容 | 预期输出 | 完成后动作 |
+|---|---|---|---|---|---|---|
+| E1 | 确认当前 `chrom` 真实结构 | 只读现有代码，确认一条 `chrom` 到底怎么分段、长度怎么算 | `raw_code/NSGA-II/init.m`、`raw_code/NSGA-II/NSGA2.m`、`tests/test_small_nsga2.m`、`scripts/run_small_nsga2.m` | 不修改文件；不运行 MATLAB；不生成 outputs；不读无关算法目录；不读 `sorting.m` / `fitness.m` | `chrom` 总长度规则；`OS / MS / AS / SS` 位置；是否还有其他编码段；每段取值范围；不确定点 | 停止，等待确认 |
+| E2 | 写编码层结构说明文档 | 把 E1 结果整理成文档，避免以后反复翻 `init.m` | 只基于 E1 已确认内容和现有工作表 | 不写代码；不运行 MATLAB；不生成 outputs；不改 `raw_code` | 编码层结构说明，说明 `chrom` 的分段、长度和取值边界 | 停止，等待确认 |
+| E3 | 封装 `split_chromosome` | 新增只负责拆分染色体的函数 | `src/encoding/`、必要的轻量测试文件 | 不调用 `sorting.m`；不调用 `fitness.m`；不调用 `NSGA2.m`; 不改 `init.m`; 不改 `raw_code`; 不生成 outputs | 能把一条 `chrom` 拆成结构化编码段 | 停止，等待确认 |
+| E4 | 封装 `validate_chromosome` | 新增染色体合法性检查函数 | `src/encoding/`、必要的轻量测试文件 | 不运行完整算法；不调用 `sorting.m`; 不调用 `fitness.m`; 不改 `raw_code`; 不生成 outputs | 能检查长度、`OS` 次数、`MS` 范围、`AS` 范围、`SS` 范围 | 停止，等待确认 |
+| E5 | 封装 `generate_initial_population` | 建立自己的编码层生成入口，第一版内部可暂时调用原始 `init.m` | `src/encoding/`、必要的轻量测试文件 | 不改 `init.m`; 不重写随机生成逻辑；不改 `NSGA2.m`; 不运行 formal；不生成 outputs | 统一入口生成初始种群，并能配合合法性检查 | 停止，等待确认 |
+| E6 | 编码层 smoke test | 写轻量测试，证明编码层最小闭环可用 | `tests/`、`src/encoding/` | 不调用 `sorting.m`; 不调用 `fitness.m`; 不运行 `NSGA2.m`; 不生成 outputs | 测试链路：读取 sample 数据 -> 生成种群 -> 拆分第一条 `chrom` -> 合法性检查通过 | 停止，等待确认 |
+
+### 任务之间的关系
+
+```text
+E1 先看清楚 chrom 真实结构
+E2 把结构写清楚
+E3 能拆 chrom
+E4 能检查 chrom
+E5 能统一生成 chrom
+E6 能测试编码层
+```
+
+### 为什么要这样拆
+
+编码层封装最怕混成一团：
+
+```text
+一边猜 chrom 结构
+一边写 split
+一边写 validate
+一边改 init
+一边跑算法
+```
+
+这样一旦出错，很难判断问题来自编码结构、拆分函数、合法性检查，还是搜索算法本身。
+
+所以当前采用更小的顺序：
+
+```text
+先只读确认
+再写说明
+再写拆分
+再写检查
+再统一生成入口
+最后做 smoke test
+```
+
+### 编码层封装阶段完成标准
+
+当 E1-E6 都完成后，编码层第一轮封装才算完成：
+
+```text
+知道 chrom 结构
+有文档说明
+有 split 函数
+有 validate 函数
+有统一生成入口
+有轻量测试
+不依赖猜测
+不改 raw_code
+不动 sorting / fitness
+```
