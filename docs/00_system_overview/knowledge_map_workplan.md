@@ -785,3 +785,26 @@ E6 能测试编码层
 不改 raw_code
 不动 sorting / fitness
 ```
+
+## 2026-05-22 当前各层封装状态速查
+
+这个表只回答一个问题：哪些层已经有可用封装，哪些还只是脚本或文档。
+
+| 层 | 封装函数状态 | 脚本入口状态 | 规则/文档状态 | 当前结论 |
+|---|---|---|---|---|
+| Data Layer 数据层 | 已有 `src/data/read_fjsp.m`、`read_machine_data.m`、`read_agv_data.m` | 被 single/small/medium/formal 脚本调用 | 有数据层认知地图、数据读取复现步骤 | 数据读取函数第一版已封装 |
+| Encoding Layer 编码层 | 还没有 `src/encoding/` 函数 | 目前由原始 `init.m` 和 `variation.m` 间接支撑 | 已有编码层工作表和结构笔记 | 已完成结构拆解，函数封装未开始 |
+| Decoding Layer 解码层 | 还没有新封装函数 | 仍依赖原始 `sorting.m` | 有解码层认知文档 | 理解第一版完成，代码封装未开始 |
+| Evaluation Layer 评价层 | 已有 `src/evaluation/evaluate_chromosome.m` wrapper | 有 `scripts/run_single_evaluation.m` | 有评价层文档和单条评价复现步骤 | 有 wrapper，但 `fitness.m` 本体未拆 |
+| Search Layer 搜索层 | 还没有新搜索函数封装 | 有 `run_small_nsga2.m`、`run_medium_nsga2.m`、`run_formal_nsga2.m` | 有搜索层文档、运行入口和配置说明 | 有脚本入口，仍调用原始 `NSGA2.m` |
+| Metrics / 指标层 | 还没有完整指标函数 | 有 `scripts/run_metrics.m` 最小读取版 | 有指标入口设计文档 | 能读 formal 结果并生成最小摘要，完整指标未做 |
+| 工程复现层 | 不属于算法函数层 | 有 scripts、tests、configs | 有入口地图、输出规则、日志规则 | 最小工程闭环已跑通 |
+
+一句话：
+
+```text
+数据层函数封装最完整。
+评价层有 wrapper。
+搜索层有运行脚本但没有新搜索函数。
+编码层和解码层还没有函数封装。
+```

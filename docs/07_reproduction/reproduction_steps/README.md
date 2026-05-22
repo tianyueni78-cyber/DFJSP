@@ -12,6 +12,48 @@
 这一步对后续复现有什么用？
 ```
 
+## 复现时通常怎么用
+
+当前仓库还不是完整论文实验成品，而是一个已经跑通的最小工程骨架。复现时通常按这条链路走：
+
+```text
+准备数据
+-> 改配置
+-> 跑入口脚本
+-> 看 outputs
+-> 跑指标入口
+```
+
+具体来说：
+
+| 步骤 | 你要做什么 | 当前入口 |
+|---|---|---|
+| 1. 准备数据 | 准备 `.fjs`、机器 Excel、AGV Excel，并放到配置指向的位置 | `data_sample/` 或配置文件指定路径 |
+| 2. 改配置 | 指定数据路径、seed、pop、max_gen、能耗参数、输出目录 | `configs/formal_nsga2_config.m` |
+| 3. 跑入口脚本 | 运行 formal NSGA-II 第一版 | `run('scripts/run_formal_nsga2.m')` |
+| 4. 看输出 | 查看本次运行结果、摘要和参数记录 | `outputs/formal_nsga2/时间戳/` |
+| 5. 跑指标入口 | 不重跑算法，只读取 formal 输出并生成最小指标摘要 | `run('scripts/run_metrics.m')` |
+
+当前这条链路已经跑通：
+
+```text
+formal 配置
+-> formal 运行
+-> formal 输出
+-> metrics 读取
+-> metrics 摘要
+```
+
+但它还不是完整论文实验平台。当前仍然没有完成：
+
+```text
+多算法对比
+消融实验
+完整 HV / IGD / Spacing / C-metric
+完整图表生成
+编码层/解码层的完整函数封装
+```
+
 ## 当前步骤
 
 如果你只是想知道“现在在 MATLAB 里怎么跑”，先看：
