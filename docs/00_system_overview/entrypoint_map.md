@@ -223,6 +223,7 @@ run('tests/test_small_nsga2.m')
 | `src/data/read_machine_data.m` | 读取机器距离和机器能耗 |
 | `src/data/read_agv_data.m` | 读取 AGV 数量、速度和能耗 |
 | `src/encoding/split_chromosome.m` | 把 1 条 `chrom` 拆成 `OS / MS / AS / SS` |
+| `src/encoding/validate_chromosome.m` | 检查 1 条 `chrom` 的编码长度和取值范围是否合法 |
 | `src/evaluation/evaluate_chromosome.m` | 给 1 条染色体算 makespan 和 totalEnergy |
 
 你平时不用直接点它们运行。
@@ -380,7 +381,7 @@ docs/04_decoding/encoding_layer_structure_note.md
 | 配置入口 | `configs/default.yaml`、`small_nsga2_config.m`、`medium_nsga2_config.m`、`formal_nsga2_config.m` |
 | 运行脚本入口 | `run_single_evaluation.m`、`run_small_nsga2.m`、`run_medium_nsga2.m`、`run_formal_nsga2.m`、`run_metrics.m` |
 | 测试入口 | `test_read_fjsp.m`、`test_read_machine_data.m`、`test_read_agv_data.m`、`test_evaluate_chromosome.m`、`test_small_nsga2.m`、`test_small_nsga2_config.m`、`test_formal_nsga2_config.m` |
-| 新封装函数入口 | `read_fjsp.m`、`read_machine_data.m`、`read_agv_data.m`、`split_chromosome.m`、`evaluate_chromosome.m` |
+| 新封装函数入口 | `read_fjsp.m`、`read_machine_data.m`、`read_agv_data.m`、`split_chromosome.m`、`validate_chromosome.m`、`evaluate_chromosome.m` |
 | 原始主代码入口 | `dif_main.m`、`same_main.m`、`NSGA2.m`、`init.m`、`variation.m`、`sorting.m`、`fitness.m` |
 | 搜索辅助入口 | `non_domination.m`、`replace_chrom.m`、`tournament_selection.m` |
 | 关键文档入口 | README、知识地图工作表、入口地图、五层结构、编码层结构笔记、复现步骤、封装路线 |

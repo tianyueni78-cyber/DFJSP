@@ -793,7 +793,7 @@ E6 能测试编码层
 | 层 | 封装函数状态 | 脚本入口状态 | 规则/文档状态 | 当前结论 |
 |---|---|---|---|---|
 | Data Layer 数据层 | 已有 `src/data/read_fjsp.m`、`read_machine_data.m`、`read_agv_data.m` | 被 single/small/medium/formal 脚本调用 | 有数据层认知地图、数据读取复现步骤 | 数据读取函数第一版已封装 |
-| Encoding Layer 编码层 | 已新增 `src/encoding/split_chromosome.m`，可拆分 `OS / MS / AS / SS` | 生成种群仍由原始 `init.m` 支撑，变异仍由原始 `variation.m` 支撑 | 已有编码层工作表和结构笔记 | 编码层函数封装已开始，仍缺 validate / generate / smoke test |
+| Encoding Layer 编码层 | 已新增 `src/encoding/split_chromosome.m` 和 `validate_chromosome.m`，可拆分并检查单条 `chrom` | 生成种群仍由原始 `init.m` 支撑，变异仍由原始 `variation.m` 支撑 | 已有编码层工作表和结构笔记 | 编码层函数封装已开始，仍缺 generate / smoke test |
 | Decoding Layer 解码层 | 还没有新封装函数 | 仍依赖原始 `sorting.m` | 有解码层认知文档 | 理解第一版完成，代码封装未开始 |
 | Evaluation Layer 评价层 | 已有 `src/evaluation/evaluate_chromosome.m` wrapper | 有 `scripts/run_single_evaluation.m` | 有评价层文档和单条评价复现步骤 | 有 wrapper，但 `fitness.m` 本体未拆 |
 | Search Layer 搜索层 | 还没有新搜索函数封装 | 有 `run_small_nsga2.m`、`run_medium_nsga2.m`、`run_formal_nsga2.m` | 有搜索层文档、运行入口和配置说明 | 有脚本入口，仍调用原始 `NSGA2.m` |
@@ -806,6 +806,6 @@ E6 能测试编码层
 数据层函数封装最完整。
 评价层有 wrapper。
 搜索层有运行脚本但没有新搜索函数。
-编码层已有第一个拆分函数，仍未完成整层封装。
+编码层已有拆分和合法性检查函数，仍未完成整层封装。
 解码层还没有函数封装。
 ```

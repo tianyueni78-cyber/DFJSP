@@ -388,3 +388,32 @@ validate_chromosome：判断 1 条 chrom 是否合法
 generate_initial_population：生成多条 chrom，也就是初始种群
 test_encoding_layer：用小样本检查编码层最小闭环
 ```
+
+当前已经新增：
+
+```text
+src/encoding/split_chromosome.m
+src/encoding/validate_chromosome.m
+```
+
+其中 `validate_chromosome.m` 只检查编码层合法性：
+
+```text
+chrom 长度是否至少包含 5n 个核心编码位
+OS 中每个工件出现次数是否等于工序数
+MS 是否在每道工序的候选机器范围内
+AS 是否在 1...AGVNum 内
+SS 是否在 1...length(AGVSpeed) 内
+```
+
+它不检查：
+
+```text
+机器时间是否冲突
+AGV 时间是否冲突
+工序能不能按时间执行
+电量是否足够
+makespan 和 energy 是多少
+```
+
+这些仍然属于后续解码层和评价层。
