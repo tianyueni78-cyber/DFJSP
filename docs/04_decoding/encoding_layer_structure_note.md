@@ -328,3 +328,63 @@ generate_initial_population 负责统一生成初始种群
 ```
 
 第一轮封装不应该改 `init.m`，而是先建立自己的入口，内部暂时调用原始 `init.m`。
+
+## 14. 为什么先封装一条 chrom
+
+当前已经新增的第一步封装是：
+
+```text
+src/encoding/split_chromosome.m
+```
+
+它只做一件事：
+
+```text
+把一条 chrom 向量按位置拆成 OS / MS / AS / SS。
+```
+
+这里的“只拆一条”不是说正式项目只处理一条染色体。正式搜索算法当然会处理一个种群，也就是很多条染色体。
+
+之所以第一步先处理一条，是因为：
+
+```text
+一条 chrom 是编码层的最小单位。
+种群 population 只是很多条 chrom 叠在一起。
+```
+
+所以封装顺序是：
+
+```text
+先把 1 条 chrom 的结构拆清楚
+-> 再检查 1 条 chrom 是否合法
+-> 再对种群里的每一条 chrom 重复这个检查
+-> 最后接入初始种群生成和搜索脚本
+```
+
+换句话说：
+
+```text
+split_chromosome 处理 1 条 chrom。
+后续测试或上层函数可以循环处理很多条 chrom。
+```
+
+这样做的原因是降低风险。如果一条染色体都拆不对，就不应该直接处理整个种群。
+
+当前 `split_chromosome` 不做：
+
+```text
+不生成 chrom
+不判断 chrom 是否完整合法
+不调用 NSGA-II
+不调用 sorting.m
+不调用 fitness.m
+不保存 outputs
+```
+
+这些会分给后续函数：
+
+```text
+validate_chromosome：判断 1 条 chrom 是否合法
+generate_initial_population：生成多条 chrom，也就是初始种群
+test_encoding_layer：用小样本检查编码层最小闭环
+```
