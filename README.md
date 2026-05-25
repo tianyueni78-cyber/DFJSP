@@ -44,3 +44,27 @@
 - 小步重构
 - 所有实验输出进入 `outputs/`
 - 优先保证数据流清晰和实验可复现
+## 2026-05-25 编码层入口
+
+当前编码层第一版正式封装已经完成。回 GitHub 找编码层时，优先看：
+
+| 我想做什么 | 打开哪里 |
+|---|---|
+| 理解 `chrom = [OS, MS, AS, SS]` 的结构 | [encoding_layer_structure_note.md](docs/04_decoding/encoding_layer_structure_note.md) |
+| 看每个编码层函数的用途 | [repository_file_guide.md](docs/00_system_overview/repository_file_guide.md) |
+| 跑编码层完整 smoke test | `run('tests/test_encoding_layer.m')` |
+| 跑编码层异常输入测试 | `run('tests/test_encoding_invalid_cases.m')` |
+| 跑编码层 demo 入口 | `run('scripts/run_encoding_smoke.m')` |
+| 看 NSGA-II 如何接入新编码层 | [nsga2_encoding_integration_plan.md](docs/03_algorithm/nsga2_encoding_integration_plan.md) |
+
+编码层现在可以独立完成：
+
+```text
+读 sample 数据
+-> 生成初始 population
+-> 验证 population
+-> 生成 offspring
+-> 再次验证 offspring
+```
+
+它不依赖 `raw_code/NSGA-II/init.m`，不依赖 `raw_code/NSGA-II/variation.m`，也不调用 `sorting.m`、`fitness.m` 或 `NSGA2.m`。

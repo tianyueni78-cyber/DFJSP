@@ -417,3 +417,209 @@ makespan 和 energy 是多少
 ```
 
 这些仍然属于后续解码层和评价层。
+
+## 15. validate_chromosome 的用途与边界
+
+`validate_chromosome` 是编码层的合法性检查函数。它的用法是：
+
+```matlab
+[isValid, report] = validate_chromosome(chrom, problem, agvData);
+```
+
+它检查的是一条 `chrom` 的编码层合法性，也就是这条染色体能不能被看作合法的：
+
+```text
+chrom = [OS(n), MS(n), AS(n), SS(2n)]
+```
+
+其中：
+
+```text
+n = sum(problem.operaNumVec)
+核心编码长度 = 5n
+```
+
+### 输入
+
+`chrom` 是一条染色体向量。它至少要包含 `5n` 个核心编码位，分别对应 `OS / MS / AS / SS`。如果核心编码后面还有目标值、排序信息、拥挤度等额外列，函数会把这些额外列记录到 `report.extraColumnCount`，并给出 warning。
+
+`problem` 是问题结构信息，至少需要包含：
+
+```text
+problem.jobNum
+problem.operaNumVec
+problem.candidateMachine
+```
+
+它们分别用于判断工件数量、每个工件的工序数、每道工序可选机器范围。
+
+`agvData` 是 AGV 和速度档信息，至少需要包含：
+
+```text
+agvData.AGVNum
+agvData.AGVSpeed
+```
+
+它们分别用于判断 AGV 编号范围和速度档编号范围。
+
+### 输出
+
+`isValid` 是快速判断结果：
+
+```text
+true：没有发现编码错误
+false：发现至少一个编码错误
+```
+
+`report` 是详细检查报告，主要包含：
+
+```text
+report.errors：错误列表
+report.warnings：警告列表
+report.extraColumnCount：核心 5n 后面多出来的列数
+report.operaNum：总工序数 n
+report.dim：核心编码长度 5n
+report.isValid：和 isValid 一致
+```
+
+所以，`isValid` 用来快速判断“这条 chrom 能不能过编码层检查”，`report` 用来查看“具体哪里不合法”。
+
+### 检查内容
+
+`validate_chromosome` 当前检查这些编码层合法性：
+
+```text
+chrom 长度是否至少包含 5n 个核心编码位
+OS 中每个工件出现次数是否等于该工件的工序数
+MS 是否在每道工序的候选机器范围内
+AS 是否在 1...AGVNum 内
+SS 是否在 1...length(AGVSpeed) 内
+```
+
+更具体地说：
+
+| 编码段 | 检查内容 |
+|---|---|
+| `OS` | 必须是整数；工件编号必须在 `1...problem.jobNum`；每个工件出现次数必须等于 `problem.operaNumVec` |
+| `MS` | 必须是整数；每个位置的机器索引必须在对应工序的 `candidateMachine{job, operation}` 范围内 |
+| `AS` | 必须是整数；AGV 编号必须在 `1...agvData.AGVNum` 内 |
+| `SS` | 必须是整数；速度档编号必须在 `1...length(agvData.AGVSpeed)` 内 |
+
+### 不负责内容
+
+`validate_chromosome` 只检查“编码写得是否合法”，不负责把方案排成真实时间表。
+
+它不做：
+
+```text
+不生成 chrom
+不生成初始种群
+不解码 schedule
+不调用 sorting.m
+不调用 fitness.m
+不运行 NSGA-II
+不计算 makespan
+不计算 energy
+不检查机器时间冲突
+不检查 AGV 时间冲突
+不检查工序前后约束是否能在时间线上成立
+不检查 AGV 电量是否足够
+不生成 outputs
+不写结果文件
+```
+
+这些内容属于后续的解码层、评价层和搜索层。
+## 16. 2026-05-25 编码层封装完成状态
+
+当前编码层第一版正式封装已经完成。这里的“完成”指编码层本身可以独立生成、检查和变化染色体，不代表解码层、评价层、搜索层已经全部完成。
+
+### 已完成函数清单
+
+| 函数 | 作用 |
+|---|---|
+| `split_chromosome(chrom, problem)` | 把一条 `chrom` 拆成 `OS / MS / AS / SS / extraColumns` |
+| `validate_chromosome(chrom, problem, agvData)` | 检查一条 `chrom` 的编码层合法性 |
+| `validate_population(population, problem, agvData)` | 逐条检查 population，统计 `validCount / invalidCount / invalidIndexes` |
+| `generate_initial_population(popSize, problem, agvData)` | 生成初始 population，并调用 `validate_population` |
+| `build_rs_upper_bounds(problem, agvData)` | 构造 `RS = [MS, AS, SS]` 的每个位置上界 `UP` |
+| `crossover_os_ipox(parent1OS, parent2OS, jobNum)` | 只处理 `OS` 的 IPOX 交叉 |
+| `crossover_rs_mpx(parent1RS, parent2RS)` | 只处理 `RS` 的 MPX 交叉 |
+| `mutate_os_swap(OS)` | 只处理 `OS` 的交换变异 |
+| `mutate_rs_resample(RS, UP)` | 只处理 `RS` 的多点重采样变异 |
+| `generate_offspring(parentPopulation, problem, agvData, options)` | 组合交叉和变异，生成 offspring，并验证 offspring |
+
+### 当前调用关系
+
+```text
+generate_initial_population
+-> validate_population
+   -> validate_chromosome
+      -> split_chromosome
+
+generate_offspring
+-> build_rs_upper_bounds
+-> crossover_os_ipox
+-> crossover_rs_mpx
+-> mutate_os_swap
+-> mutate_rs_resample
+-> validate_population
+```
+
+### 当前测试入口
+
+```matlab
+run('tests/test_encoding_layer.m')
+run('tests/test_encoding_invalid_cases.m')
+run('scripts/run_encoding_smoke.m')
+```
+
+`test_encoding_layer.m` 验证正常闭环：
+
+```text
+读 sample 数据
+-> 生成初始 population
+-> 验证 population
+-> 生成 offspring
+-> 再次验证 offspring
+```
+
+`test_encoding_invalid_cases.m` 验证异常输入：
+
+```text
+非法长度
+OS 错误
+MS 错误
+AS 错误
+SS 错误
+混合 population 统计
+```
+
+### 当前边界
+
+编码层已经脱离：
+
+```text
+raw_code/NSGA-II/init.m
+raw_code/NSGA-II/variation.m
+sorting.m
+fitness.m
+NSGA2.m
+outputs
+```
+
+编码层仍然需要输入结构：
+
+```text
+problem.jobNum
+problem.operaNumVec
+problem.candidateMachine
+agvData.AGVNum
+agvData.AGVSpeed
+```
+
+下一阶段重点不再是编码层本身，而是：
+
+```text
+Decoding Layer：sorting.m 结构拆解与封装
+Search Layer：正式 NSGA-II 如何接入新编码层
+```

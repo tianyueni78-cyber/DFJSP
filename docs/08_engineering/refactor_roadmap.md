@@ -361,3 +361,47 @@ metrics 最小读取摘要
 评价层有 wrapper。
 编码、解码、完整指标、搜索实验和图表层仍是主要缺口。
 ```
+## 10. 2026-05-25 更新：编码层 E/F/G1 状态
+
+编码层当前已经从“结构理解”推进到“第一版正式封装 + 异常测试”。
+
+已完成：
+
+| 阶段 | 状态 | 说明 |
+|---|---|---|
+| E1-E6 | 已完成 | 确认 `chrom = [OS, MS, AS, SS]`，建立编码层最小闭环 |
+| F1 | 已完成 | `generate_initial_population.m` 已脱离 `raw_code/NSGA-II/init.m` |
+| F2 | 已完成 | 新增 `validate_population.m`，可统计 `validCount / invalidCount / invalidIndexes` |
+| F3 | 已完成 | 封装 `build_rs_upper_bounds`、OS/RS 交叉、OS/RS 变异、`generate_offspring` |
+| F4 | 已完成 | `tests/test_encoding_layer.m` 已验证 population 和 offspring 都合法 |
+| F5.1 | 已完成 | 新增 `scripts/run_encoding_smoke.m`，作为编码层 demo 入口 |
+| F5.2 | 已完成 | 新增 `docs/03_algorithm/nsga2_encoding_integration_plan.md`，规划正式搜索层接入 |
+| G1 | 已完成 | 新增 `tests/test_encoding_invalid_cases.m`，非法输入测试已由用户跑通 |
+
+当前编码层可以独立完成：
+
+```text
+读 sample 数据
+-> 生成初始 population
+-> 验证 population
+-> 生成 offspring
+-> 再次验证 offspring
+```
+
+当前编码层不依赖：
+
+```text
+raw_code/NSGA-II/init.m
+raw_code/NSGA-II/variation.m
+sorting.m
+fitness.m
+NSGA2.m
+outputs
+```
+
+下一阶段主线建议转向：
+
+```text
+Decoding Layer：sorting.m 的结构拆解、状态变量梳理、可测试子函数边界
+Search Layer：新增包装入口，逐步让正式 NSGA-II 使用新编码层
+```

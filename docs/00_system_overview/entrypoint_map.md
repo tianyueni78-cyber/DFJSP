@@ -392,3 +392,63 @@ docs/04_decoding/encoding_layer_structure_note.md
 README.md
 docs/00_system_overview/entrypoint_map.md
 ```
+## 10. 2026-05-24 更新：编码层 demo 入口
+
+当前编码层已经有一个独立 demo 运行入口：
+
+| 入口 | MATLAB 命令 | 作用 | 是否生成 outputs |
+|---|---|---|---|
+| `scripts/run_encoding_smoke.m` | `run('scripts/run_encoding_smoke.m')` | 读取 sample 数据，生成初始 population，验证 population，生成 offspring，再次验证 offspring | 否 |
+
+它只验证编码层：
+
+```text
+read_fjsp / read_agv_data
+-> generate_initial_population
+-> validate_population
+-> generate_offspring
+-> validate_population
+```
+
+它不做：
+
+```text
+不运行 NSGA-II
+不调用 sorting.m
+不调用 fitness.m
+不生成 outputs
+不修改 raw_code
+```
+
+在 MATLAB 中运行：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('scripts/run_encoding_smoke.m')
+```
+
+正式 NSGA-II 接入方案见：
+
+```text
+docs/03_algorithm/nsga2_encoding_integration_plan.md
+```
+## 11. 2026-05-25 更新：编码层测试入口
+
+编码层现在有三个常用入口：
+
+| 入口 | MATLAB 命令 | 用途 |
+|---|---|---|
+| `tests/test_encoding_layer.m` | `run('tests/test_encoding_layer.m')` | 编码层正常闭环测试：生成 population、验证、生成 offspring、再次验证 |
+| `tests/test_encoding_invalid_cases.m` | `run('tests/test_encoding_invalid_cases.m')` | 编码层异常测试：确认非法 chrom / population 能被识别 |
+| `scripts/run_encoding_smoke.m` | `run('scripts/run_encoding_smoke.m')` | 编码层 demo 入口，适合手动复现编码层流程 |
+
+推荐检查顺序：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('tests/test_encoding_layer.m')
+run('tests/test_encoding_invalid_cases.m')
+run('scripts/run_encoding_smoke.m')
+```
+
+这三个入口都不运行完整 NSGA-II，不调用 `sorting.m` / `fitness.m`，不生成 `outputs`。

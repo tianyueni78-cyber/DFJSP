@@ -234,3 +234,102 @@ src 负责“以后可复用”
 tests 负责“拆出来之后能不能独立跑”
 docs 负责“我到底理解到哪了”
 ```
+## 11. 2026-05-24 更新：`src/encoding/` 编码层最新状态
+
+当前编码层已经从原始主代码里拆出三个可复用入口：
+
+| 文件 | 当前作用 | 使用边界 |
+|---|---|---|
+| `src/encoding/split_chromosome.m` | 拆分一条 `chrom`，得到 `OS / MS / AS / SS / extraColumns` | 只拆结构，不判断调度是否可行，不调用解码和评价 |
+| `src/encoding/validate_chromosome.m` | 检查一条 `chrom` 的编码层合法性 | 检查长度、OS 次数、MS/AS/SS 范围，不生成种群，不跑算法 |
+| `src/encoding/generate_initial_population.m` | 生成少量初始种群，并用 `validate_chromosome` 检查每条 `chrom` | 第一版内部调用原始 `raw_code/NSGA-II/init.m`，但不修改原始文件，不运行 NSGA-II |
+
+这三个入口对应的编码层闭环是：
+
+```text
+sample 数据读取
+-> generate_initial_population 生成初始 chrom 种群
+-> split_chromosome 拆第一条 chrom
+-> validate_chromosome 检查第一条 chrom 的编码合法性
+```
+
+当前编码层仍然不负责：
+
+```text
+不解码 schedule
+不调用 sorting.m
+不调用 fitness.m
+不运行完整算法
+不生成 outputs
+不计算 makespan / energy
+```
+
+## 12. 2026-05-24 更新：编码层 smoke test
+
+编码层最小闭环测试文件是：
+
+```text
+tests/test_encoding_layer.m
+```
+
+在 MATLAB 里运行：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('tests/test_encoding_layer.m')
+```
+
+当前已由用户在 MATLAB 中跑通，输出为：
+
+```text
+test_encoding_layer passed: popSize=4, chromosomeLength=275
+```
+
+这说明：
+
+```text
+data_sample/Mk01.fjs 可以读入 problem
+data_sample 下的 AGV sample workbook 可以读入 agvData
+编码层可以生成 4 条初始 chrom
+第一条 chrom 可以被拆成 OS / MS / AS / SS
+第一条 chrom 可以通过 validate_chromosome 编码合法性检查
+```
+
+`chromosomeLength=275` 表示当前 sample 的核心编码长度是 `5n`，所以：
+
+```text
+n = 55
+```
+
+这里的测试只是编码层 smoke test，不代表完整 NSGA-II 算法已经运行，也不代表解码层和评价层已经完成封装。
+## 13. 2026-05-25 更新：`src/encoding/` 完整函数清单
+
+前面的 2026-05-24 说明是早期状态。当前编码层已经继续推进，`generate_initial_population.m` 已经不再调用原始 `init.m`，`generate_offspring.m` 也已经不再调用原始 `variation.m`。
+
+| 文件 | 当前作用 | 是否依赖 raw_code |
+|---|---|---|
+| `src/encoding/split_chromosome.m` | 拆分一条 `chrom` 为 `OS / MS / AS / SS / extraColumns` | 否 |
+| `src/encoding/validate_chromosome.m` | 检查单条 `chrom` 的长度、OS 次数、MS/AS/SS 范围 | 否 |
+| `src/encoding/validate_population.m` | 检查整个 population，统计合法/非法数量和非法行号 | 否 |
+| `src/encoding/generate_initial_population.m` | 自主生成初始 population，并验证每条 `chrom` | 否 |
+| `src/encoding/build_rs_upper_bounds.m` | 构造 `RS = [MS, AS, SS]` 的上界 `UP` | 否 |
+| `src/encoding/crossover_os_ipox.m` | 执行 `OS` 的 IPOX 交叉 | 否 |
+| `src/encoding/crossover_rs_mpx.m` | 执行 `RS` 的 MPX 交叉 | 否 |
+| `src/encoding/mutate_os_swap.m` | 执行 `OS` 的交换变异 | 否 |
+| `src/encoding/mutate_rs_resample.m` | 执行 `RS` 的多点重采样变异 | 否 |
+| `src/encoding/generate_offspring.m` | 组合交叉/变异，生成 offspring，并验证合法性 | 否 |
+
+编码层测试入口：
+
+| 文件 | 作用 |
+|---|---|
+| `tests/test_encoding_layer.m` | 正常闭环：读 sample、生成 population、验证、生成 offspring、再次验证 |
+| `tests/test_encoding_invalid_cases.m` | 异常测试：非法长度、OS/MS/AS/SS 错误、混合 population 统计 |
+
+编码层 demo 入口：
+
+```matlab
+run('scripts/run_encoding_smoke.m')
+```
+
+这个入口只跑编码层，不调用 `sorting.m`、`fitness.m`、`NSGA2.m`，也不生成 `outputs`。
