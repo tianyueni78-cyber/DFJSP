@@ -809,3 +809,60 @@ E6 能测试编码层
 编码层已有拆分和合法性检查函数，仍未完成整层封装。
 解码层还没有函数封装。
 ```
+## 2026-05-25 更新：编码层接入搜索层已跑通
+
+本次记录的是编码层从“独立封装”进入“搜索层接入”的验证结果。
+
+用户已在 MATLAB 中运行：
+
+```matlab
+run('scripts/run_small_nsga2_refactored.m')
+```
+
+运行结果：
+
+```text
+RUNNING --------> NSGA-II with refactored encoding <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 138.5  MIN Energy:1936.65
+GEN: 2  MIN Cmax: 138.5  MIN Energy:1936.65
+运行时间：0.25258
+small NSGA-II refactored encoding finished.
+pop: 10, max_gen: 2
+paretoSolutionCount: 1
+bestMakespan: 138.456667
+bestTotalEnergy: 1936.654667
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2_refactored\20260525_192659
+```
+
+这说明：
+
+```text
+新编码层 generate_initial_population 已经接入小规模 NSGA-II
+新编码层 generate_offspring 已经替代 raw variation.m 进入新搜索循环
+refactored 小规模搜索能跑完 2 代
+obj_matrix / curve / 输出摘要结构可用
+raw_code 没有被修改
+```
+
+当前编码层完成范围：
+
+| 范围 | 状态 |
+|---|---|
+| 结构拆解 | 已完成 |
+| 生成初始 population | 已完成，正式代码在 `src/encoding/generate_initial_population.m` |
+| 单条 chrom 合法性检查 | 已完成，正式代码在 `src/encoding/validate_chromosome.m` |
+| population 合法性检查 | 已完成，正式代码在 `src/encoding/validate_population.m` |
+| 交叉/变异封装 | 已完成，正式代码在 `src/encoding/*crossover*`、`src/encoding/*mutate*`、`src/encoding/generate_offspring.m` |
+| 编码层正常测试 | 已完成，`tests/test_encoding_layer.m` 已由用户跑通 |
+| 编码层异常测试 | 已完成，`tests/test_encoding_invalid_cases.m` 已由用户跑通 |
+| 编码层 demo 入口 | 已完成，`scripts/run_encoding_smoke.m` |
+| 搜索层旁路接入 | 已初步完成，`scripts/run_small_nsga2_refactored.m` 已由用户跑通 |
+
+结论：
+
+```text
+编码层已经不是临时小代码，而是第一版正式封装代码。
+它已经脱离 raw init.m / raw variation.m。
+但完整项目还没有全部封装完：解码层 sorting.m、评价层 fitness.m、完整指标和多算法实验仍是后续阶段。
+```

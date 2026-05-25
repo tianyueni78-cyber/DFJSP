@@ -140,3 +140,98 @@ non_domination / replace_chrom 不受影响
 ```
 
 是否修改 `NSGA2.m`，应等搜索层接入任务单独确认后再做。
+## 7. 2026-05-25 更新：G3 接入实现
+
+当前已经新增旁路搜索层入口，不修改 `raw_code/NSGA-II/NSGA2.m`。
+
+新增文件：
+
+| 文件 | 作用 |
+|---|---|
+| `src/search/run_nsga2_with_encoding.m` | 搜索层包装入口：用 `generate_initial_population` 生成初始 population，然后运行 NSGA-II |
+| `src/search/nsga2_with_encoding_variation.m` | 复制 NSGA-II 主循环边界，把原始 `variation(...)` 替换为 `generate_offspring(...)` |
+| `scripts/run_small_nsga2_refactored.m` | 小规模运行脚本：使用新编码层生成初始 population，并使用新编码层生成 offspring |
+| `tests/test_small_nsga2_refactored_encoding.m` | 小规模搜索接入测试：不写 outputs，只确认结果结构可用 |
+
+接入分两档：
+
+```text
+useRefactoredVariation = false
+    只替换初始种群生成：
+    generate_initial_population -> raw NSGA2.m
+
+useRefactoredVariation = true
+    替换初始种群生成
+    并在新搜索循环中用 generate_offspring 替换 raw variation.m
+```
+
+手动运行小规模 refactored 脚本：
+
+```matlab
+run('scripts/run_small_nsga2_refactored.m')
+```
+
+它会生成输出到：
+
+```text
+outputs/small_nsga2_refactored/时间戳/
+```
+
+只做结构测试、不生成 outputs：
+
+```matlab
+run('tests/test_small_nsga2_refactored_encoding.m')
+```
+
+当前仍然保留的依赖：
+
+```text
+fitness.m
+sorting.m
+non_domination.m
+replace_chrom.m
+tournament_selection.m
+```
+
+这说明 G3 只是把编码层接入搜索流程，不代表搜索层、解码层、评价层都已经完成重构。
+
+## 8. 2026-05-25 运行结果记录
+
+用户已运行正式小规模 refactored 入口：
+
+```matlab
+run('scripts/run_small_nsga2_refactored.m')
+```
+
+输出：
+
+```text
+RUNNING --------> NSGA-II with refactored encoding <-------- RUNNING
+工件数：10 机器数 6 AGV数 3
+GEN: 1  MIN Cmax: 138.5  MIN Energy:1936.65
+GEN: 2  MIN Cmax: 138.5  MIN Energy:1936.65
+运行时间：0.25258
+small NSGA-II refactored encoding finished.
+pop: 10, max_gen: 2
+paretoSolutionCount: 1
+bestMakespan: 138.456667
+bestTotalEnergy: 1936.654667
+outputDir: D:\CODEX\code_refactor_project\outputs\small_nsga2_refactored\20260525_192659
+```
+
+本次运行说明：
+
+```text
+generate_initial_population 已用于初始 population
+generate_offspring 已用于迭代 offspring
+refactored 小规模搜索流程可以跑通
+结果结构包含 obj_matrix 和 curve
+```
+
+边界说明：
+
+```text
+这是“编码层接入搜索层”的验证。
+它仍然会调用评价链路中的 fitness.m 和 sorting.m。
+它不表示 decoding/evaluation/search 全部完成重构。
+```

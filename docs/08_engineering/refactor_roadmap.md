@@ -405,3 +405,45 @@ outputs
 Decoding Layer：sorting.m 的结构拆解、状态变量梳理、可测试子函数边界
 Search Layer：新增包装入口，逐步让正式 NSGA-II 使用新编码层
 ```
+
+## 11. 2026-05-25 更新：G3 搜索层接入验证
+
+G3 已完成第一版旁路接入：不修改 `raw_code`，新增 `src/search/` 包装搜索入口，让完整小规模 NSGA-II 使用新编码层。
+
+已完成：
+
+| 阶段 | 状态 | 说明 |
+|---|---|---|
+| G3.1 | 已完成 | 确认 `NSGA2.m` 初始 `init(...)` 已注释，`chrom` 从外部传入；迭代里原本调用 `variation(...)` |
+| G3.2 | 已完成 | 新增 `src/search/run_nsga2_with_encoding.m` |
+| G3.3 | 已完成 | 新增 `scripts/run_small_nsga2_refactored.m` |
+| G3.4 | 已完成 | 新增 `src/search/nsga2_with_encoding_variation.m`，用 `generate_offspring` 替代 raw `variation(...)` |
+| G3.5 | 已跑通正式小规模脚本 | 用户已运行 `scripts/run_small_nsga2_refactored.m` 并得到结果 |
+
+用户运行结果：
+
+```text
+pop = 10
+max_gen = 2
+paretoSolutionCount = 1
+bestMakespan = 138.456667
+bestTotalEnergy = 1936.654667
+outputDir = outputs/small_nsga2_refactored/20260525_192659
+```
+
+当前结论：
+
+```text
+编码层正式封装代码已经接入搜索流程。
+新入口可以跑完整小规模 NSGA-II。
+raw_code 未修改。
+```
+
+仍未完成：
+
+```text
+Decoding Layer：sorting.m 仍未封装
+Evaluation Layer：fitness.m 仍未拆解
+Metrics：HV / IGD / Spacing / C-metric 仍未完整封装
+Search Layer：目前只完成 NSGA-II refactored encoding 旁路，不代表所有算法都已统一
+```

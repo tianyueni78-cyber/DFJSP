@@ -452,3 +452,39 @@ run('scripts/run_encoding_smoke.m')
 ```
 
 这三个入口都不运行完整 NSGA-II，不调用 `sorting.m` / `fitness.m`，不生成 `outputs`。
+
+## 12. 2026-05-25 更新：新编码层接入搜索层入口
+
+搜索层现在新增一个不改 `raw_code` 的 refactored 小规模入口：
+
+| 入口 | MATLAB 命令 | 用途 | 是否生成 outputs |
+|---|---|---|---|
+| `scripts/run_small_nsga2_refactored.m` | `run('scripts/run_small_nsga2_refactored.m')` | 小规模 NSGA-II，初始 population 和 offspring 都使用新编码层 | 是 |
+| `tests/test_small_nsga2_refactored_encoding.m` | `run('tests/test_small_nsga2_refactored_encoding.m')` | 搜索接入测试，只验证结果结构，不写 outputs | 否 |
+
+`run_small_nsga2_refactored.m` 会输出到：
+
+```text
+outputs/small_nsga2_refactored/时间戳/
+```
+
+它不修改 `raw_code`。它仍然会通过搜索流程调用 `fitness.m` 和 `sorting.m`，因为这是完整小规模 NSGA-II 必需的评价链路。
+
+### 运行记录
+
+`scripts/run_small_nsga2_refactored.m` 已由用户在 MATLAB 中跑通：
+
+```text
+pop: 10
+max_gen: 2
+paretoSolutionCount: 1
+bestMakespan: 138.456667
+bestTotalEnergy: 1936.654667
+outputDir: outputs/small_nsga2_refactored/20260525_192659
+```
+
+如果只是检查结构、不想生成 outputs，优先运行：
+
+```matlab
+run('tests/test_small_nsga2_refactored_encoding.m')
+```

@@ -68,3 +68,29 @@
 ```
 
 它不依赖 `raw_code/NSGA-II/init.m`，不依赖 `raw_code/NSGA-II/variation.m`，也不调用 `sorting.m`、`fitness.m` 或 `NSGA2.m`。
+
+## 2026-05-25 搜索层接入入口
+
+新编码层已经有一个旁路搜索接入入口，不修改 `raw_code`：
+
+| 我想做什么 | 运行什么 |
+|---|---|
+| 跑使用新编码层的小规模 NSGA-II | `run('scripts/run_small_nsga2_refactored.m')` |
+| 只测试搜索接入结果结构，不生成 outputs | `run('tests/test_small_nsga2_refactored_encoding.m')` |
+
+注意：这是搜索层接入测试，会调用评价链路里的 `fitness.m` 和 `sorting.m`。它不同于纯编码层 smoke test。
+
+### 2026-05-25 运行记录
+
+`scripts/run_small_nsga2_refactored.m` 已经由用户在 MATLAB 中跑通：
+
+```text
+pop = 10
+max_gen = 2
+paretoSolutionCount = 1
+bestMakespan = 138.456667
+bestTotalEnergy = 1936.654667
+outputDir = outputs/small_nsga2_refactored/20260525_192659
+```
+
+这说明新编码层已经接入小规模 NSGA-II 搜索流程。完整项目仍未全部封装完成，后续重点是 `sorting.m` 解码层、`fitness.m` 评价层和完整指标。
