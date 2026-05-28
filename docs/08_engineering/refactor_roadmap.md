@@ -447,3 +447,42 @@ Evaluation Layer：fitness.m 仍未拆解
 Metrics：HV / IGD / Spacing / C-metric 仍未完整封装
 Search Layer：目前只完成 NSGA-II refactored encoding 旁路，不代表所有算法都已统一
 ```
+
+## 2026-05-25 更新：解码层 D1-D8 状态
+
+解码层当前已经完成第一轮“拆解 -> 封装 -> 测试 -> 对比原始行为”的闭环。
+
+| 阶段 | 状态 | 产物 |
+|---|---|---|
+| D1 | 已完成 | `sorting.m` 主流程拆解 |
+| D2 | 已完成 | `docs/04_decoding/decoding_layer_structure_note.md` |
+| D3 | 已完成 | 解码接口契约：`decode_chromosome(chrom, problem, machineData, agvData, config)` |
+| D4 | 已完成 | `src/decoding/decode_chromosome.m` |
+| D5 | 已完成并跑通 | `tests/test_decoding_layer.m` |
+| D6 | 已完成并跑通 | `src/decoding/decode_population.m`，population 级别解码 |
+| D7 | 已完成并跑通 | `tests/test_decoding_invalid_cases.m` |
+| D8 | 已完成并跑通 | `tests/test_decoding_compare_sorting.m` |
+
+用户已运行并确认：
+
+```text
+test_decoding_layer passed: population=3, operations=55, AGVNum=3
+test_decoding_invalid_cases passed
+test_decoding_compare_sorting passed: fields matched=5
+```
+
+当前结论：
+
+```text
+解码层第一轮正式封装完成。
+decode_chromosome 与原始 sorting.m 在小样本手工案例的 5 个核心输出字段一致。
+decode_population 已能对 population 逐条解码并统计失败。
+```
+
+当前仍未完成：
+
+```text
+Evaluation Layer: fitness.m 拆解和封装
+Metrics: HV / IGD / Spacing / C-metric 完整封装
+Search Layer: 完整脱离 raw_code 的统一搜索流程
+```

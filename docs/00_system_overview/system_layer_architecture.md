@@ -267,3 +267,97 @@ NSGA2.m
 - `sorting.m` 决定系统如何运行。
 - `fitness.m` 决定系统如何评价好坏。
 - Pareto front 本质是多个目标之间的 trade-off，而不是单一最优点。
+
+## 2026-05-25 更新：解码层和评价层为什么联动
+
+解码层和评价层是强联动的，但它们不是同一层。
+
+一句话区分：
+
+```text
+解码层负责“排出来”。
+评价层负责“算好不好”。
+```
+
+### 解码层干什么
+
+解码层输入一条染色体：
+
+```text
+chrom = [OS, MS, AS, SS]
+```
+
+它把这条抽象决策翻译成真实调度过程：
+
+```text
+这一步调度哪个工件
+这道工序选哪台机器
+用哪辆 AGV 搬运
+空载/负载用什么速度
+什么时候运输
+什么时候加工
+机器时间表怎么排
+AGV 时间表怎么排
+电量什么时候变化
+什么时候充电
+```
+
+当前解码层输出的是：
+
+```text
+machineTable
+AGVTable
+jobCompleteUnLoad
+agvEGRecord
+agvChargeNum
+```
+
+也就是 `schedule`，可以理解成“调度过程”。
+
+### 评价层干什么
+
+评价层拿解码层生成的 `schedule`，计算这个方案的目标值：
+
+```text
+makespan = 最后完工时间
+totalEnergy = 机器能耗 + AGV 能耗
+```
+
+所以评价层输出的是：
+
+```text
+[makespan, totalEnergy]
+```
+
+### 为什么它们要一起看
+
+因为评价层必须先有解码结果，才能算目标值：
+
+```text
+chrom
+-> 解码层：变成 schedule
+-> 评价层：根据 schedule 算 makespan / energy
+```
+
+在原始代码中，`fitness.m` 把这两件事混在一起：
+
+```text
+fitness.m
+-> 初始化 machineTable / AGVTable
+-> 调用 sorting.m 解码
+-> 根据解码结果算 makespan / energy
+```
+
+我们现在已经完成的是：
+
+```text
+解码层：chrom -> schedule
+```
+
+下一步评价层要拆的是：
+
+```text
+schedule -> makespan / energy
+```
+
+因此，解码层自己负责的第一轮已经完成；剩下要继续推进的部分主要是评价层，以及解码层和评价层的接口联动。

@@ -866,3 +866,93 @@ raw_code 没有被修改
 它已经脱离 raw init.m / raw variation.m。
 但完整项目还没有全部封装完：解码层 sorting.m、评价层 fitness.m、完整指标和多算法实验仍是后续阶段。
 ```
+
+## 2026-05-25 更新：解码层完成状态与评价层下一步工作表
+
+### 当前结论
+
+解码层第一轮已经完成“拆解 + 封装 + 测试”闭环。
+
+当前已经完成：
+
+| 范围 | 状态 | 说明 |
+|---|---|---|
+| 解码层结构拆解 | 已完成 | 已说明 `sorting.m` 如何把 `chrom` 转成调度过程 |
+| 单条 chrom 解码 | 已完成 | `src/decoding/decode_chromosome.m` |
+| population 解码 | 已完成 | `src/decoding/decode_population.m` |
+| 正常测试 | 已完成并跑通 | `tests/test_decoding_layer.m` |
+| 异常测试 | 已完成并跑通 | `tests/test_decoding_invalid_cases.m` |
+| 原始行为对比 | 已完成并跑通 | `tests/test_decoding_compare_sorting.m`，5 个核心字段一致 |
+
+当前解码层负责：
+
+```text
+chrom -> schedule
+```
+
+其中 `schedule` 包含：
+
+```text
+machineTable
+AGVTable
+jobCompleteUnLoad
+agvEGRecord
+agvChargeNum
+```
+
+当前解码层不负责：
+
+```text
+makespan
+totalEnergy
+objectiveVector
+non-domination
+Pareto 筛选
+outputs 保存
+```
+
+这些进入评价层和搜索层。
+
+### 为什么后面要进入评价层
+
+原始 `fitness.m` 同时做了三件事：
+
+```text
+1. 初始化 machineTable / AGVTable
+2. 调用 sorting.m 解码
+3. 根据解码结果计算 makespan / totalEnergy
+```
+
+现在第 2 步已经有了新的解码层封装：
+
+```text
+decode_chromosome
+decode_population
+```
+
+所以接下来要拆的是第 1 步和第 3 步，也就是评价层。
+
+### 下一阶段工作表：Evaluation Layer
+
+| 编号 | 任务 | 任务目标 | 允许范围 | 禁止内容 | 预期输出 | 完成后动作 |
+|---|---|---|---|---|---|---|
+| V1 | 只读 `fitness.m`，拆解评价层结构 | 理解 `fitness.m` 如何初始化时间表、调用解码、计算目标值 | `raw_code/NSGA-II/fitness.m`, `docs/04_decoding/`, `src/decoding/` | 不修改文件；不运行 MATLAB；不生成 outputs；不读其他算法目录 | `fitness.m` 输入/输出、内部步骤、和解码层的边界 | 停止等待确认 |
+| V2 | 写评价层结构说明文档 | 把 V1 理解写进 GitHub 文档 | `docs/05_evaluation/`, `docs/00_system_overview/` | 不改代码；不运行 MATLAB；不生成 outputs | `evaluation_layer_structure_note.md` | 停止等待确认 |
+| V3 | 封装初始时间表构造 | 把 `machineTable / AGVTable` 初始化从 `fitness.m` 中拆出来 | `src/evaluation/`, `tests/`, `docs/05_evaluation/` | 不改 raw_code；不运行完整算法；不生成 outputs | `create_initial_schedule_tables.m` 或等价函数 | 停止等待确认 |
+| V4 | 封装 schedule 评价函数 | 输入 `schedule`，计算 `makespan / energy` | `src/evaluation/`, `src/decoding/`, `tests/` | 不改 raw_code；不跑完整 NSGA-II；不生成 outputs | `evaluate_schedule.m` | 停止等待确认 |
+| V5 | 封装单条 chrom 评价入口 | 串起 `decode_chromosome -> evaluate_schedule` | `src/evaluation/`, `src/decoding/`, `tests/` | 不改 raw_code；不改搜索主流程；不生成 outputs | `evaluate_chromosome_refactored.m` | 停止等待确认 |
+| V6 | 对比原始 `fitness.m` 行为 | 同一条 chrom，对比原始 `fitness.m` 和新评价入口输出 | `tests/`, `src/evaluation/`, `src/decoding/`, 必要时只读 `raw_code/NSGA-II/fitness.m` | 不改 raw_code；不运行完整算法；不生成正式 outputs | 对比测试，确认 makespan/energy 一致或差异可解释 | 停止等待确认 |
+| V7 | 更新文档和入口 | 让 GitHub 能找到评价层函数、测试、边界 | `README.md`, `docs/00_system_overview/`, `docs/05_evaluation/`, `docs/08_engineering/` | 不改算法代码；不运行 MATLAB；不生成 outputs | README/entrypoint/file guide/roadmap 更新 | 停止等待确认 |
+| V8 | 规划搜索层接入新评价函数 | 只规划，不直接改搜索主流程 | `src/search/`, `src/evaluation/`, `docs/03_algorithm/`, `docs/05_evaluation/` | 不改 raw_code；不运行 MATLAB；不生成 outputs | 新评价层如何替换 `fitness.m` 的接入方案 | 停止等待确认 |
+
+评价层完成后的理想链路是：
+
+```text
+chrom
+-> decode_chromosome
+-> schedule
+-> evaluate_schedule
+-> [makespan, totalEnergy]
+```
+
+再往后才适合让搜索层调用新的评价入口。

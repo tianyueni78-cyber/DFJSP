@@ -333,3 +333,94 @@ run('scripts/run_encoding_smoke.m')
 ```
 
 这个入口只跑编码层，不调用 `sorting.m`、`fitness.m`、`NSGA2.m`，也不生成 `outputs`。
+## 14. 2026-05-25 更新：解码层结构说明文档
+
+当前新增解码层结构说明：
+
+| 文件 | 当前作用 | 使用边界 |
+|---|---|---|
+| `docs/04_decoding/decoding_layer_structure_note.md` | 说明 `sorting.m` 如何把 `chrom = [OS, MS, AS, SS]` 解码成机器时间表、AGV 时间表和调度过程 | 这是结构说明文档，不是新代码；不运行 MATLAB，不生成 outputs |
+
+这份文档说明：
+
+```text
+解码层是什么
+sorting.m 的角色
+chrom 到调度过程的转换链
+OS / MS / AS / SS 在解码中的作用
+解码层和编码层、评价层、搜索层的边界
+当前仍未封装的部分
+```
+
+当前状态：
+
+```text
+解码层主流程已经完成结构拆解和文档化。
+解码层代码封装尚未开始。
+```
+
+## 2026-05-25 更新：`src/decoding/` 解码层最新状态
+
+当前解码层已经从“只理解 `sorting.m`”推进到“第一轮封装 + 测试”。
+
+| 文件 | 当前作用 | 使用边界 |
+|---|---|---|
+| `src/decoding/decode_chromosome.m` | 解码一条 `chrom`，返回 `schedule/report` | 先检查编码合法性，再调用原始 `sorting.m`；不计算目标值 |
+| `src/decoding/decode_population.m` | 解码一个 population，逐条调用 `decode_chromosome` | 统计 `successCount / failureCount / failedIndexes` |
+| `tests/test_decoding_layer.m` | 解码层正常 smoke test | 验证合法 chrom 和小 population 能解码 |
+| `tests/test_decoding_invalid_cases.m` | 解码层异常测试 | 验证非法 OS/MS/AS/SS、缺字段、空 population、非法 population |
+| `tests/test_decoding_compare_sorting.m` | 原始行为对比测试 | 验证 `decode_chromosome` 和 `sorting.m` 的 5 个核心输出一致 |
+| `docs/04_decoding/decoding_layer_structure_note.md` | 解码层结构与封装状态说明 | 记录 D1-D8 的理解、接口和边界 |
+
+当前 `decode_chromosome` 输出的核心 schedule 字段是：
+
+```text
+schedule.machineTable
+schedule.AGVTable
+schedule.jobCompleteUnLoad
+schedule.agvEGRecord
+schedule.agvChargeNum
+schedule.parts
+schedule.operaNum
+schedule.dim
+```
+
+当前边界：
+
+```text
+不生成 chrom
+不做交叉变异
+不计算 makespan
+不计算 totalEnergy
+不做非支配排序
+不保存 outputs
+```
+
+## 2026-05-25 更新：评价层结构说明文档
+
+当前新增评价层结构说明：
+
+| 文件 | 当前作用 | 使用边界 |
+|---|---|---|
+| `docs/05_evaluation/evaluation_layer_structure_note.md` | 说明 `fitness.m` 如何初始化 `machineTable / AGVTable`、调用解码、计算 `makespan / totalEnergy` | 这是结构说明文档，不是新代码；不运行 MATLAB，不生成 outputs |
+
+这份文档说明：
+
+```text
+评价层是什么
+fitness.m 的输入输出
+fitness.m 内部步骤
+machineTable / AGVTable 初始结构
+makespan 如何计算
+机器能耗如何计算
+AGV 能耗如何计算
+评价层和解码层的边界
+后续建议封装函数
+```
+
+当前状态：
+
+```text
+评价层结构已经完成 V1/V2 理解和文档化。
+评价层代码封装尚未开始。
+```

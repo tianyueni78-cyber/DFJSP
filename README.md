@@ -94,3 +94,25 @@ outputDir = outputs/small_nsga2_refactored/20260525_192659
 ```
 
 这说明新编码层已经接入小规模 NSGA-II 搜索流程。完整项目仍未全部封装完成，后续重点是 `sorting.m` 解码层、`fitness.m` 评价层和完整指标。
+
+## 2026-05-25 解码层入口
+
+当前解码层已经完成 D1-D8 的第一轮拆解、封装和测试。回 GitHub 找解码层时，优先看：
+
+| 我想做什么 | 打开或运行什么 |
+|---|---|
+| 理解 `sorting.m` 如何把 `chrom` 变成调度过程 | [decoding_layer_structure_note.md](docs/04_decoding/decoding_layer_structure_note.md) |
+| 看解码层函数在哪里 | `src/decoding/decode_chromosome.m`, `src/decoding/decode_population.m` |
+| 跑解码层正常 smoke test | `run('tests/test_decoding_layer.m')` |
+| 跑解码层异常输入测试 | `run('tests/test_decoding_invalid_cases.m')` |
+| 对比新封装和原始 `sorting.m` 输出是否一致 | `run('tests/test_decoding_compare_sorting.m')` |
+
+当前已由用户在 MATLAB 中跑通：
+
+```text
+test_decoding_layer passed: population=3, operations=55, AGVNum=3
+test_decoding_invalid_cases passed
+test_decoding_compare_sorting passed: fields matched=5
+```
+
+解码层仍然不负责计算 `makespan` / `totalEnergy`，这些属于后续评价层 `fitness.m` 的拆解范围。

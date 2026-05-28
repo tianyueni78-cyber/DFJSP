@@ -488,3 +488,61 @@ outputDir: outputs/small_nsga2_refactored/20260525_192659
 ```matlab
 run('tests/test_small_nsga2_refactored_encoding.m')
 ```
+## 13. 2026-05-25 更新：解码层文档入口
+
+当前解码层结构说明入口是：
+
+| 我想看什么 | 打开哪里 | 说明 |
+|---|---|---|
+| 看 `sorting.m` 如何把 `chrom` 变成调度过程 | `docs/04_decoding/decoding_layer_structure_note.md` | 解码层结构说明，解释机器时间表、AGV 时间表、OS/MS/AS/SS 在解码中的作用 |
+
+这不是运行入口，而是理解入口。
+
+当前没有新增解码层测试入口，也没有新增 `src/decoding/` 代码。后续进入 D3/D4 后，才会规划或建立：
+
+```text
+src/decoding/decode_chromosome.m
+tests/test_decoding_layer.m
+```
+
+## 2026-05-25 更新：解码层函数与测试入口
+
+当前解码层已经有第一轮封装入口：
+
+| 类型 | 入口 | 作用 |
+|---|---|---|
+| 结构说明 | `docs/04_decoding/decoding_layer_structure_note.md` | 解释 `sorting.m`、解码层边界、D1-D8 状态 |
+| 单条 chrom 解码函数 | `src/decoding/decode_chromosome.m` | 输入一条 `chrom`，返回 `schedule/report` |
+| population 解码函数 | `src/decoding/decode_population.m` | 逐条调用 `decode_chromosome`，统计成功/失败 |
+| 正常 smoke test | `tests/test_decoding_layer.m` | 验证合法 chrom 和小 population 能解码 |
+| 异常测试 | `tests/test_decoding_invalid_cases.m` | 验证非法 chrom、缺字段、空 population、非法 population 能被识别 |
+| 原始行为对比 | `tests/test_decoding_compare_sorting.m` | 对比 `decode_chromosome` 和原始 `sorting.m` 的 5 个核心输出字段 |
+
+推荐检查顺序：
+
+```matlab
+cd D:\CODEX\code_refactor_project
+run('tests/test_decoding_layer.m')
+run('tests/test_decoding_invalid_cases.m')
+run('tests/test_decoding_compare_sorting.m')
+```
+
+已由用户跑通的结果：
+
+```text
+test_decoding_layer passed: population=3, operations=55, AGVNum=3
+test_decoding_invalid_cases passed
+test_decoding_compare_sorting passed: fields matched=5
+```
+
+这些入口不计算 `makespan / totalEnergy`，也不是完整 NSGA-II 运行入口。它们只验证解码层。
+
+## 2026-05-25 更新：评价层文档入口
+
+当前评价层结构说明入口是：
+
+| 我想看什么 | 打开哪里 | 说明 |
+|---|---|---|
+| 看 `fitness.m` 如何初始化时间表、调用解码、计算目标值 | `docs/05_evaluation/evaluation_layer_structure_note.md` | 评价层结构说明，解释 makespan、机器能耗、AGV 能耗和解码层边界 |
+
+这不是运行入口，而是理解入口。当前评价层代码封装尚未开始，后续会从 `create_initial_schedule_tables` 和 `evaluate_schedule` 开始。
