@@ -20,6 +20,7 @@ require_fields(problem, {'jobNum', 'jobInfo', 'operaNumVec', ...
 require_fields(machineData, {'distance_matrix', 'machineEnergy'}, 'machineData');
 require_fields(agvData, {'AGVNum', 'AGVSpeed', 'AGVEnergy'}, 'agvData');
 require_fields(config, {'AGVEG_MAX', 'AGVEG_MIN', 'eChargeSpeed'}, 'config');
+validate_chromosome_input(chrom, problem);
 
 [FUNC, machineTable, AGVTable, makespan, EG_M_SUM, EG_A_SUM, ...
     agvEGRecord, agvChargeNum] = fitness(chrom, ...
@@ -48,6 +49,19 @@ result.machineTable = machineTable;
 result.AGVTable = AGVTable;
 result.agvEGRecord = agvEGRecord;
 result.agvChargeNum = agvChargeNum;
+end
+
+function validate_chromosome_input(chrom, problem)
+if ~isnumeric(chrom) || isempty(chrom) || ~isrow(chrom)
+    error('evaluate_chromosome:InvalidChromosome', ...
+        'chrom must be a non-empty numeric row vector.');
+end
+
+expectedLength = 5 * sum(problem.operaNumVec);
+if numel(chrom) ~= expectedLength
+    error('evaluate_chromosome:InvalidChromosome', ...
+        'chrom length must be 5 * sum(problem.operaNumVec).');
+end
 end
 
 function require_fields(s, fields, structName)
