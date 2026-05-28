@@ -1,59 +1,56 @@
-# Evaluation Layer Decomposition Plan
+# 评价层拆分计划
 
-## 1. Purpose
+## 1. 目的
 
-This note records the first evaluation-layer decomposition after the raw
-wrapper acceptance step.
+这份文档记录 raw wrapper 验收之后的第一轮评价层拆分。
 
-The goal is to make the objective calculations understandable and testable as
-small functions, while keeping the current raw `fitness.m` wrapper unchanged as
-the baseline.
+目标是把目标值计算逻辑拆成更容易理解、可单独测试的小函数，同时保留当前 raw `fitness.m` wrapper 作为基准答案。
 
-This stage is not a replacement for raw `fitness.m`.
+当前阶段不是替换 raw `fitness.m`。
 
-## 2. What raw fitness.m does
+## 2. raw fitness.m 当前做了什么
 
-The current raw entry is:
+当前 raw 入口是：
 
 ```text
 raw_code/NSGA-II/fitness.m
 ```
 
-Its responsibilities are:
+它的职责包括：
 
 ```text
-initialize machineTable
-initialize AGVTable
-call sorting
-compute makespan
-compute machine energy
-compute AGV energy
-build FUNC = {[makespan, totalEnergy]}
+初始化 machineTable
+初始化 AGVTable
+调用 sorting
+计算 makespan
+计算机器能耗
+计算 AGV 能耗
+构建 FUNC = {[makespan, totalEnergy]}
 ```
 
-The raw chain is:
+raw 链路是：
 
 ```text
 chrom
 -> sorting(...)
 -> machineTable / AGVTable / jobCompleteUnLoad / agvEGRecord / agvChargeNum
--> makespan and energy objectives
+-> makespan 和 energy 目标值
 ```
 
-## 3. Output sources
+## 3. 各输出字段从哪里来
 
 `machineTable`
 
 ```text
-Created in fitness.m and filled by sorting.m.
-Used later to compute machine work and idle durations.
+在 fitness.m 中初始化，由 sorting.m 填充。
+后续用于统计机器工作时长和空闲时长。
 ```
 
 `AGVTable`
 
 ```text
-Created in fitness.m and filled by sorting.m.
-Returned for schedule inspection, but raw AGV energy is computed from agvEGRecord.
+在 fitness.m 中初始化，由 sorting.m 填充。
+它用于检查调度过程，但 raw AGV 能耗实际来自 agvEGRecord。
 ```
 
 `makespan`
@@ -65,9 +62,9 @@ makespan = max(jobCompleteUnLoad)
 `machineEnergy`
 
 ```text
-For every finite machineTable block:
-job == 0  -> idle/free duration
-job ~= 0  -> work duration
+遍历每个有限的 machineTable 时间块：
+job == 0  -> 计入空闲时长
+job ~= 0  -> 计入工作时长
 
 machineEnergy = workRates' * workDurations + freeRates' * idleDurations
 ```
@@ -75,9 +72,9 @@ machineEnergy = workRates' * workDurations + freeRates' * idleDurations
 `agvEnergy`
 
 ```text
-For every AGV battery record:
-only positive drops between consecutive battery values are accumulated.
-Charging increases are ignored.
+遍历每辆 AGV 的电量记录：
+只累计相邻电量之间的正向下降值。
+如果电量上升，认为是充电或恢复，不计入消耗。
 ```
 
 `FUNC`
@@ -86,9 +83,9 @@ Charging increases are ignored.
 FUNC = {[makespan, machineEnergy + agvEnergy]}
 ```
 
-## 4. New component entries
+## 4. 新增组件入口
 
-The split evaluation helpers are:
+本阶段拆出的评价层小函数是：
 
 ```text
 src/evaluation/compute_makespan_from_schedule.m
@@ -97,23 +94,23 @@ src/evaluation/compute_agv_energy.m
 src/evaluation/build_objectives.m
 ```
 
-Responsibilities:
+职责如下：
 
 ```text
 compute_makespan_from_schedule
-    Reads schedule.jobCompleteUnLoad and returns max(jobCompleteUnLoad).
+    读取 schedule.jobCompleteUnLoad，返回 max(jobCompleteUnLoad)。
 
 compute_machine_energy
-    Reads machineTable and machineEnergy rates, then returns machine energy.
+    读取 machineTable 和 machineEnergy 能耗率，返回机器总能耗。
 
 compute_agv_energy
-    Reads agvEGRecord and returns accumulated AGV battery drops.
+    读取 agvEGRecord，返回 AGV 电量下降累计值。
 
 build_objectives
-    Combines makespan, machine energy, and AGV energy into objective fields.
+    合并 makespan、机器能耗和 AGV 能耗，构建目标字段。
 ```
 
-These helpers do not call:
+这些小函数不调用：
 
 ```text
 fitness.m
@@ -121,65 +118,65 @@ sorting.m
 NSGA2.m
 ```
 
-## 5. Test entries
+## 5. 测试入口
 
-Manual component test:
+手工小样本组件测试：
 
 ```matlab
 run('tests/test_evaluation_components.m')
 ```
 
-Raw-wrapper comparison test:
+raw wrapper 对照测试：
 
 ```matlab
 run('tests/test_evaluation_components_compare_raw.m')
 ```
 
-Existing wrapper tests:
+已有 wrapper 测试：
 
 ```matlab
 run('tests/test_evaluate_chromosome.m')
 run('tests/test_evaluation_invalid_cases.m')
 ```
 
-## 6. What passing tests mean
+## 6. 测试通过代表什么
 
-If the evaluation component tests pass, this stage confirms:
+如果评价层组件测试通过，说明：
 
 ```text
-makespan can be computed as a small function
-machine energy can be computed as a small function
-AGV energy can be computed as a small function
-objectives can be built as a small function
-machineEnergy / agvEnergy / totalEnergy match evaluate_chromosome outputs
+makespan 可以作为小函数单独计算
+机器能耗可以作为小函数单独计算
+AGV 能耗可以作为小函数单独计算
+objectives 可以作为小函数单独构建
+machineEnergy / agvEnergy / totalEnergy 与 evaluate_chromosome 输出一致
 ```
 
-The raw comparison test deliberately uses `evaluate_chromosome` as the current
-baseline. This keeps the decomposition aligned with raw `fitness.m`.
+raw 对照测试故意使用 `evaluate_chromosome` 作为当前基准。
 
-## 7. What is not completed
+这样可以保证拆分出来的小函数仍然和 raw `fitness.m` 行为对齐。
 
-This stage does not:
+## 7. 当前阶段没有完成什么
+
+当前阶段没有完成：
 
 ```text
-replace raw fitness.m
-replace raw sorting.m
-run full NSGA-II
-validate medium/formal experiments
-implement independent search
-implement metrics or plots
+替换 raw fitness.m
+替换 raw sorting.m
+运行完整 NSGA-II
+验证 medium/formal 实验
+实现独立 search
+实现 metrics 或 plots
 ```
 
-The current stage only splits objective calculations into testable helper
-functions.
+当前阶段只负责把 objective calculations 拆成可测试的小函数。
 
-## 8. Future path
+## 8. 后续路线
 
-To fully detach from raw `fitness.m`, continue in small steps:
+如果要完全脱离 raw `fitness.m`，后续按小任务继续：
 
 ```text
-1. Keep evaluate_chromosome as the raw baseline.
-2. Use decoded schedules as inputs to the new component helpers.
-3. Add compare tests for every future independent evaluation entry.
-4. Replace the raw fitness wrapper only after all component comparisons pass.
+1. 保留 evaluate_chromosome 作为 raw baseline。
+2. 使用 decoding 层输出的 schedule 作为新评价函数输入。
+3. 后续每新增一个独立 evaluation 入口，都加 raw 对照测试。
+4. 只有所有组件对照通过后，才考虑替换 raw fitness wrapper。
 ```

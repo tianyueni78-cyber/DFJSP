@@ -1,82 +1,78 @@
-# Evaluation Layer Wrapper Acceptance
+# 评价层 Wrapper 验收说明
 
-## 1. Evaluation layer responsibility
+## 1. 评价层负责什么
 
-The evaluation layer answers one question:
+评价层回答的问题是：
 
 ```text
-How good is this chromosome?
+这一条染色体对应的调度方案好不好？
 ```
 
-For the current project, one chromosome is evaluated as:
+在当前项目里，一条染色体的评价链路是：
 
 ```text
 chrom
 -> raw fitness.m
 -> makespan
--> machine energy
--> AGV energy
--> total energy
--> objective vector
+-> 机器能耗
+-> AGV 能耗
+-> 总能耗
+-> 目标向量
 ```
 
-This layer does not search for new chromosomes. It only evaluates one given
-chromosome.
+评价层不负责搜索新的染色体。它只负责评价一条已经给定的染色体。
 
-## 2. Current entry point
+## 2. 当前入口
 
-The current evaluation wrapper entry point is:
+当前评价层 wrapper 入口是：
 
 ```text
 src/evaluation/evaluate_chromosome.m
 ```
 
-Function form:
+函数形式：
 
 ```matlab
 result = evaluate_chromosome(chrom, problem, machineData, agvData, config)
 ```
 
-This is a single-chromosome evaluation entry. It is not a population search
-entry and it does not run NSGA-II.
+这是单条染色体评价入口，不是种群搜索入口，也不会运行完整 NSGA-II。
 
-## 3. Current raw dependency
+## 3. 当前仍依赖 raw fitness.m
 
-The current stage is not an independent evaluation implementation.
+当前阶段不是独立 evaluation 实现。
 
-The wrapper still depends on:
+当前 wrapper 仍依赖：
 
 ```text
 raw_code/NSGA-II/fitness.m
 ```
 
-The selected raw algorithm directory must be on the MATLAB path before calling
-`evaluate_chromosome`.
+调用 `evaluate_chromosome` 前，需要把对应 raw 算法目录加入 MATLAB path。
 
-Current wrapper behavior:
+当前 wrapper 做的事情是：
 
 ```text
-check required fields
-check obvious chromosome format errors
-call raw fitness.m
-pack raw outputs into result
+检查必要字段
+检查明显错误的 chrom 格式
+调用 raw fitness.m
+把 raw 输出整理成 result 结构
 ```
 
-It does not rewrite `fitness.m`, and it does not change the original algorithm
-logic.
+它不重写 `fitness.m`，也不改变原始算法逻辑。
 
-## 4. Input structures
+## 4. 输入结构
 
 `chrom`
 
 ```text
-One chromosome row vector.
-The current encoding length must be 5 * sum(problem.operaNumVec).
+一条染色体行向量。
+当前编码长度必须等于 5 * sum(problem.operaNumVec)。
 ```
 
 `problem`
 
-Required fields:
+必需字段：
 
 ```text
 jobNum
@@ -88,7 +84,7 @@ candidateMachine
 
 `machineData`
 
-Required fields:
+必需字段：
 
 ```text
 distance_matrix
@@ -97,7 +93,7 @@ machineEnergy
 
 `agvData`
 
-Required fields:
+必需字段：
 
 ```text
 AGVNum
@@ -107,7 +103,7 @@ AGVEnergy
 
 `config`
 
-Required fields:
+必需字段：
 
 ```text
 AGVEG_MAX
@@ -115,9 +111,9 @@ AGVEG_MIN
 eChargeSpeed
 ```
 
-## 5. Output result structure
+## 5. 输出 result 结构
 
-`evaluate_chromosome` returns a `result` struct with these fields:
+`evaluate_chromosome` 返回 `result` 结构体，包含：
 
 ```text
 FUNC
@@ -132,99 +128,98 @@ agvEGRecord
 agvChargeNum
 ```
 
-The main objective fields are:
+主要目标字段是：
 
 ```text
 result.objectives   [makespan, totalEnergy]
-result.makespan     schedule completion time
+result.makespan     调度完成时间
 result.totalEnergy  machineEnergy + agvEnergy
 ```
 
-The schedule-table fields are passed through from raw `fitness.m`.
+调度表相关字段来自 raw `fitness.m` 的输出。
 
-## 6. How to reproduce this layer
+## 6. 如何复现这一层
 
-Open MATLAB in the project root:
+在 MATLAB 中切到项目根目录：
 
 ```matlab
 cd('D:\CODEX\code_refactor_project')
 ```
 
-Run the smoke test:
+运行 smoke test：
 
 ```matlab
 run('tests/test_evaluate_chromosome.m')
 ```
 
-Run the invalid-case test:
+运行 invalid case 测试：
 
 ```matlab
 run('tests/test_evaluation_invalid_cases.m')
 ```
 
-Expected successful output:
+正常通过时会看到类似：
 
 ```text
 test_evaluate_chromosome passed: makespan=..., totalEnergy=...
 test_evaluation_invalid_cases passed
 ```
 
-These tests use small sample data. They do not run full NSGA-II, medium
-experiments, or formal experiments.
+这些测试使用小样本数据，不运行完整 NSGA-II，不运行 medium/formal 实验。
 
-## 7. What passing tests mean
+## 7. 测试通过代表什么
 
-If the tests pass, this stage confirms:
-
-```text
-one chromosome can be evaluated through the wrapper
-makespan is returned
-totalEnergy is returned
-missing required fields fail clearly
-missing fitness.m path fails clearly
-obvious bad chromosome formats fail before raw fitness.m
-the wrapper does not create project-root files during the smoke test
-```
-
-Passing tests mean the raw evaluation chain is callable through a stable
-wrapper. They do not mean the project has an independent evaluation
-implementation.
-
-## 8. What is not completed in this stage
-
-This stage does not complete:
+测试通过说明：
 
 ```text
-independent makespan computation
-independent machine energy computation
-independent AGV energy computation
-replacement of raw fitness.m
-NSGA-II search validation
-medium/formal experiment validation
-metrics or plotting
+一条染色体可以通过 wrapper 被评价
+makespan 可以返回
+totalEnergy 可以返回
+缺必要字段时能清楚报错
+fitness.m 不在 MATLAB path 时能清楚报错
+明显错误的 chrom 格式会在进入 raw fitness.m 前被拦住
+smoke test 不会在项目根目录新增文件
 ```
 
-In short:
+测试通过只代表 raw evaluation chain 已经可以通过稳定 wrapper 调用。
+
+测试通过不代表项目已经有了独立 evaluation 实现。
+
+## 8. 当前阶段没有完成什么
+
+当前阶段没有完成：
 
 ```text
-Current stage = raw fitness wrapper acceptance.
-Not current stage = independent evaluation rewrite.
+独立 makespan 计算
+独立机器能耗计算
+独立 AGV 能耗计算
+替换 raw fitness.m
+NSGA-II 搜索验证
+medium/formal 实验验证
+指标或画图
 ```
 
-## 9. Path toward independence from raw fitness.m
-
-To remove the dependency on raw `fitness.m`, use a separate future task.
-
-Suggested order:
+一句话总结：
 
 ```text
-1. Freeze this wrapper as the raw baseline.
-2. Split makespan calculation into a small pure function.
-3. Split machine energy calculation into a small pure function.
-4. Split AGV energy calculation into a small pure function.
-5. Build an independent objective-vector function.
-6. Compare every independent output against raw fitness.m on small samples.
-7. Only after those comparisons pass, consider replacing the wrapper path.
+当前阶段 = raw fitness wrapper 验收。
+不是当前阶段 = 独立 evaluation 重写。
 ```
 
-Do not combine that work with this wrapper acceptance stage.
+## 9. 后续如何脱离 raw fitness.m
+
+如果后续要去掉 raw `fitness.m` 依赖，需要另开小任务。
+
+建议顺序：
+
+```text
+1. 保留当前 wrapper 作为 raw baseline。
+2. 把 makespan 计算拆成纯函数。
+3. 把机器能耗计算拆成纯函数。
+4. 把 AGV 能耗计算拆成纯函数。
+5. 构建独立 objective vector 函数。
+6. 每个独立输出都用小样本和 raw fitness.m 对照。
+7. 全部对照通过后，再考虑替换 wrapper 路径。
+```
+
+不要把这些工作和 wrapper 验收混在同一个阶段里做。
