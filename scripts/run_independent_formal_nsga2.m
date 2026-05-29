@@ -1,4 +1,9 @@
-clear
+if exist('RUN_INDEPENDENT_FORMAL_CONFIRMED', 'var')
+    formalConfirmed = RUN_INDEPENDENT_FORMAL_CONFIRMED;
+else
+    formalConfirmed = false;
+end
+clearvars -except formalConfirmed
 clc
 
 projectRoot = fileparts(fileparts(mfilename('fullpath')));
@@ -14,12 +19,13 @@ fprintf('currentSeed: %g\n', config.random.currentSeed);
 fprintf('pop: %d, max_gen: %d\n', ...
     config.algorithm.pop, config.algorithm.max_gen);
 fprintf('outputBaseDir: %s\n', config.paths.outputBaseDir);
-fprintf('formal run is guarded and was not started.\n');
 
-if ~exist('RUN_INDEPENDENT_FORMAL_CONFIRMED', 'var') || ...
-        ~RUN_INDEPENDENT_FORMAL_CONFIRMED
+if ~formalConfirmed
+    fprintf('formal run is guarded and was not started.\n');
     return
 end
+
+fprintf('formal run confirmed and will start.\n');
 
 addpath(fullfile(projectRoot, 'src', 'data'));
 addpath(fullfile(projectRoot, 'src', 'encoding'));
