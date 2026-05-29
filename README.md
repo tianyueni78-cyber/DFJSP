@@ -116,3 +116,53 @@ test_decoding_compare_sorting passed: fields matched=5
 ```
 
 解码层仍然不负责计算 `makespan` / `totalEnergy`，这些属于后续评价层 `fitness.m` 的拆解范围。
+## 2026-05-29 Independent 主线更新
+
+项目现在已经补上第 21-25 步 independent 主线。也就是说，当前已经不只是 raw wrapper，而是有第一版脱离 raw `sorting.m` / `fitness.m` / `NSGA2.m` 的 independent 链路。
+
+新增复现步骤说明：
+
+- [第 21 步：独立 decoding 实现](docs/07_reproduction/reproduction_steps/21_independent_decoding.md)
+- [第 22 步：独立 evaluation 实现](docs/07_reproduction/reproduction_steps/22_independent_evaluation.md)
+- [第 23 步：独立 NSGA-II search 实现](docs/07_reproduction/reproduction_steps/23_independent_nsga2_search.md)
+- [第 24 步：raw 对照测试总验收](docs/07_reproduction/reproduction_steps/24_independent_raw_compare.md)
+- [第 25 步：independent small / medium / formal 验收](docs/07_reproduction/reproduction_steps/25_independent_experiment_entries.md)
+
+新增 independent 入口：
+
+| 类型 | 文件 |
+|---|---|
+| small config | `configs/independent_small_config.m` |
+| medium config | `configs/independent_medium_config.m` |
+| formal config | `configs/independent_formal_config.m` |
+| small runner | `scripts/run_independent_small_nsga2.m` |
+| medium runner | `scripts/run_independent_medium_nsga2.m` |
+| formal preflight / guarded runner | `scripts/run_independent_formal_nsga2.m` |
+
+关键文档：
+
+- [independent decoding 说明](docs/04_decoding/independent_decoding_guide.md)
+- [independent evaluation 说明](docs/05_evaluation/independent_evaluation_guide.md)
+- [independent NSGA-II search 说明](docs/03_algorithm/independent_nsga2_search_guide.md)
+- [independent raw 对照验收](docs/07_reproduction/independent_raw_compare_acceptance.md)
+- [independent 实验入口说明](docs/06_experiments/independent_experiment_entry_guide.md)
+
+当前结论：
+
+```text
+raw_code 是只读 baseline。
+src 已经有 independent decoding / evaluation / NSGA-II search。
+scripts 已经有 independent small / medium / formal preflight。
+tests 已经有 independent 验收和 raw 对照。
+outputs 仍然不提交 Git。
+```
+
+下一阶段路线：
+
+```text
+26. independent formal 真正运行
+27. independent metrics / visualization 接 outputs
+28. baseline 对比实验跑通
+29. 多 seed 统计汇总
+30. 新项目迁移演练
+```

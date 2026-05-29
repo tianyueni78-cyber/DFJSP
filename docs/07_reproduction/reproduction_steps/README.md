@@ -384,3 +384,56 @@ formal 配置
 -> metrics 读取
 -> metrics 摘要
 ```
+## 2026-05-29 更新：第 21-25 步 independent 主线
+
+前面的复现步骤原本停在 raw wrapper / formal / metrics 入口设计阶段。现在已经补上第 21-25 步，也就是“真正脱离 raw_code 的 independent 主线”。
+
+| 步骤 | 说明文档 | 当前状态 |
+|---|---|---|
+| 第 21 步 | [独立 decoding 实现](21_independent_decoding.md) | 已完成，`decode_chromosome_independent` / `decode_population_independent` 可用 |
+| 第 22 步 | [独立 evaluation 实现](22_independent_evaluation.md) | 已完成，`evaluate_decoded_schedule` 可用 |
+| 第 23 步 | [独立 NSGA-II search 实现](23_independent_nsga2_search.md) | 已完成，`run_independent_nsga2` 可跑 small loop |
+| 第 24 步 | [raw 对照测试总验收](24_independent_raw_compare.md) | 已完成，decoding / evaluation / search small 均有 raw 对照 |
+| 第 25 步 | [independent small / medium / formal 验收](25_independent_experiment_entries.md) | 已完成，independent small 和 medium 可跑，formal 有 preflight |
+
+当前 independent 入口：
+
+```text
+configs/independent_small_config.m
+configs/independent_medium_config.m
+configs/independent_formal_config.m
+
+scripts/run_independent_small_nsga2.m
+scripts/run_independent_medium_nsga2.m
+scripts/run_independent_formal_nsga2.m
+```
+
+当前 independent 检查命令：
+
+```matlab
+run('tests/test_independent_experiment_configs.m')
+run('tests/test_independent_formal_preflight.m')
+run('tests/test_independent_decoding_compare_raw.m')
+run('tests/test_independent_evaluation_compare_raw.m')
+run('tests/test_independent_search_compare_raw.m')
+```
+
+当前结论：
+
+```text
+raw_code 是只读 baseline。
+src 已经有 independent decoding / evaluation / NSGA-II search。
+scripts 已经有 independent small / medium / formal preflight 入口。
+tests 已经有 independent 验收和 raw 对照。
+outputs 仍然不提交 Git。
+```
+
+这表示项目已经具备“脱离 raw_code 的第一版可复现框架”。下一阶段如果继续推进，应进入：
+
+```text
+26. independent formal 真正运行
+27. independent metrics / visualization 接 outputs
+28. baseline 对比实验跑通
+29. 多 seed 统计汇总
+30. 新项目迁移演练
+```

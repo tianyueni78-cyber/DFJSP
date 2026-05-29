@@ -956,3 +956,44 @@ chrom
 ```
 
 再往后才适合让搜索层调用新的评价入口。
+## 2026-05-29 更新：independent 主线实施地图
+
+第 21-25 步已经把项目从“raw wrapper 可控复现”推进到“第一版 independent 可复现框架”。
+
+| 步骤 | 目标 | 已完成入口 | 当前状态 |
+|---|---|---|---|
+| 21. 独立 decoding | 不再调用 raw `sorting.m` | `src/decoding/decode_chromosome_independent.m`、`src/decoding/decode_population_independent.m` | 已完成，raw compare 通过 |
+| 22. 独立 evaluation | 不再调用 raw `fitness.m` | `src/evaluation/evaluate_decoded_schedule.m` | 已完成，raw wrapper compare 通过 |
+| 23. 独立 search | 不再调用 raw `NSGA2.m` / raw selection / raw replacement | `src/search/run_independent_nsga2.m` | 已完成，small loop 通过 |
+| 24. raw 对照总验收 | 系统确认 independent 与 raw 一致或差异可解释 | `tests/test_independent_*compare_raw.m` | 已完成，decoding/evaluation/search small 均有对照 |
+| 25. independent 实验入口 | 建立 independent small / medium / formal preflight | `scripts/run_independent_*_nsga2.m` | 已完成，small/medium 已运行，formal preflight 通过 |
+
+当前项目分层状态更新为：
+
+| 层 | 当前结论 |
+|---|---|
+| raw_code | 只读 baseline，不再作为新实现主线 |
+| encoding | 已有 refactored 生成、校验、交叉、变异入口 |
+| decoding | 已有 independent decoder |
+| evaluation | 已有 independent schedule evaluator |
+| search | 已有 independent NSGA-II small/medium 可运行入口 |
+| experiments | 已有 independent small / medium / formal preflight 配置和脚本 |
+| tests | 已有 independent 验收和 raw 对照 |
+| docs | 已补 independent decoding/evaluation/search/raw compare/experiment entry 说明 |
+
+当前能力边界：
+
+```text
+已经具备：脱离 raw_code 的第一版 independent 可复现框架。
+尚未完成：independent formal 正式运行、formal outputs 接 metrics/visualization、baseline 对比、多 seed 统计、新项目迁移演练。
+```
+
+下一阶段实施地图：
+
+| 编号 | 下一步 | 目标 |
+|---|---|---|
+| 26 | independent formal 真正运行 | 产出 independent formal 的 result/summary/run_info |
+| 27 | independent metrics / visualization 接 outputs | 让 independent formal 输出能生成指标和基础图 |
+| 28 | baseline 对比实验跑通 | raw baseline 与 independent variant 同数据同 seed 对比 |
+| 29 | 多 seed 统计汇总 | 形成 mean/std/best/worst 统计 |
+| 30 | 新项目迁移演练 | 验证这套框架如何迁移到新选题 |

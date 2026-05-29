@@ -412,3 +412,97 @@ outputs/formal_nsga2/时间戳/formal_nsga2_result.mat
 ```text
 outputs/formal_nsga2/时间戳/metrics/
 ```
+## 2026-05-29 更新：independent 主线命令
+
+如果你现在想跑“脱离 raw_code 的 independent 链路”，优先使用下面这些命令。
+
+### 1. independent 配置与 formal 保护门检查
+
+```matlab
+run('tests/test_independent_experiment_configs.m')
+run('tests/test_independent_formal_preflight.m')
+```
+
+### 2. independent raw 对照总验收
+
+```matlab
+run('tests/test_independent_decoding_compare_raw.m')
+run('tests/test_independent_evaluation_compare_raw.m')
+run('tests/test_independent_search_compare_raw.m')
+```
+
+### 3. independent small
+
+```matlab
+run('scripts/run_independent_small_nsga2.m')
+```
+
+输出目录：
+
+```text
+outputs/independent_small_nsga2/<timestamp>/
+```
+
+每次运行应包含：
+
+```text
+result.mat
+summary.txt
+run_info.txt
+```
+
+### 4. independent medium
+
+```matlab
+run('scripts/run_independent_medium_nsga2.m')
+```
+
+输出目录：
+
+```text
+outputs/independent_medium_nsga2/<timestamp>/
+```
+
+每次运行应包含：
+
+```text
+result.mat
+summary.txt
+run_info.txt
+```
+
+### 5. independent formal preflight
+
+默认只做 preflight，不启动正式实验：
+
+```matlab
+run('scripts/run_independent_formal_nsga2.m')
+```
+
+真正运行 independent formal 必须显式确认：
+
+```matlab
+RUN_INDEPENDENT_FORMAL_CONFIRMED = true;
+run('scripts/run_independent_formal_nsga2.m')
+```
+
+输出目录：
+
+```text
+outputs/independent_formal_nsga2/<timestamp>/
+```
+
+### 6. 当前推荐顺序
+
+```matlab
+run('tests/test_independent_experiment_configs.m')
+run('tests/test_independent_formal_preflight.m')
+run('tests/test_independent_decoding_compare_raw.m')
+run('tests/test_independent_evaluation_compare_raw.m')
+run('tests/test_independent_search_compare_raw.m')
+run('scripts/run_independent_small_nsga2.m')
+run('scripts/run_independent_medium_nsga2.m')
+run('scripts/run_independent_formal_nsga2.m')
+```
+
+这组命令不会修改 `raw_code/`。small 和 medium 会生成 ignored 的 `outputs/independent_*` 本地结果。

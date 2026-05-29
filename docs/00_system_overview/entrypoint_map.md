@@ -546,3 +546,44 @@ test_decoding_compare_sorting passed: fields matched=5
 | 看 `fitness.m` 如何初始化时间表、调用解码、计算目标值 | `docs/05_evaluation/evaluation_layer_structure_note.md` | 评价层结构说明，解释 makespan、机器能耗、AGV 能耗和解码层边界 |
 
 这不是运行入口，而是理解入口。当前评价层代码封装尚未开始，后续会从 `create_initial_schedule_tables` 和 `evaluate_schedule` 开始。
+## 2026-05-29 更新：independent 主线入口
+
+第 21-25 步完成后，项目新增了一条不依赖 raw `sorting.m` / `fitness.m` / `NSGA2.m` 的 independent 主线。
+
+### independent 配置入口
+
+| 我想改什么 | 打开哪里 | 说明 |
+|---|---|---|
+| independent small 参数 | `configs/independent_small_config.m` | `pop=10, max_gen=2, seed=42` |
+| independent medium 参数 | `configs/independent_medium_config.m` | `pop=20, max_gen=5, seed=42` |
+| independent formal 参数 | `configs/independent_formal_config.m` | `pop=30, max_gen=10, seedList=[42,43,44,45,46]` |
+
+### independent 运行入口
+
+| 我想做什么 | MATLAB 命令 | 输出位置 |
+|---|---|---|
+| 跑 independent small | `run('scripts/run_independent_small_nsga2.m')` | `outputs/independent_small_nsga2/<timestamp>/` |
+| 跑 independent medium | `run('scripts/run_independent_medium_nsga2.m')` | `outputs/independent_medium_nsga2/<timestamp>/` |
+| 只做 independent formal preflight | `run('scripts/run_independent_formal_nsga2.m')` | 默认不生成 formal 输出 |
+| 明确确认后跑 independent formal | `RUN_INDEPENDENT_FORMAL_CONFIRMED = true; run('scripts/run_independent_formal_nsga2.m')` | `outputs/independent_formal_nsga2/<timestamp>/` |
+
+### independent 测试入口
+
+| 检查什么 | MATLAB 命令 |
+|---|---|
+| independent config 是否完整 | `run('tests/test_independent_experiment_configs.m')` |
+| independent formal 是否有保护门 | `run('tests/test_independent_formal_preflight.m')` |
+| independent decoding 与 raw sorting 对照 | `run('tests/test_independent_decoding_compare_raw.m')` |
+| independent evaluation 与 raw wrapper 对照 | `run('tests/test_independent_evaluation_compare_raw.m')` |
+| independent small search 与 raw/refactored small 结构对照 | `run('tests/test_independent_search_compare_raw.m')` |
+
+### independent 说明文档
+
+| 想看什么 | 打开哪里 |
+|---|---|
+| independent decoding | `docs/04_decoding/independent_decoding_guide.md` |
+| independent evaluation | `docs/05_evaluation/independent_evaluation_guide.md` |
+| independent search | `docs/03_algorithm/independent_nsga2_search_guide.md` |
+| raw 对照总验收 | `docs/07_reproduction/independent_raw_compare_acceptance.md` |
+| independent 实验入口 | `docs/06_experiments/independent_experiment_entry_guide.md` |
+| 第 21-25 步复现索引 | `docs/07_reproduction/reproduction_steps/README.md` |
