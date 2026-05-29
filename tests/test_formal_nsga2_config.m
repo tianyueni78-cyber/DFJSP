@@ -51,6 +51,9 @@ assert(isfile(config.paths.agvExcel), ...
     'Configured AGV Excel file does not exist.');
 assert(isfolder(config.paths.algorithmDir), ...
     'Configured algorithm directory does not exist.');
+expectedOutputBaseDir = fullfile(projectRoot, 'outputs', 'formal_nsga2');
+assert(strcmp(config.paths.outputBaseDir, expectedOutputBaseDir), ...
+    'Formal outputBaseDir should be outputs/formal_nsga2.');
 
 requiredDatasetFields = {'name', 'source', 'note'};
 for i = 1:numel(requiredDatasetFields)
