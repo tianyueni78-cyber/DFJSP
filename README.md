@@ -1,5 +1,7 @@
 # Code Refactor Project
 
+> 最新入口：请切到 GitHub 分支 `codex/update-progress-gaps`，从 [第 21-25 步 independent 主线索引](docs/07_reproduction/reproduction_steps/README.md#2026-05-29-更新第-21-25-步-independent-主线) 或 [independent 实验入口说明](docs/06_experiments/independent_experiment_entry_guide.md) 开始看。
+
 面向论文复现的调度算法整理项目。当前重点是把原始 MATLAB 代码逐步拆成清晰的数据层、调度解码层、算法层和实验复现层。
 
 ## Knowledge Base
