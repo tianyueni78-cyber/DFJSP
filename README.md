@@ -1,6 +1,6 @@
 # Code Refactor Project
 
-> 最新入口：请切到 GitHub 分支 `codex/update-progress-gaps`，从 [第 21-25 步 independent 主线索引](docs/07_reproduction/reproduction_steps/README.md#2026-05-29-更新第-21-25-步-independent-主线) 或 [independent 实验入口说明](docs/06_experiments/independent_experiment_entry_guide.md) 开始看。
+> 最新入口：GitHub 默认 `main` 已包含全部更新。第一次了解项目请看 [复现步骤说明](docs/07_reproduction/reproduction_steps/README.md)；准备迁移新项目时，请直接打开 [新项目套用与复现入口顺序](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md)。
 
 面向论文复现的调度算法整理项目。当前重点是把原始 MATLAB 代码逐步拆成清晰的数据层、调度解码层、算法层和实验复现层。
 
@@ -159,12 +159,62 @@ tests 已经有 independent 验收和 raw 对照。
 outputs 仍然不提交 Git。
 ```
 
-下一阶段路线：
+## 2026-06-07 Independent 完整闭环更新
+
+第 26-30 步已经完成，不再是待办事项：
 
 ```text
-26. independent formal 真正运行
-27. independent metrics / visualization 接 outputs
-28. baseline 对比实验跑通
-29. 多 seed 统计汇总
-30. 新项目迁移演练
+26. independent formal 已真实运行
+27. independent metrics / visualization 已接入 outputs
+28. baseline 对比 small 闭环已跑通
+29. 多 seed 统计汇总入口已完成
+30. 新项目迁移演练与模板 config 已完成
 ```
+
+最近一次 independent formal 运行记录：
+
+```text
+dataset: Mk01
+seed: 42
+pop: 30
+max_gen: 10
+runTime: 7.625127
+paretoSolutionCount: 4
+bestMakespan: 111.853333
+bestTotalEnergy: 1669.020000
+usedRawSearch: 0
+usedRawDecoding: 0
+usedRawEvaluation: 0
+```
+
+### 我现在应该打开哪里
+
+| 目的 | 入口 |
+|---|---|
+| 遇到新项目，想知道怎么往当前框架上套 | [新项目套用与复现入口顺序](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md) |
+| 查看完整的新项目迁移方法 | [新项目迁移手册](docs/08_engineering/new_project_migration_guide.md) |
+| 查看一次低碳调度新项目迁移演练 | [新项目迁移演练](docs/08_engineering/new_project_migration_rehearsal.md) |
+| 新增目标函数 | [新目标函数模板](docs/08_engineering/new_objective_template.md) |
+| 新增算法改进 | [新算法改进模板](docs/08_engineering/algorithm_improvement_template.md) |
+| 做 baseline 对比 | [baseline 对比模板](docs/08_engineering/baseline_comparison_template.md) |
+| 记录论文实验 | [论文实验记录模板](docs/08_engineering/paper_experiment_record_template.md) |
+| 运行 independent small / medium / formal | [independent 实验入口说明](docs/06_experiments/independent_experiment_entry_guide.md) |
+| 分析 formal 输出 | [independent 结果分析说明](docs/06_experiments/independent_result_analysis_guide.md) |
+| 查看多 seed 汇总流程 | [多 seed 汇总说明](docs/06_experiments/independent_multiseed_summary_guide.md) |
+
+当前项目可以作为类似 FJSP-AGV 论文项目的可迁移骨架。新项目仍应按照：
+
+```text
+config/data dry-run
+-> encoding
+-> decoding
+-> evaluation
+-> independent small
+-> metrics / visualization
+-> independent medium
+-> formal preflight
+-> independent formal
+-> baseline / multiseed
+```
+
+逐层迁移和验收，不应直接从新数据跳到 formal。
