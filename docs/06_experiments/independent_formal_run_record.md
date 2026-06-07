@@ -41,11 +41,23 @@ p_cross: 0.8
 p_mutation: 0.2
 ```
 
-输出目录：
+第一次记录的输出目录：
 
 ```text
 outputs/independent_formal_nsga2/20260529_140231
 ```
+
+之后又完成一次相同配置的确认运行：
+
+```text
+outputs/independent_formal_nsga2/20260529_143851
+runTime: 7.625127
+paretoSolutionCount: 4
+bestMakespan: 111.853333
+bestTotalEnergy: 1669.020000
+```
+
+当前汇报优先使用 `20260529_143851` 这次最新确认结果。
 
 ## 4. 输出文件
 
@@ -112,4 +124,3 @@ formal result.mat 可作为后续 metrics / visualization 的输入
 ```text
 independent metrics / visualization 接 outputs
 ```
-

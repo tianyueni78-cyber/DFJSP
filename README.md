@@ -4,6 +4,153 @@
 
 面向论文复现的调度算法整理项目。当前重点是把原始 MATLAB 代码逐步拆成清晰的数据层、调度解码层、算法层和实验复现层。
 
+## 项目汇报总览
+
+### 1. 项目目标
+
+本项目有两个目标：
+
+```text
+目标 A：复现并验证当前 FJSP-AGV 多目标调度代码。
+目标 B：把可用部分整理成 independent、可测试、可迁移的新项目骨架。
+```
+
+当前采用双轨结构：
+
+```text
+raw_code/
+  原始代码存档、行为参考和 baseline，只读不修改
+
+src/
+  independent decoding / evaluation / NSGA-II / metrics / visualization
+
+configs/
+  small / medium / formal / baseline / multiseed / migration template
+
+scripts/
+  可重复运行的实验与分析入口
+
+tests/
+  smoke / invalid / raw compare / dry-run / integration
+
+outputs/
+  本地运行结果，不提交 Git
+
+docs/
+  复现步骤、层说明、实验记录和迁移手册
+```
+
+### 2. 三十步进度
+
+| 阶段 | 步骤 | 完成内容 | 状态 |
+|---|---:|---|---|
+| 原始项目认识与工程入口 | 1-10 | 数据、单条评价、small/medium、配置和入口分层 | 已完成 |
+| 实验工程化与模板 | 11-20 | outputs、run log、metrics、visualization、迁移/目标/算法/baseline/实验记录模板 | 已完成 |
+| independent 核心实现 | 21-23 | independent decoding、evaluation、NSGA-II search | 已完成 |
+| independent 对照与入口 | 24-25 | raw 对照、small/medium/formal independent 入口 | 已完成 |
+| 结果闭环与迁移验收 | 26-30 | formal、结果分析、baseline、multiseed、迁移演练 | 已完成首轮 |
+
+完整步骤索引：
+
+- [第 1-30 步复现步骤说明](docs/07_reproduction/reproduction_steps/README.md)
+- [第 26 步：independent formal 真正运行](docs/07_reproduction/reproduction_steps/26_independent_formal_run.md)
+- [第 27 步：metrics / visualization 接 outputs](docs/07_reproduction/reproduction_steps/27_independent_result_analysis.md)
+- [第 28 步：baseline 对比 small](docs/07_reproduction/reproduction_steps/28_baseline_comparison_small.md)
+- [第 29 步：多 seed 统计汇总](docs/07_reproduction/reproduction_steps/29_independent_multiseed_summary.md)
+- [第 30 步：新项目迁移演练](docs/07_reproduction/reproduction_steps/30_new_project_migration_rehearsal.md)
+
+### 3. 已验证结果
+
+#### Independent formal
+
+```text
+dataset：Mk01
+seed：42
+pop：30
+max_gen：10
+runTime：7.625127
+paretoSolutionCount：4
+bestMakespan：111.853333
+bestTotalEnergy：1669.020000
+usedRawSearch：0
+usedRawDecoding：0
+usedRawEvaluation：0
+```
+
+#### Independent 结果分析
+
+```text
+formal obj_matrix 已接入 metrics
+spacing：2.549194
+Pareto 图：已生成
+收敛曲线：已生成
+HV / IGD / C-metric：因未提供 reference/baseline，当前为 NaN
+```
+
+#### Baseline small 对比
+
+| 项目 | raw NSGA-II | independent NSGA-II |
+|---|---:|---:|
+| seed | 42 | 42 |
+| pop / max_gen | 10 / 2 | 10 / 2 |
+| Pareto 解数量 | 3 | 1 |
+| 最优 makespan | 155.886667 | 138.456667 |
+| 最优 totalEnergy | 1890.048000 | 1936.654667 |
+
+#### Independent small 五 seed
+
+```text
+seedList：[42 43 44 45 46]
+bestMakespan：mean=137.010000, std=3.095851
+bestTotalEnergy：mean=1909.781867, std=18.655365
+runTime：mean=0.809344, std=0.253770
+paretoSolutionCountMean：2.400000
+```
+
+### 4. 当前结论
+
+已经可以确认：
+
+```text
+当前项目的核心 decoding / evaluation / NSGA-II 已有 independent 实现。
+当前 Mk01 数据能够完成 independent formal 运行。
+formal 输出能够接 metrics 和 visualization。
+能够完成 raw baseline 与 independent variant 的 small 对比。
+能够完成 independent small 五 seed 统计。
+相近的新项目可以按迁移手册逐层套用。
+```
+
+不能过度宣称：
+
+```text
+尚未完成 formal 多 seed。
+尚未完成 formal 多算法 baseline 对比。
+尚未完成完整论文 HV / IGD / C-metric 参数和消融实验。
+尚未拿一个真实的新选题完成从数据到论文结果的全流程迁移。
+新项目不能不改代码直接 formal，必须按变化层逐步适配。
+```
+
+### 5. 新项目怎么套
+
+```text
+config / data dry-run
+-> encoding
+-> decoding
+-> evaluation
+-> independent small
+-> metrics / visualization
+-> independent medium
+-> formal preflight
+-> independent formal
+-> baseline / multiseed
+```
+
+详细入口：
+
+- [新项目套用与复现入口顺序](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md)
+- [新项目迁移手册](docs/08_engineering/new_project_migration_guide.md)
+- [新项目迁移演练](docs/08_engineering/new_project_migration_rehearsal.md)
+
 ## Knowledge Base
 
 - [知识地图工作表](docs/00_system_overview/knowledge_map_workplan.md)
@@ -37,8 +184,22 @@
   - [第 14 步：正式实验入口设计](docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md)
   - [第 15 步：正式实验配置设计](docs/07_reproduction/reproduction_steps/15_formal_config_design.md)
   - [第 17 步：指标入口设计](docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md)
+  - [第 21 步：独立 decoding 实现](docs/07_reproduction/reproduction_steps/21_independent_decoding.md)
+  - [第 22 步：独立 evaluation 实现](docs/07_reproduction/reproduction_steps/22_independent_evaluation.md)
+  - [第 23 步：独立 NSGA-II search 实现](docs/07_reproduction/reproduction_steps/23_independent_nsga2_search.md)
+  - [第 24 步：raw 对照总验收](docs/07_reproduction/reproduction_steps/24_independent_raw_compare.md)
+  - [第 25 步：independent 实验入口](docs/07_reproduction/reproduction_steps/25_independent_experiment_entries.md)
+  - [第 26 步：independent formal 真正运行](docs/07_reproduction/reproduction_steps/26_independent_formal_run.md)
+  - [第 27 步：independent 结果分析](docs/07_reproduction/reproduction_steps/27_independent_result_analysis.md)
+  - [第 28 步：baseline small 对比](docs/07_reproduction/reproduction_steps/28_baseline_comparison_small.md)
+  - [第 29 步：independent 多 seed 汇总](docs/07_reproduction/reproduction_steps/29_independent_multiseed_summary.md)
+  - [第 30 步：新项目迁移演练](docs/07_reproduction/reproduction_steps/30_new_project_migration_rehearsal.md)
 - [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
 - [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
+
+## 历史进展记录
+
+以下内容保留各阶段形成过程，正式汇报优先使用本文开头的“项目汇报总览”。
 
 ## Current Principle
 
@@ -158,63 +319,3 @@ scripts 已经有 independent small / medium / formal preflight。
 tests 已经有 independent 验收和 raw 对照。
 outputs 仍然不提交 Git。
 ```
-
-## 2026-06-07 Independent 完整闭环更新
-
-第 26-30 步已经完成，不再是待办事项：
-
-```text
-26. independent formal 已真实运行
-27. independent metrics / visualization 已接入 outputs
-28. baseline 对比 small 闭环已跑通
-29. 多 seed 统计汇总入口已完成
-30. 新项目迁移演练与模板 config 已完成
-```
-
-最近一次 independent formal 运行记录：
-
-```text
-dataset: Mk01
-seed: 42
-pop: 30
-max_gen: 10
-runTime: 7.625127
-paretoSolutionCount: 4
-bestMakespan: 111.853333
-bestTotalEnergy: 1669.020000
-usedRawSearch: 0
-usedRawDecoding: 0
-usedRawEvaluation: 0
-```
-
-### 我现在应该打开哪里
-
-| 目的 | 入口 |
-|---|---|
-| 遇到新项目，想知道怎么往当前框架上套 | [新项目套用与复现入口顺序](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md) |
-| 查看完整的新项目迁移方法 | [新项目迁移手册](docs/08_engineering/new_project_migration_guide.md) |
-| 查看一次低碳调度新项目迁移演练 | [新项目迁移演练](docs/08_engineering/new_project_migration_rehearsal.md) |
-| 新增目标函数 | [新目标函数模板](docs/08_engineering/new_objective_template.md) |
-| 新增算法改进 | [新算法改进模板](docs/08_engineering/algorithm_improvement_template.md) |
-| 做 baseline 对比 | [baseline 对比模板](docs/08_engineering/baseline_comparison_template.md) |
-| 记录论文实验 | [论文实验记录模板](docs/08_engineering/paper_experiment_record_template.md) |
-| 运行 independent small / medium / formal | [independent 实验入口说明](docs/06_experiments/independent_experiment_entry_guide.md) |
-| 分析 formal 输出 | [independent 结果分析说明](docs/06_experiments/independent_result_analysis_guide.md) |
-| 查看多 seed 汇总流程 | [多 seed 汇总说明](docs/06_experiments/independent_multiseed_summary_guide.md) |
-
-当前项目可以作为类似 FJSP-AGV 论文项目的可迁移骨架。新项目仍应按照：
-
-```text
-config/data dry-run
--> encoding
--> decoding
--> evaluation
--> independent small
--> metrics / visualization
--> independent medium
--> formal preflight
--> independent formal
--> baseline / multiseed
-```
-
-逐层迁移和验收，不应直接从新数据跳到 formal。

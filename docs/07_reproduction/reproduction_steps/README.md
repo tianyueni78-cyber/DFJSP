@@ -14,7 +14,7 @@
 
 ## 复现时通常怎么用
 
-当前仓库还不是完整论文实验成品，而是一个已经跑通的最小工程骨架。复现时通常按这条链路走：
+当前仓库已经形成 independent 复现与分析骨架。复现时通常按这条链路走：
 
 ```text
 准备数据
@@ -29,29 +29,30 @@
 | 步骤 | 你要做什么 | 当前入口 |
 |---|---|---|
 | 1. 准备数据 | 准备 `.fjs`、机器 Excel、AGV Excel，并放到配置指向的位置 | `data_sample/` 或配置文件指定路径 |
-| 2. 改配置 | 指定数据路径、seed、pop、max_gen、能耗参数、输出目录 | `configs/formal_nsga2_config.m` |
-| 3. 跑入口脚本 | 运行 formal NSGA-II 第一版 | `run('scripts/run_formal_nsga2.m')` |
-| 4. 看输出 | 查看本次运行结果、摘要和参数记录 | `outputs/formal_nsga2/时间戳/` |
-| 5. 跑指标入口 | 不重跑算法，只读取 formal 输出并生成最小指标摘要 | `run('scripts/run_metrics.m')` |
+| 2. 改配置 | 指定数据路径、seed、pop、max_gen、能耗参数、输出目录 | `configs/independent_formal_config.m` |
+| 3. 跑入口脚本 | 运行 independent NSGA-II | `run('scripts/run_independent_formal_nsga2.m')` |
+| 4. 看输出 | 查看结果、摘要和参数记录 | `outputs/independent_formal_nsga2/时间戳/` |
+| 5. 跑指标和图表 | 读取 formal 输出生成指标摘要和基础图 | `run_independent_metrics.m` / `run_independent_visualization.m` |
 
 当前这条链路已经跑通：
 
 ```text
-formal 配置
--> formal 运行
--> formal 输出
--> metrics 读取
--> metrics 摘要
+independent formal 配置
+-> independent formal 运行
+-> result / summary / run_info
+-> metrics / visualization
+-> baseline small 对比
+-> multi-seed small 汇总
 ```
 
-但它还不是完整论文实验平台。当前仍然没有完成：
+当前仍然没有完成的论文级工作：
 
 ```text
-多算法对比
+formal 多 seed 统计
+formal baseline 多算法对比
+带 reference point/front 的完整 HV / IGD
 消融实验
-完整 HV / IGD / Spacing / C-metric
-完整图表生成
-编码层/解码层的完整函数封装
+针对某个真实新选题的完整迁移和论文实验
 ```
 
 ## 当前步骤
@@ -428,12 +429,52 @@ tests 已经有 independent 验收和 raw 对照。
 outputs 仍然不提交 Git。
 ```
 
-这表示项目已经具备“脱离 raw_code 的第一版可复现框架”。下一阶段如果继续推进，应进入：
+这表示项目已经具备“脱离 raw_code 的第一版可复现框架”。
+
+## 2026-05-29 更新：第 26-30 步结果闭环与迁移演练
+
+第 26-30 步已经完成，不再是待办：
+
+| 步骤 | 说明文档 | 当前状态 | 证据 |
+|---|---|---|---|
+| 第 26 步 | [independent formal 真正运行](26_independent_formal_run.md) | 已真实运行 | `pop=30, max_gen=10`，结果三件套完整 |
+| 第 27 步 | [metrics / visualization 接 outputs](27_independent_result_analysis.md) | 已接通 | metrics summary、Pareto 图、收敛曲线已生成 |
+| 第 28 步 | [baseline 对比实验跑通](28_baseline_comparison_small.md) | small 单 seed 已真实运行 | raw 与 independent 的 obj_matrix 可比 |
+| 第 29 步 | [多 seed 统计汇总](29_independent_multiseed_summary.md) | small 五 seed 已真实运行 | mean / std / best / worst 已生成 |
+| 第 30 步 | [新项目迁移演练](30_new_project_migration_rehearsal.md) | 模板与字段测试完成 | 低碳目标和自适应变异配置可表达 |
+
+### 当前可复现主线
 
 ```text
-26. independent formal 真正运行
-27. independent metrics / visualization 接 outputs
-28. baseline 对比实验跑通
-29. 多 seed 统计汇总
-30. 新项目迁移演练
+第 1-20 步：raw 基线认识、工程封装、指标图表和迁移模板
+第 21-23 步：independent decoding / evaluation / search
+第 24 步：raw 对照验收
+第 25 步：independent 实验入口
+第 26 步：independent formal 真实运行
+第 27 步：结果分析
+第 28 步：baseline small 对比
+第 29 步：small 多 seed
+第 30 步：新项目迁移演练
+```
+
+### 当前能力边界
+
+已经证明：
+
+```text
+当前 Mk01 数据可以走完整 independent formal 链路
+formal 输出可以生成指标摘要和基础图
+raw baseline 与 independent variant 可以做 small 公平对比
+independent small 可以完成五 seed 统计
+相近的新项目有迁移模板和操作顺序
+```
+
+尚未证明：
+
+```text
+任意更大数据都能稳定运行
+formal 多 seed 已完成
+formal 多算法 baseline 对比已完成
+完整论文指标和消融实验已完成
+任意不同类型调度问题可以零修改套用
 ```
