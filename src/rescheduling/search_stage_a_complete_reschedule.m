@@ -2,8 +2,7 @@ function result = search_stage_a_complete_reschedule( ...
         baseline, frozen, options)
 %SEARCH_STAGE_A_COMPLETE_RESCHEDULE Run restricted NSGA-II generations.
 %   This search operates only on unstarted-operation decisions. It uses
-%   machine-operation makespan and machine-assignment changes until energy
-%   and final-unload reconstruction are implemented.
+%   final-unload makespan and total machine-plus-AGV energy.
 
 if nargin < 3
     error('search_stage_a_complete_reschedule:MissingInput', ...
@@ -45,11 +44,10 @@ result.options = options;
 result.population = evaluated;
 result.pareto_front = front;
 result.objective_names = { ...
-    'machine_operation_makespan', ...
-    'machine_assignment_changes'};
+    'final_unload_makespan', 'total_energy'};
 result.history = history;
-result.is_energy_evaluated = false;
-result.is_final_unload_evaluated = false;
+result.is_energy_evaluated = true;
+result.is_final_unload_evaluated = true;
 result.is_search_executed = true;
 result.is_full_experiment = false;
 result.is_validated = validate_result(result, options);
@@ -197,8 +195,8 @@ function summary = summarize_generation(generation, population)
 objectives = reshape([population.objectives], 2, []).';
 summary = history_template();
 summary.generation = generation;
-summary.minimum_machine_makespan = min(objectives(:, 1));
-summary.minimum_machine_changes = min(objectives(:, 2));
+summary.minimum_final_unload_makespan = min(objectives(:, 1));
+summary.minimum_total_energy = min(objectives(:, 2));
 summary.pareto_count = sum([population.rank] == 1);
 end
 
@@ -263,13 +261,15 @@ function value = evaluation_template()
 value = struct('decision', [], 'candidate', [], ...
     'objectives', [], 'objective_names', {{}}, ...
     'machine_operation_makespan', [], ...
-    'machine_assignment_changes', [], 'rank', [], ...
+    'machine_assignment_changes', [], ...
+    'final_unload_makespan', [], 'machine_energy', [], ...
+    'agv_energy', [], 'total_energy', [], 'rank', [], ...
     'crowding_distance', [], 'is_energy_evaluated', false, ...
     'is_final_unload_evaluated', false, 'is_validated', false);
 end
 
 function value = history_template()
 value = struct('generation', [], ...
-    'minimum_machine_makespan', [], ...
-    'minimum_machine_changes', [], 'pareto_count', []);
+    'minimum_final_unload_makespan', [], ...
+    'minimum_total_energy', [], 'pareto_count', []);
 end

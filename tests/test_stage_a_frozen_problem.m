@@ -109,5 +109,12 @@ for agvId = 1:numel(frozen.agv_boundaries)
     boundary = frozen.agv_boundaries(agvId);
     assert(boundary.agv_id == agvId);
     assert(boundary.available_time + 1e-9 >= frozen.snapshot_time);
+    assert(isfinite(boundary.energy));
+    assert(boundary.energy >= 0);
+    assert(boundary.energy <= ...
+        scenario.baseline.energyConfig.AGVEG_MAX + 1e-9);
+    assert(boundary.consumed_energy >= 0);
+    assert(boundary.charge_count >= 0);
+    assert(boundary.charge_count == floor(boundary.charge_count));
 end
 end

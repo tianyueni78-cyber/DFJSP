@@ -31,7 +31,8 @@
 | [阶段 A 第 8.1 步：故障冻结问题](docs/stage_a_step_08_1_frozen_problem.md) | 冻结已完成和在制任务，释放未开工工序与运输决策 |
 | [阶段 A 第 8.2a 步：完全重调度解码器](docs/stage_a_step_08_2a_complete_decoder.md) | 解码未开工工序的顺序、机器、AGV 和速度决策 |
 | [阶段 A 第 8.2b 步：受限搜索算子](docs/stage_a_step_08_2b_restricted_operators.md) | 为未开工工序建立初始化、IPOX/MPX 交叉和受限变异 |
-| [阶段 A 第 8.2c 步：受限 NSGA-II](docs/stage_a_step_08_2c_restricted_search.md) | 使用机器工序完工时间与机器变更数验证轻量搜索主循环 |
+| [阶段 A 第 8.2c 步：受限 NSGA-II](docs/stage_a_step_08_2c_restricted_search.md) | 使用最终卸载完工时间与总能耗验证轻量搜索主循环 |
+| [阶段 A 第 8.2d 步：最终卸载与完整能耗](docs/stage_a_step_08_2d_energy_and_unload.md) | 恢复最终卸载、AGV 电量与充电、机器和 AGV 完整能耗 |
 | [阶段 A 有效故障场景筛选](docs/stage_a_fault_scenario_screening.md) | 基于原机器时间表筛选维修时长 5 下会产生真实影响的故障位置 |
 | [原始代码](raw_code/) | 原项目完整只读快照，是后续修改和对照的基础 |
 
@@ -77,12 +78,13 @@
 - 阶段 A 第 8.1 步故障冻结问题已通过 MATLAB 测试；
 - 阶段 A 第 8.2a 步完全重调度冻结解码器已通过 MATLAB 测试；
 - 阶段 A 第 8.2b 步受限种群初始化、交叉和变异已通过 MATLAB 测试；
-- 阶段 A 第 8.2c 步候选评价与受限 NSGA-II 主循环已完成代码和静态检查，MATLAB 轻量契约测试待执行；
+- 阶段 A 第 8.2c 步候选评价与受限 NSGA-II 主循环已通过 MATLAB 轻量契约测试；
+- 阶段 A 第 8.2d 步最终卸载、AGV 电量/充电和完整能耗已完成代码与静态检查，MATLAB 契约测试待执行；
 - 尚未运行完全重调度搜索，也尚未计算 `tD`、`SD` 和 `Y`。
 
 ## 下一步执行边界
 
-下一步是运行阶段 A 第 8.2c 步轻量搜索契约测试。该测试只运行 6 个体、2 代，不是完整实验。
+下一步是运行阶段 A 第 8.2d 步完整能耗契约测试，并回归第 8.1、8.2a 和 8.2c 步。不会运行正式 NSGA-II 实验。
 
 ## 目录说明
 

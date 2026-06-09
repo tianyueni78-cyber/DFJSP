@@ -30,6 +30,14 @@ assert_machine_constraints(candidate.operation_records);
 assert_job_constraints(candidate.operation_records, ...
     scenario.baseline.problem.operaNumVec);
 assert_transport_constraints(candidate);
+assert(all(candidate.job_complete_unload > 0));
+assert(candidate.makespan == max(candidate.job_complete_unload));
+assert(candidate.machine_energy >= 0);
+assert(candidate.agv_energy >= 0);
+assert(candidate.total_energy == ...
+    candidate.machine_energy + candidate.agv_energy);
+assert(all(isfinite(candidate.final_agv_energy)));
+assert(all(candidate.agv_charge_count >= 0));
 
 fprintf('test_stage_a_complete_reschedule_decode passed\n');
 
@@ -94,6 +102,15 @@ for agvId = unique([transports.agv_id])
 end
 for index = 1:numel(transports)
     if transports(index).load_status ~= -2
+        continue
+    end
+    if transports(index).operation == -1
+        jobOperations = candidate.operation_records( ...
+            [candidate.operation_records.job] == transports(index).job);
+        lastOperationId = max([jobOperations.operation]);
+        operation = find_operation(candidate.operation_records, ...
+            transports(index).job, lastOperationId);
+        assert(transports(index).start + 1e-9 >= operation.end);
         continue
     end
     operation = find_operation(candidate.operation_records, ...

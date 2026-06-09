@@ -9,8 +9,9 @@ if nargin < 3
         'baseline, fault, and state are required.');
 end
 
-require_fields(baseline, {'machineTable', 'AGVTable', 'problem', ...
-    'agvData', 'isFaultFreeBaseline'}, 'baseline');
+require_fields(baseline, {'machineTable', 'AGVTable', 'agvEGRecord', ...
+    'problem', 'agvData', 'energyConfig', ...
+    'isFaultFreeBaseline'}, 'baseline');
 require_fields(fault, {'machine_id', 'start_time', ...
     'repair_end_time', 'is_validated'}, 'fault');
 require_fields(state, {'snapshot_time', 'completed_operations', ...
@@ -30,7 +31,8 @@ jobBoundaries = build_job_boundaries( ...
 machineBoundaries = build_machine_boundaries( ...
     baseline.machineTable, fault, state.snapshot_time);
 agvBoundaries = build_agv_boundaries( ...
-    baseline.AGVTable, state.snapshot_time);
+    baseline.AGVTable, baseline.agvEGRecord, ...
+    baseline.energyConfig.AGVEG_MAX, state.snapshot_time);
 
 frozen = struct();
 frozen.stage = 'A';
@@ -158,7 +160,8 @@ for machineId = 1:numel(machineTable)
 end
 end
 
-function boundaries = build_agv_boundaries(AGVTable, snapshotTime)
+function boundaries = build_agv_boundaries( ...
+        AGVTable, agvEGRecord, maximumEnergy, snapshotTime)
 template = agv_boundary_template();
 boundaries = repmat(template, 1, numel(AGVTable));
 
@@ -185,6 +188,47 @@ for agvId = 1:numel(AGVTable)
     boundaries(agvId).agv_id = agvId;
     boundaries(agvId).available_time = availableTime;
     boundaries(agvId).location = location;
+    boundaries(agvId).energy = energy_at_time( ...
+        agvEGRecord{agvId}, availableTime, maximumEnergy);
+    boundaries(agvId).consumed_energy = energy_consumed_at_time( ...
+        agvEGRecord{agvId}, availableTime);
+    boundaries(agvId).charge_count = count_completed_charges( ...
+        blocks, availableTime);
+end
+end
+
+function consumed = energy_consumed_at_time(records, boundaryTime)
+consumed = 0;
+if size(records, 1) < 2
+    return
+end
+eligible = records(records(:, 1) <= boundaryTime + 1e-9, :);
+for index = 2:size(eligible, 1)
+    drop = eligible(index - 1, 2) - eligible(index, 2);
+    if drop > 0
+        consumed = consumed + drop;
+    end
+end
+end
+
+function energy = energy_at_time(records, boundaryTime, maximumEnergy)
+energy = maximumEnergy;
+if isempty(records)
+    return
+end
+eligible = find(records(:, 1) <= boundaryTime + 1e-9);
+if ~isempty(eligible)
+    energy = records(eligible(end), 2);
+end
+end
+
+function count = count_completed_charges(blocks, boundaryTime)
+count = 0;
+for index = 1:numel(blocks)
+    if blocks(index).charge == 1 && isfinite(blocks(index).end) && ...
+            blocks(index).end <= boundaryTime + 1e-9
+        count = count + 1;
+    end
 end
 end
 
@@ -246,7 +290,8 @@ value = struct('machine_id', [], 'available_time', [], ...
 end
 
 function value = agv_boundary_template()
-value = struct('agv_id', [], 'available_time', [], 'location', []);
+value = struct('agv_id', [], 'available_time', [], 'location', [], ...
+    'energy', [], 'consumed_energy', [], 'charge_count', []);
 end
 
 function validate_inputs(baseline, fault, state)

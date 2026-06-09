@@ -63,13 +63,14 @@ evaluation/     后续重调度评价指标
 - `rescheduling/build_stage_a_frozen_problem.m`
 
 它冻结故障时刻已完成和正在执行的工序，释放未开工工序及其原运输，为完全重调度建立工件、机器和 AGV 边界。
+AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置、剩余电量、已发生能耗和已完成充电次数。
 
 阶段 A 第 8.2a 步使用 `rescheduling/`：
 
 - `rescheduling/decode_stage_a_complete_reschedule.m`
 - `rescheduling/build_stage_a_baseline_seed_decision.m`
 
-它只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。MATLAB 契约测试已通过。
+它只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。解码器现在还按原规则安排阈值充电和最终卸载，并输出完整完工时间与能耗。MATLAB 原解码契约测试已通过，8.2d 扩展后需要回归。
 
 阶段 A 第 8.2b 步使用 `rescheduling/`：
 
@@ -83,7 +84,18 @@ evaluation/     后续重调度评价指标
 - `rescheduling/evaluate_stage_a_reschedule_candidate.m`
 - `rescheduling/search_stage_a_complete_reschedule.m`
 
-它将第 8.2a 解码器和第 8.2b 算子连接为受限 NSGA-II 主循环。当前只评价机器工序最大完工时间和机器分配变化数；能耗与最终卸载尚未评价，因此轻量入口不作为正式实验。
+它将第 8.2a 解码器和第 8.2b 算子连接为受限 NSGA-II 主循环。评价目标已恢复为最终卸载完工时间和机器与 AGV 总能耗。轻量入口只验证搜索契约，不作为正式实验。
+
+阶段 A 第 8.2d 步继续使用 `rescheduling/`：
+
+- `rescheduling/build_stage_a_frozen_problem.m`
+- `rescheduling/decode_stage_a_complete_reschedule.m`
+
+并新增：
+
+- `scripts/run_stage_a_complete_energy_contract.m`
+
+它从原基线恢复故障边界电量，按原 `sorting.m` 规则检查阈值充电，在每个工件最后工序完成时安排最早可用 AGV 卸载，并按原 `fitness.m` 口径计算机器能耗、AGV 能耗和总能耗。
 
 阶段 A 场景筛选使用 `screening/`：
 
