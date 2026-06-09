@@ -33,3 +33,9 @@ evaluation/     后续重调度评价指标
 - `state/extract_stage_a_state.m`
 
 它只读取正常机器和 AGV 时间表，提取故障时刻的状态快照，不生成新调度数据。
+
+阶段 A 第 4 步使用 `impact/`：
+
+- `impact/identify_stage_a_affected_operations.m`
+
+它建立维修不可用区间，并沿工件和机器后继关系识别受影响工序。预计时间只用于传播判断，不回写正常基线。

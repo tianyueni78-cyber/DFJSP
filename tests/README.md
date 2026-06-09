@@ -56,3 +56,20 @@ run(fullfile(pwd, 'tests', 'test_completion_fault_event.m'))
 ```matlab
 run(fullfile(pwd, 'tests', 'test_stage_a_state_snapshot.m'))
 ```
+
+## 阶段 A 第 4 步测试
+
+`test_stage_a_impact_analysis.m`
+
+测试直接使用原项目数据生成的正常基线，检查：
+
+- 维修区间与故障事件一致；
+- 直接冲突工序属于故障机器并与维修区间重叠；
+- 受影响与未受影响集合完整划分未开始工序；
+- 每个受影响工序具有正的预计延迟和明确原因；
+- 正常机器时间表没有被修改；
+- 本步骤没有执行重调度。
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_stage_a_impact_analysis.m'))
+```
