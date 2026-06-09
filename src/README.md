@@ -27,3 +27,9 @@ evaluation/     后续重调度评价指标
 - `fault/validate_completion_fault_event.m`
 
 当前只负责工序完成时故障事件的创建和校验。
+
+阶段 A 第 3 步使用 `state/`：
+
+- `state/extract_stage_a_state.m`
+
+它只读取正常机器和 AGV 时间表，提取故障时刻的状态快照，不生成新调度数据。

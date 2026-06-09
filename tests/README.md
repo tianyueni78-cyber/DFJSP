@@ -40,3 +40,19 @@ run(fullfile(pwd, 'tests', 'test_normal_schedule_contract.m'))
 ```matlab
 run(fullfile(pwd, 'tests', 'test_completion_fault_event.m'))
 ```
+
+## 阶段 A 第 3 步测试
+
+`test_stage_a_state_snapshot.m`
+
+测试直接使用原项目数据生成的正常基线，不创建人工调度样例。它检查：
+
+- 触发工序属于已完成集合；
+- 所有真实工序被完整且唯一地分类；
+- 已完成、进行中、未开始的时间边界；
+- AGV 空闲和充电记录不会被误算为工件运输；
+- 本步骤没有执行重调度。
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_stage_a_state_snapshot.m'))
+```
