@@ -78,6 +78,13 @@ evaluation/     后续重调度评价指标
 
 它保留原项目 OS/MS/AS/SS 编码语义及 IPOX、MPX 和变异思想，但只操作未开工工序。首个个体保留原基线种子，其余候选严格从原候选机器、AGV 和速度范围生成。本步不计算适应度，也不运行 NSGA-II。
 
+阶段 A 第 8.2c 步使用 `rescheduling/`：
+
+- `rescheduling/evaluate_stage_a_reschedule_candidate.m`
+- `rescheduling/search_stage_a_complete_reschedule.m`
+
+它将第 8.2a 解码器和第 8.2b 算子连接为受限 NSGA-II 主循环。当前只评价机器工序最大完工时间和机器分配变化数；能耗与最终卸载尚未评价，因此轻量入口不作为正式实验。
+
 阶段 A 场景筛选使用 `screening/`：
 
 - `screening/screen_stage_a_fault_scenarios.m`
