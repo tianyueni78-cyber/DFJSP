@@ -82,6 +82,17 @@ Avoid repeatedly asking for approval.
 
 ---
 
+# Documentation Synchronization Rules
+
+- Every completed implementation step must update its dedicated step document.
+- Every completed step must also update the root `README.md`, `src/README.md`, and `docs/machine_fault_rescheduling_plan.md`.
+- The root README must provide an entry link for every completed step document.
+- Do not mark a MATLAB test as passed until the user reports the passing output.
+- Distinguish clearly between: code implemented, static checks completed, MATLAB test pending, and MATLAB test passed.
+- Before starting the next implementation step, verify that the previous step's documentation status is synchronized.
+
+---
+
 # Communication Style
 
 Be concise.

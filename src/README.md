@@ -52,6 +52,25 @@ evaluation/     后续重调度评价指标
 
 它根据原 AGV 时间表和机器候选时间检查运输约束，只输出需要调整的运输集合，不修改 AGV。
 
+阶段 A 第 7 步使用 `rescheduling/`：
+
+- `rescheduling/build_stage_a_agv_linked_right_shift.m`
+
+它保持原机器、AGV、路线和任务顺序，通过固定点传播同步右移运输与机器工序，并检查机器、工件、AGV 和维修区间约束。
+
+阶段 A 第 8.1 步使用 `rescheduling/`：
+
+- `rescheduling/build_stage_a_frozen_problem.m`
+
+它冻结故障时刻已完成和正在执行的工序，释放未开工工序及其原运输，为完全重调度建立工件、机器和 AGV 边界。
+
+阶段 A 第 8.2a 步正在实现：
+
+- `rescheduling/decode_stage_a_complete_reschedule.m`
+- `rescheduling/build_stage_a_baseline_seed_decision.m`
+
+它将只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。
+
 阶段 A 场景筛选使用 `screening/`：
 
 - `screening/screen_stage_a_fault_scenarios.m`
