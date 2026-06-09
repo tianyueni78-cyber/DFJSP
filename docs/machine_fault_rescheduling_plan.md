@@ -598,3 +598,24 @@ test_stage_a_restricted_search_contract passed
 本步不运行正式 NSGA-II 实验，不计算 `tD`、`SD` 或 `Y`。
 
 当前工作位置为第 8.2d 步 MATLAB 契约测试及相关回归测试。
+
+### 阶段 A：完全重调度 10×20 确认运行
+
+**实现状态：配置、入口和保存规则已完成，MATLAB 运行待执行。**
+
+详细记录：
+
+- [阶段 A 完全重调度确认运行（10×20）](stage_a_confirmation_search.md)
+
+用户已确认本次参数：
+
+```text
+population_size = 10
+generations = 20
+crossover_probability = 0.8
+mutation_probability = 0.2
+tournament_size = 2
+seed = 42
+```
+
+每次运行将结果保存到新的时间戳目录，包括完整 MAT 结果、Pareto 目标表、搜索历史和文字摘要。本次只用于确认算法运行时间、目标输出和保存流程，不作为最终多次独立实验。
