@@ -206,6 +206,34 @@ baseline = 正常调度基线
 
 下一步原计划是执行 MATLAB 契约测试，验证正常调度入口能够真正生成 `baseline`。
 
+### MATLAB 运行方式
+
+运行测试前，MATLAB 的“当前文件夹”必须是本项目根目录，而不是原正常调度项目或其他目录。
+
+先在 MATLAB 中确认：
+
+```matlab
+pwd
+```
+
+当前目录应当是你本地克隆或保存的 `DFJSP` 项目根目录，并且该目录下能够看到：
+
+```text
+README.md
+tests/
+scripts/
+src/
+raw_code/
+```
+
+然后运行：
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_normal_schedule_contract.m'))
+```
+
+如果 MATLAB 当前目录不在项目根目录，`run('tests/test_normal_schedule_contract.m')` 会因为找不到相对路径而报告“RUN 需要有效的 MATLAB 脚本”。这不代表测试逻辑已经运行或失败。
+
 测试通过后，才进入阶段 A 第 2 步：
 
 > 定义“在某道工序完成时发生”的单机器故障事件。
