@@ -16,10 +16,6 @@ baselineAGVTable = scenario.baseline.AGVTable;
 candidate = build_stage_a_machine_right_shift( ...
     scenario.baseline, scenario.fault, scenario.state, scenario.impact);
 
-assert(scenario.impact.counts.directly_affected > 0, ...
-    'The configured fault must directly affect at least one operation.');
-assert(scenario.impact.counts.affected_total > 0, ...
-    'The configured fault must produce a non-empty impact set.');
 assert(candidate.is_machine_validated, ...
     'Machine right-shift candidate must be validated.');
 assert(~candidate.is_agv_updated && ~candidate.is_agv_validated, ...
@@ -55,6 +51,12 @@ for index = 1:numel(scenario.impact.affected_operations)
         'Affected operation must move to a later start time.');
 end
 
+if scenario.impact.counts.affected_total == 0
+    assert(scenario.impact.counts.directly_affected == 0, ...
+        'A zero-impact scenario cannot contain direct conflicts.');
+    assert_all_operation_times_unchanged(candidate.operation_records);
+end
+
 for index = 1:numel(scenario.impact.unaffected_unstarted_operations)
     unaffected = scenario.impact.unaffected_unstarted_operations(index);
     operation = find_operation(candidate.operation_records, ...
@@ -74,6 +76,16 @@ match = find([records.job] == jobId & ...
 assert(numel(match) == 1, ...
     'Operation J%d-O%d must appear exactly once.', jobId, operationId);
 operation = records(match);
+end
+
+function assert_all_operation_times_unchanged(records)
+for index = 1:numel(records)
+    assert(abs(records(index).start - ...
+        records(index).original_start) <= 1e-9);
+    assert(abs(records(index).end - ...
+        records(index).original_end) <= 1e-9);
+    assert(~records(index).is_affected);
+end
 end
 
 function assert_machine_table_matches_records(machineTable, records)
