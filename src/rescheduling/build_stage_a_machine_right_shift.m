@@ -105,7 +105,8 @@ for machineId = 1:machineCount
     [~, order] = sortrows(ordering, [1, 2]);
     ordered = records(indices(order));
 
-    blocks = machine_block_template([]);
+    template = machine_block_template();
+    blocks = template([]);
     cursor = 0;
     for index = 1:numel(ordered)
         if ordered(index).start > cursor
