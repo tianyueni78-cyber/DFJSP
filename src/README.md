@@ -64,12 +64,12 @@ evaluation/     后续重调度评价指标
 
 它冻结故障时刻已完成和正在执行的工序，释放未开工工序及其原运输，为完全重调度建立工件、机器和 AGV 边界。
 
-阶段 A 第 8.2a 步正在实现：
+阶段 A 第 8.2a 步使用 `rescheduling/`：
 
 - `rescheduling/decode_stage_a_complete_reschedule.m`
 - `rescheduling/build_stage_a_baseline_seed_decision.m`
 
-它将只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。
+它只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。代码和静态检查已完成，MATLAB 契约测试待执行。
 
 阶段 A 场景筛选使用 `screening/`：
 
