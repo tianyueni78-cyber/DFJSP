@@ -20,3 +20,10 @@ evaluation/     后续重调度评价指标
 - `scheduling/build_normal_schedule.m`
 
 `raw_code/` 始终只读。新的入口通过包装函数调用已迁移代码。
+
+阶段 A 第 2 步已开始使用 `fault/`：
+
+- `fault/create_completion_fault_event.m`
+- `fault/validate_completion_fault_event.m`
+
+当前只负责工序完成时故障事件的创建和校验。

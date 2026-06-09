@@ -24,3 +24,19 @@ run(fullfile(pwd, 'tests', 'test_normal_schedule_contract.m'))
 ```
 
 不能在其他项目目录中直接使用相对路径 `run('tests/test_normal_schedule_contract.m')`。
+
+## 阶段 A 第 2 步测试
+
+`test_completion_fault_event.m`
+
+检查故障事件是否：
+
+- 发生在目标工序完成时刻；
+- 自动关联正确机器；
+- 没有中断正在加工的工序；
+- 正确计算维修结束时刻；
+- 没有提前执行重调度。
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_completion_fault_event.m'))
+```
