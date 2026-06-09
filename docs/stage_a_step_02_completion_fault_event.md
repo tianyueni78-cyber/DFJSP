@@ -85,12 +85,20 @@ fault = create_completion_fault_event( ...
 当前默认场景指定：
 
 ```matlab
-trigger_job = 1;
+trigger_job = 5;
 trigger_operation = 1;
 repair_duration = 5;
 ```
 
 机器编号和故障时刻由正常基线自动确定。
+
+该场景来自原基线候选筛选结果第 1 名。按当前正常基线：
+
+- 触发工序为 `J5-O1`；
+- 故障机器为 `M5`；
+- 故障时刻为 `6`；
+- 同机下一工序为 `J5-O2`；
+- 预计传播影响 6 道工序。
 
 ### 运行入口
 
