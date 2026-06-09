@@ -68,6 +68,20 @@ Avoid repeatedly asking for approval.
 
 ---
 
+# Source-Based Research Rules
+
+- All research and implementation must be based on the original source code, original instances, and original parameter files stored in `raw_code/`.
+- Treat `raw_code/` as the authoritative source for algorithms, data structures, scheduling behavior, and experiment inputs.
+- Do not invent, synthesize, or substitute jobs, operations, machines, AGVs, processing times, transport tasks, fault events, or test datasets by default.
+- Tests should use the normal baseline generated from the original project data whenever possible.
+- Derived structures such as state snapshots, affected-operation sets, candidate schedules, and rebuilt idle intervals are allowed only when they are computed from the original baseline and their derivation is documented.
+- Rebuilding idle blocks around the original operations is not new experimental data, but it must preserve the original operations, machine assignments, and processing durations unless the current task explicitly changes them.
+- Before creating any artificial boundary case, mock input, synthetic dataset, or replacement parameter, explain exactly what will be created, why it is necessary, and whether it affects research conclusions, then obtain user confirmation.
+- Never present artificial or mock data as an original-project result.
+- Each step report must state its data source and explicitly disclose whether any additional data was generated.
+
+---
+
 # Communication Style
 
 Be concise.
