@@ -110,3 +110,20 @@ run(fullfile(pwd, 'tests', 'test_stage_a_machine_right_shift.m'))
 ```matlab
 run(fullfile(pwd, 'tests', 'test_stage_a_agv_impact_analysis.m'))
 ```
+
+## 阶段 A 有效故障场景筛选测试
+
+`test_stage_a_fault_scenario_screening.m`
+
+检查：
+
+- 候选全部来自原机器时间表；
+- 使用当前配置维修时长；
+- 每个候选都产生至少一个直接受影响工序；
+- 候选的空闲间隔和故障时刻与原基线一致；
+- 候选按影响范围和空闲间隔排序；
+- 配置未修改且没有生成额外调度数据。
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_stage_a_fault_scenario_screening.m'))
+```

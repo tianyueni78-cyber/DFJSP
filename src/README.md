@@ -51,3 +51,9 @@ evaluation/     后续重调度评价指标
 - `impact/analyze_stage_a_agv_impact.m`
 
 它根据原 AGV 时间表和机器候选时间检查运输约束，只输出需要调整的运输集合，不修改 AGV。
+
+阶段 A 场景筛选使用 `screening/`：
+
+- `screening/screen_stage_a_fault_scenarios.m`
+
+它遍历原机器时间表中的工序完成时刻，使用当前维修时长和已有影响传播逻辑筛选有效故障候选，不修改配置。
