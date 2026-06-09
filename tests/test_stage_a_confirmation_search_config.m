@@ -15,6 +15,9 @@ assert(config.generations == 20);
 assert(config.crossover_probability == 0.8);
 assert(config.mutation_probability == 0.2);
 assert(config.tournament_size == 2);
+assert(config.no_improvement_generations == 10);
+assert(config.max_runtime_seconds == 30);
+assert(config.improvement_tolerance == 1e-9);
 assert(config.seed == 42);
 assert(strcmp(config.output_root, fullfile(projectRoot, ...
     'outputs', 'stage_a_complete_reschedule_confirmation')));

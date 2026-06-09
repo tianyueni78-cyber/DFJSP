@@ -8,7 +8,9 @@ if nargin < 3
     error('search_stage_a_complete_reschedule:MissingInput', ...
         'baseline, frozen, and options are required.');
 end
+options = normalize_options(options);
 validate_options(options);
+searchStart = tic;
 
 seedDecision = build_stage_a_baseline_seed_decision(baseline, frozen);
 population = initialize_stage_a_reschedule_population( ...
@@ -19,6 +21,10 @@ evaluated = rank_population(evaluated);
 history = history_template();
 history = repmat(history, 1, options.generations + 1);
 history(1) = summarize_generation(0, evaluated);
+paretoArchive = pareto_objectives(evaluated);
+stagnantGenerations = 0;
+completedGenerations = 0;
+stopReason = 'maximum_generations';
 
 for generation = 1:options.generations
     parents = tournament_select(evaluated, options.population_size, ...
@@ -34,9 +40,34 @@ for generation = 1:options.generations
     evaluated = rank_population(evaluated);
     history(generation + 1) = ...
         summarize_generation(generation, evaluated);
+
+    currentPareto = pareto_objectives(evaluated);
+    if has_pareto_improvement( ...
+            paretoArchive, currentPareto, ...
+            options.improvement_tolerance)
+        paretoArchive = merge_pareto_objectives( ...
+            paretoArchive, currentPareto, ...
+            options.improvement_tolerance);
+        stagnantGenerations = 0;
+    else
+        stagnantGenerations = stagnantGenerations + 1;
+    end
+    completedGenerations = generation;
+
+    if toc(searchStart) >= options.max_runtime_seconds
+        stopReason = 'time_limit';
+        break
+    end
+    if stagnantGenerations >= ...
+            options.no_improvement_generations
+        stopReason = 'no_pareto_improvement';
+        break
+    end
 end
 
 front = evaluated([evaluated.rank] == 1);
+front = deduplicate_front(front);
+history = history(1:completedGenerations + 1);
 result = struct();
 result.stage = 'A';
 result.strategy = 'restricted_complete_rescheduling_nsga2';
@@ -46,6 +77,11 @@ result.pareto_front = front;
 result.objective_names = { ...
     'final_unload_makespan', 'total_energy'};
 result.history = history;
+result.completed_generations = completedGenerations;
+result.stop_reason = stopReason;
+result.runtime_seconds = toc(searchStart);
+result.stagnant_generations = stagnantGenerations;
+result.pareto_front_is_deduplicated = true;
 result.is_energy_evaluated = true;
 result.is_final_unload_evaluated = true;
 result.is_search_executed = true;
@@ -197,7 +233,7 @@ summary = history_template();
 summary.generation = generation;
 summary.minimum_final_unload_makespan = min(objectives(:, 1));
 summary.minimum_total_energy = min(objectives(:, 2));
-summary.pareto_count = sum([population.rank] == 1);
+summary.pareto_count = size(pareto_objectives(population), 1);
 end
 
 function result = validate_result(searchResult, options)
@@ -210,11 +246,36 @@ if isempty(searchResult.pareto_front) || ...
     error('search_stage_a_complete_reschedule:InvalidResult', ...
         'Search result contains invalid candidates or no Pareto front.');
 end
-if numel(searchResult.history) ~= options.generations + 1
+if numel(searchResult.history) ~= ...
+        searchResult.completed_generations + 1
     error('search_stage_a_complete_reschedule:HistoryLength', ...
         'Search history length is incorrect.');
 end
+if searchResult.completed_generations > options.generations
+    error('search_stage_a_complete_reschedule:GenerationLimit', ...
+        'Completed generations exceed the configured maximum.');
+end
+frontObjectives = reshape( ...
+    [searchResult.pareto_front.objectives], 2, []).';
+if size(unique(frontObjectives, 'rows'), 1) ~= ...
+        size(frontObjectives, 1)
+    error('search_stage_a_complete_reschedule:DuplicatePareto', ...
+        'Pareto front contains duplicate objective vectors.');
+end
 result = true;
+end
+
+function options = normalize_options(options)
+defaults = struct();
+defaults.no_improvement_generations = Inf;
+defaults.max_runtime_seconds = Inf;
+defaults.improvement_tolerance = 1e-9;
+fields = fieldnames(defaults);
+for index = 1:numel(fields)
+    if ~isfield(options, fields{index})
+        options.(fields{index}) = defaults.(fields{index});
+    end
+end
 end
 
 function validate_options(options)
@@ -234,6 +295,29 @@ validate_probability(options.crossover_probability, ...
     'crossover_probability');
 validate_probability(options.mutation_probability, ...
     'mutation_probability');
+validate_positive_limit(options.no_improvement_generations, ...
+    'no_improvement_generations');
+validate_positive_limit(options.max_runtime_seconds, ...
+    'max_runtime_seconds');
+if ~isscalar(options.improvement_tolerance) || ...
+        ~isfinite(options.improvement_tolerance) || ...
+        options.improvement_tolerance < 0
+    error('search_stage_a_complete_reschedule:InvalidOption', ...
+        'improvement_tolerance must be finite and nonnegative.');
+end
+end
+
+function validate_positive_limit(value, name)
+if ~isscalar(value) || value <= 0 || ...
+        (~isfinite(value) && value ~= Inf)
+    error('search_stage_a_complete_reschedule:InvalidOption', ...
+        '%s must be positive or Inf.', name);
+end
+if strcmp(name, 'no_improvement_generations') && ...
+        isfinite(value) && value ~= floor(value)
+    error('search_stage_a_complete_reschedule:InvalidOption', ...
+        '%s must be an integer or Inf.', name);
+end
 end
 
 function validate_positive_integer(value, name)
@@ -272,4 +356,62 @@ function value = history_template()
 value = struct('generation', [], ...
     'minimum_final_unload_makespan', [], ...
     'minimum_total_energy', [], 'pareto_count', []);
+end
+
+function objectives = pareto_objectives(population)
+front = population([population.rank] == 1);
+front = deduplicate_front(front);
+objectives = reshape([front.objectives], 2, []).';
+end
+
+function front = deduplicate_front(front)
+if isempty(front)
+    return
+end
+objectives = reshape([front.objectives], 2, []).';
+[~, uniqueIndices] = unique(objectives, 'rows', 'stable');
+front = front(uniqueIndices);
+end
+
+function improved = has_pareto_improvement( ...
+        archive, current, tolerance)
+improved = false;
+for currentIndex = 1:size(current, 1)
+    weaklyDominated = false;
+    for archiveIndex = 1:size(archive, 1)
+        if all(archive(archiveIndex, :) <= ...
+                current(currentIndex, :) + tolerance)
+            weaklyDominated = true;
+            break
+        end
+    end
+    if ~weaklyDominated
+        improved = true;
+        return
+    end
+end
+end
+
+function archive = merge_pareto_objectives( ...
+        archive, current, tolerance)
+candidates = [archive; current];
+keep = true(size(candidates, 1), 1);
+for first = 1:size(candidates, 1)
+    if ~keep(first)
+        continue
+    end
+    for second = 1:size(candidates, 1)
+        if first == second
+            continue
+        end
+        if all(candidates(second, :) <= ...
+                candidates(first, :) + tolerance) && ...
+                any(candidates(second, :) < ...
+                candidates(first, :) - tolerance)
+            keep(first) = false;
+            break
+        end
+    end
+end
+archive = unique(candidates(keep, :), 'rows', 'stable');
 end
