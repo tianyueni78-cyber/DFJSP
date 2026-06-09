@@ -8,6 +8,7 @@ cleanupPath = onCleanup(@() path(originalPath));
 
 addpath(fullfile(projectRoot, 'scripts'));
 addpath(fullfile(projectRoot, 'src', 'rescheduling'));
+addpath(fullfile(projectRoot, 'src', 'scheduling'));
 
 first = run_stage_a_restricted_search_contract();
 second = run_stage_a_restricted_search_contract();
