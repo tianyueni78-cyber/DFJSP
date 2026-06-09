@@ -30,6 +30,7 @@
 | [阶段 A 第 7 步：AGV 与机器联动右移](docs/stage_a_step_07_agv_linked_right_shift.md) | 正式调整 AGV 时间，并将运输延迟反馈到机器工序 |
 | [阶段 A 第 8.1 步：故障冻结问题](docs/stage_a_step_08_1_frozen_problem.md) | 冻结已完成和在制任务，释放未开工工序与运输决策 |
 | [阶段 A 第 8.2a 步：完全重调度解码器](docs/stage_a_step_08_2a_complete_decoder.md) | 解码未开工工序的顺序、机器、AGV 和速度决策 |
+| [阶段 A 第 8.2b 步：受限搜索算子](docs/stage_a_step_08_2b_restricted_operators.md) | 为未开工工序建立初始化、IPOX/MPX 交叉和受限变异 |
 | [阶段 A 有效故障场景筛选](docs/stage_a_fault_scenario_screening.md) | 基于原机器时间表筛选维修时长 5 下会产生真实影响的故障位置 |
 | [原始代码](raw_code/) | 原项目完整只读快照，是后续修改和对照的基础 |
 
@@ -73,12 +74,13 @@
 - 已确认原基线候选第 1 名 `J5-O1 / M5 / tf=6 / tr=5` 为有效故障场景；
 - 阶段 A 第 7 步 AGV 与机器联动右移已通过 MATLAB 测试；
 - 阶段 A 第 8.1 步故障冻结问题已通过 MATLAB 测试；
-- 阶段 A 第 8.2a 步完全重调度冻结解码器已完成代码和静态检查，MATLAB 测试待执行；
+- 阶段 A 第 8.2a 步完全重调度冻结解码器已通过 MATLAB 测试；
+- 阶段 A 第 8.2b 步受限种群初始化、交叉和变异已完成代码和静态检查，MATLAB 测试待执行；
 - 尚未运行完全重调度搜索，也尚未计算 `tD`、`SD` 和 `Y`。
 
 ## 下一步执行边界
 
-下一步是运行阶段 A 第 8.2a 步轻量契约测试；不运行 NSGA-II 搜索实验。
+下一步是运行阶段 A 第 8.2b 步算子契约测试；不计算适应度，不运行 NSGA-II 搜索实验。
 
 ## 目录说明
 

@@ -69,7 +69,14 @@ evaluation/     后续重调度评价指标
 - `rescheduling/decode_stage_a_complete_reschedule.m`
 - `rescheduling/build_stage_a_baseline_seed_decision.m`
 
-它只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。代码和静态检查已完成，MATLAB 契约测试待执行。
+它只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。MATLAB 契约测试已通过。
+
+阶段 A 第 8.2b 步使用 `rescheduling/`：
+
+- `rescheduling/initialize_stage_a_reschedule_population.m`
+- `rescheduling/vary_stage_a_reschedule_population.m`
+
+它保留原项目 OS/MS/AS/SS 编码语义及 IPOX、MPX 和变异思想，但只操作未开工工序。首个个体保留原基线种子，其余候选严格从原候选机器、AGV 和速度范围生成。本步不计算适应度，也不运行 NSGA-II。
 
 阶段 A 场景筛选使用 `screening/`：
 
