@@ -21,6 +21,7 @@
 | [实施计划](docs/machine_fault_rescheduling_plan.md) | 总体工作流程、阶段划分、验收标准和当前执行边界 |
 | [问题定义](docs/problem_definition.md) | 机器故障动态重调度的问题范围与基本假设 |
 | [研究架构](docs/research_architecture.md) | 模块划分、调度策略和 AGV 联动设计 |
+| [阶段 A 第 1 步：正常调度基线](docs/stage_a_step_01_normal_baseline.md) | 为什么先建立正常计划、具体实现、输入输出和验证状态 |
 | [原始代码](raw_code/) | 原项目完整只读快照，是后续修改和对照的基础 |
 
 后续形成新的设计说明、实验记录和阶段工作表时，继续在本 README 中增加入口。

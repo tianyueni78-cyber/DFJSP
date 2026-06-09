@@ -293,6 +293,10 @@ faults(2).repair_duration = 15;
 
 **实现状态：代码与静态检查已完成，MATLAB 运行验证待确认。**
 
+详细单步记录：
+
+- [阶段 A 第 1 步：建立正常调度基线](stage_a_step_01_normal_baseline.md)
+
 已建立：
 
 - 无副作用的 FJSP 数据读取入口；
