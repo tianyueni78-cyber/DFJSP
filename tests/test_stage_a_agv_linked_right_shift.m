@@ -72,7 +72,7 @@ function records = collect_activities(AGVTable)
 template = struct('agv_id', [], 'original_table_index', [], ...
     'job', [], 'operation', [], 'load_status', [], ...
     'from_machine', [], 'to_machine', [], 'charge', [], ...
-    'duration', []);
+    'start', [], 'duration', []);
 records = template([]);
 for agvId = 1:numel(AGVTable)
     for tableIndex = 1:numel(AGVTable{agvId})
@@ -91,6 +91,7 @@ for agvId = 1:numel(AGVTable)
         record.from_machine = block.from_machine;
         record.to_machine = block.to_machine;
         record.charge = block.charge;
+        record.start = block.start;
         record.duration = block.end - block.start;
         records(end + 1) = record;
     end
