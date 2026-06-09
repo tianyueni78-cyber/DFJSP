@@ -173,17 +173,36 @@
 - 相对路径检查；
 - 文件写入副作用检查；
 - 依赖文件存在性检查；
+- MATLAB 契约测试；
+- 实际生成并检查 `baseline` 返回结构；
 - Git 提交和 GitHub 上传。
-
-尚未完成：
-
-- MATLAB 语法与运行验证；
-- 实际生成 `baseline`；
-- 数值结果检查。
 
 当前状态为：
 
-> 代码实现和静态检查完成，MATLAB 运行验证待执行。
+> 阶段 A 第 1 步已完成。正常调度入口通过 MATLAB 契约测试。
+
+测试命令：
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_normal_schedule_contract.m'))
+```
+
+测试结果：
+
+```text
+test_normal_schedule_contract passed
+```
+
+本次测试确认：
+
+- 正常调度入口可以实际执行；
+- 能够生成 `baseline`；
+- `makespan` 和 `totalEnergy` 为正且为有限数值；
+- 机器时间表数量与机器数量一致；
+- AGV 时间表数量与 AGV 数量一致；
+- 后续状态提取需要的返回字段齐全。
+
+本测试没有验证机器故障、右移重调度、完全重调度或组合选择。
 
 ## 8. 这一步完成后带来了什么
 
@@ -204,7 +223,7 @@ baseline = 正常调度基线
 
 ## 9. 下一步
 
-下一步原计划是执行 MATLAB 契约测试，验证正常调度入口能够真正生成 `baseline`。
+MATLAB 契约测试已经通过。以下命令保留为复现入口。
 
 ### MATLAB 运行方式
 
@@ -234,6 +253,6 @@ run(fullfile(pwd, 'tests', 'test_normal_schedule_contract.m'))
 
 如果 MATLAB 当前目录不在项目根目录，`run('tests/test_normal_schedule_contract.m')` 会因为找不到相对路径而报告“RUN 需要有效的 MATLAB 脚本”。这不代表测试逻辑已经运行或失败。
 
-测试通过后，才进入阶段 A 第 2 步：
+阶段 A 第 1 步现已闭环。下一步进入阶段 A 第 2 步：
 
 > 定义“在某道工序完成时发生”的单机器故障事件。
