@@ -39,3 +39,9 @@ evaluation/     后续重调度评价指标
 - `impact/identify_stage_a_affected_operations.m`
 
 它建立维修不可用区间，并沿工件和机器后继关系识别受影响工序。预计时间只用于传播判断，不回写正常基线。
+
+阶段 A 第 5 步使用 `rescheduling/`：
+
+- `rescheduling/build_stage_a_machine_right_shift.m`
+
+它将受影响时间写入机器候选计划，重建机器空闲块并检查机器、工件和维修区间约束。AGV 暂不调整。

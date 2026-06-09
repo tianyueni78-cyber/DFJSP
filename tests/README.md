@@ -73,3 +73,23 @@ run(fullfile(pwd, 'tests', 'test_stage_a_state_snapshot.m'))
 ```matlab
 run(fullfile(pwd, 'tests', 'test_stage_a_impact_analysis.m'))
 ```
+
+## 阶段 A 第 5 步测试
+
+`test_stage_a_machine_right_shift.m`
+
+检查：
+
+- 正常基线没有被修改；
+- 当前故障场景至少直接影响一道工序；
+- 受影响工序使用第 4 步预计时间；
+- 未受影响工序保持原时间；
+- 机器分配和加工时长不变；
+- 机器无加工重叠；
+- 工件工艺顺序有效；
+- 维修区间内无加工；
+- AGV 时间表保持原样且未被标记为已验证。
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_stage_a_machine_right_shift.m'))
+```
