@@ -93,3 +93,20 @@ run(fullfile(pwd, 'tests', 'test_stage_a_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd, 'tests', 'test_stage_a_machine_right_shift.m'))
 ```
+
+## 阶段 A 第 6 步测试
+
+`test_stage_a_agv_impact_analysis.m`
+
+检查：
+
+- 使用原项目 AGV 时间表；
+- AGV 时间表未被修改；
+- 受影响和未受影响运输完整划分工件运输；
+- 直接受影响项是违反时间约束的负载运输；
+- 同一 AGV 后续任务被标记为需要复核；
+- 当前零机器变化场景得到零 AGV 调整。
+
+```matlab
+run(fullfile(pwd, 'tests', 'test_stage_a_agv_impact_analysis.m'))
+```

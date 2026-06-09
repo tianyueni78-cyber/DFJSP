@@ -45,3 +45,9 @@ evaluation/     后续重调度评价指标
 - `rescheduling/build_stage_a_machine_right_shift.m`
 
 它将受影响时间写入机器候选计划，重建机器空闲块并检查机器、工件和维修区间约束。AGV 暂不调整。
+
+阶段 A 第 6 步继续使用 `impact/`：
+
+- `impact/analyze_stage_a_agv_impact.m`
+
+它根据原 AGV 时间表和机器候选时间检查运输约束，只输出需要调整的运输集合，不修改 AGV。
