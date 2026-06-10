@@ -144,3 +144,14 @@ run(fullfile(pwd, 'tests', 'test_stage_a_fault_scenario_screening.m'))
 run(fullfile(pwd,'tests', ...
     'test_stage_b_processing_fault_state.m'))
 ```
+
+## 阶段 B 第 2 步测试
+
+`test_stage_b_resume_rule.m`
+
+检查已加工进度保留、维修结束后从原机器续加工、总有效加工时间不变，以及
+禁止从头加工和禁止迁移。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_resume_rule.m'))
+```

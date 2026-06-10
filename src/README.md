@@ -163,3 +163,10 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 
 本步只建立加工中故障事件和在制工序状态，不修改阶段 A 的右移、解码和
 搜索模块。
+
+## 阶段 B 第 2 步
+
+`rescheduling/build_stage_b_resume_operation_plan.m`
+
+将中断工序拆分为故障前已加工段和修复后剩余加工段。它只建立恢复计划，
+不修改完整机器时间表，不传播后续任务。
