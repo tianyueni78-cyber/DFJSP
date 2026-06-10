@@ -127,3 +127,20 @@ run(fullfile(pwd, 'tests', 'test_stage_a_agv_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd, 'tests', 'test_stage_a_fault_scenario_screening.m'))
 ```
+
+## 阶段 B 第 1 步测试
+
+`test_stage_b_processing_fault_state.m`
+
+检查故障时刻位于工序内部、故障机器上恰好存在一道匹配的在制工序，以及：
+
+```text
+已加工时间 + 剩余加工时间 = 原加工时间
+```
+
+同时确认中断规则仍为 `unresolved`，且没有执行重调度。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_b_processing_fault_state.m'))
+```

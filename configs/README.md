@@ -85,3 +85,15 @@ outputs/stage_a_step_13_search_and_selection/
 
 定义多随机种子 `[11,22,33,42,55]`、完工时间权重 `0:0.1:1`，并继承第 13
 步搜索预算。
+
+## 阶段 B 第 1 步
+
+`stage_b_processing_fault_config.m`
+
+只选择原正常基线中的工序，并设置：
+
+- 中断比例 `0.5`；
+- 维修时长 `5`；
+- 中断规则 `unresolved`。
+
+该配置不生成新的工件、机器或加工时间。

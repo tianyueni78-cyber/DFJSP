@@ -149,3 +149,17 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 前者固定候选重新计算组合权重，后者汇总候选已有验证标志并独立检查维修
 区间、最终卸载和能耗一致性。右移能耗函数按右移后的工序时间重新计算
 机器能耗；在路线和运输时长均已验证保持不变时，AGV 能耗沿用正常基线。
+
+## 阶段 B 第 1 步
+
+`fault/` 新增：
+
+- `create_processing_fault_event.m`
+- `validate_processing_fault_event.m`
+
+`state/` 新增：
+
+- `extract_stage_b_interrupted_state.m`
+
+本步只建立加工中故障事件和在制工序状态，不修改阶段 A 的右移、解码和
+搜索模块。
