@@ -55,3 +55,22 @@ run(fullfile(pwd, 'tests', ...
 
 契约测试只验证接口和选择规则。正式结论必须使用第 10 步正式运行得到的
 `normalScenario` 执行本步入口。
+
+契约测试内部使用 `contractScenario`，不会覆盖 MATLAB 工作区中的正式
+`normalScenario`。
+
+如果在旧版测试后发现 `normalScenario.optimized_baseline.makespan` 为
+`144.2033`，说明正式变量已被测试变量覆盖。无需重新运行搜索，可从第 10
+步保存结果恢复：
+
+```matlab
+saved = load(fullfile(pwd, 'outputs', ...
+    'normal_baseline_search', '20260610_095431', 'result.mat'));
+normalScenario = saved.scenario;
+
+normalScenario.optimized_baseline.makespan
+stage11 = run_stage_a_optimized_baseline_fault_screening( ...
+    normalScenario);
+```
+
+恢复后显示的优化基线完工时间应为 `112.72`。
