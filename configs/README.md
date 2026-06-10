@@ -68,3 +68,13 @@
 - 完工时间偏差权重 `0.9`；
 - 机器分配偏差权重 `0.1`；
 - 并列判断容差 `1e-9`。
+
+## 阶段 A 第 13 步
+
+`stage_a_step_13_config.m`
+
+继承同等预算搜索参数，并加入组合评价权重。输出目录为：
+
+```text
+outputs/stage_a_step_13_search_and_selection/
+```
