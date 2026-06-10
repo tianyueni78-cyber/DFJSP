@@ -24,7 +24,7 @@ end
 
 source = state.interrupted_operation;
 require_fields(source, {'machine_id', 'job', 'operation', ...
-    'start', 'end', 'original_duration', ...
+    'table_index', 'start', 'end', 'original_duration', ...
     'elapsed_processing_time', 'remaining_processing_time'}, ...
     'state.interrupted_operation');
 validate_source(source, fault, state.snapshot_time);
@@ -58,6 +58,7 @@ plan.machine_migration_allowed = false;
 plan.machine_id = source.machine_id;
 plan.job = source.job;
 plan.operation = source.operation;
+plan.original_table_index = source.table_index;
 plan.original_start = source.start;
 plan.original_end = source.end;
 plan.original_duration = source.original_duration;

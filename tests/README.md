@@ -155,3 +155,14 @@ run(fullfile(pwd,'tests', ...
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_resume_rule.m'))
 ```
+
+## 阶段 B 第 3 步测试
+
+`test_stage_b_impact_analysis.m`
+
+检查传播根、工件直接后继、机器直接后继、正延迟和影响集合划分，并确认
+正常基线机器时间表没有被修改。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_impact_analysis.m'))
+```

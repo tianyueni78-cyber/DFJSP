@@ -24,6 +24,7 @@ assert(plan.progress_preserved);
 assert(~plan.restart_from_zero);
 assert(~plan.machine_migration_allowed);
 assert(plan.machine_id == fault.machine_id);
+assert(plan.original_table_index == source.table_index);
 assert(plan.completed_segment.machine_id == fault.machine_id);
 assert(plan.resumed_segment.machine_id == fault.machine_id);
 assert(abs(plan.completed_segment.end - fault.start_time) <= 1e-9);
