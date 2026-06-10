@@ -104,3 +104,13 @@
 5. 返回内存中的完整 `scenario`。
 
 该入口会生成输出，必须在用户确认后由 MATLAB 运行。每次运行使用新目录，不覆盖已有结果。
+
+## 阶段 A 评价与组合选择
+
+`run_stage_a_combination_contract.m`
+
+使用轻量完全重调度搜索验证 `tD`、`SD`、`Y` 和最终选择契约，不生成正式输出。
+
+`run_stage_a_combination_selection.m`
+
+接收已有自适应搜索 `scenario`，复用其中的去重 Pareto 候选，只重新生成确定性的部分右移方案并执行组合选择，不重复运行完全重调度搜索。

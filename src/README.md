@@ -102,3 +102,10 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 - `screening/screen_stage_a_fault_scenarios.m`
 
 它遍历原机器时间表中的工序完成时刻，使用当前维修时长和已有影响传播逻辑筛选有效故障候选，不修改配置。
+
+阶段 A 评价与组合选择使用 `evaluation/`：
+
+- `evaluation/evaluate_stage_a_rescheduling_plan.m`
+- `evaluation/select_stage_a_combined_strategy.m`
+
+它统一计算部分右移方案和完全重调度 Pareto 候选的最终卸载完工时间偏差 `tD`、未开工工序机器变化数 `SD` 和加权指标 `Y`，并选择 `Y` 最小的最终方案。
