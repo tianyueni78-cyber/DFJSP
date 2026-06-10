@@ -104,3 +104,37 @@ stage12 = run_stage_a_rebuilt_rescheduling_chain(normalScenario);
 
 正式输出必须显示 `J8-O1 / M2 / tf=12 / tr=5`。若仍显示 `144.203` 或
 `J5-O1`，说明工作区中的 `normalScenario` 不是第 10 步保存的正式结果。
+
+## 8. 正式运行结果
+
+使用第 10 步保存的优化正常基线运行结果：
+
+```text
+baseline makespan: 112.72
+fault: J8-O1, M2, tf=12, tr=5
+affected operations: 7, directly affected: 2
+AGV adjustment required: 1, affected transports: 53
+linked right shift makespan: 112.72
+frozen operations: 5, reschedulable operations: 53
+complete search executed: 0
+```
+
+结果解释：
+
+- 维修区间直接冲突 `2` 道工序；
+- 沿工件和机器后继传播后，共有 `7` 道工序受影响；
+- 机器时间变化使 AGV 运输约束发生连锁变化，`53` 个运输任务进入联动复核；
+- AGV 与机器联动右移通过全部约束检查；
+- 联动右移后的机器完工时间仍为 `112.72`，说明本场景的延迟被原计划余量吸收；
+- 故障时刻已有 `5` 道工序被冻结，剩余 `53` 道工序可进入完全重调度；
+- 本步没有运行完全重调度搜索。
+
+`linked right shift makespan = 112.72` 目前只表示机器工序层面的完工时间没有
+增加。第 9 步的 `tD` 使用最终卸载最大完工时间，因此仍需在后续统一评价，
+不能在本步直接宣布 `tD=0`。
+
+## 9. 下一步
+
+进入阶段 A 第 13 步：基于本步 `frozen_problem` 对 `53` 道未开工工序执行
+同等预算完全重调度搜索，再将新 Pareto 候选与本步联动右移方案进行公平的
+`tD`、`SD`、`Y` 组合评价。
