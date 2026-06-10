@@ -199,3 +199,14 @@ run(fullfile(pwd,'tests','test_stage_b_agv_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_agv_linked_right_shift.m'))
 ```
+
+## 阶段 B 第 7 步测试
+
+`test_stage_b_frozen_problem.m`
+
+检查工序与运输完整划分、中断工序两段承诺、工件和故障机器释放时间、AGV
+边界，以及阶段 B 专用解码器要求。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_frozen_problem.m'))
+```
