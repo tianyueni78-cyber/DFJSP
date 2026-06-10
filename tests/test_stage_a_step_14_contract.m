@@ -6,6 +6,7 @@ projectRoot = fileparts(testDir);
 originalPath = path;
 cleanupPath = onCleanup(@() path(originalPath));
 addpath(fullfile(projectRoot, 'scripts'));
+addpath(fullfile(projectRoot, 'configs'));
 
 stage13Contract = run_stage_a_step_13_contract();
 stage13Contract.is_formal_run = true;
