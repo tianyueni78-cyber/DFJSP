@@ -188,3 +188,14 @@ run(fullfile(pwd,'tests','test_stage_b_machine_right_shift.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_agv_impact_analysis.m'))
 ```
+
+## 阶段 B 第 6 步测试
+
+`test_stage_b_agv_linked_right_shift.m`
+
+检查中断工序两段保持、已开始 AGV 活动冻结、AGV 无重叠、运输与加工衔接、
+机器无重叠及维修区间。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_agv_linked_right_shift.m'))
+```
