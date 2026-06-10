@@ -52,3 +52,32 @@ stage14Multiseed = run_stage_a_step_14_multiseed(stage12);
 
 - `result.mat`
 - `multiseed_summary.csv`
+
+## 6. 正式权重敏感性结果
+
+复用第 13 步正式结果
+`outputs/stage_a_step_13_search_and_selection/20260610_135428/result.mat`，
+未重新执行搜索。
+
+- 当完工时间权重为 `0` 至 `0.7` 时，选择部分右移；
+- 当完工时间权重为 `0.8` 至 `1.0` 时，选择完全重调度；
+- 策略切换点出现在离散扫描的 `omega1=0.8`；
+- `omega1=0.9`、`omega2=0.1` 时仍选择完全重调度，
+  `tD=-4.0667`、`SD=30`、`Y=-0.66`；
+- 这说明第 13 步结论对当前权重成立，但不是对所有权重都成立。
+
+## 7. 正式约束审计结果
+
+- 部分右移和 `4` 个完全重调度 Pareto 候选均通过已有调度验证标志、
+  维修区间及最终卸载检查；
+- `all_constraint_audits_validated=true`；
+- `4` 个完全重调度候选均具有完整且一致的机器、AGV 和总能耗；
+- 部分右移候选未携带能耗字段，因此
+  `all_energy_audits_complete=false`；
+- 该结果表示右移方案的能耗审计数据尚未补齐，不表示其调度约束失败。
+
+## 8. 当前剩余工作
+
+1. 为部分右移候选补充与完全重调度相同口径的机器和 AGV 能耗计算；
+2. 重新执行能耗审计，要求 `all_energy_audits_complete=true`；
+3. 多随机种子正式实验仍未运行。
