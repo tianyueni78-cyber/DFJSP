@@ -210,3 +210,14 @@ run(fullfile(pwd,'tests','test_stage_b_agv_linked_right_shift.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_frozen_problem.m'))
 ```
+
+## 阶段 B 第 8 步测试
+
+`test_stage_b_complete_reschedule_decode.m`
+
+检查冻结任务、两段加工承诺、未开工工序解码、机器与工件约束、运输衔接、
+最终卸载和能耗计算。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_complete_reschedule_decode.m'))
+```
