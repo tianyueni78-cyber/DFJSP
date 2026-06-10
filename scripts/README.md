@@ -114,3 +114,16 @@
 `run_stage_a_combination_selection.m`
 
 接收已有自适应搜索 `scenario`，复用其中的去重 Pareto 候选，只重新生成确定性的部分右移方案并执行组合选择，不重复运行完全重调度搜索。
+
+## 同等预算正常基线搜索
+
+`run_normal_baseline_search_contract.m`
+
+使用原数据执行 `6` 个体、`2` 代轻量搜索，只验证候选生成、评价、Pareto
+去重、固定种子可复现和基线选择契约，不保存输出。
+
+`run_normal_baseline_search.m`
+
+使用与故障后完全重调度相同的自适应预算优化正常计划，并将 MAT 结果、
+Pareto 目标、搜索历史和摘要保存到新的时间戳目录。它会生成输出，运行前
+需要确认。

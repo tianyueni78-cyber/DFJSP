@@ -109,3 +109,14 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 - `evaluation/select_stage_a_combined_strategy.m`
 
 它统一计算部分右移方案和完全重调度 Pareto 候选的最终卸载完工时间偏差 `tD`、未开工工序机器变化数 `SD` 和加权指标 `Y`，并选择 `Y` 最小的最终方案。
+
+同等预算正常基线搜索使用 `search/`：
+
+- `search/build_normal_search_problem.m`
+- `search/chromosome_to_full_decision.m`
+- `search/full_decision_to_chromosome.m`
+- `search/search_normal_schedule.m`
+
+它复用原项目正常调度解码器与受限搜索算子，只在原 `Mk02.fjs`、
+原候选机器、原 AGV 和原速度范围中生成候选。用户已允许基于原数据生成
+优化候选方案，但不允许生成替代问题数据。
