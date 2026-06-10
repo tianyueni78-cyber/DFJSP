@@ -73,12 +73,13 @@ stage14Multiseed = run_stage_a_step_14_multiseed(stage12);
   维修区间及最终卸载检查；
 - `all_constraint_audits_validated=true`；
 - `4` 个完全重调度候选均具有完整且一致的机器、AGV 和总能耗；
-- 部分右移候选未携带能耗字段，因此
-  `all_energy_audits_complete=false`；
-- 该结果表示右移方案的能耗审计数据尚未补齐，不表示其调度约束失败。
+- 部分右移机器能耗约为 `1407.7`，AGV 能耗为 `474.4667`，总能耗约为
+  `1882.1`；
+- 部分右移能耗审计完成，`energy_audit_complete=true`；
+- 全部候选能耗审计闭合，`all_energy_audits_complete=true`。
 
 ## 8. 当前剩余工作
 
-1. 部分右移能耗评价代码已实现，待轻量测试和正式结果复核；
-2. 重新执行能耗审计，目标为 `all_energy_audits_complete=true`；
+1. 第 14 步轻量测试已通过；
+2. 正式约束和能耗审计均已通过；
 3. 多随机种子正式实验仍未运行。
