@@ -11,7 +11,7 @@ addpath(fullfile(projectRoot, 'configs'));
 config = stage_a_confirmation_search_config(projectRoot);
 
 assert(config.population_size == 10);
-assert(config.generations == 20);
+assert(config.generations == 100);
 assert(config.crossover_probability == 0.8);
 assert(config.mutation_probability == 0.2);
 assert(config.tournament_size == 2);

@@ -1,5 +1,5 @@
 function scenario = run_stage_a_confirmation_search()
-%RUN_STAGE_A_CONFIRMATION_SEARCH Run and save the approved 10-by-20 search.
+%RUN_STAGE_A_CONFIRMATION_SEARCH Run and save the adaptive confirmation search.
 
 projectRoot = fileparts(fileparts(mfilename('fullpath')));
 originalPath = path;
