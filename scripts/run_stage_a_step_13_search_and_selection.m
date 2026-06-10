@@ -13,6 +13,7 @@ cleanupPath = onCleanup(@() path(originalPath));
 addpath(fullfile(projectRoot, 'configs'));
 addpath(fullfile(projectRoot, 'src', 'evaluation'));
 addpath(fullfile(projectRoot, 'src', 'rescheduling'));
+addpath(fullfile(projectRoot, 'src', 'scheduling'));
 
 validate_stage12(stage12);
 config = stage_a_step_13_config(projectRoot);

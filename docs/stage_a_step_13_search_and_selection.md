@@ -78,3 +78,15 @@ stage13 = run_stage_a_step_13_search_and_selection(stage12);
 - `search_history.csv`
 - `combination_evaluations.csv`
 - `run_summary.txt`
+
+## 7. 路径依赖修正
+
+首次契约测试暴露出第 13 步入口遗漏 `src/scheduling/` 路径，导致完全重调度
+解码器无法找到原运输时间函数：
+
+```text
+spare_transfer_time_compute
+```
+
+现已在轻量入口和正式入口中统一加入 `src/scheduling/`，并在契约测试中
+检查该函数可见。没有修改运输时间函数或解码算法。

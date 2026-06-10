@@ -9,6 +9,10 @@ cleanupPath = onCleanup(@() path(originalPath));
 addpath(fullfile(projectRoot, 'scripts'));
 addpath(fullfile(projectRoot, 'configs'));
 
+schedulingPath = fullfile(projectRoot, 'src', 'scheduling');
+assert(exist(fullfile(schedulingPath, ...
+    'spare_transfer_time_compute.m'), 'file') == 2);
+
 contractResult = run_stage_a_step_13_contract();
 search = contractResult.complete_reschedule_search;
 selection = contractResult.combined_selection;
@@ -30,6 +34,7 @@ assert(selection.right_shift_metrics.SD == 0);
 assert(selection.selected_metrics.Y <= ...
     min([selection.evaluations.Y]) + 1e-9);
 assert(~isfield(contractResult, 'output_directory'));
+assert(exist('spare_transfer_time_compute', 'file') == 2);
 
 stage13Config = stage_a_step_13_config(projectRoot);
 normalConfig = normal_baseline_search_config(projectRoot);

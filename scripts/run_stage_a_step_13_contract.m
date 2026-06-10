@@ -9,6 +9,7 @@ addpath(fullfile(projectRoot, 'configs'));
 addpath(fullfile(projectRoot, 'scripts'));
 addpath(fullfile(projectRoot, 'src', 'evaluation'));
 addpath(fullfile(projectRoot, 'src', 'rescheduling'));
+addpath(fullfile(projectRoot, 'src', 'scheduling'));
 
 normalScenario = contract_normal_scenario();
 stage12 = run_stage_a_rebuilt_rescheduling_chain(normalScenario);
