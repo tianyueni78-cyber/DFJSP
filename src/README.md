@@ -144,6 +144,8 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 
 - `analyze_stage_a_weight_sensitivity.m`
 - `audit_stage_a_rescheduling_candidate.m`
+- `evaluate_stage_a_right_shift_energy.m`
 
 前者固定候选重新计算组合权重，后者汇总候选已有验证标志并独立检查维修
-区间、最终卸载和能耗一致性。
+区间、最终卸载和能耗一致性。右移能耗函数按右移后的工序时间重新计算
+机器能耗；在路线和运输时长均已验证保持不变时，AGV 能耗沿用正常基线。

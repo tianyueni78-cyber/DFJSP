@@ -23,6 +23,7 @@
 - `configs/stage_a_step_14_config.m`
 - `src/evaluation/analyze_stage_a_weight_sensitivity.m`
 - `src/evaluation/audit_stage_a_rescheduling_candidate.m`
+- `src/evaluation/evaluate_stage_a_right_shift_energy.m`
 - `scripts/run_stage_a_step_14_analysis.m`
 - `scripts/run_stage_a_step_14_multiseed.m`
 - `tests/test_stage_a_step_14_contract.m`
@@ -78,6 +79,6 @@ stage14Multiseed = run_stage_a_step_14_multiseed(stage12);
 
 ## 8. 当前剩余工作
 
-1. 为部分右移候选补充与完全重调度相同口径的机器和 AGV 能耗计算；
-2. 重新执行能耗审计，要求 `all_energy_audits_complete=true`；
+1. 部分右移能耗评价代码已实现，待轻量测试和正式结果复核；
+2. 重新执行能耗审计，目标为 `all_energy_audits_complete=true`；
 3. 多随机种子正式实验仍未运行。
