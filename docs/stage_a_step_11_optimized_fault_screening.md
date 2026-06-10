@@ -74,3 +74,33 @@ stage11 = run_stage_a_optimized_baseline_fault_screening( ...
 ```
 
 恢复后显示的优化基线完工时间应为 `112.72`。
+
+## 6. 正式运行结果
+
+第 10 步正式优化基线恢复后，本步运行结果为：
+
+```text
+optimized baseline makespan: 112.72
+configured trigger: J5-O1, M1, tf=40, tr=5
+configured trigger effective: 0
+effective candidate count: 36
+selected rank: 1, trigger: J8-O1, M2, tf=12,
+affected=7, max_delay=5
+selection reason: configured_trigger_ineffective_use_rank_1
+```
+
+结论：
+
+- `J5-O1` 在优化基线中改由 `M1` 加工，完成时刻变为 `40`；
+- 维修区间 `[40,45)` 没有与后续未开始工序产生直接冲突；
+- 因此原 `J5-O1 / M5 / tf=6` 场景只适用于旧随机基线，正式失效；
+- 优化基线在 `tr=5` 下共有 `36` 个有效候选；
+- 按既定排序规则选择 `J8-O1 / M2 / tf=12 / tr=5`；
+- 该场景预计影响 `7` 道工序，最大预计延迟为 `5`。
+
+本次变化来自正常计划优化后机器分配和加工顺序改变，不是新增或修改问题数据。
+
+## 7. 下一步
+
+进入阶段 A 第 12 步：以优化正常基线和新故障场景为统一输入，重新生成
+状态快照、影响集合、机器部分右移、AGV 联动及完全重调度冻结问题。
