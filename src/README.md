@@ -128,3 +128,14 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 筛选器现在可接收可选的基线来源标签。旧入口仍默认为
 `original_baseline`；第 11 步传入 `optimized_normal_baseline`。筛选规则、
 影响传播和候选排序均未改变。
+
+阶段 A 第 12 步不修改 `src/` 核心算法。它通过脚本编排复用：
+
+- `state/extract_stage_a_state.m`
+- `impact/identify_stage_a_affected_operations.m`
+- `rescheduling/build_stage_a_machine_right_shift.m`
+- `impact/analyze_stage_a_agv_impact.m`
+- `rescheduling/build_stage_a_agv_linked_right_shift.m`
+- `rescheduling/build_stage_a_frozen_problem.m`
+
+各模块必须共享第 10 步优化基线和第 11 步选定故障。
