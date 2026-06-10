@@ -166,3 +166,14 @@ run(fullfile(pwd,'tests','test_stage_b_resume_rule.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_impact_analysis.m'))
 ```
+
+## 阶段 B 第 4 步测试
+
+`test_stage_b_machine_right_shift.m`
+
+检查中断工序的两段加工、受影响时间写入、未受影响工序保持、机器无重叠、
+工件顺序和维修区间，并确认 AGV 时间表尚未调整。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_machine_right_shift.m'))
+```
