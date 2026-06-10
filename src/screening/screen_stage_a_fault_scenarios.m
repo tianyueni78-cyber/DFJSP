@@ -1,13 +1,22 @@
 function screening = screen_stage_a_fault_scenarios( ...
-        baseline, repairDuration)
+        baseline, repairDuration, baselineSource)
 %SCREEN_STAGE_A_FAULT_SCENARIOS Find source-data faults with real impact.
-%   Every candidate uses an operation completion from the original
+%   Every candidate uses an operation completion from the supplied
 %   baseline and the supplied repair duration. No schedule data is created.
 
 if nargin < 2
     error('screen_stage_a_fault_scenarios:MissingInput', ...
         'baseline and repairDuration are required.');
 end
+if nargin < 3
+    baselineSource = 'original_baseline';
+end
+if ~(ischar(baselineSource) || ...
+        (isstring(baselineSource) && isscalar(baselineSource)))
+    error('screen_stage_a_fault_scenarios:BaselineSource', ...
+        'baselineSource must be text.');
+end
+baselineSource = char(baselineSource);
 require_fields(baseline, {'machineTable', 'problem', ...
     'isFaultFreeBaseline'}, 'baseline');
 if ~baseline.isFaultFreeBaseline
@@ -72,7 +81,7 @@ end
 candidates = rank_candidates(candidates);
 
 screening = struct();
-screening.source = 'original_baseline';
+screening.source = baselineSource;
 screening.repair_duration = repairDuration;
 screening.examined_trigger_count = examinedTriggerCount;
 screening.candidates = candidates;

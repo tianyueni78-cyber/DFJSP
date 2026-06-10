@@ -120,3 +120,11 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 它复用原项目正常调度解码器与受限搜索算子，只在原 `Mk02.fjs`、
 原候选机器、原 AGV 和原速度范围中生成候选。用户已允许基于原数据生成
 优化候选方案，但不允许生成替代问题数据。
+
+阶段 A 第 11 步继续使用 `screening/`：
+
+- `screening/screen_stage_a_fault_scenarios.m`
+
+筛选器现在可接收可选的基线来源标签。旧入口仍默认为
+`original_baseline`；第 11 步传入 `optimized_normal_baseline`。筛选规则、
+影响传播和候选排序均未改变。
