@@ -14,6 +14,7 @@ addpath(fullfile(projectRoot, 'configs'));
 addpath(fullfile(projectRoot, 'src', 'evaluation'));
 addpath(fullfile(projectRoot, 'src', 'rescheduling'));
 addpath(fullfile(projectRoot, 'src', 'scheduling'));
+require_scheduling_dependency();
 
 validate_stage12(stage12);
 config = stage_a_step_13_config(projectRoot);
@@ -55,6 +56,14 @@ fprintf('selected tD: %.6g, SD: %d, Y: %.6g\n', ...
     selection.selected_metrics.tD, ...
     selection.selected_metrics.SD, ...
     selection.selected_metrics.Y);
+end
+
+function require_scheduling_dependency()
+if exist('spare_transfer_time_compute', 'file') ~= 2
+    error(['run_stage_a_step_13_search_and_selection:', ...
+        'SchedulingDependency'], ...
+        'spare_transfer_time_compute must be available during search.');
+end
 end
 
 function validate_stage12(stage12)

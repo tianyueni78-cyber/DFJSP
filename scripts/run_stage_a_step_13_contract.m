@@ -10,6 +10,7 @@ addpath(fullfile(projectRoot, 'scripts'));
 addpath(fullfile(projectRoot, 'src', 'evaluation'));
 addpath(fullfile(projectRoot, 'src', 'rescheduling'));
 addpath(fullfile(projectRoot, 'src', 'scheduling'));
+require_scheduling_dependency();
 
 normalScenario = contract_normal_scenario();
 stage12 = run_stage_a_rebuilt_rescheduling_chain(normalScenario);
@@ -42,6 +43,13 @@ scenario.is_formal_run = false;
 scenario.is_validated = stage12.is_validated && ...
     search.is_validated && ...
     combination.is_validated;
+end
+
+function require_scheduling_dependency()
+if exist('spare_transfer_time_compute', 'file') ~= 2
+    error('run_stage_a_step_13_contract:SchedulingDependency', ...
+        'spare_transfer_time_compute must be available during search.');
+end
 end
 
 function scenario = contract_normal_scenario()

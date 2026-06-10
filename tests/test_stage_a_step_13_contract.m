@@ -34,7 +34,6 @@ assert(selection.right_shift_metrics.SD == 0);
 assert(selection.selected_metrics.Y <= ...
     min([selection.evaluations.Y]) + 1e-9);
 assert(~isfield(contractResult, 'output_directory'));
-assert(exist('spare_transfer_time_compute', 'file') == 2);
 
 stage13Config = stage_a_step_13_config(projectRoot);
 normalConfig = normal_baseline_search_config(projectRoot);
