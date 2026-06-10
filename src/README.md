@@ -139,3 +139,11 @@ AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置�
 - `rescheduling/build_stage_a_frozen_problem.m`
 
 各模块必须共享第 10 步优化基线和第 11 步选定故障。
+
+阶段 A 第 14 步在 `evaluation/` 新增：
+
+- `analyze_stage_a_weight_sensitivity.m`
+- `audit_stage_a_rescheduling_candidate.m`
+
+前者固定候选重新计算组合权重，后者汇总候选已有验证标志并独立检查维修
+区间、最终卸载和能耗一致性。

@@ -78,3 +78,10 @@
 ```text
 outputs/stage_a_step_13_search_and_selection/
 ```
+
+## 阶段 A 第 14 步
+
+`stage_a_step_14_config.m`
+
+定义多随机种子 `[11,22,33,42,55]`、完工时间权重 `0:0.1:1`，并继承第 13
+步搜索预算。
