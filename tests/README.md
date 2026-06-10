@@ -177,3 +177,14 @@ run(fullfile(pwd,'tests','test_stage_b_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_machine_right_shift.m'))
 ```
+
+## 阶段 B 第 5 步测试
+
+`test_stage_b_agv_impact_analysis.m`
+
+检查变化工序计数、中断工序边界、运输完整划分、直接违反原因和同一 AGV
+顺序复核标记，并确认 AGV 时间表保持原样。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_agv_impact_analysis.m'))
+```
