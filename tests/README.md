@@ -254,3 +254,14 @@ run(fullfile(pwd,'tests','test_stage_b_restricted_search_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_complete_search_config.m'))
 ```
+
+## 阶段 B 第 12 步测试
+
+`test_stage_b_combination_contract.m`
+
+检查权重、`tD`、`SD`、`Y` 公式、局部右移零机器变化、两段加工搜索标志及
+最小 `Y` 选择规则。测试使用轻量搜索，不读取正式输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_combination_contract.m'))
+```

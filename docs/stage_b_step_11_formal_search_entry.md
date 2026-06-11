@@ -4,7 +4,7 @@
 
 为阶段 B 加工中故障完全重调度建立单随机种子正式搜索配置和结果保存入口。
 
-本步只实现并检查入口，不运行正式搜索、不创建结果目录。
+本步已完成入口检查和单随机种子正式搜索。
 
 ## 正式配置
 
@@ -66,11 +66,32 @@ outputs/stage_b_complete_reschedule_search/YYYYMMDD_HHMMSS/
 run(fullfile(pwd,'tests','test_stage_b_complete_search_config.m'))
 ```
 
-## 正式运行
+## 正式运行结果
 
-正式运行需再次确认后执行：
+结果目录：
+
+```text
+outputs/stage_b_complete_reschedule_search/20260611_100355/
+```
+
+结果摘要：
+
+- 停止原因：`no_pareto_improvement`
+- 实际完成代数：`47`
+- 运行时间：约 `11.4701` 秒
+- 去重后 Pareto 数量：`1`
+- 最终卸载时间：约 `96.2`
+- 总能耗：约 `1702.6`
+
+目标值来自 MATLAB 短格式显示，精确值保存在 `result.mat`。
+
+## 复现实验命令
+
+下列命令会生成新的时间戳结果目录，重新运行前仍需确认：
 
 ```matlab
 addpath(fullfile(pwd,'scripts'))
 scenario = run_stage_b_complete_search();
 ```
+
+下一步复用本步现有 `result.mat` 计算 `tD`、`SD`、`Y`，不需要重新搜索。

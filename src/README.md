@@ -230,3 +230,12 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 候选评价调用阶段 B 两段加工解码器；NSGA-II 主循环复用阶段 A 已验证的
 排序、拥挤距离、选择、Pareto 去重和自适应停止逻辑。
+
+## 阶段 B 第 12 步
+
+- `evaluation/evaluate_stage_b_rescheduling_plan.m`
+- `evaluation/select_stage_b_combined_strategy.m`
+
+第一个函数计算最终卸载完工时间偏差 `tD`、未开工工序机器变化数 `SD`
+和组合指标 `Y`。第二个函数比较 AGV 联动局部右移与全部完全重调度 Pareto
+候选，并按最小 `Y` 选择最终策略。
