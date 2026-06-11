@@ -212,3 +212,13 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 复用成熟的未来任务解码核心，并恢复中断工序两段加工、重建机器表和重算
 机器能耗，确保维修停机不被当成加工时间。
+
+## 阶段 B 第 9 步
+
+继续复用：
+
+- `rescheduling/initialize_stage_a_reschedule_population.m`
+- `rescheduling/vary_stage_a_reschedule_population.m`
+
+这两个算子仅操作未开工工序的 OS/MS/AS/SS 决策，不依赖故障类型。阶段 B
+通过专用入口和第 8 步解码器验证全部父代及子代。

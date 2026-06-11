@@ -221,3 +221,14 @@ run(fullfile(pwd,'tests','test_stage_b_frozen_problem.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_complete_reschedule_decode.m'))
 ```
+
+## 阶段 B 第 9 步测试
+
+`test_stage_b_reschedule_operators.m`
+
+检查父代与子代的编码长度、工件出现次数、候选机器、AGV 和速度范围，并用
+阶段 B 第 8 步解码器验证每个个体。测试还检查固定随机种子的可复现性。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_reschedule_operators.m'))
+```
