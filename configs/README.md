@@ -97,3 +97,16 @@ outputs/stage_a_step_13_search_and_selection/
 - 中断规则 `unresolved`。
 
 该配置不生成新的工件、机器或加工时间。
+
+## 阶段 B 第 11 步
+
+`stage_b_complete_search_config.m`
+
+定义单随机种子正式搜索预算：
+
+- 种群 `10`；
+- 最大 `100` 代；
+- 连续 `10` 代无改善停止；
+- 最长 `30` 秒；
+- 随机种子 `42`；
+- 相对输出目录 `outputs/stage_b_complete_reschedule_search/`。

@@ -243,3 +243,14 @@ run(fullfile(pwd,'tests','test_stage_b_reschedule_operators.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_restricted_search_contract.m'))
 ```
+
+## 阶段 B 第 11 步测试
+
+`test_stage_b_complete_search_config.m`
+
+只检查正式搜索参数、相对输出路径和运行入口是否存在，不运行搜索、不创建
+输出目录。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_complete_search_config.m'))
+```
