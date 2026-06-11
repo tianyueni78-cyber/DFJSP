@@ -265,3 +265,14 @@ run(fullfile(pwd,'tests','test_stage_b_complete_search_config.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_combination_contract.m'))
 ```
+
+## 阶段 B 第 13 步测试
+
+`test_stage_b_step_13_contract.m`
+
+检查 11 组权重、五个种子配置、中断工序两段承诺、维修区间、最终卸载和
+能耗闭合。测试只使用轻量契约搜索，不运行多随机种子实验。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_step_13_contract.m'))
+```

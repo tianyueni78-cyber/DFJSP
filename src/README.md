@@ -239,3 +239,13 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 第一个函数计算最终卸载完工时间偏差 `tD`、未开工工序机器变化数 `SD`
 和组合指标 `Y`。第二个函数比较 AGV 联动局部右移与全部完全重调度 Pareto
 候选，并按最小 `Y` 选择最终策略。
+
+## 阶段 B 第 13 步
+
+- `evaluation/analyze_stage_b_weight_sensitivity.m`
+- `evaluation/audit_stage_b_rescheduling_candidate.m`
+- `evaluation/evaluate_stage_b_right_shift_energy.m`
+
+权重扫描只重新计算固定候选的组合指标。阶段 B 审计使用实际
+`processing_segments` 检查维修区间和中断工序两段承诺，并按加工段重算
+局部右移机器能耗，避免把维修间隔当成加工时间。
