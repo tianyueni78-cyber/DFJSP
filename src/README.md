@@ -222,3 +222,11 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 这两个算子仅操作未开工工序的 OS/MS/AS/SS 决策，不依赖故障类型。阶段 B
 通过专用入口和第 8 步解码器验证全部父代及子代。
+
+## 阶段 B 第 10 步
+
+- `rescheduling/evaluate_stage_b_reschedule_candidate.m`
+- `rescheduling/search_stage_b_complete_reschedule.m`
+
+候选评价调用阶段 B 两段加工解码器；NSGA-II 主循环复用阶段 A 已验证的
+排序、拥挤距离、选择、Pareto 去重和自适应停止逻辑。

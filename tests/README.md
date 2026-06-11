@@ -232,3 +232,14 @@ run(fullfile(pwd,'tests','test_stage_b_complete_reschedule_decode.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_reschedule_operators.m'))
 ```
+
+## 阶段 B 第 10 步测试
+
+`test_stage_b_restricted_search_contract.m`
+
+检查双目标评价、阶段 B 两段加工解码、非支配排序、Pareto 去重、固定种子
+可复现性，以及连续无改善和时间上限两种停止原因。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_b_restricted_search_contract.m'))
+```
