@@ -74,7 +74,36 @@ outputs/stage_b_complete_reschedule_search/20260611_100355/
 run(fullfile(pwd,'tests','test_stage_b_combination_contract.m'))
 ```
 
-## 正式结果计算
+## 正式组合结果
+
+轻量契约测试已通过：
+
+```text
+test_stage_b_combination_contract passed
+```
+
+使用第 11 步正式 `result.mat` 得到：
+
+| 方案 | 最终卸载时间 | tD | SD | Y |
+|---|---:|---:|---:|---:|
+| AGV 联动局部右移 | 144.2033 | 0 | 0 | 0 |
+| 完全重调度 | 96.1633 | -48.0400 | 36 | -39.6360 |
+
+当前权重 `omega1=0.9、omega2=0.1` 下，最终选择：
+
+```text
+complete_rescheduling
+```
+
+局部右移保持原机器分配，因此 `SD=0`；其最终卸载时间没有超过正常基线，
+说明本场景的维修延迟被原计划余量吸收。完全重调度改变了 `36` 道未开工
+工序的机器分配，但完工时间改善足以抵消序列扰动惩罚。
+
+`tD=-48.04` 表示完全重调度候选优于当前正常基线，不表示机器故障本身产生
+收益。该结果同时包含对剩余任务的重新优化效果，后续仍需通过多随机种子和
+权重敏感性分析检查结论稳定性。
+
+## 复现命令
 
 ```matlab
 data = load(fullfile(pwd,'outputs', ...
@@ -88,5 +117,3 @@ stage12.combined_selection.selected_metrics
 stage12.combined_selection.right_shift_metrics
 stage12.combined_selection.complete_reschedule_metrics
 ```
-
-正式选择结果需在上述命令运行后记录，不能根据第 11 步的双目标值提前推断。
