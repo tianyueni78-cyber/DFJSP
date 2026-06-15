@@ -287,3 +287,14 @@ run(fullfile(pwd,'tests','test_stage_b_step_13_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_restart_rule.m'))
 ```
+
+## 阶段 B-R 第 2 步测试
+
+`test_stage_br_impact_analysis.m`
+
+检查完整重加工根节点、损失加工字段、未开始工序划分和预计延迟，并与阶段 B
+保留进度场景比较根延迟和影响数量。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_impact_analysis.m'))
+```
