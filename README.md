@@ -33,6 +33,7 @@
 | [阶段 B-R 第 7 步：完全重调度解码器](docs/stage_br_step_07_complete_decoder.md) | 解码未开工任务并保留损失段、完整重加工段和能耗语义 |
 | [阶段 B-R 第 8 步：受限种群算子](docs/stage_br_step_08_reschedule_operators.md) | 初始化、交叉和变异未开工任务决策，并逐个解码验证 |
 | [阶段 B-R 第 9 步：轻量搜索契约](docs/stage_br_step_09_restricted_search.md) | 双目标评价、NSGA-II 主循环、Pareto 去重与自适应停止 |
+| [阶段 B-R 第 10 步：正式搜索入口](docs/stage_br_step_10_formal_search_entry.md) | 单种子正式预算、独立结果目录和保存文件 |
 | [阶段 B 第 1 步：加工中故障状态](docs/stage_b_step_01_processing_fault_state.md) | 定义加工中故障事件，识别在制工序并计算已加工与剩余加工时间 |
 | [阶段 B 第 2 步：暂停后续加工](docs/stage_b_step_02_resume_rule.md) | 保留已加工进度，维修结束后在原机器继续剩余加工时间 |
 | [阶段 B 第 3 步：延迟影响传播](docs/stage_b_step_03_impact_propagation.md) | 从中断工序新完成时间沿工件和机器后继生成局部影响集合 |
@@ -185,12 +186,15 @@
 - 阶段 B-R 第 8 步 MATLAB 轻量测试已通过；
 - 阶段 B-R 第 9 步候选评价、受限 NSGA-II 轻量搜索、测试及文档已完成
   静态实现，尚未运行 MATLAB；
+- 阶段 B-R 第 9 步 MATLAB 轻量测试已通过；
+- 阶段 B-R 第 10 步正式搜索配置、保存入口、测试及文档已完成静态实现，
+  尚未运行配置测试或正式搜索；
 - 用户已允许基于原数据生成优化候选方案；不允许新增问题数据或修改 `raw_code/`。
 
 ## 下一步执行边界
 
-下一步运行阶段 B-R 第 9 步轻量测试，验证双目标评价、Pareto 去重、
-固定随机种子可复现性及三类停止条件。
+下一步运行阶段 B-R 第 10 步配置测试。配置测试不会运行搜索或生成输出；
+正式搜索运行前仍需单独确认。
 
 ## 目录说明
 

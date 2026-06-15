@@ -375,3 +375,13 @@ run(fullfile(pwd,'tests','test_stage_br_reschedule_operators.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_restricted_search_contract.m'))
 ```
+
+## 阶段 B-R 第 10 步测试
+
+`test_stage_br_complete_search_config.m`
+
+只检查正式搜索参数、相对输出路径和运行入口，不运行搜索，也不创建输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_complete_search_config.m'))
+```

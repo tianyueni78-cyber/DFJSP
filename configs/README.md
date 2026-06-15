@@ -130,3 +130,16 @@ outputs/stage_a_step_13_search_and_selection/
 - 随机种子 `[11,22,33,42,55]`；
 - 完工时间权重 `0:0.1:1`；
 - 相对输出目录 `outputs/stage_b_step_13_robustness/`。
+
+## 阶段 B-R 第 10 步
+
+`stage_br_complete_search_config.m`
+
+定义从头加工规则单随机种子正式搜索预算：
+
+- 种群 `10`；
+- 最大 `100` 代；
+- 连续 `10` 代无改善停止；
+- 最长 `30` 秒；
+- 随机种子 `42`；
+- 相对输出目录 `outputs/stage_br_complete_reschedule_search/`。
