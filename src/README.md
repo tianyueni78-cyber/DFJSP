@@ -35,6 +35,13 @@ evaluation/     后续重调度评价指标
 它校验并规范化统一 `faults[]` 输入，按故障时间排序、保留原输入顺序，并
 为同时故障分配相同事件组。本函数不读取或修改调度计划。
 
+阶段 C 第 2 步新增：
+
+- `fault/build_stage_c_machine_unavailability.m`
+
+它按机器汇总故障事件，合并同机重叠或相接的维修区间，并保留全部来源事件
+编号和事件组。本函数不读取机器时间表，不修改调度计划。
+
 阶段 A 第 3 步使用 `state/`：
 
 - `state/extract_stage_a_state.m`

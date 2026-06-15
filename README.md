@@ -227,6 +227,14 @@
 
 下一步先运行第 1 步轻量契约测试；当前未运行 MATLAB。
 
+阶段 C 第 1 步轻量测试已通过。第 2 步已完成静态实现：
+
+- [机器维修不可用区间](docs/stage_c_step_02_machine_unavailability.md)
+- `src/fault/build_stage_c_machine_unavailability.m`
+- `tests/test_stage_c_machine_unavailability.m`
+
+下一步先运行第 2 步轻量契约测试；当前未接入调度算法。
+
 ## 目录说明
 
 ```text

@@ -419,3 +419,14 @@ run(fullfile(pwd,'tests','test_stage_br_step_12_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_fault_events.m'))
 ```
+
+## 阶段 C 第 2 步测试
+
+`test_stage_c_machine_unavailability.m`
+
+检查同机重叠区间、相接区间和分离区间，不同机器区间、无故障机器空数组，
+以及合并后来源事件完整性。测试不运行调度算法，不生成输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_machine_unavailability.m'))
+```
