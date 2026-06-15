@@ -364,3 +364,14 @@ run(fullfile(pwd,'tests','test_stage_br_complete_reschedule_decode.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_reschedule_operators.m'))
 ```
+
+## 阶段 B-R 第 9 步测试
+
+`test_stage_br_restricted_search_contract.m`
+
+检查双目标评价、非支配排序、Pareto 去重、固定随机种子复现，以及最大代数、
+连续无改善和时间上限停止契约。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_restricted_search_contract.m'))
+```

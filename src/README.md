@@ -306,3 +306,11 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 算子只改变未开工任务的 OS、机器、AGV 和速度决策，不读取或修改从头加工
 承诺。每个父代和子代由 B-R 专用解码器验证。
+
+## 阶段 B-R 第 9 步
+
+- `rescheduling/evaluate_stage_br_reschedule_candidate.m`
+- `rescheduling/search_stage_br_complete_reschedule.m`
+
+评价器使用最终卸载时间和包含损失加工的总能耗。搜索器执行非支配排序、
+拥挤距离、锦标赛、精英保留、Pareto 去重和自适应停止。
