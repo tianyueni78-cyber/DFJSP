@@ -119,6 +119,14 @@ evaluation/     后续重调度评价指标
 分别负责 `tD、SD、Y`、局部方案能耗、组合选择以及多维修区间和多中断承诺
 最终审计。
 
+阶段 C 第 12 步新增：
+
+- `state/initialize_stage_c_plan_history.m`
+- `state/append_stage_c_plan_version.m`
+- `state/resolve_stage_c_active_plan.m`
+
+建立不可覆盖的计划版本链，并按查询时刻返回当时实际生效的计划版本。
+
 它冻结已完成、正常在制和多个故障在制承诺，提取未开工工序及原问题候选
 机器数据，并建立工件、机器、AGV 和维修资源边界。
 

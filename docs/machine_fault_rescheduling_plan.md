@@ -1510,3 +1510,9 @@ AGV 任务冲突的影响。
 实现，尚未运行 MATLAB。
 
 - [阶段 C 第 11 步：组合评价与最终审计](stage_c_step_11_combination_and_audit.md)
+
+阶段 C 第 11 步轻量与正式组合评价均已通过。第 12 步事件回放、不可覆盖
+计划版本链、按时刻解析、轻量契约和说明文档已完成静态实现，尚未运行
+MATLAB；尚未处理第二次故障。
+
+- [阶段 C 第 12 步：事件回放与计划版本模型](stage_c_step_12_plan_version_history.md)

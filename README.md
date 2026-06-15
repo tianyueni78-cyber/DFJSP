@@ -358,6 +358,18 @@
 本步比较局部右移和全部 Pareto 候选的 `tD、SD、Y`，并审计多个维修区间、
 多个中断承诺、最终卸载和能耗。
 
+阶段 C 第 11 步轻量与正式结果分析均已通过。第 12 步已完成静态实现：
+
+- [事件回放与计划版本模型](docs/stage_c_step_12_plan_version_history.md)
+- `src/state/initialize_stage_c_plan_history.m`
+- `src/state/append_stage_c_plan_version.m`
+- `src/state/resolve_stage_c_active_plan.m`
+- `scripts/run_stage_c_plan_version_history.m`
+- `tests/test_stage_c_plan_version_history.m`
+
+本步建立 `V0 正常基线 -> V1 第一次故障后选定计划`，后续事件按时刻查询
+当前生效版本，不覆盖历史；暂不处理第二次故障。
+
 ## 目录说明
 
 ```text

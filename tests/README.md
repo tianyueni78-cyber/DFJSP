@@ -570,3 +570,14 @@ run(fullfile(pwd,'tests', ...
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_combination_contract.m'))
 ```
+
+## 阶段 C 第 12 步测试
+
+`test_stage_c_plan_version_history.m`
+
+检查版本编号、前驱关系、生效时刻、来源事件、选定策略、历史不可覆盖，以及
+故障前后解析到正确的计划版本。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_plan_version_history.m'))
+```
