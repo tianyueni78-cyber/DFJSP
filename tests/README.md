@@ -500,3 +500,15 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_agv_linked_right_shift.m'))
 ```
+
+## 阶段 C 第 9 步测试
+
+`test_stage_c_simultaneous_frozen_problem.m`
+
+检查工序与运输完整分区、双中断承诺、多维修区间、候选机器数据、工件和
+资源边界、AGV 电量边界及故障输入顺序无关性。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_frozen_problem.m'))
+```

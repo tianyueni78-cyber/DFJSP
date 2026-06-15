@@ -293,6 +293,16 @@
 本步正式调整 AGV 时间，并把运输延迟反馈至机器工序；机器和 AGV 分配、
 路线、顺序及持续时间保持不变。下一步先运行第 8 步轻量测试。
 
+阶段 C 第 8 步轻量测试已通过。第 9 步已完成静态实现：
+
+- [同时故障完全重调度冻结问题](docs/stage_c_step_09_simultaneous_frozen_problem.md)
+- `src/rescheduling/build_stage_c_simultaneous_frozen_problem.m`
+- `scripts/run_stage_c_simultaneous_frozen_problem.m`
+- `tests/test_stage_c_simultaneous_frozen_problem.m`
+
+本步冻结已完成、正常在制和两个故障在制承诺，只释放未开工任务；不运行
+搜索。下一步先运行第 9 步轻量测试。
+
 ## 目录说明
 
 ```text

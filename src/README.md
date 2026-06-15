@@ -90,6 +90,13 @@ evaluation/     后续重调度评价指标
 它在保留两个中断工序承诺的前提下，迭代传播 AGV 顺序、运输就绪、工序
 到达、机器先后和多个维修区间约束，生成完整局部右移候选方案。
 
+阶段 C 第 9 步新增：
+
+- `rescheduling/build_stage_c_simultaneous_frozen_problem.m`
+
+它冻结已完成、正常在制和多个故障在制承诺，提取未开工工序及原问题候选
+机器数据，并建立工件、机器、AGV 和维修资源边界。
+
 阶段 A 第 4 步使用 `impact/`：
 
 - `impact/identify_stage_a_affected_operations.m`
