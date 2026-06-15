@@ -276,3 +276,14 @@ run(fullfile(pwd,'tests','test_stage_b_combination_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_b_step_13_contract.m'))
 ```
+
+## 阶段 B-R 第 1 步测试
+
+`test_stage_br_restart_rule.m`
+
+检查故障前加工被标记为损失、修复后完整重加工、机器不迁移、有效完成加工
+时间和总机器加工时间的区别。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_restart_rule.m'))
+```
