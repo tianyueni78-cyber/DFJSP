@@ -309,3 +309,14 @@ run(fullfile(pwd,'tests','test_stage_br_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_machine_right_shift.m'))
 ```
+
+## 阶段 B-R 第 4 步测试
+
+`test_stage_br_agv_impact_analysis.m`
+
+检查完整重加工根节点、变化工序数量、运输集合完整划分、直接违反原因和
+同一 AGV 顺序复核标记。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_agv_impact_analysis.m'))
+```
