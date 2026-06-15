@@ -28,6 +28,13 @@ evaluation/     后续重调度评价指标
 
 当前只负责工序完成时故障事件的创建和校验。
 
+阶段 C 第 1 步新增：
+
+- `fault/normalize_stage_c_fault_events.m`
+
+它校验并规范化统一 `faults[]` 输入，按故障时间排序、保留原输入顺序，并
+为同时故障分配相同事件组。本函数不读取或修改调度计划。
+
 阶段 A 第 3 步使用 `state/`：
 
 - `state/extract_stage_a_state.m`

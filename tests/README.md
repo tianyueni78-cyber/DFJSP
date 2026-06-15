@@ -407,3 +407,15 @@ run(fullfile(pwd,'tests','test_stage_br_combination_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_step_12_contract.m'))
 ```
+
+## 阶段 C 第 1 步测试
+
+`test_stage_c_fault_events.m`
+
+检查统一故障数组的字段校验、时间排序、来源顺序、同时故障分组，以及重复
+编号、非法机器、非法中断规则和错误维修结束时间。测试只使用最小事件参数，
+不生成生产问题数据，不运行调度算法。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_fault_events.m'))
+```

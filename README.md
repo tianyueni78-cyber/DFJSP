@@ -219,6 +219,14 @@
 阶段 C 分为共享多故障基础、同时故障、连续故障和最终验证四个工作段，共
 `18` 步。下一步只执行第 1 步：定义并校验统一 `faults[]` 输入。
 
+阶段 C 第 1 步已完成静态实现：
+
+- [统一多故障事件输入](docs/stage_c_step_01_fault_events.md)
+- `src/fault/normalize_stage_c_fault_events.m`
+- `tests/test_stage_c_fault_events.m`
+
+下一步先运行第 1 步轻量契约测试；当前未运行 MATLAB。
+
 ## 目录说明
 
 ```text
