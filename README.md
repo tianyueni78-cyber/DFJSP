@@ -323,6 +323,17 @@
 本步复用现有受限初始化、交叉和变异，只改变未开工任务的 OS、MS、AS、SS，
 并要求每个父代和子代通过多中断解码器；不评价适应度、不运行正式搜索。
 
+阶段 C 第 10.2 步轻量测试已通过。第 10.3 步已完成静态实现：
+
+- [候选评价与受限 NSGA-II 轻量搜索](docs/stage_c_step_10c_simultaneous_restricted_search.md)
+- `src/rescheduling/evaluate_stage_c_simultaneous_reschedule_candidate.m`
+- `src/rescheduling/search_stage_c_simultaneous_complete_reschedule.m`
+- `scripts/run_stage_c_simultaneous_restricted_search_contract.m`
+- `tests/test_stage_c_simultaneous_restricted_search_contract.m`
+
+本步使用最终卸载时间和总能耗评价候选，保留 Pareto 去重和自适应停止。
+轻量契约为 `6×2`，不保存正式结果。
+
 ## 目录说明
 
 ```text

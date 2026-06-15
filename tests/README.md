@@ -536,3 +536,15 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_reschedule_operators.m'))
 ```
+
+## 阶段 C 第 10.3 步测试
+
+`test_stage_c_simultaneous_restricted_search_contract.m`
+
+检查双目标评价、非支配排序、Pareto 去重、固定随机种子可复现、全部多中断
+和维修约束，以及无改善停止和时间上限停止。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_restricted_search_contract.m'))
+```

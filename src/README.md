@@ -101,6 +101,14 @@ evaluation/     后续重调度评价指标
 该适配器复用阶段 A 共享解码核心，并恢复多个故障在制工序的真实加工时长、
 两段加工承诺和故障来源，最后重建机器表并校验全部维修区间。
 
+阶段 C 第 10.3 步新增：
+
+- `rescheduling/evaluate_stage_c_simultaneous_reschedule_candidate.m`
+- `rescheduling/search_stage_c_simultaneous_complete_reschedule.m`
+
+评价目标为最终卸载完工时间和总能耗；搜索使用受限 NSGA-II、Pareto 去重和
+自适应停止，每个候选均经过阶段 C 多中断解码器。
+
 它冻结已完成、正常在制和多个故障在制承诺，提取未开工工序及原问题候选
 机器数据，并建立工件、机器、AGV 和维修资源边界。
 
