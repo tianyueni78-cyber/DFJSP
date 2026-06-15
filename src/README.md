@@ -76,6 +76,13 @@ evaluation/     后续重调度评价指标
 它把两个中断工序分别拆成故障前加工段和修复后续加工段，并将第 5 步合并
 后的预计时间写入机器候选表。机器分配不变，AGV 表保持原样。
 
+阶段 C 第 7 步新增：
+
+- `impact/analyze_stage_c_simultaneous_agv_impact.m`
+
+它检查机器候选时间对负载运输和最终卸载的影响，再沿同一 AGV 后续任务
+传播待复核范围；运输记录保留全部故障来源，但不修改时间表。
+
 阶段 A 第 4 步使用 `impact/`：
 
 - `impact/identify_stage_a_affected_operations.m`

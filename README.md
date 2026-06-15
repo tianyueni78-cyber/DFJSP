@@ -273,6 +273,16 @@
 本步正式生成机器候选表，两个中断工序按保留进度规则恢复；AGV 时间表保持
 原样，尚未进行运输联动验证。下一步先运行第 6 步轻量测试。
 
+阶段 C 第 6 步轻量测试已通过。第 7 步已完成静态实现：
+
+- [同时故障 AGV 影响分析](docs/stage_c_step_07_simultaneous_agv_impact.md)
+- `src/impact/analyze_stage_c_simultaneous_agv_impact.m`
+- `scripts/run_stage_c_simultaneous_agv_impact_analysis.m`
+- `tests/test_stage_c_simultaneous_agv_impact_analysis.m`
+
+本步只识别直接失效运输和同一 AGV 后续待复核运输，不修改 AGV 或机器
+时间表。下一步先运行第 7 步轻量测试。
+
 ## 目录说明
 
 ```text

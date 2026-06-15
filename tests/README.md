@@ -476,3 +476,15 @@ run(fullfile(pwd,'tests','test_stage_c_simultaneous_impact_analysis.m'))
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_machine_right_shift.m'))
 ```
+
+## 阶段 C 第 7 步测试
+
+`test_stage_c_simultaneous_agv_impact_analysis.m`
+
+检查直接失效运输、同一 AGV 后继复核、运输去重、故障来源保留、完整分区、
+输入顺序无关性以及 AGV 表保持不变。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_agv_impact_analysis.m'))
+```
