@@ -488,3 +488,15 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_agv_impact_analysis.m'))
 ```
+
+## 阶段 C 第 8 步测试
+
+`test_stage_c_simultaneous_agv_linked_right_shift.m`
+
+检查 AGV 无重叠、运输就绪、运输先于加工、机器和工件约束、多个维修区间、
+双中断承诺、最终卸载及故障输入顺序无关性。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_agv_linked_right_shift.m'))
+```

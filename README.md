@@ -283,6 +283,16 @@
 本步只识别直接失效运输和同一 AGV 后续待复核运输，不修改 AGV 或机器
 时间表。下一步先运行第 7 步轻量测试。
 
+阶段 C 第 7 步轻量测试已通过。第 8 步已完成静态实现：
+
+- [同时故障 AGV 与机器联动局部右移](docs/stage_c_step_08_simultaneous_agv_linked_right_shift.md)
+- `src/rescheduling/build_stage_c_simultaneous_agv_linked_right_shift.m`
+- `scripts/run_stage_c_simultaneous_agv_linked_right_shift.m`
+- `tests/test_stage_c_simultaneous_agv_linked_right_shift.m`
+
+本步正式调整 AGV 时间，并把运输延迟反馈至机器工序；机器和 AGV 分配、
+路线、顺序及持续时间保持不变。下一步先运行第 8 步轻量测试。
+
 ## 目录说明
 
 ```text
