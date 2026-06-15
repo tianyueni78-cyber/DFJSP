@@ -114,7 +114,8 @@ end
 function [faultTasks, normalTasks] = split_in_progress(tasks, groupFaults)
 template = interrupted_operation_template();
 faultTasks = template([]);
-normalTasks = operation_template([]);
+normalTemplate = operation_template();
+normalTasks = normalTemplate([]);
 failedMachineIds = [groupFaults.machine_id];
 for index = 1:numel(tasks)
     task = tasks(index);
