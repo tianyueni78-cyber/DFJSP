@@ -298,3 +298,14 @@ run(fullfile(pwd,'tests','test_stage_br_restart_rule.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_impact_analysis.m'))
 ```
+
+## 阶段 B-R 第 3 步测试
+
+`test_stage_br_machine_right_shift.m`
+
+检查逻辑工序完整性、损失加工段、完整重加工段、受影响工序时间、机器无
+重叠、工序优先关系和维修区间。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_machine_right_shift.m'))
+```
