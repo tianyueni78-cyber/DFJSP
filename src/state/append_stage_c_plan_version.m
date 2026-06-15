@@ -48,9 +48,11 @@ function validate_inputs(history, selectedPlan, faults, strategy)
 requiredHistory = {'versions', 'event_records', 'current_version_id', ...
     'history_is_immutable', 'is_validated'};
 require_fields(history, requiredHistory, 'history');
-require_fields(selectedPlan, {'machineTable', 'AGVTable'}, 'selectedPlan');
+require_fields(selectedPlan, {'machineTable'}, 'selectedPlan');
+hasAgvPlan = isfield(selectedPlan, 'AGVTable') || ...
+    isfield(selectedPlan, 'agv_activity_records');
 if ~history.is_validated || ~history.history_is_immutable || ...
-        isempty(faults) || ~isstruct(faults)
+        isempty(faults) || ~isstruct(faults) || ~hasAgvPlan
     error('append_stage_c_plan_version:InvalidInput', ...
         'Validated history, selected plan, and faults are required.');
 end

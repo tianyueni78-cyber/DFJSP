@@ -370,6 +370,18 @@
 本步建立 `V0 正常基线 -> V1 第一次故障后选定计划`，后续事件按时刻查询
 当前生效版本，不覆盖历史；暂不处理第二次故障。
 
+阶段 C 第 12 步轻量测试已通过。第 13 步已完成静态实现：
+
+- [从当前计划提取下一故障状态](docs/stage_c_step_13_next_fault_state.md)
+- `src/state/build_stage_c_current_plan_view.m`
+- `src/screening/screen_stage_c_next_fault_event.m`
+- `src/state/extract_stage_c_sequential_fault_state.m`
+- `scripts/run_stage_c_next_fault_state.m`
+- `tests/test_stage_c_next_fault_state.m`
+
+本步从 `V1` 动态选择下一有效故障并提取状态，不回到正常基线、不传播影响、
+不修改计划、不运行搜索。
+
 ## 目录说明
 
 ```text

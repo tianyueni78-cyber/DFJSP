@@ -127,6 +127,15 @@ evaluation/     后续重调度评价指标
 
 建立不可覆盖的计划版本链，并按查询时刻返回当时实际生效的计划版本。
 
+阶段 C 第 13 步新增：
+
+- `state/build_stage_c_current_plan_view.m`
+- `screening/screen_stage_c_next_fault_event.m`
+- `state/extract_stage_c_sequential_fault_state.m`
+
+把任意生效版本转换为只读状态提取视图，从该版本动态选择并提取下一故障
+状态，同时保留仍活动的旧维修区间。
+
 它冻结已完成、正常在制和多个故障在制承诺，提取未开工工序及原问题候选
 机器数据，并建立工件、机器、AGV 和维修资源边界。
 

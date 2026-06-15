@@ -581,3 +581,14 @@ run(fullfile(pwd,'tests','test_stage_c_combination_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_plan_version_history.m'))
 ```
+
+## 阶段 C 第 13 步测试
+
+`test_stage_c_next_fault_state.m`
+
+检查下一故障确实来自 `V1`、事件编号顺延、工序完整分区、新故障在制工序、
+旧维修列表以及 `V0/V1` 历史保持不变。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_next_fault_state.m'))
+```

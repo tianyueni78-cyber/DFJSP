@@ -271,9 +271,11 @@ function validate_baseline(baseline)
 require_fields(baseline, {'machineTable', 'AGVTable', 'problem', ...
     'isFaultFreeBaseline'}, 'baseline');
 require_fields(baseline.problem, {'operaNumVec'}, 'baseline.problem');
-if ~baseline.isFaultFreeBaseline
+isCurrentView = isfield(baseline, 'isCurrentPlanView') && ...
+    isequal(baseline.isCurrentPlanView, true);
+if ~baseline.isFaultFreeBaseline && ~isCurrentView
     error('extract_stage_c_event_group_state:InvalidBaseline', ...
-        'baseline must be a fault-free normal schedule.');
+        'Input must be a fault-free baseline or current plan view.');
 end
 end
 
