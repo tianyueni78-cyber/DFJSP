@@ -8,6 +8,7 @@ originalPath = path;
 cleanupPath = onCleanup(@() path(originalPath));
 addpath(fullfile(projectRoot, 'scripts'));
 addpath(fullfile(projectRoot, 'src', 'rescheduling'));
+addpath(fullfile(projectRoot, 'src', 'scheduling'));
 
 if nargin < 1
     scenario = run_stage_c_simultaneous_frozen_problem();

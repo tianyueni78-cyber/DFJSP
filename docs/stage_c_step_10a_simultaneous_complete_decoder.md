@@ -24,6 +24,9 @@
 5. 重建机器时间表，并校验全部维修区间、机器互斥、工序顺序、AGV、
    最终卸载和能耗字段。
 
+运行入口会加入 `src/rescheduling/` 和 `src/scheduling/`。后者提供共享的
+AGV 空载运输时间函数 `spare_transfer_time_compute.m`。
+
 ## 数据来源
 
 生产问题、正常染色体、机器候选、加工时间、AGV 和能耗参数均来自原项目
