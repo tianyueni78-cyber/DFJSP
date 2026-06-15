@@ -314,3 +314,11 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 评价器使用最终卸载时间和包含损失加工的总能耗。搜索器执行非支配排序、
 拥挤距离、锦标赛、精英保留、Pareto 去重和自适应停止。
+
+## 阶段 B-R 第 11 步
+
+- `evaluation/evaluate_stage_br_rescheduling_plan.m`
+- `evaluation/select_stage_br_combined_strategy.m`
+
+计算最终卸载时间偏差 `tD`、未开工工序机器变化数 `SD` 和组合指标 `Y`，
+并在局部右移与完全重调度 Pareto 候选中选择最小 `Y`。

@@ -385,3 +385,14 @@ run(fullfile(pwd,'tests','test_stage_br_restricted_search_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_complete_search_config.m'))
 ```
+
+## 阶段 B-R 第 11 步测试
+
+`test_stage_br_combination_contract.m`
+
+检查从头加工语义、权重、`tD`、`SD`、`Y` 公式、局部右移零机器变化及
+最小 `Y` 选择规则。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_combination_contract.m'))
+```

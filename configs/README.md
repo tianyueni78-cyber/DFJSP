@@ -143,3 +143,13 @@ outputs/stage_a_step_13_search_and_selection/
 - 最长 `30` 秒；
 - 随机种子 `42`；
 - 相对输出目录 `outputs/stage_br_complete_reschedule_search/`。
+
+## 阶段 B-R 第 11 步
+
+`stage_br_combination_config.m`
+
+定义组合评价权重：
+
+- 完工时间偏差权重 `0.9`；
+- 机器序列偏差权重 `0.1`；
+- 并列比较容差 `1e-9`。

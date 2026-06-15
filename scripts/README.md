@@ -335,3 +335,14 @@ Pareto 目标、搜索历史和摘要保存到新的时间戳目录。它会生�
 
 执行单随机种子正式搜索，并保存 MAT、Pareto CSV、搜索历史和运行摘要。
 该入口会生成输出，运行前必须确认。
+
+## 阶段 B-R 第 11 步
+
+`run_stage_br_combination_selection.m`
+
+复用已完成搜索场景，从同一基线重建 B-R 局部右移候选并执行组合选择，
+不重新搜索、不生成输出。
+
+`run_stage_br_combination_contract.m`
+
+使用 `6×2` 轻量搜索验证组合评价链。
