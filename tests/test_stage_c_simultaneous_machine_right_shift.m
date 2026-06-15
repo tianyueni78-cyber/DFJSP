@@ -6,6 +6,7 @@ projectRoot = fileparts(testDir);
 originalPath = path;
 cleanupPath = onCleanup(@() path(originalPath));
 addpath(fullfile(projectRoot, 'scripts'));
+addpath(fullfile(projectRoot, 'src', 'rescheduling'));
 
 scenario = run_stage_c_simultaneous_machine_right_shift();
 candidate = scenario.machine_right_shift;
