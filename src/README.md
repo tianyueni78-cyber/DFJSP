@@ -298,3 +298,11 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 复用未开工任务调度核心，随后恢复损失加工段与完整重加工段，重建机器表，
 并按实际加工段重算机器能耗。
+
+## 阶段 B-R 第 8 步
+
+复用 `rescheduling/initialize_stage_a_reschedule_population.m` 和
+`rescheduling/vary_stage_a_reschedule_population.m`。
+
+算子只改变未开工任务的 OS、机器、AGV 和速度决策，不读取或修改从头加工
+承诺。每个父代和子代由 B-R 专用解码器验证。

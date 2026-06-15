@@ -353,3 +353,14 @@ run(fullfile(pwd,'tests','test_stage_br_frozen_problem.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_complete_reschedule_decode.m'))
 ```
+
+## 阶段 B-R 第 8 步测试
+
+`test_stage_br_reschedule_operators.m`
+
+检查父代和子代的 OS 工件次数、机器选择、AGV、速度范围及固定随机种子的
+可复现性，并要求每个个体通过 B-R 完全重调度解码器。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_reschedule_operators.m'))
+```
