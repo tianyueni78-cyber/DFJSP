@@ -314,6 +314,15 @@
 并校验全部维修区间；不运行搜索、不生成正式输出。下一步先运行第 10.1 步
 轻量测试。
 
+阶段 C 第 10.1 步轻量测试已通过。第 10.2 步已完成静态实现：
+
+- [同时故障受限种群与遗传算子](docs/stage_c_step_10b_simultaneous_reschedule_operators.md)
+- `scripts/run_stage_c_simultaneous_reschedule_operators.m`
+- `tests/test_stage_c_simultaneous_reschedule_operators.m`
+
+本步复用现有受限初始化、交叉和变异，只改变未开工任务的 OS、MS、AS、SS，
+并要求每个父代和子代通过多中断解码器；不评价适应度、不运行正式搜索。
+
 ## 目录说明
 
 ```text

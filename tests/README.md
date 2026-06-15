@@ -524,3 +524,15 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_complete_reschedule_decode.m'))
 ```
+
+## 阶段 C 第 10.2 步测试
+
+`test_stage_c_simultaneous_reschedule_operators.m`
+
+检查固定随机种子可复现、OS 多重集合不变、MS/AS/SS 均在原数据范围内，
+并逐个使用阶段 C 多中断解码器验证父代和子代。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_reschedule_operators.m'))
+```
