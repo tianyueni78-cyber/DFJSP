@@ -422,4 +422,3 @@ for first = 1:size(candidates, 1)
 end
 archive = unique(candidates(keep, :), 'rows', 'stable');
 end
-
