@@ -301,7 +301,18 @@
 - `tests/test_stage_c_simultaneous_frozen_problem.m`
 
 本步冻结已完成、正常在制和两个故障在制承诺，只释放未开工任务；不运行
-搜索。下一步先运行第 9 步轻量测试。
+搜索。阶段 C 第 9 步轻量测试已通过。
+
+阶段 C 第 10.1 步已完成静态实现：
+
+- [同时故障完全重调度解码器](docs/stage_c_step_10a_simultaneous_complete_decoder.md)
+- `src/rescheduling/decode_stage_c_simultaneous_complete_reschedule.m`
+- `scripts/run_stage_c_simultaneous_complete_reschedule_decode.m`
+- `tests/test_stage_c_simultaneous_complete_reschedule_decode.m`
+
+本步复用原项目编码数据解码一个轻量候选，恢复多个中断工序的两段加工承诺，
+并校验全部维修区间；不运行搜索、不生成正式输出。下一步先运行第 10.1 步
+轻量测试。
 
 ## 目录说明
 

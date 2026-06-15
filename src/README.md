@@ -94,6 +94,13 @@ evaluation/     后续重调度评价指标
 
 - `rescheduling/build_stage_c_simultaneous_frozen_problem.m`
 
+阶段 C 第 10.1 步新增：
+
+- `rescheduling/decode_stage_c_simultaneous_complete_reschedule.m`
+
+该适配器复用阶段 A 共享解码核心，并恢复多个故障在制工序的真实加工时长、
+两段加工承诺和故障来源，最后重建机器表并校验全部维修区间。
+
 它冻结已完成、正常在制和多个故障在制承诺，提取未开工工序及原问题候选
 机器数据，并建立工件、机器、AGV 和维修资源边界。
 

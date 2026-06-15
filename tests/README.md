@@ -512,3 +512,15 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_frozen_problem.m'))
 ```
+
+## 阶段 C 第 10.1 步测试
+
+`test_stage_c_simultaneous_complete_reschedule_decode.m`
+
+检查冻结任务不变、多个中断工序各自展开为两段加工、全部维修区间无加工、
+机器无重叠、工件顺序、最终卸载以及机器和 AGV 能耗字段完整。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_complete_reschedule_decode.m'))
+```
