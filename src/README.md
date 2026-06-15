@@ -109,6 +109,16 @@ evaluation/     后续重调度评价指标
 评价目标为最终卸载完工时间和总能耗；搜索使用受限 NSGA-II、Pareto 去重和
 自适应停止，每个候选均经过阶段 C 多中断解码器。
 
+阶段 C 第 11 步新增：
+
+- `evaluation/evaluate_stage_c_rescheduling_plan.m`
+- `evaluation/evaluate_stage_c_right_shift_energy.m`
+- `evaluation/select_stage_c_combined_strategy.m`
+- `evaluation/audit_stage_c_rescheduling_candidate.m`
+
+分别负责 `tD、SD、Y`、局部方案能耗、组合选择以及多维修区间和多中断承诺
+最终审计。
+
 它冻结已完成、正常在制和多个故障在制承诺，提取未开工工序及原问题候选
 机器数据，并建立工件、机器、AGV 和维修资源边界。
 

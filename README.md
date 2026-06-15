@@ -344,6 +344,20 @@
 正式配置为种群 `10`、最多 `100` 代、连续 `10` 代无改善或 `30` 秒停止。
 本步只验证配置，不运行搜索、不创建输出目录。
 
+阶段 C 第 10.4 步配置测试和单随机种子正式搜索已完成。第 11 步已完成静态
+实现：
+
+- [组合评价与最终审计](docs/stage_c_step_11_combination_and_audit.md)
+- `src/evaluation/evaluate_stage_c_rescheduling_plan.m`
+- `src/evaluation/evaluate_stage_c_right_shift_energy.m`
+- `src/evaluation/select_stage_c_combined_strategy.m`
+- `src/evaluation/audit_stage_c_rescheduling_candidate.m`
+- `scripts/run_stage_c_combination_selection.m`
+- `tests/test_stage_c_combination_contract.m`
+
+本步比较局部右移和全部 Pareto 候选的 `tD、SD、Y`，并审计多个维修区间、
+多个中断承诺、最终卸载和能耗。
+
 ## 目录说明
 
 ```text

@@ -559,3 +559,14 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_complete_search_config.m'))
 ```
+
+## 阶段 C 第 11 步测试
+
+`test_stage_c_combination_contract.m`
+
+检查 `tD、SD、Y`、Pareto 多候选选择、多个维修区间、多个中断承诺、最终
+卸载和机器/AGV 能耗闭合。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_combination_contract.m'))
+```

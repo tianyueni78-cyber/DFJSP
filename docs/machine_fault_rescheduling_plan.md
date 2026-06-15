@@ -1504,3 +1504,9 @@ AGV 任务冲突的影响。
 - [阶段 C 第 10.2 步：同时故障受限种群与遗传算子](stage_c_step_10b_simultaneous_reschedule_operators.md)
 - [阶段 C 第 10.3 步：候选评价与受限 NSGA-II 轻量搜索](stage_c_step_10c_simultaneous_restricted_search.md)
 - [阶段 C 第 10.4 步：正式搜索配置与结果保存入口](stage_c_step_10d_formal_search_entry.md)
+
+阶段 C 第 10.4 步正式搜索已完成。第 11 步 `tD、SD、Y` 组合评价、局部
+右移能耗、多维修区间与多中断承诺审计、轻量契约和说明文档已完成静态
+实现，尚未运行 MATLAB。
+
+- [阶段 C 第 11 步：组合评价与最终审计](stage_c_step_11_combination_and_audit.md)

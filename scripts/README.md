@@ -428,3 +428,11 @@ OS、MS、AS、SS，不评价适应度、不选择幸存者、不运行迭代搜
 
 运行单随机种子正式搜索，并把 MAT、Pareto CSV、历史 CSV 和运行摘要保存到
 新的时间戳目录。该入口会生成输出，运行前必须单独确认。
+
+## 阶段 C 第 11 步
+
+- `run_stage_c_combination_selection.m`
+- `run_stage_c_combination_contract.m`
+
+前者复用一个已有搜索结果并重建同场景局部右移方案；后者使用 `6×2` 搜索
+执行无输出轻量契约。两者都不会重新运行正式搜索。
