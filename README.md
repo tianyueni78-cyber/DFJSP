@@ -235,6 +235,15 @@
 
 下一步先运行第 2 步轻量契约测试；当前未接入调度算法。
 
+阶段 C 第 2 步轻量测试已通过。第 3 步已完成静态实现：
+
+- [多故障事件组状态快照](docs/stage_c_step_03_event_group_state.md)
+- `src/state/extract_stage_c_event_group_state.m`
+- `tests/test_stage_c_event_group_state.m`
+
+测试使用原项目正常基线动态选取同时在制机器，不生成新的生产问题数据。
+下一步先运行第 3 步轻量契约测试。
+
 ## 目录说明
 
 ```text

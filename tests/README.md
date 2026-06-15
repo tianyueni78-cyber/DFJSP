@@ -430,3 +430,15 @@ run(fullfile(pwd,'tests','test_stage_c_fault_events.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_machine_unavailability.m'))
 ```
+
+## 阶段 C 第 3 步测试
+
+`test_stage_c_event_group_state.m`
+
+从原项目正常基线动态寻找至少两台机器同时加工的时刻，检查工序四类状态、
+故障在制工序来源、AGV 三类运输状态和活动 AGV。测试不生成生产问题数据，
+不修改基线，不执行重调度。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_event_group_state.m'))
+```

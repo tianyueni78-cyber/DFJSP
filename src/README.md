@@ -48,6 +48,13 @@ evaluation/     后续重调度评价指标
 
 它只读取正常机器和 AGV 时间表，提取故障时刻的状态快照，不生成新调度数据。
 
+阶段 C 第 3 步新增：
+
+- `state/extract_stage_c_event_group_state.m`
+
+它在一个同时故障事件组的时刻分类已完成、正常在制、故障在制和未开工
+工序，并分类 AGV 运输状态。函数只读正常基线，不执行影响传播或重调度。
+
 阶段 A 第 4 步使用 `impact/`：
 
 - `impact/identify_stage_a_affected_operations.m`
