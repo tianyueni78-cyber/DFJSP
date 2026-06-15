@@ -29,6 +29,7 @@
 | [阶段 B-R 第 3 步：机器局部右移](docs/stage_br_step_03_machine_right_shift.md) | 写入损失加工段、完整重加工段和受影响工序时间 |
 | [阶段 B-R 第 4 步：AGV 影响分析](docs/stage_br_step_04_agv_impact_analysis.md) | 识别完整重加工后失效及待复核的运输任务 |
 | [阶段 B-R 第 5 步：AGV 与机器联动](docs/stage_br_step_05_agv_linked_right_shift.md) | 调整运输并把延迟反馈到机器工序，保留损失段和完整重加工段 |
+| [阶段 B-R 第 6 步：完全重调度冻结问题](docs/stage_br_step_06_frozen_problem.md) | 冻结历史任务和从头加工承诺，释放未开工任务 |
 | [阶段 B 第 1 步：加工中故障状态](docs/stage_b_step_01_processing_fault_state.md) | 定义加工中故障事件，识别在制工序并计算已加工与剩余加工时间 |
 | [阶段 B 第 2 步：暂停后续加工](docs/stage_b_step_02_resume_rule.md) | 保留已加工进度，维修结束后在原机器继续剩余加工时间 |
 | [阶段 B 第 3 步：延迟影响传播](docs/stage_b_step_03_impact_propagation.md) | 从中断工序新完成时间沿工件和机器后继生成局部影响集合 |
@@ -169,12 +170,15 @@
 - 阶段 B-R 第 1 至第 4 步 MATLAB 轻量测试均已通过；
 - 阶段 B-R 第 5 步 AGV 与机器联动代码、测试和文档已完成静态实现，
   尚未运行 MATLAB；
+- 阶段 B-R 第 5 步 MATLAB 轻量测试已通过；
+- 阶段 B-R 第 6 步完全重调度冻结问题代码、测试和文档已完成静态实现，
+  尚未运行 MATLAB；
 - 用户已允许基于原数据生成优化候选方案；不允许新增问题数据或修改 `raw_code/`。
 
 ## 下一步执行边界
 
-下一步运行阶段 B-R 第 5 步轻量测试，验证 AGV 与机器联动调整以及损失
-加工段和完整重加工段承诺。
+下一步运行阶段 B-R 第 6 步轻量测试，验证冻结任务分区、从头加工承诺以及
+工件、机器和 AGV 边界。
 
 ## 目录说明
 

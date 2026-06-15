@@ -331,3 +331,14 @@ run(fullfile(pwd,'tests','test_stage_br_agv_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_agv_linked_right_shift.m'))
 ```
+
+## 阶段 B-R 第 6 步测试
+
+`test_stage_br_frozen_problem.m`
+
+检查工序和运输完整分区、损失加工与完整重加工承诺、候选机器数据，以及
+工件、机器和 AGV 的故障时刻边界。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_frozen_problem.m'))
+```
