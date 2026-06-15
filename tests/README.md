@@ -442,3 +442,14 @@ run(fullfile(pwd,'tests','test_stage_c_machine_unavailability.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_event_group_state.m'))
 ```
+
+## 阶段 C 第 4 步测试
+
+`test_stage_c_simultaneous_fault_scenario.m`
+
+检查原基线候选筛选、两台机器直接中断、候选排序、统一中断规则、维修区间
+和状态快照。测试不传播影响，不执行重调度，不生成输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_simultaneous_fault_scenario.m'))
+```

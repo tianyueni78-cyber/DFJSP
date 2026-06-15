@@ -244,6 +244,16 @@
 测试使用原项目正常基线动态选取同时在制机器，不生成新的生产问题数据。
 下一步先运行第 3 步轻量契约测试。
 
+阶段 C 第 3 步轻量测试已通过，`C-0` 共享基础完成。第 4 步已完成静态实现：
+
+- [同时故障场景筛选](docs/stage_c_step_04_simultaneous_fault_scenario.md)
+- `configs/stage_c_simultaneous_fault_config.m`
+- `src/screening/screen_stage_c_simultaneous_fault_scenarios.m`
+- `scripts/run_stage_c_simultaneous_fault_scenario.m`
+- `tests/test_stage_c_simultaneous_fault_scenario.m`
+
+本步只选择和验证场景，不传播影响、不修改调度。下一步先运行轻量测试。
+
 ## 目录说明
 
 ```text

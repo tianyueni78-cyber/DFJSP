@@ -163,3 +163,16 @@ outputs/stage_a_step_13_search_and_selection/
 - 随机种子 `[11,22,33,42,55]`；
 - 完工时间权重 `0:0.1:1`；
 - 相对输出目录 `outputs/stage_br_step_12_robustness/`。
+
+## 阶段 C 第 4 步
+
+`stage_c_simultaneous_fault_config.m`
+
+定义第一版同时故障实验参数：
+
+- 故障机器数 `2`；
+- 维修时长 `5`；
+- 中断规则 `resume_remaining`；
+- 候选排序规则。
+
+配置不包含新的生产问题数据。
