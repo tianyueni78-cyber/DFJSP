@@ -592,3 +592,15 @@ run(fullfile(pwd,'tests','test_stage_c_plan_version_history.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_next_fault_state.m'))
 ```
+
+## 阶段 C 第 14 步测试
+
+`test_stage_c_sequential_impact_context.m`
+
+检查累计维修事件完整覆盖、新故障影响传播、影响集合去重、来源事件保留、
+未开工工序完整分区以及版本历史保持不变。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_sequential_impact_context.m'))
+```

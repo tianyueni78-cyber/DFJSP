@@ -136,6 +136,14 @@ evaluation/     后续重调度评价指标
 把任意生效版本转换为只读状态提取视图，从该版本动态选择并提取下一故障
 状态，同时保留仍活动的旧维修区间。
 
+阶段 C 第 14 步新增：
+
+- `impact/build_stage_c_sequential_impact_context.m`
+
+并将 `impact/identify_stage_c_simultaneous_affected_operations.m` 泛化为支持一个
+或多个故障根及当前计划视图。连续上下文负责累计维修区间、过滤仍有效历史
+影响、合并重复工序和来源事件。
+
 它冻结已完成、正常在制和多个故障在制承诺，提取未开工工序及原问题候选
 机器数据，并建立工件、机器、AGV 和维修资源边界。
 

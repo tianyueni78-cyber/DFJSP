@@ -382,6 +382,16 @@
 本步从 `V1` 动态选择下一有效故障并提取状态，不回到正常基线、不传播影响、
 不修改计划、不运行搜索。
 
+阶段 C 第 13 步轻量测试已通过。第 14 步已完成静态实现：
+
+- [累计维修区间与连续故障影响合并](docs/stage_c_step_14_sequential_impact_context.md)
+- `src/impact/build_stage_c_sequential_impact_context.m`
+- `scripts/run_stage_c_sequential_impact_context.m`
+- `tests/test_stage_c_sequential_impact_context.m`
+
+本步累计全部维修历史，传播新故障影响，并合并仍有效的历史影响及事件来源；
+不写回机器或 AGV 时间表、不追加 `V2`。
+
 ## 目录说明
 
 ```text
