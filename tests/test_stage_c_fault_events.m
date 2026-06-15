@@ -28,7 +28,8 @@ assert(strcmp(faults(1).interruption_rule, 'resume_remaining'));
 assert(strcmp(faults(3).interruption_rule, 'restart_from_zero'));
 
 permuted = normalize_stage_c_fault_events(raw([3, 1, 2]), 6);
-assert(isequal([permuted.event_id], [10, 20, 30]));
+assert(isequal([permuted.event_id], [20, 10, 30]));
+assert(isequal([permuted.source_order], [1, 3, 2]));
 assert(isequal([permuted.event_group], [1, 1, 2]));
 
 duplicate = raw;
