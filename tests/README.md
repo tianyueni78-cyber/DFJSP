@@ -396,3 +396,14 @@ run(fullfile(pwd,'tests','test_stage_br_complete_search_config.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_combination_contract.m'))
 ```
+
+## 阶段 B-R 第 12 步测试
+
+`test_stage_br_step_12_contract.m`
+
+复用轻量第 11 步候选，检查 11 组权重、从头加工承诺、维修区间、最终卸载
+和能耗闭合。测试不运行五随机种子实验，不创建输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_step_12_contract.m'))
+```

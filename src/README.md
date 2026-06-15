@@ -322,3 +322,13 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 计算最终卸载时间偏差 `tD`、未开工工序机器变化数 `SD` 和组合指标 `Y`，
 并在局部右移与完全重调度 Pareto 候选中选择最小 `Y`。
+
+## 阶段 B-R 第 12 步
+
+- `evaluation/analyze_stage_br_weight_sensitivity.m`
+- `evaluation/audit_stage_br_rescheduling_candidate.m`
+- `evaluation/evaluate_stage_br_right_shift_energy.m`
+
+复用第 11 步候选进行权重敏感性，不重新搜索；审计维修区间、损失加工段、
+完整重加工段、最终卸载和能耗闭合。损失加工与完整重加工均计入机器工作
+能耗，维修停机间隔不计工作能耗。

@@ -346,3 +346,15 @@ Pareto 目标、搜索历史和摘要保存到新的时间戳目录。它会生�
 `run_stage_br_combination_contract.m`
 
 使用 `6×2` 轻量搜索验证组合评价链。
+
+## 阶段 B-R 第 12 步
+
+`run_stage_br_step_12_analysis.m`
+
+复用第 11 步候选执行权重敏感性和最终约束/能耗审计，不重新运行搜索，
+不生成输出。
+
+`run_stage_br_step_12_multiseed.m`
+
+使用五个随机种子运行正式 B-R 搜索并保存 MAT 与 CSV。该入口会生成输出，
+运行前必须单独确认。

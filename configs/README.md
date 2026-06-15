@@ -153,3 +153,13 @@ outputs/stage_a_step_13_search_and_selection/
 - 完工时间偏差权重 `0.9`；
 - 机器序列偏差权重 `0.1`；
 - 并列比较容差 `1e-9`。
+
+## 阶段 B-R 第 12 步
+
+`stage_br_step_12_config.m`
+
+继承阶段 B-R 正式搜索预算和组合权重，并增加：
+
+- 随机种子 `[11,22,33,42,55]`；
+- 完工时间权重 `0:0.1:1`；
+- 相对输出目录 `outputs/stage_br_step_12_robustness/`。
