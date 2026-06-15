@@ -334,6 +334,16 @@
 本步使用最终卸载时间和总能耗评价候选，保留 Pareto 去重和自适应停止。
 轻量契约为 `6×2`，不保存正式结果。
 
+阶段 C 第 10.3 步轻量测试已通过。第 10.4 步已完成静态实现：
+
+- [正式搜索配置与结果保存入口](docs/stage_c_step_10d_formal_search_entry.md)
+- `configs/stage_c_simultaneous_complete_search_config.m`
+- `scripts/run_stage_c_simultaneous_complete_search.m`
+- `tests/test_stage_c_simultaneous_complete_search_config.m`
+
+正式配置为种群 `10`、最多 `100` 代、连续 `10` 代无改善或 `30` 秒停止。
+本步只验证配置，不运行搜索、不创建输出目录。
+
 ## 目录说明
 
 ```text

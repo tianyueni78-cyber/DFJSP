@@ -263,9 +263,9 @@ MATLAB 轻量测试已通过。**
 
 #### 第 10 步：实现同时故障完全重调度解码与搜索
 
-**当前状态：第 10.1 步解码器和第 10.2 步受限算子已通过 MATLAB 轻量
-测试；第 10.3 步候选评价、受限 NSGA-II、轻量入口、测试和说明文档已完成
-静态实现，尚未运行 MATLAB。正式搜索入口尚未实现。**
+**当前状态：第 10.1 至第 10.3 步轻量测试已通过；第 10.4 步正式配置、
+结果保存入口、配置测试和说明文档已完成静态实现，尚未运行 MATLAB，尚未
+生成正式输出。**
 
 工作：
 
@@ -292,6 +292,7 @@ MATLAB 轻量测试已通过。**
 - [阶段 C 第 10.1 步：同时故障完全重调度解码器](stage_c_step_10a_simultaneous_complete_decoder.md)
 - [阶段 C 第 10.2 步：同时故障受限种群与遗传算子](stage_c_step_10b_simultaneous_reschedule_operators.md)
 - [阶段 C 第 10.3 步：候选评价与受限 NSGA-II 轻量搜索](stage_c_step_10c_simultaneous_restricted_search.md)
+- [阶段 C 第 10.4 步：正式搜索配置与结果保存入口](stage_c_step_10d_formal_search_entry.md)
 
 #### 第 11 步：同时故障组合评价与审计
 

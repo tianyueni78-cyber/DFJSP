@@ -421,3 +421,10 @@ OS、MS、AS、SS，不评价适应度、不选择幸存者、不运行迭代搜
 
 使用固定随机种子运行 `6×2` 轻量 NSGA-II，验证候选评价、Pareto 去重和
 自适应停止，不保存正式输出。
+
+## 阶段 C 第 10.4 步
+
+`run_stage_c_simultaneous_complete_search.m`
+
+运行单随机种子正式搜索，并把 MAT、Pareto CSV、历史 CSV 和运行摘要保存到
+新的时间戳目录。该入口会生成输出，运行前必须单独确认。

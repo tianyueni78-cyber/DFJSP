@@ -1496,10 +1496,11 @@ AGV 任务冲突的影响。
 3. `C-SEQ` 多个故障连续发生：第 12 至第 16 步；
 4. `C-V` 最终验证与收口：第 17 至第 18 步。
 
-阶段 C 第 1 至第 9 步、第 10.1 步解码器和第 10.2 步受限算子轻量测试已
-通过。第 10.3 步候选评价、受限 NSGA-II、轻量契约和说明文档已完成静态
-实现，尚未运行 MATLAB；正式搜索入口尚未实现，未生成正式输出。
+阶段 C 第 1 至第 9 步以及第 10.1 至第 10.3 步轻量测试已通过。第 10.4
+步正式搜索配置、结果保存入口、配置测试和说明文档已完成静态实现，尚未
+运行 MATLAB，未生成正式输出。
 
 - [阶段 C 第 10.1 步：同时故障完全重调度解码器](stage_c_step_10a_simultaneous_complete_decoder.md)
 - [阶段 C 第 10.2 步：同时故障受限种群与遗传算子](stage_c_step_10b_simultaneous_reschedule_operators.md)
 - [阶段 C 第 10.3 步：候选评价与受限 NSGA-II 轻量搜索](stage_c_step_10c_simultaneous_restricted_search.md)
+- [阶段 C 第 10.4 步：正式搜索配置与结果保存入口](stage_c_step_10d_formal_search_entry.md)

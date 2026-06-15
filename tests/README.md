@@ -548,3 +548,14 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_simultaneous_restricted_search_contract.m'))
 ```
+
+## 阶段 C 第 10.4 步测试
+
+`test_stage_c_simultaneous_complete_search_config.m`
+
+只检查正式参数、相对输出目录和运行入口是否存在，不调用搜索、不创建输出。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_complete_search_config.m'))
+```
