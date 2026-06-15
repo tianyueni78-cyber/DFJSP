@@ -62,6 +62,13 @@ evaluation/     后续重调度评价指标
 它从原基线动态筛选两台同时在制的机器，并按维修期与原计划相交的工序数等
 指标排序候选。本函数只筛选场景，不传播影响，不修改调度。
 
+阶段 C 第 5 步新增：
+
+- `impact/identify_stage_c_simultaneous_affected_operations.m`
+
+它对每个故障根独立传播工件和机器后继延迟，再按工序合并，取最大预计时间
+并保留全部来源事件编号。本函数不修改机器或 AGV 时间表。
+
 阶段 A 第 4 步使用 `impact/`：
 
 - `impact/identify_stage_a_affected_operations.m`

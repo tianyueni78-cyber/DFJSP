@@ -453,3 +453,14 @@ run(fullfile(pwd,'tests','test_stage_c_event_group_state.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_simultaneous_fault_scenario.m'))
 ```
+
+## 阶段 C 第 5 步测试
+
+`test_stage_c_simultaneous_impact_analysis.m`
+
+检查双根独立传播、影响集合去重、全部故障来源、最大预计时间、未开工工序
+完整分区和输入顺序无关性。测试不修改机器或 AGV 时间表。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_simultaneous_impact_analysis.m'))
+```

@@ -254,6 +254,15 @@
 
 本步只选择和验证场景，不传播影响、不修改调度。下一步先运行轻量测试。
 
+阶段 C 第 4 步轻量测试已通过。第 5 步已完成静态实现：
+
+- [同时故障影响传播与合并](docs/stage_c_step_05_simultaneous_impact.md)
+- `src/impact/identify_stage_c_simultaneous_affected_operations.m`
+- `scripts/run_stage_c_simultaneous_impact_analysis.m`
+- `tests/test_stage_c_simultaneous_impact_analysis.m`
+
+本步只计算并合并预计延迟，不回写机器或 AGV 时间表。下一步先运行测试。
+
 ## 目录说明
 
 ```text
