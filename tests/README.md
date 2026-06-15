@@ -320,3 +320,14 @@ run(fullfile(pwd,'tests','test_stage_br_machine_right_shift.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_agv_impact_analysis.m'))
 ```
+
+## 阶段 B-R 第 5 步测试
+
+`test_stage_br_agv_linked_right_shift.m`
+
+检查 AGV 分配、路线和持续时间保持不变，同一 AGV 无冲突，运输延迟正确
+反馈至机器，并验证损失加工段、完整重加工段和维修区间约束。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_agv_linked_right_shift.m'))
+```
