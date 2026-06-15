@@ -464,3 +464,15 @@ run(fullfile(pwd,'tests','test_stage_c_simultaneous_fault_scenario.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_simultaneous_impact_analysis.m'))
 ```
+
+## 阶段 C 第 6 步测试
+
+`test_stage_c_simultaneous_machine_right_shift.m`
+
+检查两个中断工序的两段加工承诺、合并影响时间写入、机器无重叠、工件先后
+约束、维修区间不可加工、未受影响工序保持不变以及 AGV 表未调整。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_simultaneous_machine_right_shift.m'))
+```

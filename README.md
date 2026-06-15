@@ -263,6 +263,16 @@
 
 本步只计算并合并预计延迟，不回写机器或 AGV 时间表。下一步先运行测试。
 
+阶段 C 第 5 步轻量测试已通过。第 6 步已完成静态实现：
+
+- [同时故障机器局部右移](docs/stage_c_step_06_simultaneous_machine_right_shift.md)
+- `src/rescheduling/build_stage_c_simultaneous_machine_right_shift.m`
+- `scripts/run_stage_c_simultaneous_machine_right_shift.m`
+- `tests/test_stage_c_simultaneous_machine_right_shift.m`
+
+本步正式生成机器候选表，两个中断工序按保留进度规则恢复；AGV 时间表保持
+原样，尚未进行运输联动验证。下一步先运行第 6 步轻量测试。
+
 ## 目录说明
 
 ```text

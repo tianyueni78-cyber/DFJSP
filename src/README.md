@@ -69,6 +69,13 @@ evaluation/     后续重调度评价指标
 它对每个故障根独立传播工件和机器后继延迟，再按工序合并，取最大预计时间
 并保留全部来源事件编号。本函数不修改机器或 AGV 时间表。
 
+阶段 C 第 6 步新增：
+
+- `rescheduling/build_stage_c_simultaneous_machine_right_shift.m`
+
+它把两个中断工序分别拆成故障前加工段和修复后续加工段，并将第 5 步合并
+后的预计时间写入机器候选表。机器分配不变，AGV 表保持原样。
+
 阶段 A 第 4 步使用 `impact/`：
 
 - `impact/identify_stage_a_affected_operations.m`
