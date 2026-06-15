@@ -342,3 +342,14 @@ run(fullfile(pwd,'tests','test_stage_br_agv_linked_right_shift.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_br_frozen_problem.m'))
 ```
+
+## 阶段 B-R 第 7 步测试
+
+`test_stage_br_complete_reschedule_decode.m`
+
+检查冻结任务、候选机器、AGV 运输、维修区间、损失加工段、完整重加工段，
+并独立复算包含损失加工的机器能耗。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_br_complete_reschedule_decode.m'))
+```
