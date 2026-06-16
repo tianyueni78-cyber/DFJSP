@@ -6,6 +6,7 @@ projectRoot = fileparts(testDir);
 originalPath = path;
 cleanupPath = onCleanup(@() path(originalPath));
 addpath(fullfile(projectRoot, 'scripts'));
+addpath(fullfile(projectRoot, 'src', 'rescheduling'));
 
 scenario = run_stage_cs2_machine_right_shift();
 candidate = scenario.cs2_machine_right_shift;
