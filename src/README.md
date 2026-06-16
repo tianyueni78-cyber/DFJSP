@@ -488,3 +488,13 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 第 16.4 步不新增 `src/` 核心算法，只复用第 16.3 步验证过的搜索器并建立
 正式运行配置、输出保存和摘要记录入口。
+
+## 阶段 C 第 16.5 步
+
+- `evaluation/evaluate_stage_c_rescheduling_plan.m`
+
+  已扩展为支持当前计划视图，用 `current_plan_makespan` 作为连续故障评价基线。
+
+- `evaluation/evaluate_stage_c_right_shift_energy.m`
+
+  已扩展为支持当前计划视图，用于给连续故障局部右移方案补充可比能耗。

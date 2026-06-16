@@ -8,20 +8,21 @@ if nargin < 5
     error('evaluate_stage_c_rescheduling_plan:MissingInput', ...
         'baseline, state, candidate, strategy, and weights are required.');
 end
-require_fields(baseline, {'makespan', 'isFaultFreeBaseline'}, 'baseline');
+require_fields(baseline, {'isFaultFreeBaseline'}, 'baseline');
 require_fields(state, {'unstarted_operations', 'is_validated'}, 'state');
 require_fields(candidate, {'operation_records'}, 'candidate');
 validate_inputs(baseline, state, weights);
 
+baselineMakespan = baseline_makespan(baseline);
 candidateMakespan = final_unload_makespan(candidate);
 sequenceDeviation = machine_assignment_deviation( ...
     state.unstarted_operations, candidate.operation_records);
-completionTimeDeviation = candidateMakespan - baseline.makespan;
+completionTimeDeviation = candidateMakespan - baselineMakespan;
 
 evaluation = struct();
 evaluation.strategy = strategy;
 evaluation.candidate = candidate;
-evaluation.baseline_makespan = baseline.makespan;
+evaluation.baseline_makespan = baselineMakespan;
 evaluation.candidate_makespan = candidateMakespan;
 evaluation.tD = completionTimeDeviation;
 evaluation.SD = sequenceDeviation;
@@ -55,6 +56,26 @@ end
 makespan = max([unloads.end]);
 end
 
+function value = baseline_makespan(baseline)
+if isfield(baseline, 'isCurrentPlanView') && ...
+        isequal(baseline.isCurrentPlanView, true) && ...
+        isfield(baseline, 'current_plan_makespan') && ...
+        isscalar(baseline.current_plan_makespan) && ...
+        isfinite(baseline.current_plan_makespan)
+    value = baseline.current_plan_makespan;
+elseif isfield(baseline, 'makespan') && ...
+        isscalar(baseline.makespan) && isfinite(baseline.makespan)
+    value = baseline.makespan;
+elseif isfield(baseline, 'current_plan_makespan') && ...
+        isscalar(baseline.current_plan_makespan) && ...
+        isfinite(baseline.current_plan_makespan)
+    value = baseline.current_plan_makespan;
+else
+    error('evaluate_stage_c_rescheduling_plan:BaselineMakespan', ...
+        'Baseline makespan must be finite.');
+end
+end
+
 function deviation = machine_assignment_deviation( ...
         baselineOperations, candidateOperations)
 deviation = 0;
@@ -75,8 +96,10 @@ end
 function validate_inputs(baseline, state, weights)
 require_fields(weights, {'completion_time_weight', ...
     'sequence_deviation_weight'}, 'weights');
-if ~baseline.isFaultFreeBaseline || ~state.is_validated || ...
-        ~isscalar(baseline.makespan) || ~isfinite(baseline.makespan)
+isFaultFree = isequal(baseline.isFaultFreeBaseline, true);
+isCurrentView = isfield(baseline, 'isCurrentPlanView') && ...
+    isequal(baseline.isCurrentPlanView, true);
+if (~isFaultFree && ~isCurrentView) || ~state.is_validated
     error('evaluate_stage_c_rescheduling_plan:InvalidInput', ...
         'Validated Stage C baseline and state are required.');
 end

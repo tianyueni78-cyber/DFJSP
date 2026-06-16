@@ -63,7 +63,10 @@ end
 end
 
 function validate_inputs(baseline, rightShift)
-if ~baseline.isFaultFreeBaseline || ~rightShift.is_fully_validated
+isFaultFree = isequal(baseline.isFaultFreeBaseline, true);
+isCurrentView = isfield(baseline, 'isCurrentPlanView') && ...
+    isequal(baseline.isCurrentPlanView, true);
+if (~isFaultFree && ~isCurrentView) || ~rightShift.is_fully_validated
     error('evaluate_stage_c_right_shift_energy:InvalidInput', ...
         'Validated Stage C inputs are required.');
 end

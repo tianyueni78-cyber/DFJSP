@@ -436,6 +436,14 @@
 
 本步只检查正式搜索配置和入口，不运行正式搜索、不生成输出。
 
+阶段 C 第 16.5 步已完成静态实现：
+
+- [连续故障组合评价](docs/stage_c_step_16_5_sequential_combination_selection.md)
+- `scripts/run_stage_c_sequential_combination_selection.m`
+- `tests/test_stage_c_sequential_combination_contract.m`
+
+本步比较连续故障局部右移与完全重调度候选的 `tD、SD、Y`，并审计约束和能耗。
+
 ## 目录说明
 
 ```text

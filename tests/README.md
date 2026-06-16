@@ -664,3 +664,14 @@ run(fullfile(pwd,'tests', ...
 run(fullfile(pwd,'tests', ...
     'test_stage_c_sequential_complete_search_config.m'))
 ```
+
+## 阶段 C 第 16.5 步测试
+
+`test_stage_c_sequential_combination_contract.m`
+
+使用第 16.3 步轻量搜索结果验证连续故障局部右移与完全重调度候选的
+`tD、SD、Y`、最终选择、维修区间、中断承诺和能耗审计。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_sequential_combination_contract.m'))
+```
