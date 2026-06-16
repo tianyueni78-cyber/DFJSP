@@ -427,6 +427,15 @@
 
 本步只做算子契约和 `6×2` 轻量搜索契约，不运行正式长实验。
 
+阶段 C 第 16.4 步已完成静态实现：
+
+- [连续故障正式搜索入口](docs/stage_c_step_16_4_sequential_formal_search_entry.md)
+- `configs/stage_c_sequential_complete_search_config.m`
+- `scripts/run_stage_c_sequential_complete_search.m`
+- `tests/test_stage_c_sequential_complete_search_config.m`
+
+本步只检查正式搜索配置和入口，不运行正式搜索、不生成输出。
+
 ## 目录说明
 
 ```text

@@ -406,7 +406,8 @@ MATLAB 轻量测试已通过。**
 
 **当前状态：第 16.1 步连续故障完全重调度冻结问题已通过；第 16.2 步
 连续故障完全重调度解码器已通过；第 16.3 步连续故障算子与轻量搜索契约
-已完成静态实现，等待 MATLAB 契约测试；尚未正式搜索或组合选择。**
+已通过；第 16.4 步连续故障正式搜索配置与结果保存入口已完成静态实现，
+等待 MATLAB 配置测试；尚未正式搜索或组合选择。**
 
 工作：
 
@@ -419,6 +420,7 @@ MATLAB 轻量测试已通过。**
 - [阶段 C 第 16.1 步：连续故障完全重调度冻结问题](stage_c_step_16_1_sequential_frozen_problem.md)
 - [阶段 C 第 16.2 步：连续故障完全重调度解码器](stage_c_step_16_2_sequential_complete_decode.md)
 - [阶段 C 第 16.3 步：连续故障算子与轻量搜索契约](stage_c_step_16_3_sequential_search_contract.md)
+- [阶段 C 第 16.4 步：连续故障正式搜索入口](stage_c_step_16_4_sequential_formal_search_entry.md)
 
 完成标准：
 
