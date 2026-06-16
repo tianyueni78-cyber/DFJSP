@@ -29,7 +29,7 @@ impact.counts.unaffected_unstarted = ...
 impact.counts.multi_source_operations = ...
     sum([impact.affected_operations.source_count] > 1);
 impact.stage = 'C';
-impact.step = 14;
+impact.step = 5;
 impact.baseline_modified = false;
 impact.is_rescheduled = false;
 impact.is_validated = true;
