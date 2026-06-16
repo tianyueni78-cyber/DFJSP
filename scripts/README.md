@@ -478,3 +478,11 @@ AGV 运输约束。本入口不追加新计划版本、不运行完全重调度�
 
 使用第 16.1 步冻结问题解码一个连续故障完全重调度候选，恢复中断两段加工
 承诺。本入口不运行种群搜索、不执行组合选择。
+
+## 阶段 C 第 16.3 步
+
+- `run_stage_c_sequential_reschedule_operators.m`
+- `run_stage_c_sequential_restricted_search_contract.m`
+
+前者只初始化和变异受限种群，不评价适应度；后者运行 `6×2` 轻量搜索契约，
+不生成正式输出、不执行组合选择。

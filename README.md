@@ -417,6 +417,16 @@
 
 本步只解码一个轻量候选，不运行种群搜索、不组合选择。
 
+阶段 C 第 16.3 步已完成静态实现：
+
+- [连续故障算子与轻量搜索契约](docs/stage_c_step_16_3_sequential_search_contract.md)
+- `scripts/run_stage_c_sequential_reschedule_operators.m`
+- `scripts/run_stage_c_sequential_restricted_search_contract.m`
+- `tests/test_stage_c_sequential_reschedule_operators.m`
+- `tests/test_stage_c_sequential_restricted_search_contract.m`
+
+本步只做算子契约和 `6×2` 轻量搜索契约，不运行正式长实验。
+
 ## 目录说明
 
 ```text

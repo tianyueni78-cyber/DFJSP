@@ -639,3 +639,17 @@ run(fullfile(pwd,'tests','test_stage_c_sequential_frozen_problem.m'))
 run(fullfile(pwd,'tests', ...
     'test_stage_c_sequential_complete_reschedule_decode.m'))
 ```
+
+## 阶段 C 第 16.3 步测试
+
+- `test_stage_c_sequential_reschedule_operators.m`
+- `test_stage_c_sequential_restricted_search_contract.m`
+
+前者检查连续故障受限种群初始化、交叉变异和固定随机种子复现；后者检查
+`6×2` 轻量 NSGA-II、候选评价、Pareto 去重和自适应停止分支。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_sequential_reschedule_operators.m'))
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_sequential_restricted_search_contract.m'))
+```
