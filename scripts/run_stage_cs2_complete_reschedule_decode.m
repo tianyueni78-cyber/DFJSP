@@ -1,4 +1,4 @@
-﻿function scenario = run_stage_cs2_complete_reschedule_decode( ...
+function scenario = run_stage_cs2_complete_reschedule_decode( ...
         baseline)
 %run_stage_cs2_complete_reschedule_decode Build C-S2 Step 7.
 %   This entry decodes one source-data seed only. It does not run search.
@@ -28,4 +28,3 @@ scenario.is_search_executed = false;
 scenario.is_validated = scenario.is_validated && ...
     scenario.complete_reschedule_candidate.is_validated;
 end
-

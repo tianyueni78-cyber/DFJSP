@@ -1,4 +1,4 @@
-﻿function candidate = decode_stage_cs2_complete_reschedule( ...
+function candidate = decode_stage_cs2_complete_reschedule( ...
         baseline, frozen, decision)
 %decode_stage_cs2_complete_reschedule Decode C-S2 Step 7.
 %   The shared Stage A core schedules all released operations and AGV
@@ -454,4 +454,3 @@ for index = 1:numel(fields)
     end
 end
 end
-

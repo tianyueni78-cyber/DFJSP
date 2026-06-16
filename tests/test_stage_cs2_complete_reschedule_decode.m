@@ -1,4 +1,4 @@
-﻿clear
+clear
 clc
 
 testDir = fileparts(mfilename('fullpath'));
@@ -144,4 +144,3 @@ match = find([records.job] == jobId & ...
 assert(numel(match) == 1);
 operation = records(match);
 end
-
