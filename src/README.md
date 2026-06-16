@@ -569,3 +569,11 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 
 第 8 步不新增 `src/` 算子核心。它复用阶段 A 的受限种群初始化、交叉和
 变异函数，并用 C-S2 第 7 步解码器检查父代和子代是否合法。
+
+## C-S2 第 9 步
+
+- `rescheduling/evaluate_stage_cs2_reschedule_candidate.m`
+- `rescheduling/search_stage_cs2_complete_reschedule.m`
+
+评价函数使用 C-S2 第 7 步解码器，目标为最终卸载时间和总能耗。搜索函数
+复用阶段 C 的受限 NSGA-II 框架，并保留从头加工与损失加工时间信息。

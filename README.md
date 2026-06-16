@@ -555,6 +555,14 @@ C-S2 第 8 步已完成静态实现：
 - `scripts/run_stage_cs2_reschedule_operators.m`
 - `tests/test_stage_cs2_reschedule_operators.m`
 
+C-S2 第 9 步已完成静态实现：
+
+- [C-S2 第 9 步：从头加工受限搜索契约](docs/stage_cs2_step_09_restricted_search_contract.md)
+- `src/rescheduling/evaluate_stage_cs2_reschedule_candidate.m`
+- `src/rescheduling/search_stage_cs2_complete_reschedule.m`
+- `scripts/run_stage_cs2_restricted_search_contract.m`
+- `tests/test_stage_cs2_restricted_search_contract.m`
+
 ## 目录说明
 
 ```text

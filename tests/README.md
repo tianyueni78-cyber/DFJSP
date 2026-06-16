@@ -797,3 +797,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_complete_reschedule_decode.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_reschedule_operators.m'))
 ```
+
+## C-S2 第 9 步测试
+
+`test_stage_cs2_restricted_search_contract.m`
+
+检查 C-S2 候选评价与受限搜索契约：最终卸载时间、总能耗、Pareto 去重、
+从头加工标记、损失加工时间、无改善停止和时间上限停止。本测试不是正式实验。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_restricted_search_contract.m'))
+```
