@@ -21,6 +21,9 @@ assert(context.is_validated);
 assert(context.history_unchanged);
 assert(~context.is_plan_modified);
 assert(~context.is_rescheduled);
+assert(isfield(scenario.next_fault_screening, ...
+    'step_14_selection_reason'));
+assert(scenario.next_fault_screening.step_14_selected_candidate_rank >= 1);
 
 assert(context.counts.cumulative_faults == ...
     numel(scenario.faults) + 1);
