@@ -741,3 +741,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_machine_right_shift.m'))
 ```
+
+## C-S2 第 4 步测试
+
+`test_stage_cs2_agv_impact_analysis.m`
+
+检查 C-S2 机器时间变化对 AGV 运输的影响：直接违规、同 AGV 后续复核、
+运输集合划分、故障来源保留，以及从头加工规则信息保留。本测试不修改 AGV。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_agv_impact_analysis.m'))
+```
