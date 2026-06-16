@@ -584,3 +584,12 @@ outputs/      本地生成结果，不作为本次首批上传内容
 - 不写死本机绝对路径；
 - 运行 MATLAB、开展实验或生成正式输出前先确认；
 - 机器故障代码只在本独立项目中开发。
+
+C-S2 第 10 步已完成静态实现：
+
+- [C-S2 第 10 步：正式搜索配置与结果保存入口](docs/stage_cs2_step_10_complete_search_config.md)
+- `configs/stage_cs2_complete_search_config.m`
+- `scripts/run_stage_cs2_complete_search.m`
+- `tests/test_stage_cs2_complete_search_config.m`
+
+本步只建立正式搜索配置和输出保存入口，尚未运行正式搜索、尚未生成正式结果。

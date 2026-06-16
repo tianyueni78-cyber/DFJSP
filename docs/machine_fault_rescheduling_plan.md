@@ -1587,3 +1587,9 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 验证结论、限制和后续建议合并为一个总入口。
 
 - [项目总收口](project_final_summary.md)
+
+### C-S2 第 10 步已完成：正式搜索配置与结果保存入口
+
+本步建立 `stage_cs2_complete_search_config.m`、`run_stage_cs2_complete_search.m`
+和配置测试。正式搜索预算与阶段 B/B-R/C-S1 保持一致：种群 `10`、最大
+`100` 代、连续 `10` 代无改善或 `30` 秒停止。当前仅完成入口，尚未运行正式实验。

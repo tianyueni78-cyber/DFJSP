@@ -808,3 +808,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_reschedule_operators.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_restricted_search_contract.m'))
 ```
+
+## C-S2 第 10 步测试
+
+`test_stage_cs2_complete_search_config.m`
+
+检查 C-S2 正式搜索配置和保存入口是否存在，确认预算为 `10×100`、连续
+`10` 代无改善或 `30` 秒停止。本测试不运行正式搜索、不生成输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_complete_search_config.m'))
+```

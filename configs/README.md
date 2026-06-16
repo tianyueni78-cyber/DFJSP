@@ -176,3 +176,16 @@ outputs/stage_a_step_13_search_and_selection/
 - 候选排序规则。
 
 配置不包含新的生产问题数据。
+
+## 阶段 C-S2 第 10 步
+
+`stage_cs2_complete_search_config.m`
+
+定义同时故障从头加工规则的单随机种子正式搜索预算：
+
+- 种群 `10`；
+- 最大 `100` 代；
+- 连续 `10` 代无改善停止；
+- 最长 `30` 秒；
+- 随机种子 `42`；
+- 相对输出目录 `outputs/stage_cs2_complete_reschedule_search/`。
