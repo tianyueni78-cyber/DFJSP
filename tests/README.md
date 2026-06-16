@@ -703,3 +703,8 @@ run(fullfile(pwd,'tests','test_stage_c_final_audit_matrix_config.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_final_audit_multiseed_config.m'))
 ```
+
+## 阶段 C 第 18 步
+
+第 18 步为总结和代码导读文档，不新增 MATLAB 测试。结果来自第 10.4、
+第 11、 第 16.4、 第 16.5 和第 17.2 的正式输出与组合评价。
