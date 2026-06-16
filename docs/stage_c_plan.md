@@ -497,6 +497,7 @@ MATLAB 轻量测试已通过。**
 详细记录：
 
 - [阶段 C 最终总结与代码导读](stage_c_final_summary_and_code_guide.md)
+- [项目总收口](project_final_summary.md)
 
 ## 5. 整体完成标准
 

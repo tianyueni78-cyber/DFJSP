@@ -1557,3 +1557,8 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 统一整理为阶段 C 收口文档。
 
 - [阶段 C 最终总结与代码导读](stage_c_final_summary_and_code_guide.md)
+
+总项目收口文档已完成静态整理。它把阶段 A、B、B-R 和 C 的路线、结果、
+验证结论、限制和后续建议合并为一个总入口。
+
+- [项目总收口](project_final_summary.md)
