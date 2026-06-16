@@ -409,6 +409,14 @@
 
 本步只建立冻结问题，不解码、不搜索、不组合选择。
 
+阶段 C 第 16.2 步已完成静态实现：
+
+- [连续故障完全重调度解码器](docs/stage_c_step_16_2_sequential_complete_decode.md)
+- `scripts/run_stage_c_sequential_complete_reschedule_decode.m`
+- `tests/test_stage_c_sequential_complete_reschedule_decode.m`
+
+本步只解码一个轻量候选，不运行种群搜索、不组合选择。
+
 ## 目录说明
 
 ```text

@@ -627,3 +627,15 @@ run(fullfile(pwd,'tests', ...
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_sequential_frozen_problem.m'))
 ```
+
+## 阶段 C 第 16.2 步测试
+
+`test_stage_c_sequential_complete_reschedule_decode.m`
+
+检查连续故障完全重调度轻量候选、冻结工序、中断两段加工承诺、维修区间、
+工件顺序、机器非重叠和能耗闭合。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_sequential_complete_reschedule_decode.m'))
+```
