@@ -680,3 +680,14 @@ run(fullfile(pwd,'tests','test_stage_c_sequential_combination_contract.m'))
 
 第 16.6 步为结果总结文档，不新增 MATLAB 测试。结果来自第 16.4 正式搜索和
 第 16.5 正式组合评价。
+
+## 阶段 C 第 17.1 步测试
+
+`test_stage_c_final_audit_matrix_config.m`
+
+检查最终审计场景矩阵、多随机种子、正式搜索参数和审计项定义。本测试不运行
+正式实验、不创建输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_final_audit_matrix_config.m'))
+```

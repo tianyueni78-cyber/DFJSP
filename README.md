@@ -451,6 +451,14 @@
 正式组合评价选择 `complete_rescheduling`。选定方案 `tD=-27.7133`、`SD=13`、
 `Y=-23.6420`；约束审计和能耗审计均通过。
 
+阶段 C 第 17.1 步已完成静态实现：
+
+- [最终审计场景矩阵](docs/stage_c_step_17_1_final_audit_matrix.md)
+- `configs/stage_c_final_audit_matrix_config.m`
+- `tests/test_stage_c_final_audit_matrix_config.m`
+
+本步明确 `C-S1` 和 `C-SEQ1` 已可运行，`C-S2` 和 `C-SEQ2` 仍需补实现或排除。
+
 ## 目录说明
 
 ```text
