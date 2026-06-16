@@ -406,8 +406,8 @@ MATLAB 轻量测试已通过。**
 
 **当前状态：第 16.1 步连续故障完全重调度冻结问题已通过；第 16.2 步
 连续故障完全重调度解码器已通过；第 16.3 步连续故障算子与轻量搜索契约
-已通过；第 16.4 步连续故障正式搜索配置与结果保存入口已通过并已完成一次
-正式搜索；第 16.5 步连续故障组合评价已完成静态实现，等待 MATLAB 契约测试。**
+已通过；第 16.4 步连续故障正式搜索已完成；第 16.5 步连续故障组合评价
+契约测试和正式结果分析已通过；第 16.6 步结果总结已完成。**
 
 工作：
 
@@ -422,12 +422,23 @@ MATLAB 轻量测试已通过。**
 - [阶段 C 第 16.3 步：连续故障算子与轻量搜索契约](stage_c_step_16_3_sequential_search_contract.md)
 - [阶段 C 第 16.4 步：连续故障正式搜索入口](stage_c_step_16_4_sequential_formal_search_entry.md)
 - [阶段 C 第 16.5 步：连续故障组合评价](stage_c_step_16_5_sequential_combination_selection.md)
+- [阶段 C 第 16.6 步：连续故障正式结果总结](stage_c_step_16_6_sequential_result_summary.md)
 
 完成标准：
 
 - 每轮搜索只改变当时尚未开工任务；
 - 每轮评价基准和比较口径明确；
 - 选定方案成为下一事件的输入计划。
+
+正式结果摘要：
+
+- 输出目录：`outputs/stage_c_sequential_complete_reschedule_search/20260616_092142`
+- 正式搜索停止原因：`maximum_generations`
+- Pareto 解数量：`2`
+- 连续故障最终选择：`complete_rescheduling`
+- 选定方案：`tD = -27.7133`，`SD = 13`，`Y = -23.6420`
+- 局部右移对比：`tD = 3`，`SD = 0`，`Y = 2.7000`
+- 约束审计和能耗审计均通过。
 
 ### C-V：最终验证与收口
 

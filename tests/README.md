@@ -675,3 +675,8 @@ run(fullfile(pwd,'tests', ...
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_sequential_combination_contract.m'))
 ```
+
+## 阶段 C 第 16.6 步
+
+第 16.6 步为结果总结文档，不新增 MATLAB 测试。结果来自第 16.4 正式搜索和
+第 16.5 正式组合评价。

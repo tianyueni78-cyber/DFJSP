@@ -1534,3 +1534,4 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 - [阶段 C 第 16.3 步：连续故障算子与轻量搜索契约](stage_c_step_16_3_sequential_search_contract.md)
 - [阶段 C 第 16.4 步：连续故障正式搜索入口](stage_c_step_16_4_sequential_formal_search_entry.md)
 - [阶段 C 第 16.5 步：连续故障组合评价](stage_c_step_16_5_sequential_combination_selection.md)
+- [阶段 C 第 16.6 步：连续故障正式结果总结](stage_c_step_16_6_sequential_result_summary.md)

@@ -427,22 +427,29 @@
 
 本步只做算子契约和 `6×2` 轻量搜索契约，不运行正式长实验。
 
-阶段 C 第 16.4 步已完成静态实现：
+阶段 C 第 16.4 步已完成正式搜索：
 
 - [连续故障正式搜索入口](docs/stage_c_step_16_4_sequential_formal_search_entry.md)
 - `configs/stage_c_sequential_complete_search_config.m`
 - `scripts/run_stage_c_sequential_complete_search.m`
 - `tests/test_stage_c_sequential_complete_search_config.m`
 
-本步只检查正式搜索配置和入口，不运行正式搜索、不生成输出。
+正式输出目录为 `outputs/stage_c_sequential_complete_reschedule_search/20260616_092142`。
 
-阶段 C 第 16.5 步已完成静态实现：
+阶段 C 第 16.5 步已完成正式组合评价：
 
 - [连续故障组合评价](docs/stage_c_step_16_5_sequential_combination_selection.md)
 - `scripts/run_stage_c_sequential_combination_selection.m`
 - `tests/test_stage_c_sequential_combination_contract.m`
 
 本步比较连续故障局部右移与完全重调度候选的 `tD、SD、Y`，并审计约束和能耗。
+
+阶段 C 第 16.6 步已完成结果总结：
+
+- [连续故障正式结果总结](docs/stage_c_step_16_6_sequential_result_summary.md)
+
+正式组合评价选择 `complete_rescheduling`。选定方案 `tD=-27.7133`、`SD=13`、
+`Y=-23.6420`；约束审计和能耗审计均通过。
 
 ## 目录说明
 
