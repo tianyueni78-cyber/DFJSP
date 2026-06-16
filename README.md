@@ -549,6 +549,12 @@ C-S2 第 7 步已完成静态实现：
 - `scripts/run_stage_cs2_complete_reschedule_decode.m`
 - `tests/test_stage_cs2_complete_reschedule_decode.m`
 
+C-S2 第 8 步已完成静态实现：
+
+- [C-S2 第 8 步：从头加工完全重调度算子契约](docs/stage_cs2_step_08_reschedule_operators.md)
+- `scripts/run_stage_cs2_reschedule_operators.m`
+- `tests/test_stage_cs2_reschedule_operators.m`
+
 ## 目录说明
 
 ```text

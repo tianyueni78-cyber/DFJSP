@@ -786,3 +786,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_frozen_problem.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_complete_reschedule_decode.m'))
 ```
+
+## C-S2 第 8 步测试
+
+`test_stage_cs2_reschedule_operators.m`
+
+检查 C-S2 受限种群初始化、交叉和变异：固定随机种子可复现，OS/MS/AS/SS
+取值范围合法，父代和子代均能通过 C-S2 第 7 步解码器。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_reschedule_operators.m'))
+```

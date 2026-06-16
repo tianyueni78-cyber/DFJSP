@@ -1574,6 +1574,7 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 - [C-S2 第 5 步：从头加工 AGV 与机器联动右移](stage_cs2_step_05_agv_linked_right_shift.md)
 - [C-S2 第 6 步：从头加工完全重调度冻结问题](stage_cs2_step_06_frozen_problem.md)
 - [C-S2 第 7 步：从头加工完全重调度解码器](stage_cs2_step_07_complete_decoder.md)
+- [C-S2 第 8 步：从头加工完全重调度算子契约](stage_cs2_step_08_reschedule_operators.md)
 
 阶段 C 第 18 步已完成静态整理。它将多故障事件模型、维修区间、影响传播、
 编码解码、局部右移、完全重调度、组合选择、正式结果、能力边界和代码入口
