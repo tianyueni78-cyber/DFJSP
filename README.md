@@ -667,3 +667,11 @@ C-SEQ2 第 3 步已完成静态实现：
 - `tests/test_stage_cseq2_impact_context.m`
 
 本步只传播新故障影响并保留累计维修不可用上下文，不写入机器时间表、不调整 AGV、不运行搜索。
+
+C-SEQ2 第 4 步已完成静态实现：
+
+- [C-SEQ2 第 4 步：局部右移机器候选](docs/stage_cseq2_step_04_machine_right_shift.md)
+- `scripts/run_stage_cseq2_machine_right_shift.m`
+- `tests/test_stage_cseq2_machine_right_shift.m`
+
+本步只生成机器侧局部右移候选，保留历史维修和新维修不可用区间，不调整 AGV、不运行搜索。

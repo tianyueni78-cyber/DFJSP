@@ -874,3 +874,14 @@ run(fullfile(pwd,'tests','test_stage_cseq2_unavailability_context.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_impact_context.m'))
 ```
+
+## C-SEQ2 第 4 步测试
+
+`test_stage_cseq2_machine_right_shift.m`
+
+检查机器局部右移候选是否避开全部累计维修区间、机器段是否不重叠、受影响
+工序时间是否写入候选表，以及 AGV 表是否保持不变。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_machine_right_shift.m'))
+```
