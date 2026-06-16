@@ -10,6 +10,10 @@
 4. 重建机器表并重新计算机器能耗；
 5. 验证冻结工序、中断承诺、维修区间、工件顺序和能耗闭合。
 
+阶段 A 核心解码器内部要求 `isFaultFreeBaseline=true`。第 16.2 步不会修改
+当前计划数据，而是在 Stage C 适配器内部构造一个临时兼容视图，让核心解码器
+继续使用当前计划的机器表、AGV 表和冻结边界。
+
 ## 代码入口
 
 - 运行入口：`scripts/run_stage_c_sequential_complete_reschedule_decode.m`

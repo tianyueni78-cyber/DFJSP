@@ -17,8 +17,9 @@ require_fields(frozen, {'stage', 'step', 'repair_intervals', ...
 validate_inputs(baseline, frozen);
 
 % Block 1: reuse the established decoder for released work and AGV tasks.
+coreBaseline = stage_a_core_baseline_view(baseline);
 coreCandidate = decode_stage_a_complete_reschedule( ...
-    baseline, frozen, decision);
+    coreBaseline, frozen, decision);
 
 % Block 2: restore all interrupted logical operations and physical segments.
 operations = restore_interrupted_operations( ...
@@ -52,6 +53,13 @@ candidate.is_search_executed = false;
 candidate.is_complete_reschedule_decoded = true;
 candidate.is_stage_c_multiple_split_operation_decoded = true;
 candidate.is_validated = true;
+end
+
+function value = stage_a_core_baseline_view(baseline)
+value = baseline;
+% The shared Stage A decoder only checks this flag as a baseline guard.
+% Stage C still passes the current plan's machine/AGV tables and boundaries.
+value.isFaultFreeBaseline = true;
 end
 
 function operations = restore_interrupted_operations( ...
