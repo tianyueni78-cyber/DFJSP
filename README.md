@@ -459,6 +459,16 @@
 
 本步明确 `C-S1` 和 `C-SEQ1` 已可运行，`C-S2` 和 `C-SEQ2` 仍需补实现或排除。
 
+阶段 C 第 17.2 步已完成静态实现：
+
+- [最终审计多随机种子入口](docs/stage_c_step_17_2_final_audit_multiseed_entry.md)
+- `configs/stage_c_final_audit_multiseed_config.m`
+- `scripts/run_stage_c_final_audit_multiseed.m`
+- `tests/test_stage_c_final_audit_multiseed_config.m`
+
+本步只把已实现的 `C-S1` 与 `C-SEQ1` 纳入五随机种子最终审计入口。配置测试
+不运行正式实验、不生成输出；正式运行前仍需确认。
+
 ## 目录说明
 
 ```text

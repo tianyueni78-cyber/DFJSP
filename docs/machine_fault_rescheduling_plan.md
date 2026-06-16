@@ -1536,3 +1536,9 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 - [阶段 C 第 16.5 步：连续故障组合评价](stage_c_step_16_5_sequential_combination_selection.md)
 - [阶段 C 第 16.6 步：连续故障正式结果总结](stage_c_step_16_6_sequential_result_summary.md)
 - [阶段 C 第 17.1 步：最终审计场景矩阵](stage_c_step_17_1_final_audit_matrix.md)
+- [阶段 C 第 17.2 步：最终审计多随机种子入口](stage_c_step_17_2_final_audit_multiseed_entry.md)
+
+阶段 C 第 17.2 步已完成静态实现。它只覆盖最终审计矩阵中已经完成主链路的
+`C-S1` 和 `C-SEQ1`，并为两个场景统一建立 `[11,22,33,42,55]` 五随机种子
+正式实验入口；`C-S2` 与 `C-SEQ2` 继续作为未完成场景留在矩阵中，不在本入口
+中运行。

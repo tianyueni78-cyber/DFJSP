@@ -691,3 +691,15 @@ run(fullfile(pwd,'tests','test_stage_c_sequential_combination_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_c_final_audit_matrix_config.m'))
 ```
+
+## 阶段 C 第 17.2 步测试
+
+`test_stage_c_final_audit_multiseed_config.m`
+
+检查最终审计多随机种子入口只覆盖已实现的 `C-S1` 和 `C-SEQ1`，确认五个
+随机种子、正式搜索预算、输出目录和运行入口存在。本测试不运行正式实验、
+不创建输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_final_audit_multiseed_config.m'))
+```
