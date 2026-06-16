@@ -604,3 +604,15 @@ run(fullfile(pwd,'tests','test_stage_c_next_fault_state.m'))
 run(fullfile(pwd,'tests', ...
     'test_stage_c_sequential_impact_context.m'))
 ```
+
+## 阶段 C 第 15 步测试
+
+`test_stage_c_sequential_agv_linked_right_shift.m`
+
+检查连续故障局部右移、AGV 联动、单个中断承诺、机器非重叠、维修区间、
+AGV 非重叠和运输到达约束。
+
+```matlab
+run(fullfile(pwd,'tests', ...
+    'test_stage_c_sequential_agv_linked_right_shift.m'))
+```

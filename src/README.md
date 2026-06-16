@@ -445,3 +445,20 @@ AGV 边界。中断工序以两段固定承诺保存，不能直接交给阶段 
 复用第 11 步候选进行权重敏感性，不重新搜索；审计维修区间、损失加工段、
 完整重加工段、最终卸载和能耗闭合。损失加工与完整重加工均计入机器工作
 能耗，维修停机间隔不计工作能耗。
+
+## 阶段 C 第 15 步
+
+- `rescheduling/build_stage_c_simultaneous_machine_right_shift.m`
+
+  已扩展为支持一个或多个同组故障，并允许输入当前计划视图。第 15 步复用
+  它生成连续故障的机器局部右移候选。
+
+- `impact/analyze_stage_c_simultaneous_agv_impact.m`
+
+  已扩展为支持一个或多个同组故障，并允许输入当前计划视图。第 15 步复用
+  它识别机器时间变化后的 AGV 运输失效。
+
+- `rescheduling/build_stage_c_simultaneous_agv_linked_right_shift.m`
+
+  已扩展为支持一个或多个同组故障，并允许输入当前计划视图。第 15 步复用
+  它调整 AGV 时间并反馈至机器开工时间。

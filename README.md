@@ -392,6 +392,15 @@
 本步累计全部维修历史，传播新故障影响，并合并仍有效的历史影响及事件来源；
 不写回机器或 AGV 时间表、不追加 `V2`。
 
+阶段 C 第 15 步已完成静态实现：
+
+- [连续故障局部右移与 AGV 联动](docs/stage_c_step_15_sequential_agv_linked_right_shift.md)
+- `scripts/run_stage_c_sequential_agv_linked_right_shift.m`
+- `tests/test_stage_c_sequential_agv_linked_right_shift.m`
+
+本步从当前计划生成连续故障局部右移候选，完成 AGV 联动调整；不追加版本、
+不运行搜索。
+
 ## 目录说明
 
 ```text
