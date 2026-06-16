@@ -730,3 +730,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_restart_commitments.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_impact_analysis.m'))
 ```
+
+## C-S2 第 3 步测试
+
+`test_stage_cs2_machine_right_shift.m`
+
+检查 C-S2 机器局部右移候选：损失加工段、完整重加工段、受影响工序时间、
+维修区间、机器非重叠、工件顺序和输入表不变。本测试不调整 AGV。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_machine_right_shift.m'))
+```

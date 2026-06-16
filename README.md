@@ -514,6 +514,13 @@ C-S2 第 2 步已完成静态实现：
 - `scripts/run_stage_cs2_impact_analysis.m`
 - `tests/test_stage_cs2_impact_analysis.m`
 
+C-S2 第 3 步已完成静态实现：
+
+- [C-S2 第 3 步：从头加工机器局部右移](docs/stage_cs2_step_03_machine_right_shift.md)
+- `src/rescheduling/build_stage_cs2_machine_right_shift.m`
+- `scripts/run_stage_cs2_machine_right_shift.m`
+- `tests/test_stage_cs2_machine_right_shift.m`
+
 ## 目录说明
 
 ```text
