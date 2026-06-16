@@ -658,3 +658,12 @@ C-SEQ2 第 2 步已完成静态实现：
 - `tests/test_stage_cseq2_unavailability_context.m`
 
 本步只合并历史维修和新维修区间，不传播影响、不修改调度、不运行搜索。
+
+C-SEQ2 第 3 步已完成静态实现：
+
+- [C-SEQ2 第 3 步：传播新故障影响并保留历史维修约束](docs/stage_cseq2_step_03_impact_context.md)
+- `src/impact/build_stage_cseq2_impact_context.m`
+- `scripts/run_stage_cseq2_impact_context.m`
+- `tests/test_stage_cseq2_impact_context.m`
+
+本步只传播新故障影响并保留累计维修不可用上下文，不写入机器时间表、不调整 AGV、不运行搜索。

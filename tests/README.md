@@ -863,3 +863,14 @@ run(fullfile(pwd,'tests','test_stage_cseq2_overlapping_fault_state.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_unavailability_context.m'))
 ```
+
+## C-SEQ2 第 3 步测试
+
+`test_stage_cseq2_impact_context.m`
+
+检查新故障影响集合是否非空、受影响工序是否去重、历史维修约束是否仍保留，
+以及未开工工序数量是否守恒。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_impact_context.m'))
+```
