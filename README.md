@@ -28,6 +28,7 @@
 | [项目总收口](docs/project_final_summary.md) | 阶段 A、B、B-R、C 的总体成果、结论、限制和后续建议 |
 | [结论证据与读数指南](docs/conclusion_evidence_guide.md) | 汇报结论从哪些指标和值得出，如何读取结果 |
 | [未覆盖场景补充计划](docs/uncovered_scenarios_plan.md) | C-S2 和 C-SEQ2 的补充路线、优先级和完成标准 |
+| [C-S2 第 1 步：从头加工中断承诺](docs/stage_cs2_step_01_restart_commitments.md) | 同时故障下为多个中断工序建立损失加工段和完整重加工段 |
 | [阶段 B-R 第 1 步：从头加工规则](docs/stage_br_step_01_restart_rule.md) | 进度作废，修复后原机器完整重加工 |
 | [阶段 B-R 第 2 步：影响传播](docs/stage_br_step_02_impact_propagation.md) | 从完整重加工完成时间传播工件和机器后继影响 |
 | [阶段 B-R 第 3 步：机器局部右移](docs/stage_br_step_03_machine_right_shift.md) | 写入损失加工段、完整重加工段和受影响工序时间 |
@@ -498,6 +499,13 @@
 后者明确下一步优先补 `C-S2`，再补 `C-SEQ2`。
 
 `C-S2` 和 `C-SEQ2` 也已写入阶段 C 项目地图和总工作表，作为后续待补工作段。
+
+C-S2 第 1 步已完成静态实现：
+
+- [C-S2 第 1 步：从头加工中断承诺](docs/stage_cs2_step_01_restart_commitments.md)
+- `src/rescheduling/build_stage_c_simultaneous_restart_commitments.m`
+- `scripts/run_stage_cs2_restart_commitments.m`
+- `tests/test_stage_cs2_restart_commitments.m`
 
 ## 目录说明
 

@@ -708,3 +708,14 @@ run(fullfile(pwd,'tests','test_stage_c_final_audit_multiseed_config.m'))
 
 第 18 步为总结和代码导读文档，不新增 MATLAB 测试。结果来自第 10.4、
 第 11、 第 16.4、 第 16.5 和第 17.2 的正式输出与组合评价。
+
+## C-S2 第 1 步测试
+
+`test_stage_cs2_restart_commitments.m`
+
+检查同时故障下多个中断工序的从头加工承诺：故障前加工段作废、修复后完整
+重加工、进度不保留、机器不迁移。本测试不传播影响、不修改机器或 AGV 时间表。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_restart_commitments.m'))
+```
