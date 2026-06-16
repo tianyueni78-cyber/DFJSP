@@ -32,7 +32,8 @@ context.overlap_relationships = ...
 context.active_previous_repairs = ...
     unavailabilityContext.active_previous_repairs;
 context.new_event_impact = newImpact;
-context.active_historical_impacts = impact_template([]);
+template = impact_template();
+context.active_historical_impacts = template([]);
 context.merged_affected_operations = merged;
 context.unaffected_unstarted_operations = unaffected;
 context.counts = struct( ...
