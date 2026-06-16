@@ -642,3 +642,10 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 
 将 C-SEQ2 影响集合写入机器侧候选时间表，并保留累计维修不可用区间。本入口
 不调整 AGV、不运行搜索。
+
+## C-SEQ2 第 5 步
+
+`run_stage_cseq2_agv_impact_analysis.m`
+
+在 C-SEQ2 机器局部右移候选上识别失效运输和同 AGV 后续复核运输。本入口
+不修改 AGV 表、不运行搜索。

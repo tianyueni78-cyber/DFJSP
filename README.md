@@ -675,3 +675,11 @@ C-SEQ2 第 4 步已完成静态实现：
 - `tests/test_stage_cseq2_machine_right_shift.m`
 
 本步只生成机器侧局部右移候选，保留历史维修和新维修不可用区间，不调整 AGV、不运行搜索。
+
+C-SEQ2 第 5 步已完成静态实现：
+
+- [C-SEQ2 第 5 步：AGV 影响分析](docs/stage_cseq2_step_05_agv_impact_analysis.md)
+- `scripts/run_stage_cseq2_agv_impact_analysis.m`
+- `tests/test_stage_cseq2_agv_impact_analysis.m`
+
+本步只识别受影响 AGV 运输任务，不修改 AGV 表、不运行搜索。

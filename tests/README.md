@@ -885,3 +885,14 @@ run(fullfile(pwd,'tests','test_stage_cseq2_impact_context.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_machine_right_shift.m'))
 ```
+
+## C-SEQ2 第 5 步测试
+
+`test_stage_cseq2_agv_impact_analysis.m`
+
+检查 AGV 影响集合数量守恒、受影响运输无重复、原因和故障来源完整，并确认
+AGV 表未被修改。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_agv_impact_analysis.m'))
+```
