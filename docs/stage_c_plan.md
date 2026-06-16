@@ -511,6 +511,7 @@ MATLAB 轻量测试已通过。**
 当前执行：
 
 - [C-S2 第 1 步：从头加工中断承诺](stage_cs2_step_01_restart_commitments.md)
+- [C-S2 第 2 步：从头加工影响传播](stage_cs2_step_02_impact_analysis.md)
 
 #### 待补场景 C-SEQ2：连续故障且维修区间重叠
 

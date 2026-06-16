@@ -719,3 +719,14 @@ run(fullfile(pwd,'tests','test_stage_c_final_audit_multiseed_config.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_restart_commitments.m'))
 ```
+
+## C-S2 第 2 步测试
+
+`test_stage_cs2_impact_analysis.m`
+
+检查从头加工完成时间是否正确传播到同工件后续工序和同机器后续队列，验证
+多故障源合并、来源保留和输入表不变。本测试不修改机器或 AGV 时间表。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_impact_analysis.m'))
+```

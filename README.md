@@ -507,6 +507,13 @@ C-S2 第 1 步已完成静态实现：
 - `scripts/run_stage_cs2_restart_commitments.m`
 - `tests/test_stage_cs2_restart_commitments.m`
 
+C-S2 第 2 步已完成静态实现：
+
+- [C-S2 第 2 步：从头加工影响传播](docs/stage_cs2_step_02_impact_analysis.md)
+- `src/impact/identify_stage_cs2_restart_affected_operations.m`
+- `scripts/run_stage_cs2_impact_analysis.m`
+- `tests/test_stage_cs2_impact_analysis.m`
+
 ## 目录说明
 
 ```text

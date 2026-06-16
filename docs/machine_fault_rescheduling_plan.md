@@ -1568,6 +1568,7 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 
 - [未覆盖场景补充计划](uncovered_scenarios_plan.md)
 - [C-S2 第 1 步：从头加工中断承诺](stage_cs2_step_01_restart_commitments.md)
+- [C-S2 第 2 步：从头加工影响传播](stage_cs2_step_02_impact_analysis.md)
 
 阶段 C 第 18 步已完成静态整理。它将多故障事件模型、维修区间、影响传播、
 编码解码、局部右移、完全重调度、组合选择、正式结果、能力边界和代码入口
