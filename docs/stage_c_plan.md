@@ -591,3 +591,17 @@ MATLAB 轻量测试已通过。**
 
 阶段 C 第 1 步只定义和校验 `faults[]`，不修改现有 A/B/B-R 算法，不运行
 MATLAB。
+
+### C-S2 第 11 步正式组合结果
+
+- 搜索输出：`outputs/stage_cs2_complete_reschedule_search/20260616_150249`
+- 选中策略：`complete_rescheduling`
+- `candidate_makespan=122.0900`
+- `tD=-22.1133`
+- `SD=23`
+- `Y=-17.6020`
+- `all_constraint_audits_validated=1`
+- `all_energy_audits_complete=1`
+
+下一步：进入 C-S2 权重敏感性、多随机种子与最终审计，或转入 `C-SEQ2`
+连续故障且维修区间重叠场景。

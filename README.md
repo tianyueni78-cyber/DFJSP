@@ -609,3 +609,12 @@ C-S2 第 11 步已完成静态实现：
 - `scripts/run_stage_cs2_combination_selection.m`
 - `scripts/run_stage_cs2_combination_contract.m`
 - `tests/test_stage_cs2_combination_contract.m`
+
+C-S2 第 11 步正式组合选择已完成：
+
+- 使用结果：`outputs/stage_cs2_complete_reschedule_search/20260616_150249/result.mat`
+- 选中策略：`complete_rescheduling`
+- 完全重调度：最终卸载 `122.0900`，`tD=-22.1133`，`SD=23`，`Y=-17.6020`
+- 局部右移：最终卸载 `144.2033`，`tD=0`，`SD=0`，`Y=0`
+- 约束审计：`all_constraint_audits_validated=1`
+- 能耗审计：`all_energy_audits_complete=1`
