@@ -819,3 +819,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_restricted_search_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_complete_search_config.m'))
 ```
+
+## C-S2 第 11 步测试
+
+`test_stage_cs2_combination_contract.m`
+
+检查 C-S2 局部右移与完全重调度候选的 `tD、SD、Y` 组合评价，以及 C-S2
+专用从头加工承诺审计。本测试不读取正式输出目录。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_combination_contract.m'))
+```

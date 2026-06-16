@@ -593,3 +593,19 @@ C-S2 第 10 步已完成静态实现：
 - `tests/test_stage_cs2_complete_search_config.m`
 
 本步只建立正式搜索配置和输出保存入口，尚未运行正式搜索、尚未生成正式结果。
+
+C-S2 第 10 步正式搜索已运行一次：
+
+- 输出目录：`outputs/stage_cs2_complete_reschedule_search/20260616_150249`
+- 停止原因：`time_limit`
+- 完成代数：`94`
+- 运行时间：约 `30.2440` 秒
+- 去重 Pareto 数：`3`
+
+C-S2 第 11 步已完成静态实现：
+
+- [C-S2 第 11 步：组合评价与策略选择](docs/stage_cs2_step_11_combination_selection.md)
+- `src/evaluation/audit_stage_cs2_rescheduling_candidate.m`
+- `scripts/run_stage_cs2_combination_selection.m`
+- `scripts/run_stage_cs2_combination_contract.m`
+- `tests/test_stage_cs2_combination_contract.m`
