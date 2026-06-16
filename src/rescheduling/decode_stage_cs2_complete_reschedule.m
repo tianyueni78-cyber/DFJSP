@@ -131,6 +131,7 @@ for index = 1:numel(operations)
         segment.start = operation.start;
         segment.end = operation.end;
         segment.processing_time = operation.duration;
+        segment.contributes_to_completion = true;
         segments(end + 1) = segment;
     end
 end
@@ -147,6 +148,7 @@ segment.operation = operation.operation;
 segment.start = source.start;
 segment.end = source.end;
 segment.processing_time = source.processing_time;
+segment.contributes_to_completion = source.contributes_to_completion;
 segment.source_event_ids = eventIds;
 end
 
@@ -420,7 +422,7 @@ function value = segment_template()
 value = struct('machine_id', [], 'segment_order', [], ...
     'segment_type', '', 'job', [], 'operation', [], ...
     'start', [], 'end', [], 'processing_time', [], ...
-    'source_event_ids', []);
+    'contributes_to_completion', true, 'source_event_ids', []);
 end
 
 function value = machine_block_template()
