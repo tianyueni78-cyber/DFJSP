@@ -56,3 +56,25 @@ stage12Multiseed = run_stage_cs2_step_12_multiseed(stage11);
 - 所有候选通过 C-S2 从头加工、维修、最终卸载和能耗审计；
 - 多随机种子入口可复用同一 C-S2 场景；
 - 正式多随机种子运行后能输出 `multiseed_summary.csv`。
+
+## 当前五随机种子正式结果
+
+基于 `outputs/stage_cs2_step_12_robustness/20260616_203807`：
+
+| seed | stop_reason | generations | Pareto | strategy | makespan | tD | SD | Y |
+|---:|---|---:|---:|---|---:|---:|---:|---:|
+| 11 | `no_pareto_improvement` | 69 | 1 | `complete_rescheduling` | 116.50 | -27.703 | 26 | -22.333 |
+| 22 | `no_pareto_improvement` | 37 | 2 | `complete_rescheduling` | 123.00 | -21.203 | 13 | -17.783 |
+| 33 | `time_limit` | 84 | 4 | `complete_rescheduling` | 116.08 | -28.127 | 25 | -22.814 |
+| 42 | `time_limit` | 74 | 4 | `complete_rescheduling` | 123.95 | -20.250 | 23 | -15.925 |
+| 55 | `no_pareto_improvement` | 56 | 3 | `complete_rescheduling` | 110.43 | -33.770 | 26 | -27.793 |
+
+汇总结论：
+
+- `5/5` 次均选择 `complete_rescheduling`；
+- 最好 `Y=-27.793`，最差 `Y=-15.925`，平均 `Y=-21.3296`；
+- 平均 `tD=-26.2106`，说明最终卸载时间平均减少约 `26.21`；
+- 平均 `SD=22.6`，说明完全重调度通过改变部分机器分配换取更短完工时间；
+- 所有运行均保留 `restart_from_zero=true` 的 C-S2 规则。
+
+解释：在当前原数据、同时故障、从头加工规则和 `0.9/0.1` 权重下，完全重调度选择具有多随机种子稳定性。
