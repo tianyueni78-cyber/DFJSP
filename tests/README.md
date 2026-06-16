@@ -774,3 +774,15 @@ run(fullfile(pwd,'tests','test_stage_cs2_agv_linked_right_shift.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_frozen_problem.m'))
 ```
+
+## C-S2 第 7 步测试
+
+`test_stage_cs2_complete_reschedule_decode.m`
+
+检查 C-S2 完全重调度解码器：冻结工序不变、多个从头加工承诺保留、损失
+加工计入机器工作能耗、维修区间、工件顺序、机器不重叠和最终卸载约束。
+本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_complete_reschedule_decode.m'))
+```

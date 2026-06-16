@@ -516,6 +516,7 @@ MATLAB 轻量测试已通过。**
 - [C-S2 第 4 步：从头加工 AGV 影响分析](stage_cs2_step_04_agv_impact_analysis.md)
 - [C-S2 第 5 步：从头加工 AGV 与机器联动右移](stage_cs2_step_05_agv_linked_right_shift.md)
 - [C-S2 第 6 步：从头加工完全重调度冻结问题](stage_cs2_step_06_frozen_problem.md)
+- [C-S2 第 7 步：从头加工完全重调度解码器](stage_cs2_step_07_complete_decoder.md)
 
 #### 待补场景 C-SEQ2：连续故障且维修区间重叠
 

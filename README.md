@@ -542,6 +542,13 @@ C-S2 第 6 步已完成静态实现：
 - `scripts/run_stage_cs2_frozen_problem.m`
 - `tests/test_stage_cs2_frozen_problem.m`
 
+C-S2 第 7 步已完成静态实现：
+
+- [C-S2 第 7 步：从头加工完全重调度解码器](docs/stage_cs2_step_07_complete_decoder.md)
+- `src/rescheduling/decode_stage_cs2_complete_reschedule.m`
+- `scripts/run_stage_cs2_complete_reschedule_decode.m`
+- `tests/test_stage_cs2_complete_reschedule_decode.m`
+
 ## 目录说明
 
 ```text
