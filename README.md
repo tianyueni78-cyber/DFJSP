@@ -691,3 +691,11 @@ C-SEQ2 第 6 步已完成静态实现：
 - `tests/test_stage_cseq2_agv_linked_right_shift.m`
 
 本步生成完整局部右移候选，调整受影响 AGV 运输并反馈机器开工时间，不运行搜索。
+
+C-SEQ2 第 7 步已完成静态实现：
+
+- [C-SEQ2 第 7 步：完全重调度冻结问题](docs/stage_cseq2_step_07_frozen_problem.md)
+- `scripts/run_stage_cseq2_frozen_problem.m`
+- `tests/test_stage_cseq2_frozen_problem.m`
+
+本步在 C-SEQ2 机器 + AGV 联动右移候选之后，建立完全重调度的冻结边界；历史维修作为累计不可用上下文保留，新故障作为本轮完全重调度事件处理。本步不解码、不搜索、不生成正式实验输出。

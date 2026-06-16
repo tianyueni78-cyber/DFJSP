@@ -1,0 +1,63 @@
+function scenario = run_stage_cseq2_frozen_problem(stage6)
+%RUN_STAGE_CSEQ2_FROZEN_PROBLEM Build C-SEQ2 Step 7.
+%   The complete-rescheduling boundary is built for the new overlapping
+%   fault, while historical repair unavailability is retained for audits.
+
+if nargin < 1
+    stage6 = run_stage_cseq2_agv_linked_right_shift();
+end
+if ~strcmp(stage6.step, 'C-SEQ2.6') || ~stage6.is_validated
+    error('run_stage_cseq2_frozen_problem:InvalidInput', ...
+        'A validated C-SEQ2 Step 6 scenario is required.');
+end
+
+projectRoot = fileparts(fileparts(mfilename('fullpath')));
+originalPath = path;
+cleanupPath = onCleanup(@() path(originalPath));
+addpath(fullfile(projectRoot, 'src', 'rescheduling'));
+
+currentView = stage6.next_fault_state.current_plan_view;
+frozen = build_stage_c_simultaneous_frozen_problem( ...
+    currentView, stage6.next_fault, ...
+    stage6.next_fault_state.state, ...
+    stage6.cseq2_machine_right_shift.interrupted_commitments);
+frozen.stage = 'C-SEQ2';
+frozen.step = '7';
+frozen.cumulative_unavailability = ...
+    stage6.cseq2_impact_context.cumulative_unavailability;
+frozen.overlap_relationships = ...
+    stage6.cseq2_impact_context.overlap_relationships;
+frozen.active_previous_repairs = ...
+    stage6.cseq2_impact_context.active_previous_repairs;
+frozen.history_unchanged = true;
+frozen.is_validated = frozen.is_validated && ...
+    validate_frozen(frozen, stage6);
+
+scenario = stage6;
+scenario.cseq2_frozen_problem = frozen;
+scenario.step = 'C-SEQ2.7';
+scenario.substep = '7';
+scenario.is_frozen_problem_built = true;
+scenario.is_complete_reschedule_decoded = false;
+scenario.is_search_executed_in_cseq2_step_7 = false;
+scenario.is_combination_evaluated = false;
+scenario.is_validated = scenario.is_validated && frozen.is_validated;
+end
+
+function result = validate_frozen(frozen, stage6)
+result = ~frozen.baseline_modified && ~frozen.is_search_executed && ...
+    ~frozen.stage_a_decoder_compatible && frozen.history_unchanged && ...
+    frozen.cumulative_unavailability.is_validated && ...
+    frozen.cumulative_unavailability.fault_count == ...
+    stage6.cseq2_impact_context.counts.cumulative_faults && ...
+    numel(frozen.overlap_relationships) == ...
+    stage6.cseq2_impact_context.counts.overlap_relationships && ...
+    numel(frozen.active_previous_repairs) == ...
+    stage6.cseq2_impact_context.counts.active_previous_repairs && ...
+    numel(frozen.repair_intervals) == 1 && ...
+    numel(frozen.interrupted_commitments) == 1;
+if ~result
+    error('run_stage_cseq2_frozen_problem:InvalidFrozenProblem', ...
+        'C-SEQ2 frozen problem failed validation.');
+end
+end

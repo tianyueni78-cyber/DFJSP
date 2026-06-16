@@ -907,3 +907,13 @@ run(fullfile(pwd,'tests','test_stage_cseq2_agv_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_agv_linked_right_shift.m'))
 ```
+
+## C-SEQ2 第 7 步测试
+
+`test_stage_cseq2_frozen_problem.m`
+
+检查 C-SEQ2 完全重调度冻结问题：已完成/冻结/可重调度工序划分、工件边界、机器边界、AGV 边界、历史维修上下文和新故障承诺是否完整。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_frozen_problem.m'))
+```
