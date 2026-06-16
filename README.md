@@ -649,3 +649,12 @@ C-SEQ2 第 1 步已完成静态实现：
 - `tests/test_stage_cseq2_overlapping_fault_state.m`
 
 本步只选择后一故障发生在历史维修尚未结束时的连续故障场景，不传播影响、不修改调度、不运行搜索。
+
+C-SEQ2 第 2 步已完成静态实现：
+
+- [C-SEQ2 第 2 步：重叠维修不可用上下文](docs/stage_cseq2_step_02_unavailability_context.md)
+- `src/fault/build_stage_cseq2_overlapping_unavailability_context.m`
+- `scripts/run_stage_cseq2_unavailability_context.m`
+- `tests/test_stage_cseq2_unavailability_context.m`
+
+本步只合并历史维修和新维修区间，不传播影响、不修改调度、不运行搜索。

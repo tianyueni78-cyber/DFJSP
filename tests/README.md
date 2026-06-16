@@ -852,3 +852,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_step_12_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_overlapping_fault_state.m'))
 ```
+
+## C-SEQ2 第 2 步测试
+
+`test_stage_cseq2_unavailability_context.m`
+
+检查历史维修与新维修是否形成重叠关系，累计不可用区间是否覆盖全部故障，
+以及同一机器合并后区间是否不再重叠。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_unavailability_context.m'))
+```
