@@ -401,6 +401,14 @@
 本步从当前计划生成连续故障局部右移候选，完成 AGV 联动调整；不追加版本、
 不运行搜索。
 
+阶段 C 第 16.1 步已完成静态实现：
+
+- [连续故障完全重调度冻结问题](docs/stage_c_step_16_1_sequential_frozen_problem.md)
+- `scripts/run_stage_c_sequential_frozen_problem.m`
+- `tests/test_stage_c_sequential_frozen_problem.m`
+
+本步只建立冻结问题，不解码、不搜索、不组合选择。
+
 ## 目录说明
 
 ```text

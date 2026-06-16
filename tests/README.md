@@ -616,3 +616,14 @@ AGV 非重叠和运输到达约束。
 run(fullfile(pwd,'tests', ...
     'test_stage_c_sequential_agv_linked_right_shift.m'))
 ```
+
+## 阶段 C 第 16.1 步测试
+
+`test_stage_c_sequential_frozen_problem.m`
+
+检查连续故障完全重调度冻结边界、单个中断承诺、工件/机器/AGV 释放边界，
+以及运输集合完整分区。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_c_sequential_frozen_problem.m'))
+```

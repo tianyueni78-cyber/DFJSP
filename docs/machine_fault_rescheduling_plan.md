@@ -1529,3 +1529,4 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 
 - [阶段 C 第 14 步：累计维修区间与连续故障影响合并](stage_c_step_14_sequential_impact_context.md)
 - [阶段 C 第 15 步：连续故障局部右移与 AGV 联动](stage_c_step_15_sequential_agv_linked_right_shift.md)
+- [阶段 C 第 16.1 步：连续故障完全重调度冻结问题](stage_c_step_16_1_sequential_frozen_problem.md)
