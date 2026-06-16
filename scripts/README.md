@@ -649,3 +649,10 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 
 在 C-SEQ2 机器局部右移候选上识别失效运输和同 AGV 后续复核运输。本入口
 不修改 AGV 表、不运行搜索。
+
+## C-SEQ2 第 6 步
+
+`run_stage_cseq2_agv_linked_right_shift.m`
+
+正式调整 C-SEQ2 受影响 AGV 运输任务，并将运输延迟反馈到机器开工时间，生成
+机器 + AGV 联动局部右移候选。本入口不运行搜索。

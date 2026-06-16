@@ -683,3 +683,11 @@ C-SEQ2 第 5 步已完成静态实现：
 - `tests/test_stage_cseq2_agv_impact_analysis.m`
 
 本步只识别受影响 AGV 运输任务，不修改 AGV 表、不运行搜索。
+
+C-SEQ2 第 6 步已完成静态实现：
+
+- [C-SEQ2 第 6 步：AGV 与机器联动右移](docs/stage_cseq2_step_06_agv_linked_right_shift.md)
+- `scripts/run_stage_cseq2_agv_linked_right_shift.m`
+- `tests/test_stage_cseq2_agv_linked_right_shift.m`
+
+本步生成完整局部右移候选，调整受影响 AGV 运输并反馈机器开工时间，不运行搜索。

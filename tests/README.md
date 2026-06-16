@@ -896,3 +896,14 @@ AGV 表未被修改。
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_agv_impact_analysis.m'))
 ```
+
+## C-SEQ2 第 6 步测试
+
+`test_stage_cseq2_agv_linked_right_shift.m`
+
+检查 C-SEQ2 AGV 与机器联动右移候选：AGV 不重叠、运输约束、最终卸载、机器
+维修区间和机器段不重叠。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_agv_linked_right_shift.m'))
+```
