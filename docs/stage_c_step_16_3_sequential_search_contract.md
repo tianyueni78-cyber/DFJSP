@@ -17,6 +17,9 @@
 - 算子测试：`tests/test_stage_c_sequential_reschedule_operators.m`
 - 搜索测试：`tests/test_stage_c_sequential_restricted_search_contract.m`
 
+算子测试会直接调用解码器验证一个子代，因此测试自身需要加入 `src/scheduling`
+路径，保证 AGV 空载运输时间函数可见。
+
 ## 复用关系
 
 本步复用阶段 A 的受限种群初始化和交叉变异，复用阶段 C 同时故障搜索器。

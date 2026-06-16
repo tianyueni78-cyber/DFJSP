@@ -7,6 +7,7 @@ originalPath = path;
 cleanupPath = onCleanup(@() path(originalPath));
 addpath(fullfile(projectRoot, 'scripts'));
 addpath(fullfile(projectRoot, 'src', 'rescheduling'));
+addpath(fullfile(projectRoot, 'src', 'scheduling'));
 
 first = run_stage_c_sequential_reschedule_operators();
 second = run_stage_c_sequential_reschedule_operators();
