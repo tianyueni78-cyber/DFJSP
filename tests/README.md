@@ -763,3 +763,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_agv_impact_analysis.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_agv_linked_right_shift.m'))
 ```
+
+## C-S2 第 6 步测试
+
+`test_stage_cs2_frozen_problem.m`
+
+检查 C-S2 完全重调度冻结边界：冻结/可重调工序划分、多个从头加工承诺、
+维修区间、工件/机器/AGV 边界和运输集合划分。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_frozen_problem.m'))
+```

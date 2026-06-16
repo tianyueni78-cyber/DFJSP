@@ -535,6 +535,13 @@ C-S2 第 5 步已完成静态实现：
 - `scripts/run_stage_cs2_agv_linked_right_shift.m`
 - `tests/test_stage_cs2_agv_linked_right_shift.m`
 
+C-S2 第 6 步已完成静态实现：
+
+- [C-S2 第 6 步：从头加工完全重调度冻结问题](docs/stage_cs2_step_06_frozen_problem.md)
+- `src/rescheduling/build_stage_cs2_frozen_problem.m`
+- `scripts/run_stage_cs2_frozen_problem.m`
+- `tests/test_stage_cs2_frozen_problem.m`
+
 ## 目录说明
 
 ```text
