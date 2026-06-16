@@ -521,6 +521,7 @@ MATLAB 轻量测试已通过。**
 - [C-S2 第 9 步：从头加工受限搜索契约](stage_cs2_step_09_restricted_search_contract.md)
 - [C-S2 第 10 步：从头加工正式搜索配置](stage_cs2_step_10_complete_search_config.md)
 - [C-S2 第 11 步：从头加工组合评价与策略选择](stage_cs2_step_11_combination_selection.md)
+- [C-S2 第 12 步：权重敏感性、多随机种子与最终审计](stage_cs2_step_12_robustness_audit.md)
 
 #### 待补场景 C-SEQ2：连续故障且维修区间重叠
 

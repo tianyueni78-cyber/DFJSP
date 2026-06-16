@@ -189,3 +189,13 @@ outputs/stage_a_step_13_search_and_selection/
 - 最长 `30` 秒；
 - 随机种子 `42`；
 - 相对输出目录 `outputs/stage_cs2_complete_reschedule_search/`。
+
+## 阶段 C-S2 第 12 步
+
+`stage_cs2_step_12_config.m`
+
+继承 C-S2 正式搜索预算和组合权重，并增加：
+
+- 随机种子 `[11,22,33,42,55]`；
+- 完工时间权重 `0:0.1:1`；
+- 相对输出目录 `outputs/stage_cs2_step_12_robustness/`。

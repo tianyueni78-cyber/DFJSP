@@ -830,3 +830,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_complete_search_config.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_combination_contract.m'))
 ```
+
+## C-S2 第 12 步测试
+
+`test_stage_cs2_step_12_contract.m`
+
+检查 C-S2 权重敏感性、从头加工审计、能耗审计和多随机种子入口是否就绪。
+本测试不运行五随机种子正式实验。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_step_12_contract.m'))
+```

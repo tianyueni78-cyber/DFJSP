@@ -618,3 +618,14 @@ C-S2 第 11 步正式组合选择已完成：
 - 局部右移：最终卸载 `144.2033`，`tD=0`，`SD=0`，`Y=0`
 - 约束审计：`all_constraint_audits_validated=1`
 - 能耗审计：`all_energy_audits_complete=1`
+
+C-S2 第 12 步已完成静态实现：
+
+- [C-S2 第 12 步：权重敏感性、多随机种子与最终审计](docs/stage_cs2_step_12_robustness_audit.md)
+- `configs/stage_cs2_step_12_config.m`
+- `src/evaluation/analyze_stage_cs2_weight_sensitivity.m`
+- `scripts/run_stage_cs2_step_12_analysis.m`
+- `scripts/run_stage_cs2_step_12_multiseed.m`
+- `tests/test_stage_cs2_step_12_contract.m`
+
+本步的契约测试只做权重扫描和审计，不运行五随机种子正式实验。

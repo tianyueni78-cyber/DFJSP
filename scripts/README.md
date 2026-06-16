@@ -602,3 +602,15 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 `run_stage_cs2_combination_contract.m`
 
 使用 C-S2 第 9 步轻量搜索契约结果进行组合选择测试，不读取正式输出目录。
+
+## C-S2 第 12 步
+
+`run_stage_cs2_step_12_analysis.m`
+
+复用 C-S2 第 11 步结果，进行权重敏感性扫描和最终审计。本入口不运行多随机
+种子正式搜索。
+
+`run_stage_cs2_step_12_multiseed.m`
+
+运行 C-S2 五随机种子正式搜索，并保存 `multiseed_summary.csv`。该入口会生成
+输出，运行前必须单独确认。
