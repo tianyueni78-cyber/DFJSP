@@ -614,3 +614,10 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 
 运行 C-S2 五随机种子正式搜索，并保存 `multiseed_summary.csv`。该入口会生成
 输出，运行前必须单独确认。
+
+## C-SEQ2 第 1 步
+
+`run_stage_cseq2_overlapping_fault_state.m`
+
+从阶段 C 计划版本 V1 中选择一个后一故障，使其发生在历史维修区间尚未结束
+之前，并提取当前计划视图下的下一故障状态。本入口不传播影响、不修改计划。

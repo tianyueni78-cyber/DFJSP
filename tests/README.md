@@ -841,3 +841,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_combination_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_step_12_contract.m'))
 ```
+
+## C-SEQ2 第 1 步测试
+
+`test_stage_cseq2_overlapping_fault_state.m`
+
+检查后一故障是否落在历史维修区间内部，`active_previous_repairs` 是否非空，
+以及历史计划是否未被修改。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_overlapping_fault_state.m'))
+```

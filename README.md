@@ -640,3 +640,12 @@ C-S2 第 12 步五随机种子正式结果：
 - 最好 `Y=-27.793`，最差 `Y=-15.925`
 
 结论：C-S2 同时故障从头加工规则下，当前算例中完全重调度结论在五随机种子下稳定。
+
+C-SEQ2 第 1 步已完成静态实现：
+
+- [C-SEQ2 第 1 步：维修区间重叠的连续故障事件](docs/stage_cseq2_step_01_overlapping_fault_state.md)
+- `src/screening/screen_stage_cseq2_overlapping_next_fault_event.m`
+- `scripts/run_stage_cseq2_overlapping_fault_state.m`
+- `tests/test_stage_cseq2_overlapping_fault_state.m`
+
+本步只选择后一故障发生在历史维修尚未结束时的连续故障场景，不传播影响、不修改调度、不运行搜索。
