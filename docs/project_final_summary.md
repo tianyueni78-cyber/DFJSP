@@ -305,6 +305,8 @@ omega2 = 0.1
 | [阶段 C 最终总结与代码导读](stage_c_final_summary_and_code_guide.md) | 多机器同时故障与连续故障 |
 | [阶段 A 结构与代码导读](stage_a_structure_and_code_guide.md) | 数学模型、编码解码和代码入口 |
 | [阶段 C 详细计划](stage_c_plan.md) | 多机器故障分阶段地图 |
+| [结论证据与读数指南](conclusion_evidence_guide.md) | 每个结论对应哪些指标和值 |
+| [未覆盖场景补充计划](uncovered_scenarios_plan.md) | `C-S2` 和 `C-SEQ2` 如何补充 |
 
 ## 10. 建议后续工作
 

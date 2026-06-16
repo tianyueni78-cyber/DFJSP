@@ -26,6 +26,8 @@
 | [阶段 B 最终总结](docs/stage_b_final_summary.md) | 加工中故障成果、正式结果、验证结论、适用边界及下一步路线 |
 | [阶段 C 最终总结与代码导读](docs/stage_c_final_summary_and_code_guide.md) | 多机器同时故障、连续故障、最终审计结果和代码入口 |
 | [项目总收口](docs/project_final_summary.md) | 阶段 A、B、B-R、C 的总体成果、结论、限制和后续建议 |
+| [结论证据与读数指南](docs/conclusion_evidence_guide.md) | 汇报结论从哪些指标和值得出，如何读取结果 |
+| [未覆盖场景补充计划](docs/uncovered_scenarios_plan.md) | C-S2 和 C-SEQ2 的补充路线、优先级和完成标准 |
 | [阶段 B-R 第 1 步：从头加工规则](docs/stage_br_step_01_restart_rule.md) | 进度作废，修复后原机器完整重加工 |
 | [阶段 B-R 第 2 步：影响传播](docs/stage_br_step_02_impact_propagation.md) | 从完整重加工完成时间传播工件和机器后继影响 |
 | [阶段 B-R 第 3 步：机器局部右移](docs/stage_br_step_03_machine_right_shift.md) | 写入损失加工段、完整重加工段和受影响工序时间 |
@@ -486,6 +488,14 @@
 
 该文档将阶段 A、B、B-R、C 的目标、路线、算法、正式结果、验证结论、能力
 边界和后续建议合并为一份总汇报入口。
+
+已补充结论证据和未覆盖场景计划：
+
+- [结论证据与读数指南](docs/conclusion_evidence_guide.md)
+- [未覆盖场景补充计划](docs/uncovered_scenarios_plan.md)
+
+前者说明结论应看 `tD`、`SD`、`Y`、最终卸载、能耗、策略选择和审计标志；
+后者明确下一步优先补 `C-S2`，再补 `C-SEQ2`。
 
 ## 目录说明
 
