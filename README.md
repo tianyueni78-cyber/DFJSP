@@ -528,6 +528,13 @@ C-S2 第 4 步已完成静态实现：
 - `scripts/run_stage_cs2_agv_impact_analysis.m`
 - `tests/test_stage_cs2_agv_impact_analysis.m`
 
+C-S2 第 5 步已完成静态实现：
+
+- [C-S2 第 5 步：从头加工 AGV 与机器联动右移](docs/stage_cs2_step_05_agv_linked_right_shift.md)
+- `src/rescheduling/build_stage_cs2_agv_linked_right_shift.m`
+- `scripts/run_stage_cs2_agv_linked_right_shift.m`
+- `tests/test_stage_cs2_agv_linked_right_shift.m`
+
 ## 目录说明
 
 ```text

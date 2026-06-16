@@ -1571,6 +1571,7 @@ MATLAB；未传播影响、未修改 `V1`、未追加 `V2`。
 - [C-S2 第 2 步：从头加工影响传播](stage_cs2_step_02_impact_analysis.md)
 - [C-S2 第 3 步：从头加工机器局部右移](stage_cs2_step_03_machine_right_shift.md)
 - [C-S2 第 4 步：从头加工 AGV 影响分析](stage_cs2_step_04_agv_impact_analysis.md)
+- [C-S2 第 5 步：从头加工 AGV 与机器联动右移](stage_cs2_step_05_agv_linked_right_shift.md)
 
 阶段 C 第 18 步已完成静态整理。它将多故障事件模型、维修区间、影响传播、
 编码解码、局部右移、完全重调度、组合选择、正式结果、能力边界和代码入口

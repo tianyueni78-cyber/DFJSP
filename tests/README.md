@@ -752,3 +752,14 @@ run(fullfile(pwd,'tests','test_stage_cs2_machine_right_shift.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cs2_agv_impact_analysis.m'))
 ```
+
+## C-S2 第 5 步测试
+
+`test_stage_cs2_agv_linked_right_shift.m`
+
+检查 C-S2 AGV 与机器联动右移候选：AGV 不重叠、运输约束、最终卸载、维修
+区间、从头加工两段承诺和输入顺序无关性。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cs2_agv_linked_right_shift.m'))
+```
