@@ -723,3 +723,12 @@ C-SEQ2 第 10 步已完成静态实现：
 - `tests/test_stage_cseq2_restricted_search_contract.m`
 
 本步运行 6 个体、2 代的轻量搜索契约，验证候选评价、Pareto 去重、固定随机种子可复现、无改善停止和时间上限停止。本步不生成正式实验输出、不做组合选择。
+
+C-SEQ2 第 11 步已完成静态实现：
+
+- [C-SEQ2 第 11 步：正式搜索配置与结果保存入口](docs/stage_cseq2_step_11_complete_search_config.md)
+- `configs/stage_cseq2_complete_search_config.m`
+- `scripts/run_stage_cseq2_complete_search.m`
+- `tests/test_stage_cseq2_complete_search_config.m`
+
+本步只建立正式搜索配置和结果保存入口，不运行正式搜索。正式搜索配置为 10 个体、最多 100 代、连续 10 代无改善或 30 秒停止。

@@ -1707,3 +1707,16 @@ C-S2 专用从头加工审计，并建立局部右移与完全重调度的 `tD�
 - `docs/stage_cseq2_step_10_restricted_search_contract.md`
 
 下一步：C-SEQ2 第 11 步，建立正式搜索配置与结果保存入口。
+
+### C-SEQ2 第 11 步已完成：正式搜索配置与结果保存入口
+
+本步建立 C-SEQ2 单随机种子正式搜索入口，配置为种群 10、最多 100 代、连续 10 代 Pareto 无改善停止或 30 秒停止。入口会保存 `result.mat`、Pareto 目标、搜索历史和运行摘要；本步测试只检查配置，不运行正式搜索。
+
+代码入口：
+
+- `configs/stage_cseq2_complete_search_config.m`
+- `scripts/run_stage_cseq2_complete_search.m`
+- `tests/test_stage_cseq2_complete_search_config.m`
+- `docs/stage_cseq2_step_11_complete_search_config.md`
+
+下一步：C-SEQ2 第 12 步，在确认后运行正式搜索并读取结果。

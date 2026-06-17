@@ -680,3 +680,9 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 `run_stage_cseq2_restricted_search_contract.m`
 
 运行 C-SEQ2 的 6 个体、2 代受限 NSGA-II 轻量搜索契约。该入口评价候选适应度，但不生成正式实验输出、不做组合选择。
+
+## C-SEQ2 第 11 步
+
+`run_stage_cseq2_complete_search.m`
+
+运行 C-SEQ2 单随机种子正式完全重调度搜索，并保存 `result.mat`、Pareto 目标、搜索历史和运行摘要。该入口会生成输出，运行前必须单独确认。

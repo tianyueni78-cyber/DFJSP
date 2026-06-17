@@ -947,3 +947,13 @@ run(fullfile(pwd,'tests','test_stage_cseq2_reschedule_operators.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_restricted_search_contract.m'))
 ```
+
+## C-SEQ2 第 11 步测试
+
+`test_stage_cseq2_complete_search_config.m`
+
+检查 C-SEQ2 正式搜索配置和入口是否就绪。本测试不运行正式搜索、不生成输出。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_complete_search_config.m'))
+```
