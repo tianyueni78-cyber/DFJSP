@@ -662,3 +662,9 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 `run_stage_cseq2_frozen_problem.m`
 
 基于 C-SEQ2 第 6 步机器 + AGV 联动右移候选，建立完全重调度冻结问题。历史维修区间保存在累计不可用上下文中，新故障维修作为本轮冻结边界。本入口不运行解码、不运行搜索。
+
+## C-SEQ2 第 8 步
+
+`run_stage_cseq2_complete_reschedule_decode.m`
+
+在 C-SEQ2 第 7 步冻结问题基础上，解码一个基线种子完全重调度候选。入口会保留历史维修累计不可用上下文，并补充累计维修区间审计。本入口不运行搜索。

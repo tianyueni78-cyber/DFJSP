@@ -1671,3 +1671,15 @@ C-S2 专用从头加工审计，并建立局部右移与完全重调度的 `tD�
 - `docs/stage_cseq2_step_07_frozen_problem.md`
 
 下一步：C-SEQ2 第 8 步，实现连续故障且维修区间重叠场景下的完全重调度解码器。
+
+### C-SEQ2 第 8 步已完成：完全重调度解码器
+
+本步在 C-SEQ2 第 7 步冻结问题基础上，解码一个基线种子完全重调度候选。候选方案保留历史维修累计不可用上下文，并额外审计累计维修区间，确保连续故障处理没有回滚历史计划。
+
+代码入口：
+
+- `scripts/run_stage_cseq2_complete_reschedule_decode.m`
+- `tests/test_stage_cseq2_complete_reschedule_decode.m`
+- `docs/stage_cseq2_step_08_complete_decoder.md`
+
+下一步：C-SEQ2 第 9 步，接入受限种群初始化、交叉、变异和轻量搜索契约。

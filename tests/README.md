@@ -917,3 +917,13 @@ run(fullfile(pwd,'tests','test_stage_cseq2_agv_linked_right_shift.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_frozen_problem.m'))
 ```
+
+## C-SEQ2 第 8 步测试
+
+`test_stage_cseq2_complete_reschedule_decode.m`
+
+检查 C-SEQ2 完全重调度解码候选：冻结工序、中断两段加工、机器不重叠、新故障维修区间、历史累计维修区间、工序顺序、最终卸载和能耗字段。本测试不运行搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_complete_reschedule_decode.m'))
+```

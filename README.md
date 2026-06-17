@@ -699,3 +699,11 @@ C-SEQ2 第 7 步已完成静态实现：
 - `tests/test_stage_cseq2_frozen_problem.m`
 
 本步在 C-SEQ2 机器 + AGV 联动右移候选之后，建立完全重调度的冻结边界；历史维修作为累计不可用上下文保留，新故障作为本轮完全重调度事件处理。本步不解码、不搜索、不生成正式实验输出。
+
+C-SEQ2 第 8 步已完成静态实现：
+
+- [C-SEQ2 第 8 步：完全重调度解码器](docs/stage_cseq2_step_08_complete_decoder.md)
+- `scripts/run_stage_cseq2_complete_reschedule_decode.m`
+- `tests/test_stage_cseq2_complete_reschedule_decode.m`
+
+本步在 C-SEQ2 冻结边界基础上解码一个基线种子完全重调度候选，保留历史维修累计不可用上下文，并审计新故障维修与累计维修区间。本步不运行种群搜索。
