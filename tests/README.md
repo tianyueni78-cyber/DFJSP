@@ -937,3 +937,13 @@ run(fullfile(pwd,'tests','test_stage_cseq2_complete_reschedule_decode.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_reschedule_operators.m'))
 ```
+
+## C-SEQ2 第 10 步测试
+
+`test_stage_cseq2_restricted_search_contract.m`
+
+检查 C-SEQ2 轻量搜索契约：候选评价、能耗目标、Pareto 去重、固定种子可复现、无改善停止和时间上限停止。本测试不是正式长实验。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_restricted_search_contract.m'))
+```

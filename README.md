@@ -715,3 +715,11 @@ C-SEQ2 第 9 步已完成静态实现：
 - `tests/test_stage_cseq2_reschedule_operators.m`
 
 本步在 C-SEQ2 冻结边界基础上生成受限种群并执行一次交叉、变异，验证编码范围和抽样解码可行性。本步不评价适应度、不运行 NSGA-II 主循环。
+
+C-SEQ2 第 10 步已完成静态实现：
+
+- [C-SEQ2 第 10 步：受限 NSGA-II 轻量搜索契约](docs/stage_cseq2_step_10_restricted_search_contract.md)
+- `scripts/run_stage_cseq2_restricted_search_contract.m`
+- `tests/test_stage_cseq2_restricted_search_contract.m`
+
+本步运行 6 个体、2 代的轻量搜索契约，验证候选评价、Pareto 去重、固定随机种子可复现、无改善停止和时间上限停止。本步不生成正式实验输出、不做组合选择。

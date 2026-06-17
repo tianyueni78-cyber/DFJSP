@@ -674,3 +674,9 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 `run_stage_cseq2_reschedule_operators.m`
 
 在 C-SEQ2 冻结问题基础上生成小规模受限种群，并执行一次交叉和变异。本入口只验证算子链路，不评价适应度、不运行搜索。
+
+## C-SEQ2 第 10 步
+
+`run_stage_cseq2_restricted_search_contract.m`
+
+运行 C-SEQ2 的 6 个体、2 代受限 NSGA-II 轻量搜索契约。该入口评价候选适应度，但不生成正式实验输出、不做组合选择。

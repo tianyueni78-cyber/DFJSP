@@ -1695,3 +1695,15 @@ C-S2 专用从头加工审计，并建立局部右移与完全重调度的 `tD�
 - `docs/stage_cseq2_step_09_reschedule_operators.md`
 
 下一步：C-SEQ2 第 10 步，建立受限 NSGA-II 轻量搜索契约。
+
+### C-SEQ2 第 10 步已完成：受限 NSGA-II 轻量搜索契约
+
+本步运行 C-SEQ2 的小规模受限 NSGA-II 搜索契约，验证候选评价、最终卸载完工时间、总能耗、Pareto 去重以及自适应停止条件。它仍不是正式实验，不保存正式输出。
+
+代码入口：
+
+- `scripts/run_stage_cseq2_restricted_search_contract.m`
+- `tests/test_stage_cseq2_restricted_search_contract.m`
+- `docs/stage_cseq2_step_10_restricted_search_contract.md`
+
+下一步：C-SEQ2 第 11 步，建立正式搜索配置与结果保存入口。
