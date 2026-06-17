@@ -680,3 +680,13 @@ MATLAB。
 - 目标：建立 C-SEQ2 单随机种子正式搜索入口和结果保存格式；
 - 边界：本步只测配置，不运行正式搜索；
 - 完成后进入 C-SEQ2 第 12 步：正式搜索运行与结果读取。
+
+### C-SEQ2 第 12 步：正式搜索运行结果
+
+- [C-SEQ2 第 12 步：正式搜索运行结果](stage_cseq2_step_12_formal_search_result.md)
+- 输出目录：`outputs/stage_cseq2_complete_reschedule_search/20260617_165951`
+- 停止原因：`time_limit`
+- 实际完成代数：`74`
+- 去重后 Pareto 解数量：`1`
+- Pareto 目标：最终卸载 `112.8`，总能耗 `1779.5`
+- 完成后进入 C-SEQ2 第 13 步：组合选择。

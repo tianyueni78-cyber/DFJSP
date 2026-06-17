@@ -732,3 +732,15 @@ C-SEQ2 第 11 步已完成静态实现：
 - `tests/test_stage_cseq2_complete_search_config.m`
 
 本步只建立正式搜索配置和结果保存入口，不运行正式搜索。正式搜索配置为 10 个体、最多 100 代、连续 10 代无改善或 30 秒停止。
+
+C-SEQ2 第 12 步正式搜索结果：
+
+- [C-SEQ2 第 12 步：正式搜索运行结果](docs/stage_cseq2_step_12_formal_search_result.md)
+- 输出目录：`outputs/stage_cseq2_complete_reschedule_search/20260617_165951`
+- 停止原因：`time_limit`
+- 实际完成代数：`74`
+- 运行时间：`30.1582` 秒
+- 去重后 Pareto 解数量：`1`
+- Pareto 目标：最终卸载 `112.8`，总能耗 `1779.5`
+
+下一步进入 C-SEQ2 第 13 步：组合选择，计算局部右移和完全重调度的 `tD、SD、Y`。

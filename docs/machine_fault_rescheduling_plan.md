@@ -1720,3 +1720,14 @@ C-S2 专用从头加工审计，并建立局部右移与完全重调度的 `tD�
 - `docs/stage_cseq2_step_11_complete_search_config.md`
 
 下一步：C-SEQ2 第 12 步，在确认后运行正式搜索并读取结果。
+
+### C-SEQ2 第 12 步已完成：正式搜索运行结果
+
+本步运行 C-SEQ2 单随机种子正式完全重调度搜索，输出目录为 `outputs/stage_cseq2_complete_reschedule_search/20260617_165951`。搜索因 `time_limit` 停止，完成 74 代，运行 30.1582 秒，去重后 Pareto 解数量为 1。
+
+结果摘要：
+
+- final unload makespan：`112.8`
+- total energy：`1779.5`
+
+下一步：C-SEQ2 第 13 步，计算局部右移和完全重调度的 `tD、SD、Y`，执行组合选择。
