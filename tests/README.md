@@ -967,3 +967,13 @@ run(fullfile(pwd,'tests','test_stage_cseq2_complete_search_config.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_combination_contract.m'))
 ```
+
+## C-SEQ2 第 14 步测试
+
+`test_stage_cseq2_step_14_contract.m`
+
+检查 C-SEQ2 权重敏感性、最终审计和数据来源审计。本测试不运行多随机种子正式实验。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_step_14_contract.m'))
+```

@@ -763,3 +763,22 @@ C-SEQ2 第 13 步正式组合结果：
 - 能耗审计：`all_energy_audits_complete=1`
 
 结论：C-SEQ2 当前正式场景下，完全重调度优于局部右移。
+
+C-SEQ2 第 14 步已完成静态实现：
+
+- [C-SEQ2 第 14 步：权重敏感性、最终审计与数据来源](docs/stage_cseq2_step_14_robustness_audit.md)
+- `configs/stage_cseq2_step_14_config.m`
+- `scripts/run_stage_cseq2_step_14_analysis.m`
+- `tests/test_stage_cseq2_step_14_contract.m`
+
+本步确认 C-SEQ2 使用 `raw_code` 中的原始 FJSP、机器和 AGV 数据；故障事件、维修时长、随机种子和搜索预算属于实验参数，不是新造问题数据。本步不运行多随机种子正式实验。
+
+C-SEQ2 第 14 步正式审计结果：
+
+- 权重敏感性：`omega1=0.0` 至 `0.3` 选择 `partial_right_shift`；`omega1=0.4` 至 `1.0` 选择 `complete_rescheduling`。
+- 默认权重 `omega1=0.9` 下仍选择 `complete_rescheduling`，`Y=-23.8300`。
+- 约束审计：`all_constraint_audits_validated=1`
+- 能耗审计：`all_energy_audits_complete=1`
+- 数据来源审计：`source_data_only=1`，`synthetic_problem_data_created=0`，总工序数 `58`
+
+结论：C-SEQ2 使用原始 `raw_code` 数据链路；没有自造工件、机器、AGV、加工时间、运输距离或能耗数据。

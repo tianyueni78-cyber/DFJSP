@@ -1757,3 +1757,30 @@ C-S2 专用从头加工审计，并建立局部右移与完全重调度的 `tD�
 - 能耗审计：通过
 
 结论：在 C-SEQ2 维修区间重叠连续故障正式场景下，完全重调度优于局部右移。
+
+### C-SEQ2 第 14 步已完成：权重敏感性、最终审计与数据来源
+
+本步补充 C-SEQ2 的权重敏感性、最终约束审计、能耗审计和数据来源审计。数据来源审计确认：工件、机器、AGV、加工时间、运输距离和能耗参数来自 `raw_code` 原始数据链路；故障事件、维修时长、随机种子和搜索预算是实验参数，不是新造问题数据。
+
+代码入口：
+
+- `configs/stage_cseq2_step_14_config.m`
+- `scripts/run_stage_cseq2_step_14_analysis.m`
+- `tests/test_stage_cseq2_step_14_contract.m`
+- `docs/stage_cseq2_step_14_robustness_audit.md`
+
+下一步：根据需要运行 C-SEQ2 多随机种子稳健性实验，或更新阶段 C 总结。
+
+### C-SEQ2 第 14 步正式审计结果
+
+正式权重敏感性显示：当 `omega1=0.0` 至 `0.3` 时，局部右移因 `SD=0` 被选中；当 `omega1=0.4` 至 `1.0` 时，完全重调度因完工时间改善明显被选中。默认权重 `omega1=0.9` 下选择 `complete_rescheduling`，`Y=-23.8300`。
+
+审计结果：
+
+- 约束审计：通过
+- 能耗审计：通过
+- 数据来源：`source_data_only=1`
+- 合成问题数据：`synthetic_problem_data_created=0`
+- 总工序数：`58`
+
+说明：当前 C-SEQ2 的工件、机器、AGV、加工时间、运输距离和能耗参数均来自 `raw_code` 原始数据链路；故障事件、维修时长、搜索预算和权重是实验参数。

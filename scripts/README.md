@@ -692,3 +692,9 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 `run_stage_cseq2_combination_selection.m`
 
 复用 C-SEQ2 搜索结果，比较局部右移和完全重调度的 `tD、SD、Y`，并执行约束和能耗审计。
+
+## C-SEQ2 第 14 步
+
+`run_stage_cseq2_step_14_analysis.m`
+
+复用 C-SEQ2 组合选择结果，执行权重敏感性、最终约束审计、能耗审计和数据来源审计。本入口不运行多随机种子正式实验。
