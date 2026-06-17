@@ -1683,3 +1683,15 @@ C-S2 专用从头加工审计，并建立局部右移与完全重调度的 `tD�
 - `docs/stage_cseq2_step_08_complete_decoder.md`
 
 下一步：C-SEQ2 第 9 步，接入受限种群初始化、交叉、变异和轻量搜索契约。
+
+### C-SEQ2 第 9 步已完成：受限重调度算子契约
+
+本步在 C-SEQ2 第 7 步冻结问题基础上，生成受限完全重调度种群，并执行一次交叉和变异。它验证的是搜索前的编码/算子链路，不评价适应度、不运行 NSGA-II 主循环。
+
+代码入口：
+
+- `scripts/run_stage_cseq2_reschedule_operators.m`
+- `tests/test_stage_cseq2_reschedule_operators.m`
+- `docs/stage_cseq2_step_09_reschedule_operators.md`
+
+下一步：C-SEQ2 第 10 步，建立受限 NSGA-II 轻量搜索契约。

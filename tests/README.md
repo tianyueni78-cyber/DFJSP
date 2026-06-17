@@ -927,3 +927,13 @@ run(fullfile(pwd,'tests','test_stage_cseq2_frozen_problem.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_complete_reschedule_decode.m'))
 ```
+
+## C-SEQ2 第 9 步测试
+
+`test_stage_cseq2_reschedule_operators.m`
+
+检查 C-SEQ2 受限种群初始化、交叉、变异和抽样解码是否合法。本测试不运行正式搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_reschedule_operators.m'))
+```

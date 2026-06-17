@@ -668,3 +668,9 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 `run_stage_cseq2_complete_reschedule_decode.m`
 
 在 C-SEQ2 第 7 步冻结问题基础上，解码一个基线种子完全重调度候选。入口会保留历史维修累计不可用上下文，并补充累计维修区间审计。本入口不运行搜索。
+
+## C-SEQ2 第 9 步
+
+`run_stage_cseq2_reschedule_operators.m`
+
+在 C-SEQ2 冻结问题基础上生成小规模受限种群，并执行一次交叉和变异。本入口只验证算子链路，不评价适应度、不运行搜索。

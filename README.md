@@ -707,3 +707,11 @@ C-SEQ2 第 8 步已完成静态实现：
 - `tests/test_stage_cseq2_complete_reschedule_decode.m`
 
 本步在 C-SEQ2 冻结边界基础上解码一个基线种子完全重调度候选，保留历史维修累计不可用上下文，并审计新故障维修与累计维修区间。本步不运行种群搜索。
+
+C-SEQ2 第 9 步已完成静态实现：
+
+- [C-SEQ2 第 9 步：受限重调度算子契约](docs/stage_cseq2_step_09_reschedule_operators.md)
+- `scripts/run_stage_cseq2_reschedule_operators.m`
+- `tests/test_stage_cseq2_reschedule_operators.m`
+
+本步在 C-SEQ2 冻结边界基础上生成受限种群并执行一次交叉、变异，验证编码范围和抽样解码可行性。本步不评价适应度、不运行 NSGA-II 主循环。
