@@ -957,3 +957,13 @@ run(fullfile(pwd,'tests','test_stage_cseq2_restricted_search_contract.m'))
 ```matlab
 run(fullfile(pwd,'tests','test_stage_cseq2_complete_search_config.m'))
 ```
+
+## C-SEQ2 第 13 步测试
+
+`test_stage_cseq2_combination_contract.m`
+
+使用 C-SEQ2 轻量搜索结果测试组合选择，不重复正式搜索。
+
+```matlab
+run(fullfile(pwd,'tests','test_stage_cseq2_combination_contract.m'))
+```

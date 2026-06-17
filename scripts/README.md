@@ -686,3 +686,9 @@ MAT、Pareto CSV、历史 CSV 和运行摘要。该入口会生成输出，运�
 `run_stage_cseq2_complete_search.m`
 
 运行 C-SEQ2 单随机种子正式完全重调度搜索，并保存 `result.mat`、Pareto 目标、搜索历史和运行摘要。该入口会生成输出，运行前必须单独确认。
+
+## C-SEQ2 第 13 步
+
+`run_stage_cseq2_combination_selection.m`
+
+复用 C-SEQ2 搜索结果，比较局部右移和完全重调度的 `tD、SD、Y`，并执行约束和能耗审计。

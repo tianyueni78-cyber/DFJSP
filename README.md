@@ -744,3 +744,22 @@ C-SEQ2 第 12 步正式搜索结果：
 - Pareto 目标：最终卸载 `112.8`，总能耗 `1779.5`
 
 下一步进入 C-SEQ2 第 13 步：组合选择，计算局部右移和完全重调度的 `tD、SD、Y`。
+
+C-SEQ2 第 13 步已完成静态实现：
+
+- [C-SEQ2 第 13 步：组合选择](docs/stage_cseq2_step_13_combination_selection.md)
+- `scripts/run_stage_cseq2_combination_selection.m`
+- `tests/test_stage_cseq2_combination_contract.m`
+
+本步比较 C-SEQ2 局部右移方案和完全重调度方案，计算 `tD、SD、Y`，并选择 `Y` 最小的策略。契约测试使用轻量搜索结果，不重复正式搜索。
+
+C-SEQ2 第 13 步正式组合结果：
+
+- [C-SEQ2 第 13 步：正式组合选择结果](docs/stage_cseq2_step_13_formal_combination_result.md)
+- 选中策略：`complete_rescheduling`
+- 局部右移：`tD=3.0000`，`SD=0`，`Y=2.7000`
+- 完全重调度：`tD=-28.3667`，`SD=17`，`Y=-23.8300`
+- 约束审计：`all_constraint_audits_validated=1`
+- 能耗审计：`all_energy_audits_complete=1`
+
+结论：C-SEQ2 当前正式场景下，完全重调度优于局部右移。

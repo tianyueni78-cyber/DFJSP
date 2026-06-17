@@ -1731,3 +1731,29 @@ C-S2 专用从头加工审计，并建立局部右移与完全重调度的 `tD�
 - total energy：`1779.5`
 
 下一步：C-SEQ2 第 13 步，计算局部右移和完全重调度的 `tD、SD、Y`，执行组合选择。
+
+### C-SEQ2 第 13 步已完成：组合选择
+
+本步建立 C-SEQ2 组合选择入口，比较局部右移与完全重调度候选，统一计算 `tD、SD、Y`，并选择 `Y` 最小的策略。契约测试使用轻量搜索结果，不重复正式搜索。
+
+代码入口：
+
+- `scripts/run_stage_cseq2_combination_selection.m`
+- `tests/test_stage_cseq2_combination_contract.m`
+- `docs/stage_cseq2_step_13_combination_selection.md`
+
+下一步：C-SEQ2 第 14 步，加载第 12 步正式搜索结果并记录正式组合选择结果。
+
+### C-SEQ2 第 13 步正式组合结果
+
+本步加载第 12 步正式搜索输出 `outputs/stage_cseq2_complete_reschedule_search/20260617_165951/result.mat`，执行正式组合选择。
+
+结果：
+
+- 局部右移：`candidate_makespan=144.2033`，`tD=3.0000`，`SD=0`，`Y=2.7000`
+- 完全重调度：`candidate_makespan=112.8367`，`tD=-28.3667`，`SD=17`，`Y=-23.8300`
+- 最终选择：`complete_rescheduling`
+- 约束审计：通过
+- 能耗审计：通过
+
+结论：在 C-SEQ2 维修区间重叠连续故障正式场景下，完全重调度优于局部右移。
