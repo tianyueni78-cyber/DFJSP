@@ -782,3 +782,13 @@ C-SEQ2 第 14 步正式审计结果：
 - 数据来源审计：`source_data_only=1`，`synthetic_problem_data_created=0`，总工序数 `58`
 
 结论：C-SEQ2 使用原始 `raw_code` 数据链路；没有自造工件、机器、AGV、加工时间、运输距离或能耗数据。
+
+C-SEQ2 多随机种子最终收口：
+
+- 输出目录：`outputs/stage_cseq2_step_14_robustness/20260617_172752`
+- `5/5` 次选择 `complete_rescheduling`
+- 最优 `Y=-28.9600`
+- 平均 `Y=-22.9188`
+- 最优最终卸载 `106.8000`
+- 平均最终卸载 `113.4040`
+- 数据来源：`source_data_only=1`，`synthetic_problem_data_created=0`

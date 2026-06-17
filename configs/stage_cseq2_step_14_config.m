@@ -13,6 +13,7 @@ config.sequence_deviation_weight = ...
     combinationConfig.sequence_deviation_weight;
 config.tie_tolerance = combinationConfig.tie_tolerance;
 config.completion_time_weights = 0:0.1:1;
+config.seeds = [11, 22, 33, 42, 55];
 config.output_root = fullfile(projectRoot, 'outputs', ...
     'stage_cseq2_step_14_robustness');
 end
