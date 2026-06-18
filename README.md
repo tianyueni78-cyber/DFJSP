@@ -26,6 +26,7 @@
 | [阶段 B 最终总结](docs/stage_b_final_summary.md) | 加工中故障成果、正式结果、验证结论、适用边界及下一步路线 |
 | [阶段 C 最终总结与代码导读](docs/stage_c_final_summary_and_code_guide.md) | 多机器同时故障、连续故障、最终审计结果和代码入口 |
 | [项目总收口](docs/project_final_summary.md) | 阶段 A、B、B-R、C 的总体成果、结论、限制和后续建议 |
+| [项目结论分析](docs/project_conclusion_analysis.md) | 总结组合策略结论、局部右移与完全重调度对比、已解决问题和后续策略方向 |
 | [结论证据与读数指南](docs/conclusion_evidence_guide.md) | 汇报结论从哪些指标和值得出，如何读取结果 |
 | [未覆盖场景补充计划](docs/uncovered_scenarios_plan.md) | C-S2 和 C-SEQ2 的补充路线、优先级和完成标准 |
 | [C-S2 第 1 步：从头加工中断承诺](docs/stage_cs2_step_01_restart_commitments.md) | 同时故障下为多个中断工序建立损失加工段和完整重加工段 |
