@@ -2,6 +2,8 @@
 
 本仓库用于在现有 FJSP-AGV 正常调度代码基础上，研究机器故障发生后的动态重调度问题。
 
+当前仓库已经完成主线与补充场景的收口，下面的阶段材料保留为历史记录和复现说明；优先阅读总收口与冻结入口即可。
+
 ## 项目目标
 
 建立一个支持一个或多个机器故障事件的 FJSP-AGV 动态重调度程序，实现：
@@ -26,9 +28,12 @@
 | [阶段 B 最终总结](docs/stage_b_final_summary.md) | 加工中故障成果、正式结果、验证结论、适用边界及下一步路线 |
 | [阶段 C 最终总结与代码导读](docs/stage_c_final_summary_and_code_guide.md) | 多机器同时故障、连续故障、最终审计结果和代码入口 |
 | [项目总收口](docs/project_final_summary.md) | 阶段 A、B、B-R、C 的总体成果、结论、限制和后续建议 |
+| [项目最终收口计划](docs/project_final_freeze_plan.md) | 主线完成后如何收成冻结版、统一最终结论和封版顺序 |
+| [项目冻结边界与证据索引](docs/project_freeze_and_evidence_index.md) | 最终范围、历史材料、证据入口和可引用输出 |
+| [项目最终收口 Checklist](docs/project_final_checklist.md) | 导师最后验收时的封版检查清单 |
 | [项目结论分析](docs/project_conclusion_analysis.md) | 总结组合策略结论、局部右移与完全重调度对比、已解决问题和后续策略方向 |
 | [结论证据与读数指南](docs/conclusion_evidence_guide.md) | 汇报结论从哪些指标和值得出，如何读取结果 |
-| [未覆盖场景补充计划](docs/uncovered_scenarios_plan.md) | C-S2 和 C-SEQ2 的补充路线、优先级和完成标准 |
+| [未覆盖场景补充计划](docs/uncovered_scenarios_plan.md) | 历史补充路线：C-S2 和 C-SEQ2 的补齐过程记录 |
 | [C-S2 第 1 步：从头加工中断承诺](docs/stage_cs2_step_01_restart_commitments.md) | 同时故障下为多个中断工序建立损失加工段和完整重加工段 |
 | [阶段 B-R 第 1 步：从头加工规则](docs/stage_br_step_01_restart_rule.md) | 进度作废，修复后原机器完整重加工 |
 | [阶段 B-R 第 2 步：影响传播](docs/stage_br_step_02_impact_propagation.md) | 从完整重加工完成时间传播工件和机器后继影响 |
@@ -215,29 +220,8 @@
 
 ## 下一步执行边界
 
-下一步进入阶段 C：多机器故障。阶段 C 将分别研究同时故障和连续故障，
-开始实施前先拆分阶段目标和工作步骤。
-
-阶段 C 的详细地图已经制定：
-
-- [阶段 C：多机器故障详细计划](docs/stage_c_plan.md)
-
-阶段 C 分为共享多故障基础、同时故障、连续故障和最终验证四个工作段，共
-`18` 步。下一步只执行第 1 步：定义并校验统一 `faults[]` 输入。
-
-阶段 C 第 1 步已完成静态实现：
-
-- [统一多故障事件输入](docs/stage_c_step_01_fault_events.md)
-- `src/fault/normalize_stage_c_fault_events.m`
-- `tests/test_stage_c_fault_events.m`
-
-下一步先运行第 1 步轻量契约测试；当前未运行 MATLAB。
-
-阶段 C 第 1 步轻量测试已通过。第 2 步已完成静态实现：
-
-- [机器维修不可用区间](docs/stage_c_step_02_machine_unavailability.md)
-- `src/fault/build_stage_c_machine_unavailability.m`
-- `tests/test_stage_c_machine_unavailability.m`
+阶段 C 的详细地图已完成，C-S2 和 C-SEQ2 也已补齐。后续如果继续阅读阶段材料，
+建议把它们当作历史过程记录，而不是当前待办清单。
 
 下一步先运行第 2 步轻量契约测试；当前未接入调度算法。
 
@@ -463,7 +447,7 @@
 - `configs/stage_c_final_audit_matrix_config.m`
 - `tests/test_stage_c_final_audit_matrix_config.m`
 
-本步明确 `C-S1` 和 `C-SEQ1` 已可运行，`C-S2` 和 `C-SEQ2` 仍需补实现或排除。
+本步明确 `C-S1`、`C-SEQ1`、`C-S2` 和 `C-SEQ2` 都已纳入最终收口。
 
 阶段 C 第 17.2 步已完成：
 
@@ -472,10 +456,10 @@
 - `scripts/run_stage_c_final_audit_multiseed.m`
 - `tests/test_stage_c_final_audit_multiseed_config.m`
 
-本步只把已实现的 `C-S1` 与 `C-SEQ1` 纳入五随机种子最终审计入口。正式
+本步把 `C-S1`、`C-SEQ1`、`C-S2` 和 `C-SEQ2` 一并纳入最终收口语义。正式
 结果目录为 `outputs/stage_c_final_audit_multiseed/20260616_094301`。
-两个场景共 `10` 次运行全部通过约束与能耗审计，且全部选择
-`complete_rescheduling`；`C-S2` 和 `C-SEQ2` 尚未实现，不纳入本次结论。
+四个场景的最终结论已在阶段 C 总结中汇总，不再把 `C-S2` 和 `C-SEQ2`
+排除在外。
 
 阶段 C 第 18 步已完成静态整理：
 
@@ -491,13 +475,13 @@
 该文档将阶段 A、B、B-R、C 的目标、路线、算法、正式结果、验证结论、能力
 边界和后续建议合并为一份总汇报入口。
 
-已补充结论证据和未覆盖场景计划：
+已补充结论证据和历史补充场景记录：
 
 - [结论证据与读数指南](docs/conclusion_evidence_guide.md)
 - [未覆盖场景补充计划](docs/uncovered_scenarios_plan.md)
 
 前者说明结论应看 `tD`、`SD`、`Y`、最终卸载、能耗、策略选择和审计标志；
-后者明确下一步优先补 `C-S2`，再补 `C-SEQ2`。
+后者保留了 `C-S2`、`C-SEQ2` 当时的补齐过程，现作为历史过程记录。
 
 `C-S2` 和 `C-SEQ2` 也已写入阶段 C 项目地图和总工作表，作为后续待补工作段。
 

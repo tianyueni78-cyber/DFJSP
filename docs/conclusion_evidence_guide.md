@@ -202,5 +202,8 @@ outputs/stage_c_final_audit_multiseed/20260616_094301
 文档入口：
 
 - [项目总收口](project_final_summary.md)
+- [项目最终收口计划](project_final_freeze_plan.md)
+- [项目冻结边界与证据索引](project_freeze_and_evidence_index.md)
+- [项目最终收口 Checklist](project_final_checklist.md)
 - [阶段 C 最终总结与代码导读](stage_c_final_summary_and_code_guide.md)
 - [阶段 C 第 17.2 步最终审计](stage_c_step_17_2_final_audit_multiseed_entry.md)
