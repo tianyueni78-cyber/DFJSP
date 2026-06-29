@@ -22,6 +22,7 @@
 | 跑一次轻微放大 NSGA-II | `scripts/run_medium_nsga2.m` | medium 运行脚本 |
 | 跑一次 formal NSGA-II | `scripts/run_formal_nsga2.m` | formal 运行脚本，当前不含指标计算 |
 | 读取 formal 结果并生成最小指标摘要 | `scripts/run_metrics.m` | metrics 最小读取脚本 |
+| 看 baseline 是什么、baseline 对照看哪里 | `docs/00_system_overview/baseline_output_value.md` | baseline 入口说明页 |
 | 看未来指标入口怎么设计 | `docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md` | run_metrics.m 应该读取、计算、输出什么 |
 | 理解编码-解码怎么迁移到新课题 | `docs/04_decoding/encoding_decoding_application_overview.md` | 从调度对象到编码、解码、评价、搜索的应用框架 |
 | 看 `chrom` 真实结构和编码层封装依据 | `docs/04_decoding/encoding_layer_structure_note.md` | 说明 `chrom = [OS, MS, AS, SS]` 怎么生成、交叉、变异 |

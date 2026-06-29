@@ -1,5 +1,4 @@
 function run_all_contract_tests()
-clear
 clc
 
 repoRoot = fileparts(fileparts(mfilename('fullpath')));
