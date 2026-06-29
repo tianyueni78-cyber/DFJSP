@@ -1,321 +1,124 @@
-# Code Refactor Project
+# src
 
-> 最新入口：GitHub 默认 `main` 已包含全部更新。第一次了解项目请看 [复现步骤说明](docs/07_reproduction/reproduction_steps/README.md)；准备迁移新项目时，请直接打开 [新项目套用与复现入口顺序](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md)。
-
-面向论文复现的调度算法整理项目。当前重点是把原始 MATLAB 代码逐步拆成清晰的数据层、调度解码层、算法层和实验复现层。
-
-## 项目汇报总览
-
-### 1. 项目目标
-
-本项目有两个目标：
+当前源码按职责分为：
 
 ```text
-目标 A：复现并验证当前 FJSP-AGV 多目标调度代码。
-目标 B：把可用部分整理成 independent、可测试、可迁移的新项目骨架。
+data/           无副作用的数据读取
+scheduling/     正常调度解码与基线包装入口
+search/         从原项目迁移的搜索基础函数
+visualization/  甘特图等可视化函数
+fault/          后续故障事件与状态提取
+rescheduling/   后续右移和完全重调度
+evaluation/     后续重调度评价指标
 ```
 
-当前采用双轨结构：
+## 项目入口表
 
-```text
-raw_code/
-  原始代码存档、行为参考和 baseline，只读不修改
+| 入口 | 说明 |
+| --- | --- |
+| [全部轻量契约测试入口](docs/run_all_contract_tests.md) | 一键执行现有轻量 contract / config / audit 测试 |
 
-src/
-  independent decoding / evaluation / NSGA-II / metrics / visualization
+运行命令：
 
-configs/
-  small / medium / formal / baseline / multiseed / migration template
-
-scripts/
-  可重复运行的实验与分析入口
-
-tests/
-  smoke / invalid / raw compare / dry-run / integration
-
-outputs/
-  本地运行结果，不提交 Git
-
-docs/
-  复现步骤、层说明、实验记录和迁移手册
+```powershell
+matlab -batch "addpath('scripts'); run_all_contract_tests()"
 ```
 
-### 2. 三十步进度
+阶段 A 第 1 步使用：
 
-| 阶段 | 步骤 | 完成内容 | 状态 |
-|---|---:|---|---|
-| 原始项目认识与工程入口 | 1-10 | 数据、单条评价、small/medium、配置和入口分层 | 已完成 |
-| 实验工程化与模板 | 11-20 | outputs、run log、metrics、visualization、迁移/目标/算法/baseline/实验记录模板 | 已完成 |
-| independent 核心实现 | 21-23 | independent decoding、evaluation、NSGA-II search | 已完成 |
-| independent 对照与入口 | 24-25 | raw 对照、small/medium/formal independent 入口 | 已完成 |
-| 结果闭环与迁移验收 | 26-30 | formal、结果分析、baseline、multiseed、迁移演练 | 已完成首轮 |
+- `data/read_fjsp.m`
+- `data/read_machine_data.m`
+- `data/read_agv_data.m`
+- `scheduling/build_normal_schedule.m`
 
-完整步骤索引：
+`raw_code/` 始终只读。新的入口通过包装函数调用已迁移代码。
 
-- [第 1-30 步复现步骤说明](docs/07_reproduction/reproduction_steps/README.md)
-- [第 26 步：independent formal 真正运行](docs/07_reproduction/reproduction_steps/26_independent_formal_run.md)
-- [第 27 步：metrics / visualization 接 outputs](docs/07_reproduction/reproduction_steps/27_independent_result_analysis.md)
-- [第 28 步：baseline 对比 small](docs/07_reproduction/reproduction_steps/28_baseline_comparison_small.md)
-- [第 29 步：多 seed 统计汇总](docs/07_reproduction/reproduction_steps/29_independent_multiseed_summary.md)
-- [第 30 步：新项目迁移演练](docs/07_reproduction/reproduction_steps/30_new_project_migration_rehearsal.md)
+阶段 A 第 2 步已开始使用 `fault/`：
 
-### 3. 已验证结果
+- `fault/create_completion_fault_event.m`
+- `fault/validate_completion_fault_event.m`
 
-#### Independent formal
+当前只负责工序完成时故障事件的创建和校验。
 
-```text
-dataset：Mk01
-seed：42
-pop：30
-max_gen：10
-runTime：7.625127
-paretoSolutionCount：4
-bestMakespan：111.853333
-bestTotalEnergy：1669.020000
-usedRawSearch：0
-usedRawDecoding：0
-usedRawEvaluation：0
-```
+阶段 A 第 3 步使用 `state/`：
 
-#### Independent 结果分析
+- `state/extract_stage_a_state.m`
 
-```text
-formal obj_matrix 已接入 metrics
-spacing：2.549194
-Pareto 图：已生成
-收敛曲线：已生成
-HV / IGD / C-metric：因未提供 reference/baseline，当前为 NaN
-```
+它只读取正常机器和 AGV 时间表，提取故障时刻的状态快照，不生成新调度数据。
 
-#### Baseline small 对比
+阶段 A 第 4 步使用 `impact/`：
 
-| 项目 | raw NSGA-II | independent NSGA-II |
-|---|---:|---:|
-| seed | 42 | 42 |
-| pop / max_gen | 10 / 2 | 10 / 2 |
-| Pareto 解数量 | 3 | 1 |
-| 最优 makespan | 155.886667 | 138.456667 |
-| 最优 totalEnergy | 1890.048000 | 1936.654667 |
+- `impact/identify_stage_a_affected_operations.m`
 
-#### Independent small 五 seed
+它建立维修不可用区间，并沿工件和机器后继关系识别受影响工序。预计时间只用于传播判断，不回写正常基线。
 
-```text
-seedList：[42 43 44 45 46]
-bestMakespan：mean=137.010000, std=3.095851
-bestTotalEnergy：mean=1909.781867, std=18.655365
-runTime：mean=0.809344, std=0.253770
-paretoSolutionCountMean：2.400000
-```
+阶段 A 第 5 步使用 `rescheduling/`：
 
-### 4. 当前结论
+- `rescheduling/build_stage_a_machine_right_shift.m`
 
-已经可以确认：
+它将受影响时间写入机器候选计划，重建机器空闲块并检查机器、工件和维修区间约束。AGV 暂不调整。
 
-```text
-当前项目的核心 decoding / evaluation / NSGA-II 已有 independent 实现。
-当前 Mk01 数据能够完成 independent formal 运行。
-formal 输出能够接 metrics 和 visualization。
-能够完成 raw baseline 与 independent variant 的 small 对比。
-能够完成 independent small 五 seed 统计。
-相近的新项目可以按迁移手册逐层套用。
-```
+阶段 A 第 6 步继续使用 `impact/`：
 
-不能过度宣称：
+- `impact/analyze_stage_a_agv_impact.m`
 
-```text
-尚未完成 formal 多 seed。
-尚未完成 formal 多算法 baseline 对比。
-尚未完成完整论文 HV / IGD / C-metric 参数和消融实验。
-尚未拿一个真实的新选题完成从数据到论文结果的全流程迁移。
-新项目不能不改代码直接 formal，必须按变化层逐步适配。
-```
+它根据原 AGV 时间表和机器候选时间检查运输约束，只输出需要调整的运输集合，不修改 AGV。
 
-### 5. 新项目怎么套
+阶段 A 第 7 步使用 `rescheduling/`：
 
-```text
-config / data dry-run
--> encoding
--> decoding
--> evaluation
--> independent small
--> metrics / visualization
--> independent medium
--> formal preflight
--> independent formal
--> baseline / multiseed
-```
+- `rescheduling/build_stage_a_agv_linked_right_shift.m`
 
-详细入口：
+它保持原机器、AGV、路线和任务顺序，通过固定点传播同步右移运输与机器工序，并检查机器、工件、AGV 和维修区间约束。
 
-- [新项目套用与复现入口顺序](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md)
-- [新项目迁移手册](docs/08_engineering/new_project_migration_guide.md)
-- [新项目迁移演练](docs/08_engineering/new_project_migration_rehearsal.md)
+阶段 A 第 8.1 步使用 `rescheduling/`：
 
-## Knowledge Base
+- `rescheduling/build_stage_a_frozen_problem.m`
 
-- [知识地图工作表](docs/00_system_overview/knowledge_map_workplan.md)
-- [项目入口地图：我想做一件事时该打开哪里](docs/00_system_overview/entrypoint_map.md)
-- [项目文件导览：每个板块是干什么的](docs/00_system_overview/repository_file_guide.md)
-- [项目易读版：这套代码到底在做什么](docs/00_system_overview/beginner_reading_guide.md)
-- [系统五层认知结构](docs/00_system_overview/system_layer_architecture.md)
-- [数据层认知地图](docs/02_data_flow/data_layer_map.md)
-- [搜索层：基础搜索机制](docs/03_algorithm/search_layer_overview.md)
-- [调度解码层：sorting.m 的系统作用](docs/04_decoding/decoding_layer_overview.md)
-  - [编码-解码应用理解总览](docs/04_decoding/encoding_decoding_application_overview.md)
-  - [编码层结构笔记：chrom 是怎么生成和变化的](docs/04_decoding/encoding_layer_structure_note.md)
-- [评价层：调度方案如何被评价](docs/05_evaluation/evaluation_layer_overview.md)
-- [实验流程：dif_main.m 和 same_main.m 在跑什么](docs/06_experiments/experiment_flow.md)
-- [复现步骤说明](docs/07_reproduction/reproduction_steps/README.md)
-  - [MATLAB 复现命令清单](docs/07_reproduction/reproduction_steps/matlab_command_cheatsheet.md)
-  - [现在这套封装怎么跑](docs/07_reproduction/reproduction_steps/00_how_to_run_current_stage.md)
-  - [第 1 步：数据读取封装](docs/07_reproduction/reproduction_steps/01_data_reading.md)
-  - [第 2 步：fitness/sorting 最小调用链](docs/07_reproduction/reproduction_steps/02_fitness_sorting_call_chain.md)
-  - [第 3 步：单条染色体评价入口](docs/07_reproduction/reproduction_steps/03_single_chromosome_evaluation.md)
-  - [第 4 步：单条评价运行脚本](docs/07_reproduction/reproduction_steps/04_run_single_evaluation_script.md)
-  - [第 5 步：小种群短迭代](docs/07_reproduction/reproduction_steps/05_run_small_nsga2.md)
-  - [第 6 步：配置化 small_nsga2](docs/07_reproduction/reproduction_steps/06_config_small_nsga2.md)
-  - [第 7 步：数据与配置扩展准备](docs/07_reproduction/reproduction_steps/07_data_config_extension.md)
-  - [第 8 步：配置入口测试](docs/07_reproduction/reproduction_steps/08_config_entry_test.md)
-  - [第 9 步：小幅放大参数运行](docs/07_reproduction/reproduction_steps/09_medium_nsga2_run.md)
-  - [第 10 步：运行入口分层整理](docs/07_reproduction/reproduction_steps/10_reproduction_entry_layers.md)
-  - [第 11 步：阶段总结与下一阶段路线](docs/07_reproduction/reproduction_steps/11_stage_summary_next_routes.md)
-  - [第 12 步：outputs 输出结构整理](docs/07_reproduction/reproduction_steps/12_outputs_structure.md)
-  - [第 13 步：运行日志与参数记录设计](docs/07_reproduction/reproduction_steps/13_run_log_and_parameter_record.md)
-  - [第 14 步：正式实验入口设计](docs/07_reproduction/reproduction_steps/14_formal_experiment_entry_design.md)
-  - [第 15 步：正式实验配置设计](docs/07_reproduction/reproduction_steps/15_formal_config_design.md)
-  - [第 17 步：指标入口设计](docs/07_reproduction/reproduction_steps/17_metrics_entry_design.md)
-  - [第 21 步：独立 decoding 实现](docs/07_reproduction/reproduction_steps/21_independent_decoding.md)
-  - [第 22 步：独立 evaluation 实现](docs/07_reproduction/reproduction_steps/22_independent_evaluation.md)
-  - [第 23 步：独立 NSGA-II search 实现](docs/07_reproduction/reproduction_steps/23_independent_nsga2_search.md)
-  - [第 24 步：raw 对照总验收](docs/07_reproduction/reproduction_steps/24_independent_raw_compare.md)
-  - [第 25 步：independent 实验入口](docs/07_reproduction/reproduction_steps/25_independent_experiment_entries.md)
-  - [第 26 步：independent formal 真正运行](docs/07_reproduction/reproduction_steps/26_independent_formal_run.md)
-  - [第 27 步：independent 结果分析](docs/07_reproduction/reproduction_steps/27_independent_result_analysis.md)
-  - [第 28 步：baseline small 对比](docs/07_reproduction/reproduction_steps/28_baseline_comparison_small.md)
-  - [第 29 步：independent 多 seed 汇总](docs/07_reproduction/reproduction_steps/29_independent_multiseed_summary.md)
-  - [第 30 步：新项目迁移演练](docs/07_reproduction/reproduction_steps/30_new_project_migration_rehearsal.md)
-- [数据层复现风险](docs/07_reproduction/data_reproduction_risks.md)
-- [复现与封装路线：遇到问题时怎么办](docs/08_engineering/refactor_roadmap.md)
+它冻结故障时刻已完成和正在执行的工序，释放未开工工序及其原运输，为完全重调度建立工件、机器和 AGV 边界。
+AGV 边界同时从原 `AGVTable` 和 `agvEGRecord` 恢复可用时间、位置、剩余电量、已发生能耗和已完成充电次数。
 
-## 历史进展记录
+阶段 A 第 8.2a 步使用 `rescheduling/`：
 
-以下内容保留各阶段形成过程，正式汇报优先使用本文开头的“项目汇报总览”。
+- `rescheduling/decode_stage_a_complete_reschedule.m`
+- `rescheduling/build_stage_a_baseline_seed_decision.m`
 
-## Current Principle
+它只解码未开工工序的顺序、候选机器、AGV 和速度决策。当前原染色体仅作为契约测试种子，不代表搜索结果。解码器现在还按原规则安排阈值充电和最终卸载，并输出完整完工时间与能耗。MATLAB 原解码契约测试已通过，8.2d 扩展后需要回归。
 
-- 不修改 `raw_code/`
-- 小步重构
-- 所有实验输出进入 `outputs/`
-- 优先保证数据流清晰和实验可复现
-## 2026-05-25 编码层入口
+阶段 A 第 8.2b 步使用 `rescheduling/`：
 
-当前编码层第一版正式封装已经完成。回 GitHub 找编码层时，优先看：
+- `rescheduling/initialize_stage_a_reschedule_population.m`
+- `rescheduling/vary_stage_a_reschedule_population.m`
 
-| 我想做什么 | 打开哪里 |
-|---|---|
-| 理解 `chrom = [OS, MS, AS, SS]` 的结构 | [encoding_layer_structure_note.md](docs/04_decoding/encoding_layer_structure_note.md) |
-| 看每个编码层函数的用途 | [repository_file_guide.md](docs/00_system_overview/repository_file_guide.md) |
-| 跑编码层完整 smoke test | `run('tests/test_encoding_layer.m')` |
-| 跑编码层异常输入测试 | `run('tests/test_encoding_invalid_cases.m')` |
-| 跑编码层 demo 入口 | `run('scripts/run_encoding_smoke.m')` |
-| 看 NSGA-II 如何接入新编码层 | [nsga2_encoding_integration_plan.md](docs/03_algorithm/nsga2_encoding_integration_plan.md) |
+它保留原项目 OS/MS/AS/SS 编码语义及 IPOX、MPX 和变异思想，但只操作未开工工序。首个个体保留原基线种子，其余候选严格从原候选机器、AGV 和速度范围生成。本步不计算适应度，也不运行 NSGA-II。
 
-编码层现在可以独立完成：
+阶段 A 第 8.2c 步使用 `rescheduling/`：
 
-```text
-读 sample 数据
--> 生成初始 population
--> 验证 population
--> 生成 offspring
--> 再次验证 offspring
-```
+- `rescheduling/evaluate_stage_a_reschedule_candidate.m`
+- `rescheduling/search_stage_a_complete_reschedule.m`
 
-它不依赖 `raw_code/NSGA-II/init.m`，不依赖 `raw_code/NSGA-II/variation.m`，也不调用 `sorting.m`、`fitness.m` 或 `NSGA2.m`。
+它将第 8.2a 解码器和第 8.2b 算子连接为受限 NSGA-II 主循环。评价目标已恢复为最终卸载完工时间和机器与 AGV 总能耗。轻量入口只验证搜索契约，不作为正式实验。
 
-## 2026-05-25 搜索层接入入口
+阶段 A 第 8.2d 步继续使用 `rescheduling/`：
 
-新编码层已经有一个旁路搜索接入入口，不修改 `raw_code`：
+- `rescheduling/build_stage_a_frozen_problem.m`
+- `rescheduling/decode_stage_a_complete_reschedule.m`
 
-| 我想做什么 | 运行什么 |
-|---|---|
-| 跑使用新编码层的小规模 NSGA-II | `run('scripts/run_small_nsga2_refactored.m')` |
-| 只测试搜索接入结果结构，不生成 outputs | `run('tests/test_small_nsga2_refactored_encoding.m')` |
+并新增：
 
-注意：这是搜索层接入测试，会调用评价链路里的 `fitness.m` 和 `sorting.m`。它不同于纯编码层 smoke test。
+- `scripts/run_stage_a_complete_energy_contract.m`
 
-### 2026-05-25 运行记录
+它从原基线恢复故障边界电量，按原 `sorting.m` 规则检查阈值充电，在每个工件最后工序完成时安排最早可用 AGV 卸载，并按原 `fitness.m` 口径计算机器能耗、AGV 能耗和总能耗。
 
-`scripts/run_small_nsga2_refactored.m` 已经由用户在 MATLAB 中跑通：
+阶段 A 场景筛选使用 `screening/`：
 
-```text
-pop = 10
-max_gen = 2
-paretoSolutionCount = 1
-bestMakespan = 138.456667
-bestTotalEnergy = 1936.654667
-outputDir = outputs/small_nsga2_refactored/20260525_192659
-```
+- `screening/screen_stage_a_fault_scenarios.m`
 
-这说明新编码层已经接入小规模 NSGA-II 搜索流程。完整项目仍未全部封装完成，后续重点是 `sorting.m` 解码层、`fitness.m` 评价层和完整指标。
+它遍历原机器时间表中的工序完成时刻，使用当前维修时长和已有影响传播逻辑筛选有效故障候选，不修改配置。
 
-## 2026-05-25 解码层入口
+## 2026-06-22 更新：订单取消与动态重调度分析入口
 
-当前解码层已经完成 D1-D8 的第一轮拆解、封装和测试。回 GitHub 找解码层时，优先看：
+如果你现在关注的是“订单取消后的动态重调度”，先看这份分析页：
 
-| 我想做什么 | 打开或运行什么 |
-|---|---|
-| 理解 `sorting.m` 如何把 `chrom` 变成调度过程 | [decoding_layer_structure_note.md](docs/04_decoding/decoding_layer_structure_note.md) |
-| 看解码层函数在哪里 | `src/decoding/decode_chromosome.m`, `src/decoding/decode_population.m` |
-| 跑解码层正常 smoke test | `run('tests/test_decoding_layer.m')` |
-| 跑解码层异常输入测试 | `run('tests/test_decoding_invalid_cases.m')` |
-| 对比新封装和原始 `sorting.m` 输出是否一致 | `run('tests/test_decoding_compare_sorting.m')` |
+- `docs/00_system_overview/order_cancellation_dynamic_rescheduling_analysis.md`
 
-当前已由用户在 MATLAB 中跑通：
-
-```text
-test_decoding_layer passed: population=3, operations=55, AGVNum=3
-test_decoding_invalid_cases passed
-test_decoding_compare_sorting passed: fields matched=5
-```
-
-解码层仍然不负责计算 `makespan` / `totalEnergy`，这些属于后续评价层 `fitness.m` 的拆解范围。
-## 2026-05-29 Independent 主线更新
-
-项目现在已经补上第 21-25 步 independent 主线。也就是说，当前已经不只是 raw wrapper，而是有第一版脱离 raw `sorting.m` / `fitness.m` / `NSGA2.m` 的 independent 链路。
-
-新增复现步骤说明：
-
-- [第 21 步：独立 decoding 实现](docs/07_reproduction/reproduction_steps/21_independent_decoding.md)
-- [第 22 步：独立 evaluation 实现](docs/07_reproduction/reproduction_steps/22_independent_evaluation.md)
-- [第 23 步：独立 NSGA-II search 实现](docs/07_reproduction/reproduction_steps/23_independent_nsga2_search.md)
-- [第 24 步：raw 对照测试总验收](docs/07_reproduction/reproduction_steps/24_independent_raw_compare.md)
-- [第 25 步：independent small / medium / formal 验收](docs/07_reproduction/reproduction_steps/25_independent_experiment_entries.md)
-
-新增 independent 入口：
-
-| 类型 | 文件 |
-|---|---|
-| small config | `configs/independent_small_config.m` |
-| medium config | `configs/independent_medium_config.m` |
-| formal config | `configs/independent_formal_config.m` |
-| small runner | `scripts/run_independent_small_nsga2.m` |
-| medium runner | `scripts/run_independent_medium_nsga2.m` |
-| formal preflight / guarded runner | `scripts/run_independent_formal_nsga2.m` |
-
-关键文档：
-
-- [independent decoding 说明](docs/04_decoding/independent_decoding_guide.md)
-- [independent evaluation 说明](docs/05_evaluation/independent_evaluation_guide.md)
-- [independent NSGA-II search 说明](docs/03_algorithm/independent_nsga2_search_guide.md)
-- [independent raw 对照验收](docs/07_reproduction/independent_raw_compare_acceptance.md)
-- [independent 实验入口说明](docs/06_experiments/independent_experiment_entry_guide.md)
-
-当前结论：
-
-```text
-raw_code 是只读 baseline。
-src 已经有 independent decoding / evaluation / NSGA-II search。
-scripts 已经有 independent small / medium / formal preflight。
-tests 已经有 independent 验收和 raw 对照。
-outputs 仍然不提交 Git。
-```
+它总结了当前根项目能表示什么、订单取消时应该冻结什么、动态重调度应该放在哪一层，以及最小实现方案。
