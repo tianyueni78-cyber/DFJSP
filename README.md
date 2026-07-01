@@ -13,6 +13,14 @@
 | [阶段 C 最终总结与代码导读](docs/stage_c_final_summary_and_code_guide.md) | 阶段 C、C-S2、C-SEQ2 的最终结果 |
 | [结论证据与读数指南](docs/conclusion_evidence_guide.md) | 指标读法、结论来源和审计口径 |
 
+## 核心代码文档入口
+
+这里汇总项目中的核心代码说明文档。README 只做索引入口，详细分析放在 `docs/` 目录下的独立文档中。
+
+| 文档名称 | 作用简介 | 适用场景 | 详细文档 |
+|---|---|---|---|
+| `src/fault/normalize_stage_c_fault_events.m` | Stage C 故障事件的标准化、校验、排序与分组入口 | 需要理解 Stage C 故障数据如何被整理成统一格式时 | [docs/normalize_stage_c_fault_events.md](docs/normalize_stage_c_fault_events.md) |
+
 ## 项目范围
 
 本项目研究 FJSP-AGV 机器故障动态重调度，最终覆盖：
