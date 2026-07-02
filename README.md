@@ -13,6 +13,20 @@
 | [阶段 C 最终总结与代码导读](docs/stage_c_final_summary_and_code_guide.md) | 阶段 C、C-S2、C-SEQ2 的最终结果 |
 | [结论证据与读数指南](docs/conclusion_evidence_guide.md) | 指标读法、结论来源和审计口径 |
 
+## 流程定位入口
+
+如果你想按“原始数据 -> 读入 -> 故障标准化 -> 影响传播 -> 重调度 -> 审计 -> 结论”的顺序读，这张表最省事。
+
+| 阶段 | 主要看什么 | 入口文档 |
+|---|---|---|
+| 原始数据 | 生产实例、机器数据、AGV 数据、故障输入的业务边界 | [问题定义](docs/problem_definition.md)；`raw_code/` 下的原始数据文件 |
+| 读入 | FJSP、机器、AGV 原始数据如何被读成程序结构 | `src/data/read_fjsp.m`；`src/data/read_machine_data.m`；`src/data/read_agv_data.m` |
+| 故障标准化 | 故障事件如何统一成可计算结构 | [normalize_stage_c_fault_events](docs/normalize_stage_c_fault_events.md)；`src/fault/normalize_stage_c_fault_events.m` |
+| 影响传播 | 单故障、同时故障、连续故障的影响链如何扩展和合并 | [阶段 C 第 5 步同时故障影响](docs/stage_c_step_05_simultaneous_impact.md)；[阶段 C 第 14 步连续故障影响上下文](docs/stage_c_step_14_sequential_impact_context.md) |
+| 重调度 | 局部右移、AGV 联动、冻结问题、完全重调度解码与搜索 | [阶段 C 第 6 步同时故障机器局部右移](docs/stage_c_step_06_simultaneous_machine_right_shift.md)；[阶段 C 第 10.1 步同时故障完全重调度解码器](docs/stage_c_step_10a_simultaneous_complete_decoder.md)；[阶段 C 最终总结与代码导读](docs/stage_c_final_summary_and_code_guide.md) |
+| 审计 | 约束是否全过、能耗是否完整、结果是否可引用 | `src/evaluation/audit_stage_c_rescheduling_candidate.m`；[结论证据与读数指南](docs/conclusion_evidence_guide.md) |
+| 结论 | 最终策略如何选择、结论怎么读、哪里是封版结果 | [项目总收口](docs/project_final_summary.md)；[结论证据与读数指南](docs/conclusion_evidence_guide.md) |
+
 ## 核心代码文档入口
 
 这里汇总项目中的核心代码说明文档。README 只做索引入口，详细分析放在 `docs/` 目录下的独立文档中。
